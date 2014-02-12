@@ -16,9 +16,6 @@ public class ProjetIntegrateur {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-        //GROS TEST DE LA MORT !!!
     }
     
 }
