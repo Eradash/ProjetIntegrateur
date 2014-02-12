@@ -1,5 +1,5 @@
 package projetintegrateur;
 
 public enum Type {
-    TEST, TEST2;
+    SERIE, PARALELLE, CIRCUIT, RESISTANCE;
 }
