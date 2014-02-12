@@ -18,6 +18,8 @@ public class ProjetIntegrateur {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        // Test de fusion de code
+        
         //GROS TEST DE LA MORT !!!
     }
     
