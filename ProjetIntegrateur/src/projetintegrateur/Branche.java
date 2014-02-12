@@ -11,4 +11,7 @@ public abstract class Branche implements Composante{
     public int getNumero(){
         return numero;
     }
+    
+    public abstract void ajouterComposante(Composante c);
+    public abstract void supprimerComposante(Composante c);
 }

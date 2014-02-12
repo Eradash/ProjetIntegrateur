@@ -6,5 +6,14 @@ public class Serie extends Branche{
     public Type getType() {
         return Type.SERIE;
     }
+
+    @Override
+    public void ajouterComposante(Composante c) {
+
+    }
+
+    @Override
+    public void supprimerComposante(Composante c) {
+    }
     
 }
