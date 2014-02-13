@@ -15,5 +15,9 @@ public class Parallele extends Branche{
     @Override
     public void supprimerComposante(Composante c) {
     }
+
+    @Override
+    public void getComposante(int branche, int composante) {
+    }
     
 }
