@@ -5,9 +5,9 @@ import java.util.HashMap;
 public class BD {
     
     /*
-     ***********************************
-     * Changer le 2ieme type de la map *
-     ***********************************
+     **************************************************
+     * Changer le 2ieme type de la map pour les infos *
+     **************************************************
      */
     
     HashMap<Composante, Circuit> listeComposante = new HashMap<>();

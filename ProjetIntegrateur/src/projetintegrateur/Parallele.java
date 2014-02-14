@@ -3,7 +3,7 @@ package projetintegrateur;
 public class Parallele extends Branche{
 
     @Override
-    public void ajouterComposante(Composante c) {
+    public void ajouterComposante(Composante c, int noComp) {
 
     }
 

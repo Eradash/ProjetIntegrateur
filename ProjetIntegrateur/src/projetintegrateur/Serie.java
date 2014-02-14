@@ -8,7 +8,7 @@ public class Serie extends Branche{
     }
 
     @Override
-    public void ajouterComposante(Composante c) {
+    public void ajouterComposante(Composante c, int noCOmp) {
 
     }
 
@@ -32,6 +32,7 @@ public class Serie extends Branche{
     }
 
     @Override
+<<<<<<< HEAD
     public void calculAmpere(int voltage) {
     
     }
@@ -39,5 +40,9 @@ public class Serie extends Branche{
     @Override
     public void calculVoltage(int ampere) {
     
+=======
+    public void ajouterComposante(Composante c, int noComp) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 62f84b59c76cd4cdedda3c40e79e93d2397e3300
     }
 }
