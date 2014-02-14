@@ -1,8 +1,11 @@
 package projetintegrateur;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BD {
+    
+    private static volatile BD instance = null;
     
     /*
      **************************************************
@@ -12,8 +15,8 @@ public class BD {
     
     HashMap<Composante, Circuit> listeComposante = new HashMap<>();
     
-    public BD() {
-        
+    private BD() {
+        super();
     }
     
     /*
@@ -22,7 +25,7 @@ public class BD {
      ***********************************
      */
     
-    public void setComposante(int noComp) {
+    public void setComposante(int noComp, ArrayList<Integer> paramettre) {
         
     }
     
@@ -34,5 +37,16 @@ public class BD {
     
     public void getComposante(int noComp) {
         
+    }
+    
+    public final static BD getInstance() {
+        if(BD.instance == null) {
+            synchronized(BD.class) {
+                if(BD.instance == null) {
+                    BD.instance = new BD();
+                }
+            }
+        }
+        return BD.instance;
     }
 }
