@@ -26,8 +26,11 @@ public class Parallele extends Branche{
 
     @Override
     public double getResistanceEquivalente() {
-        //Calcul de résistance entre ses branches...
-        return 0;
+        double resistance = 0;
+        for(Serie s : listeBranches){
+            resistance += 1 / s.getResistanceEquivalente();
+        }
+        return 1/resistance;
     }
 
     @Override
