@@ -26,14 +26,13 @@ public class Serie extends Branche {
 
     }
 
-    public void getComposante(int composante) {
-        getComposante(0, composante);
-    }
-
     @Override
     public double getResistanceEquivalente() {
-        //Calcul résistance entre ses composantes...
-        return 0;
+        double resistance = 0;
+        for(Composante c : listeComposante){
+            resistance += c.getResistanceEquivalente();
+        }
+        return resistance;
     }
 
     @Override
