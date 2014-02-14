@@ -18,6 +18,16 @@ public class Serie extends Branche{
 
     @Override
     public void getComposante(int branche, int composante) {
+        
     }
     
+    public void getComposante(int composante){
+        getComposante(0,composante);
+    }
+
+    @Override
+    public double getResistanceEquivalente() {
+        //Calcul résistance entre ses composantes...
+        return 0;
+    }
 }

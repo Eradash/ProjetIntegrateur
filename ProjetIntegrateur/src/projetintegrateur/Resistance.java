@@ -3,11 +3,8 @@ package projetintegrateur;
 public class Resistance implements Composante{
 
     int numero;
-    int ohm;
+    double ohm;
     
-    public int getOhm(){
-        return ohm;
-    }
     
     public boolean calculExplosion(int ampere){
         return true;
@@ -21,6 +18,11 @@ public class Resistance implements Composante{
     @Override
     public Type getType() {
         return Type.RESISTANCE;
+    }
+
+    @Override
+    public double getResistanceEquivalente() {
+        return ohm;
     }
     
 }

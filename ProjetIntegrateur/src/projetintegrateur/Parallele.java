@@ -19,5 +19,10 @@ public class Parallele extends Branche{
     @Override
     public void getComposante(int branche, int composante) {
     }
-    
+
+    @Override
+    public double getResistanceEquivalente() {
+        //Calcul de résistance entre ses branches...
+        return 0;
+    }
 }

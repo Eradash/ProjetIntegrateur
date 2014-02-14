@@ -6,7 +6,7 @@ public class AnalyseurCircuit {
         
     }
     
-    public void analyserCircuit() {
+    public void analyserCircuit(Circuit c) {
         
     }
     
