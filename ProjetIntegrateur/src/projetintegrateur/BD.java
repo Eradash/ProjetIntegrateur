@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class BD {
     
     private static volatile BD instance = null;
+    private final static GestionnaireID gestionnaire = GestionnaireID.getInstance();
     
     /*
      * La deuxieme partie du hashmap:
@@ -24,6 +25,18 @@ public class BD {
         if(listeComposante.containsKey(noComp)) {
             listeComposante.remove(noComp);
             listeComposante.put(noComp, paramettre);
+            return true;
+        }
+        return false;
+    }
+    
+    public void ajouterComposante(ArrayList<Integer> paramettre) {
+        listeComposante.put(gestionnaire.ajouterComp(), paramettre);
+    }
+    
+    public boolean supprimerComposante(int noComp) {
+        if(gestionnaire.supprimerComp(noComp)) {
+            listeComposante.remove(noComp);
             return true;
         }
         return false;
