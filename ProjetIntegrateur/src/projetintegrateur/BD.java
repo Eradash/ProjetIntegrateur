@@ -8,35 +8,32 @@ public class BD {
     private static volatile BD instance = null;
     
     /*
-     **************************************************
-     * Changer le 2ieme type de la map pour les infos *
-     **************************************************
+     * La deuxieme partie du hashmap:
+     * 1- resistance de la composante
+     * 2- amperage de la composante
+     * 3- voltage de la composante
      */
     
-    HashMap<Composante, Circuit> listeComposante = new HashMap<>();
+    HashMap<Integer, ArrayList<Integer>> listeComposante = new HashMap<>();
     
     private BD() {
         super();
     }
     
-    /*
-     ***********************************
-     * Ajouter les infos en paramettre *
-     ***********************************
-     */
-    
-    public void setComposante(int noComp, ArrayList<Integer> paramettre) {
-        
+    public boolean setComposante(int noComp, ArrayList<Integer> paramettre) {
+        if(listeComposante.containsKey(noComp)) {
+            listeComposante.remove(noComp);
+            listeComposante.put(noComp, paramettre);
+            return true;
+        }
+        return false;
     }
     
-    /*
-     ***********************************
-     * Ajouter les infos a renvoyer    *
-     ***********************************
-     */
-    
-    public void getComposante(int noComp) {
+    public ArrayList<Integer> getComposante(int noComp) {
+        if(listeComposante.containsKey(noComp))
+            return listeComposante.get(noComp);
         
+        return null;
     }
     
     public final static BD getInstance() {
