@@ -25,6 +25,10 @@ public class Serie extends Branche {
     public void getComposante(int branche, int composante) {
 
     }
+    
+    public ArrayList<Composante> getComposantes(){
+        return listeComposante;
+    }
 
     @Override
     public double getResistanceEquivalente() {

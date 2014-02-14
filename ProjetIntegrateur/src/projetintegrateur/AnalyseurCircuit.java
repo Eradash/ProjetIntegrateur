@@ -7,7 +7,15 @@ public class AnalyseurCircuit {
     }
     
     public void analyserCircuit(Circuit c) {
-        
+        double ampere = c.getAmpere();
+        double voltage = c.getVoltage();
+        calculerVoltages(c, ampere);
+    }
+    
+    private void calculerVoltages(Circuit c, double ampere){
+        for(Composante comp : c.getComposantes()){
+            comp.calculVoltage(ampere);
+        }
     }
     
     /*
