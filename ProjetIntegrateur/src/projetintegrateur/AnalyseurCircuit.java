@@ -49,4 +49,5 @@ public class AnalyseurCircuit {
     public void encoderCircuit() {
         
     }
+    
 }
