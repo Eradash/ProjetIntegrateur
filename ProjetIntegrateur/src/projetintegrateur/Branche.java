@@ -12,7 +12,7 @@ public abstract class Branche implements Composante{
         return numero;
     }
     
-    public abstract void ajouterComposante(Composante c);
+    public abstract void ajouterComposante(Composante c, int noComp);
     public abstract void supprimerComposante(Composante c);
     
     public abstract void getComposante(int branche, int composante);

@@ -8,7 +8,7 @@ public class Serie extends Branche{
     }
 
     @Override
-    public void ajouterComposante(Composante c) {
+    public void ajouterComposante(Composante c, int noCOmp) {
 
     }
 
@@ -29,5 +29,10 @@ public class Serie extends Branche{
     public double getResistanceEquivalente() {
         //Calcul résistance entre ses composantes...
         return 0;
+    }
+
+    @Override
+    public void ajouterComposante(Composante c, int noComp) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
