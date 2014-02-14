@@ -25,4 +25,14 @@ public class Parallele extends Branche{
         //Calcul de résistance entre ses branches...
         return 0;
     }
+
+    @Override
+    public void calculAmpere(int voltage) {
+
+    }
+
+    @Override
+    public void calculVoltage(int ampere) {
+
+    }
 }

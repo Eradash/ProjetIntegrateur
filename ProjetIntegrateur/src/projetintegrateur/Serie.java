@@ -30,4 +30,14 @@ public class Serie extends Branche{
         //Calcul résistance entre ses composantes...
         return 0;
     }
+
+    @Override
+    public void calculAmpere(int voltage) {
+    
+    }
+
+    @Override
+    public void calculVoltage(int ampere) {
+    
+    }
 }

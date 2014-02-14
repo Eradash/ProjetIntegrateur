@@ -24,5 +24,14 @@ public class Resistance implements Composante{
     public double getResistanceEquivalente() {
         return ohm;
     }
-    
+
+    @Override
+    public void calculAmpere(int voltage) {
+        double ampere = voltage/ohm;
+    }
+
+    @Override
+    public void calculVoltage(int ampere) {
+        double voltage = ampere*ohm;
+    }
 }
