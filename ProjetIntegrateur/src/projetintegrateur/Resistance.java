@@ -26,12 +26,12 @@ public class Resistance implements Composante{
     }
 
     @Override
-    public void calculAmpere(int voltage) {
+    public void calculAmpere(double voltage) {
         double ampere = voltage/ohm;
     }
 
     @Override
-    public void calculVoltage(int ampere) {
+    public void calculVoltage(double ampere) {
         double voltage = ampere*ohm;
     }
 }

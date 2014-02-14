@@ -1,6 +1,10 @@
 package projetintegrateur;
 
+import java.util.ArrayList;
+
 public class Parallele extends Branche{
+    
+    ArrayList<Serie> listeBranches;
 
     @Override
     public void ajouterComposante(Composante c, int noComp) {
@@ -27,12 +31,16 @@ public class Parallele extends Branche{
     }
 
     @Override
-    public void calculAmpere(int voltage) {
-
+    public void calculAmpere(double voltage) {
+        //Inutile ici pour l'instant...
     }
 
     @Override
-    public void calculVoltage(int ampere) {
-
+    public void calculVoltage(double ampere) {
+        double voltage = getResistanceEquivalente() * ampere;
+        for(Serie s : listeBranches){
+            s.calculAmpere(voltage);
+        }
+        
     }
 }

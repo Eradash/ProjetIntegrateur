@@ -1,6 +1,11 @@
 package projetintegrateur;
 
+import java.util.ArrayList;
+
+
 public class Serie extends Branche {
+    
+    ArrayList<Composante> listeComposante;
 
     @Override
     public Type getType() {
@@ -32,12 +37,15 @@ public class Serie extends Branche {
     }
 
     @Override
-    public void calculAmpere(int voltage) {
-
+    public void calculAmpere(double voltage) {
+        double ampere = voltage / getResistanceEquivalente();
+        for(Composante c : listeComposante){
+            c.calculVoltage(ampere);
+        }
     }
 
     @Override
-    public void calculVoltage(int ampere) {
-
+    public void calculVoltage(double ampere) {
+        //Inutile ici pour l'instant...
     }
 }
