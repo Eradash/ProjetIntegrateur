@@ -1,4 +1,6 @@
-package projetintegrateur;
+package gestion;
+
+import logiqueCircuit.Circuit;
 
 public class AnalyseurCircuit {
     

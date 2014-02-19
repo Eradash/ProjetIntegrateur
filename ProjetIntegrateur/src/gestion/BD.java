@@ -1,4 +1,4 @@
-package projetintegrateur;
+package gestion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +47,11 @@ public class BD {
             return listeComposante.get(noComp);
         
         return null;
+    }
+    
+    public void resetCircuit() {
+        gestionnaire.resetCircuit();
+        listeComposante.clear();
     }
     
     public final static BD getInstance() {

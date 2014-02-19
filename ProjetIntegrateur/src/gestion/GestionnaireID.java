@@ -1,4 +1,4 @@
-package projetintegrateur;
+package gestion;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,6 @@ public class GestionnaireID {
     
     private static volatile GestionnaireID instance = null;
     private ArrayList<Integer> ID;
-    private int nbrAcces = 0;
     
     private GestionnaireID() {
         super();
@@ -31,15 +30,19 @@ public class GestionnaireID {
         return false;
     }
     
+    public void resetCircuit() {
+        ID.clear();
+    }
+    
     /*
      * Créer une classe exception pour gérer le nbr d'acces
      */
     
     public int ajouterComp() {
-        nbrAcces++;
         int i = 0;
         
         while (!ID.contains(i)){
+            ID.add(i);
             i++;
         }
         

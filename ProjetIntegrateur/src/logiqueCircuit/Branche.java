@@ -1,4 +1,4 @@
-package projetintegrateur;
+package logiqueCircuit;
 
 public abstract class Branche implements Composante{
     

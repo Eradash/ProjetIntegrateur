@@ -1,4 +1,4 @@
-package projetintegrateur;
+package logiqueCircuit;
 
 public class Circuit extends Serie{
 

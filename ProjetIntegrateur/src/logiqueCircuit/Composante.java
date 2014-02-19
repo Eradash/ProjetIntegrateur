@@ -1,4 +1,4 @@
-package projetintegrateur;
+package logiqueCircuit;
 
 public interface Composante {
     public int getNumero();

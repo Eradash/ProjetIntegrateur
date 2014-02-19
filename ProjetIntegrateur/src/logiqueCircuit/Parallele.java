@@ -1,4 +1,4 @@
-package projetintegrateur;
+package logiqueCircuit;
 
 import java.util.ArrayList;
 
