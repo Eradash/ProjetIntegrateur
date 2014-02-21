@@ -21,10 +21,6 @@ public class Parallele extends Branche{
     }
 
     @Override
-    public void getComposante(int branche, int composante) {
-    }
-
-    @Override
     public double getResistanceEquivalente() {
         double resistance = 0;
         for(Serie s : listeBranches){
@@ -34,16 +30,9 @@ public class Parallele extends Branche{
     }
 
     @Override
-    public void calculAmpere(double voltage) {
-        //Inutile ici pour l'instant...
-    }
-
-    @Override
-    public void calculVoltage(double ampere) {
-        double voltage = getResistanceEquivalente() * ampere;
-        for(Serie s : listeBranches){
-            s.calculAmpere(voltage);
-        }
-        
+    public ArrayList<Composante> getComposantes() {
+        ArrayList<Composante> liste = new ArrayList<>();
+        liste.addAll(listeBranches);
+        return liste;
     }
 }

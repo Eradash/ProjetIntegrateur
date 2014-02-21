@@ -3,7 +3,7 @@ package logiqueCircuit;
 import java.util.ArrayList;
 
 
-public class Serie extends Branche {
+public class Serie extends Branche implements Composante{
     
     ArrayList<Composante> listeComposante;
 
@@ -20,12 +20,8 @@ public class Serie extends Branche {
     @Override
     public void supprimerComposante(Composante c) {
     }
-
-    @Override
-    public void getComposante(int branche, int composante) {
-
-    }
     
+    @Override
     public ArrayList<Composante> getComposantes(){
         return listeComposante;
     }
@@ -37,18 +33,5 @@ public class Serie extends Branche {
             resistance += c.getResistanceEquivalente();
         }
         return resistance;
-    }
-
-    @Override
-    public void calculAmpere(double voltage) {
-        double ampere = voltage / getResistanceEquivalente();
-        for(Composante c : listeComposante){
-            c.calculVoltage(ampere);
-        }
-    }
-
-    @Override
-    public void calculVoltage(double ampere) {
-        //Inutile ici pour l'instant...
     }
 }
