@@ -38,7 +38,7 @@ public class GestionnaireID {
      * Créer une classe exception pour gérer le nbr d'acces
      */
     
-    public int ajouterComp() {
+    public synchronized int ajouterComp() {
         int i = 0;
         
         while (!ID.contains(i)){

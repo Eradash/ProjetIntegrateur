@@ -21,30 +21,21 @@ public class BD {
         super();
     }
     
-    public boolean setComposante(int noComp, ArrayList<Integer> paramettre) {
-        if(listeComposante.containsKey(noComp)) {
-            listeComposante.remove(noComp);
-            listeComposante.put(noComp, paramettre);
+    public void SetComposante(int ID, ArrayList<Integer> paramettre) {
+        listeComposante.put(ID, paramettre);
+    }
+    
+    public boolean supprimerComposante(int ID) {
+        if(gestionnaire.supprimerComp(ID)) {
+            listeComposante.remove(ID);
             return true;
         }
         return false;
     }
     
-    public void ajouterComposante(ArrayList<Integer> paramettre) {
-        listeComposante.put(gestionnaire.ajouterComp(), paramettre);
-    }
-    
-    public boolean supprimerComposante(int noComp) {
-        if(gestionnaire.supprimerComp(noComp)) {
-            listeComposante.remove(noComp);
-            return true;
-        }
-        return false;
-    }
-    
-    public ArrayList<Integer> getComposante(int noComp) {
-        if(listeComposante.containsKey(noComp))
-            return listeComposante.get(noComp);
+    public ArrayList<Integer> getComposante(int ID) {
+        if(listeComposante.containsKey(ID))
+            return listeComposante.get(ID);
         
         return null;
     }
