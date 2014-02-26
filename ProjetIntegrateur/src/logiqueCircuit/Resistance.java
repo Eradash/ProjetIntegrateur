@@ -1,10 +1,22 @@
 package logiqueCircuit;
 
+import gestion.GestionnaireID;
+
 public class Resistance implements Composante{
 
-    int numero;
+    final int ID;
     double ohm;
-    
+
+    public Resistance(int ohm) {
+        ID = GestionnaireID.getInstance().ajouterComp();
+        this.ohm = ohm;
+    }
+
+    public Resistance() {
+        ID = GestionnaireID.getInstance().ajouterComp();
+        ohm = -1;
+    }
+
     
     public boolean calculExplosion(int ampere){
         return true;
@@ -12,7 +24,7 @@ public class Resistance implements Composante{
     
     @Override
     public int getNumero() {
-        return numero;
+        return ID;
     }
 
     @Override

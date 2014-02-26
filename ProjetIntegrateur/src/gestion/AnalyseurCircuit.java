@@ -19,42 +19,44 @@ public class AnalyseurCircuit {
         calcul(ampere, voltage, c);
     }
     
-    private void calcul(double amp, double volt, Branche b) {
+    private void calcul(double amp, double volt, Composante b) {
         double resistance = b.getResistanceEquivalente();
-        double ampere;
-        double voltage;
+        double ampere = amp;
+        double voltage = volt;
         int cas = 0;
 
-        if (amp != -1 || volt != -1) {
-            if (amp == -1) {
-                ampere = volt / resistance;
-            } else if (volt == -1) {
+        //Ajouter les valeurs pour la branche présente à la BD
+        if (ampere != -1 || voltage != -1) {
+            if (ampere == -1 && voltage != -1) {
+                ampere = voltage / resistance;
+            } else if (voltage == -1 && ampere != -1) {
                 cas += 10;
-                voltage = resistance * amp;
+                voltage = resistance * ampere;
             }
         }
 
-        if (b.getType() == Type.SERIE) {
+        if (b.getType() == Type.SERIE) { 
             cas += 1;
         } else if (b.getType() == Type.PARALELLE) {
             cas += 2;
+        } else {
+            cas = 0;
         }
         
-        switch (cas){
+        switch (cas) {
             case 1:
-                
+                for (Composante c : b.getComposantes()) {
+                    voltage = c.getResistanceEquivalente() * ampere;
+                    calcul(ampere, voltage, c);
+                }
                 break;
-                
+
             case 2:
-                
-                break;
-                
             case 11:
-                
-                break;
-                
             case 12:
-                
+                for (Composante c : b.getComposantes()) {
+                    calcul(ampere, voltage, c);
+                }
                 break;
         }
 
