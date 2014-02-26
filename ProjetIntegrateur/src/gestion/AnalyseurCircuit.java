@@ -1,11 +1,13 @@
 package gestion;
 
-import logiqueCircuit.Branche;
+import java.nio.file.Path;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 import logiqueCircuit.Type;
 
 public class AnalyseurCircuit {
+    
+    private final static GestionXML xml = GestionXML.getInstance();
     
     public AnalyseurCircuit() {
         
@@ -62,12 +64,6 @@ public class AnalyseurCircuit {
 
     }
     
-    /*
-     ***********************************
-     * Ajouter les infos a retourner   *
-     ***********************************
-     */
-    
     public void getValeurComposante(int noComp) {
         
     }
@@ -78,18 +74,8 @@ public class AnalyseurCircuit {
      ******************************************
      */
     
-    public Circuit decoderCircuit() {
+    public Circuit decoderCircuit(Path emplacement) {
         return new Circuit();
-    }
-    
-    /*
-     ***********************************
-     * Ajouter les infos a retourner   *
-     ***********************************
-     */
-    
-    public void creerCircuit(Circuit c) {
-        
     }
     
     /*
@@ -98,8 +84,8 @@ public class AnalyseurCircuit {
      ***********************************
      */
     
-    public void encoderCircuit() {
-        
+    public void encoderCircuit(Circuit c) throws Exception {
+        xml.encoder(c);
     }
     
 }
