@@ -1,6 +1,7 @@
 package logiqueCircuit;
 
 import gestion.GestionnaireID;
+import java.util.ArrayList;
 
 public class Resistance implements Composante{
 
@@ -35,5 +36,10 @@ public class Resistance implements Composante{
     @Override
     public double getResistanceEquivalente() {
         return ohm;
+    }
+
+    @Override
+    public ArrayList<Composante> getComposantes() {
+        return null;
     }
 }
