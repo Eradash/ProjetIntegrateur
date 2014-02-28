@@ -1,20 +1,11 @@
 package gestion;
 
-import java.util.ArrayList;
-
 public class BD {
     
     private static volatile BD instance = null;
     private final static GestionnaireID gestionnaire = GestionnaireID.getInstance();
     
-    /*
-     * La deuxieme partie du hashmap:
-     * 1- resistance de la composante
-     * 2- amperage de la composante
-     * 3- voltage de la composante
-     */
-    
-    MapKKV<Integer, String, Integer> listeComposante = new MapKKV<>();
+    MultiMap<Integer, String, Integer> listeComposante = new MultiMap<>();
     
     private BD() {
         super();
@@ -26,7 +17,7 @@ public class BD {
     
     public boolean supprimerComposante(int ID) {
         if(gestionnaire.supprimerComp(ID)) {
-//            listeComposante.remove(ID);
+            listeComposante.removeID(ID);
             return true;
         }
         return false;
