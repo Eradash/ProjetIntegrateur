@@ -24,11 +24,12 @@ public class ControleurCircuit {
         circuitsOuverts.remove(c);
     }
     
+    // Reste à finaliser
     public void ouvrirCircuit(Path emplacement) {
-        
+        xml.decoder();
     }
     
-    public void enregistrerCircuit(Circuit c){
-        
+    public void enregistrerCircuit(Circuit c) throws Exception{
+        xml.encoder(c);
     }
 }
