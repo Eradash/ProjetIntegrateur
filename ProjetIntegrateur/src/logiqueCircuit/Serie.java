@@ -13,12 +13,13 @@ public class Serie extends Branche implements Composante{
     }
 
     @Override
-    public void ajouterComposante(Composante c, int noCOmp) {
-
+    public void ajouterComposante(Composante c, int noComp) {
+        listeComposante.add(c);
     }
 
     @Override
     public void supprimerComposante(Composante c) {
+        listeComposante.remove(c);
     }
     
     @Override
