@@ -19,6 +19,8 @@ import org.w3c.dom.Element;
 
 public class GestionXML {
     
+    Element root;
+    
     private static volatile GestionXML instance = null;
     
     private GestionXML() {
@@ -30,7 +32,7 @@ public class GestionXML {
         DocumentBuilder docBuild = docFactory.newDocumentBuilder();
         
         Document doc = docBuild.newDocument();
-        Element root = doc.createElement(c.getNom());
+        root = doc.createElement(c.getNom());
         doc.appendChild(root);
         
         for(Composante comp : c.getComposantes()) {
@@ -68,6 +70,7 @@ public class GestionXML {
                 encoderPara((Parallele) comp, doc);
             }
             setComp(elem,comp,doc);
+            root.appendChild(elem);
         }
     }
     
