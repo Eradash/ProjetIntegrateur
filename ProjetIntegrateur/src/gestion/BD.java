@@ -5,13 +5,13 @@ public class BD {
     private static volatile BD instance = null;
     private final static GestionnaireID gestionnaire = GestionnaireID.getInstance();
     
-    MultiMap<Integer, String, Integer> listeComposante = new MultiMap<>();
+    MultiMap<Integer, String, Double> listeComposante = new MultiMap<>();
     
     private BD() {
         super();
     }
     
-    public void SetComposante(int ID, String info, int donne) {
+    public void SetComposante(int ID, String info, double donne) {
         listeComposante.put(ID, info, donne);
     }
     
@@ -23,7 +23,7 @@ public class BD {
         return false;
     }
     
-    public int getComposante(int ID, String info) {
+    public Double getComposante(int ID, String info) {
         return listeComposante.get(ID, info);
     }
     

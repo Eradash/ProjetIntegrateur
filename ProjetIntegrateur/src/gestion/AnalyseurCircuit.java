@@ -31,9 +31,11 @@ public class AnalyseurCircuit {
         if (ampere != -1 || voltage != -1) {
             if (ampere == -1 && voltage != -1) {
                 ampere = voltage / resistance;
+                BD.getInstance().SetComposante(b.getNumero(), "Ampere", ampere);
             } else if (voltage == -1 && ampere != -1) {
                 cas += 10;
                 voltage = resistance * ampere;
+                BD.getInstance().SetComposante(b.getNumero(), "Voltage", voltage);
             }
         }
 
@@ -87,5 +89,4 @@ public class AnalyseurCircuit {
     public void encoderCircuit(Circuit c) throws Exception {
         xml.encoder(c);
     }
-    
 }
