@@ -2,7 +2,7 @@ package logiqueCircuit;
 
 import java.util.ArrayList;
 
-public class Parallele extends Branche{
+public class Parallele extends Branche implements Composante{
     
     ArrayList<Serie> listeBranches;
 
@@ -18,6 +18,7 @@ public class Parallele extends Branche{
 
     @Override
     public void supprimerComposante(Composante c) {
+        
     }
 
     @Override
