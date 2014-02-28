@@ -6,6 +6,7 @@ import logiqueCircuit.Circuit;
 
 public class ControleurCircuit {
     
+    private final static GestionXML xml = GestionXML.getInstance();
     ArrayList<Circuit> circuitsOuverts = new ArrayList<>();
     GestionnaireID gestID = GestionnaireID.getInstance();
     
