@@ -13,8 +13,13 @@ public class Serie extends Branche implements Composante{
     }
 
     @Override
+<<<<<<< HEAD
     public void ajouterComposante(Composante c, int noComp) {
         listeComposante.add(c);
+=======
+    public void ajouterComposante(Composante c) {
+
+>>>>>>> 1af50c0100556260d67a31eceadde8c04638e12f
     }
 
     @Override

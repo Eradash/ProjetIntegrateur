@@ -1,20 +1,16 @@
 package gestion;
 
-import java.nio.file.Path;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 import logiqueCircuit.Type;
 
 public class AnalyseurCircuit {
     
-    private final static GestionXML xml = GestionXML.getInstance();
-    
     public AnalyseurCircuit() {
         
     }
     
     public void analyserCircuit(Circuit c) {
-        double resistance = c.getResistanceEquivalente();
         double voltage = c.getVoltage();
         double ampere = c.getAmpere();
         
@@ -27,17 +23,18 @@ public class AnalyseurCircuit {
         double voltage = volt;
         int cas = 0;
 
-        //Ajouter les valeurs pour la branche présente à la BD
         if (ampere != -1 || voltage != -1) {
             if (ampere == -1 && voltage != -1) {
                 ampere = voltage / resistance;
+                BD.getInstance().SetComposante(b.getNumero(), "Ampere", ampere);
             } else if (voltage == -1 && ampere != -1) {
                 cas += 10;
                 voltage = resistance * ampere;
+                BD.getInstance().SetComposante(b.getNumero(), "Voltage", voltage);
             }
         }
 
-        if (b.getType() == Type.SERIE) { 
+        if (b.getType() == Type.SERIE || b.getType() == Type.CIRCUIT) { 
             cas += 1;
         } else if (b.getType() == Type.PARALELLE) {
             cas += 2;
@@ -64,28 +61,7 @@ public class AnalyseurCircuit {
 
     }
     
-    public void getValeurComposante(int noComp) {
-        
+    public Double getValeurComposante(int noComp, String info) {
+        return BD.getInstance().getComposante(noComp, info);
     }
-    
-    /*
-     ******************************************
-     * Changer le return pour un vrai circuit *
-     ******************************************
-     */
-    
-    public Circuit decoderCircuit(Path emplacement) {
-        return new Circuit();
-    }
-    
-    /*
-     ***********************************
-     * Ajouter le XML a retourner      *
-     ***********************************
-     */
-    
-    public void encoderCircuit(Circuit c) throws Exception {
-        xml.encoder(c);
-    }
-    
 }
