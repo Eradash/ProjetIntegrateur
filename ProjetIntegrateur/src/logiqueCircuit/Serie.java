@@ -13,7 +13,7 @@ public class Serie extends Branche implements Composante{
     }
 
     @Override
-    public void ajouterComposante(Composante c, int noCOmp) {
+    public void ajouterComposante(Composante c) {
 
     }
 

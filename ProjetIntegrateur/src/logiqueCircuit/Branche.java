@@ -16,7 +16,7 @@ public abstract class Branche implements Composante{
         return ID;
     }
     
-    public abstract void ajouterComposante(Composante c, int noComp);
+    public abstract void ajouterComposante(Composante c);
     public abstract void supprimerComposante(Composante c);
     public abstract ArrayList<Composante> getComposantes();
 }

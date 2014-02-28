@@ -7,7 +7,7 @@ public class Parallele extends Branche{
     ArrayList<Serie> listeBranches;
 
     @Override
-    public void ajouterComposante(Composante c, int noComp) {
+    public void ajouterComposante(Composante c) {
 
     }
 
