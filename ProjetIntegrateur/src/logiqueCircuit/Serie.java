@@ -14,7 +14,7 @@ public class Serie extends Branche implements Composante{
     
     @Override
     public void ajouterComposante(Composante c) {
-        
+        listeComposante.add(c);
     }
 
     @Override

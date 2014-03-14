@@ -16,10 +16,13 @@ import logiqueCircuit.Serie;
 import logiqueCircuit.Type;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 public class GestionXML {
     
-    Element root;
+    private Element root;
+    private Circuit c;
     
     private static volatile GestionXML instance = null;
     
@@ -63,7 +66,8 @@ public class GestionXML {
     }
     
     private void encoderSerie(Serie s, Document doc, int branche) {
-        Element elem = doc.createElement("Branche"+branche);
+        Element elem = doc.createElement("Branche");
+        elem.setAttribute("Numéro: ", Integer.toString(branche));
         
         for(Composante comp : s.getComposantes()) {
             if(comp.getType() == Type.PARALELLE) {
@@ -74,7 +78,11 @@ public class GestionXML {
         }
     }
     
+    /*
+     * Ajouter la résistance, le voltage et l'ampèrage
+     */
     private static void setComp(Element elem, Composante comp, Document doc) {
+        elem.appendChild(element("ID:", ""+comp.getNumero(), doc));
         elem.appendChild(element("Resistance:", ""+comp.getType(), doc));
         elem.appendChild(element("Voltage:", ""+comp.getType(), doc));
         elem.appendChild(element("Amperage:", ""+comp.getType(), doc));
@@ -86,13 +94,40 @@ public class GestionXML {
         return _info;
     }
     
-    public Circuit decoder() {
+    public Circuit decoder(String nomCircuit) throws Exception{
         
+        c = new Circuit();
         
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.parse(new InputSource(nomCircuit+".xml"));
         
-        return new Circuit();
+        root = doc.getDocumentElement();
+        NodeList elem = root.getChildNodes();
+        
+        for(int i = 0; i < elem.getLength(); i++) {
+            if(elem.item(i).getNodeName().equals("Composante:PARALELLE")) {
+                ajouterParalelle(((Element)elem.item(i)));
+            }
+        }
+        
+        return c;
     }
     
+    private void ajouterComposante(Element n) {
+        
+    }
+    /*
+     * Petit fuck ici ....
+     */
+    private void ajouterParalelle(Element n) {
+        int nbrChild = n.getElementsByTagName("Branche").getLength();
+        
+        for(int i = 0; i < nbrChild; i++) {
+            
+        }
+    }
+        
     public static final GestionXML getInstance() {
         if(instance == null) {
             synchronized(GestionXML.class) {
