@@ -27,11 +27,7 @@ public class Parallele extends Branche implements Composante{
 
     @Override
     public void supprimerComposante(Composante c) {
-<<<<<<< HEAD
-        
-=======
         listeBranches.remove(c.getNumero());
->>>>>>> Travail-sur-AjoutComposante
     }
 
     @Override

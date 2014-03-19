@@ -15,20 +15,12 @@ public class Serie extends Branche implements Composante{
     
     @Override
     public void ajouterComposante(Composante c) {
-<<<<<<< HEAD
-        listeComposante.add(c);
-=======
         listeComposante.put(c.getNumero(), c);
->>>>>>> Travail-sur-AjoutComposante
     }
 
     @Override
     public void supprimerComposante(Composante c) {
-<<<<<<< HEAD
-        listeComposante.remove(c);
-=======
         listeComposante.remove(c.getNumero());
->>>>>>> Travail-sur-AjoutComposante
     }
     
     @Override
