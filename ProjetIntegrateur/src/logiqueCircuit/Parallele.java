@@ -1,14 +1,15 @@
 package logiqueCircuit;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Parallele extends Branche{
     
-    ArrayList<Serie> listeBranches;
+    HashMap<Integer, Serie> listeBranches;
 
     @Override
     public void ajouterComposante(Composante c) {
-
+        listeBranches.put(c.getNumero(), (Serie)c);
     }
 
     @Override
@@ -18,12 +19,13 @@ public class Parallele extends Branche{
 
     @Override
     public void supprimerComposante(Composante c) {
+        listeBranches.remove(c.getNumero());
     }
 
     @Override
     public double getResistanceEquivalente() {
         double resistance = 0;
-        for(Serie s : listeBranches){
+        for(Serie s : listeBranches.values()){
             resistance += 1 / s.getResistanceEquivalente();
         }
         return 1/resistance;
@@ -31,8 +33,6 @@ public class Parallele extends Branche{
 
     @Override
     public ArrayList<Composante> getComposantes() {
-        ArrayList<Composante> liste = new ArrayList<>();
-        liste.addAll(listeBranches);
-        return liste;
+        return (ArrayList)listeBranches.values();
     }
 }
