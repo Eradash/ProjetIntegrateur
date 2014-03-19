@@ -36,7 +36,7 @@ public class AnalyseurCircuit {
 
         if (b.getType() == Type.SERIE || b.getType() == Type.CIRCUIT) { 
             cas += 1;
-        } else if (b.getType() == Type.PARALELLE) {
+        } else if (b.getType() == Type.PARALLELE) {
             cas += 2;
         } else {
             cas = 0;

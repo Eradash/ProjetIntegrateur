@@ -17,7 +17,6 @@ public class Resistance implements Composante{
         ID = GestionnaireID.getInstance().ajouterComp();
         ohm = -1;
     }
-
     
     public boolean calculExplosion(int ampere){
         return true;

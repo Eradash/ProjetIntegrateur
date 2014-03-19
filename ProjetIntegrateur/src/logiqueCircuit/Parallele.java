@@ -7,6 +7,14 @@ public class Parallele extends Branche implements Composante{
     
     HashMap<Integer, Serie> listeBranches;
 
+    public Parallele() {
+        super();
+    }
+
+    public Parallele(int ID) {
+        super(ID);
+    }
+    
     @Override
     public void ajouterComposante(Composante c) {
         listeBranches.put(c.getNumero(), (Serie)c);
@@ -14,7 +22,7 @@ public class Parallele extends Branche implements Composante{
 
     @Override
     public Type getType() {
-        return Type.PARALELLE;
+        return Type.PARALLELE;
     }
 
     @Override

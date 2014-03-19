@@ -12,8 +12,10 @@ import javax.xml.transform.stream.StreamResult;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 import logiqueCircuit.Parallele;
+import logiqueCircuit.Resistance;
 import logiqueCircuit.Serie;
 import logiqueCircuit.Type;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -39,8 +41,8 @@ public class GestionXML {
         doc.appendChild(root);
         
         for(Composante comp : c.getComposantes()) {
-            Element elem = doc.createElement("Composante:"+comp.getType());
-            if(comp.getType() == Type.PARALELLE) {
+            Element elem = doc.createElement(comp.getType().toString());
+            if(comp.getType() == Type.PARALLELE) {
                 encoderPara((Parallele)comp, doc);
             }
             setComp(elem, comp, doc);
@@ -70,7 +72,7 @@ public class GestionXML {
         elem.setAttribute("Numéro: ", Integer.toString(branche));
         
         for(Composante comp : s.getComposantes()) {
-            if(comp.getType() == Type.PARALELLE) {
+            if(comp.getType() == Type.PARALLELE) {
                 encoderPara((Parallele) comp, doc);
             }
             setComp(elem,comp,doc);
@@ -83,9 +85,7 @@ public class GestionXML {
      */
     private static void setComp(Element elem, Composante comp, Document doc) {
         elem.appendChild(element("ID:", ""+comp.getNumero(), doc));
-        elem.appendChild(element("Resistance:", ""+comp.getType(), doc));
-        elem.appendChild(element("Voltage:", ""+comp.getType(), doc));
-        elem.appendChild(element("Amperage:", ""+comp.getType(), doc));
+        elem.appendChild(element("Resistance:", ""+comp.getResistanceEquivalente(), doc));
     }
     
     private static Element element(String type, String info, Document doc) {
@@ -106,30 +106,51 @@ public class GestionXML {
         NodeList elem = root.getChildNodes();
         
         for(int i = 0; i < elem.getLength(); i++) {
-            if(elem.item(i).getNodeName().equals("Composante:PARALELLE")) {
-                ajouterParalelle(((Element)elem.item(i)));
+            if(elem.item(i).getNodeName().equals("PARALLELE")) {
+                c.ajouterComposante(ajouterParallele(((Element)elem.item(i))));
+            } else {
+                c.ajouterComposante(ajouterComposante((Element)elem.item(i)));
             }
         }
         
         return c;
     }
     
-    private void ajouterComposante(Element n) {
-        //allo ca va bien je pète toute ton affaire. k baye (CECI EST UN INTRUSION D'UNE TÊTE BLEUE QUYA PAS RAPPORT ICI ;getInstance()
+    private Composante ajouterComposante(Element n) {
         
+        Composante comp;
         
+        switch(n.getNodeName()) {
+            case "RESISTANCE" :
+                comp = new Resistance();
+                
+        }
+        
+        return null;
     }
     
-    private void ajouterParalelle(Element n) {
-        ajouterComposante(n);
+    private String getInfo(String info, Element n) throws DOMException{
+        NodeList infoX = n.getElementsByTagName(info);
+        
+        if(infoX.getLength() != 0) {
+            return infoX.item(0).getFirstChild().getNodeValue();
+        } else {
+            return null;
+        }
+    }
+    
+    private Composante ajouterParallele(Element n) {
+        Parallele para = (Parallele) ajouterComposante(n);
         
         NodeList element = n.getElementsByTagName("Branche");
         
         for(int i = 0; i < element.getLength(); i++) {
-            if(element.item(i).getParentNode() == n) {
-                ajouterComposante((Element) element.item(i));
+            if(element.item(i).getNodeName().equals("PARALLELE")) {
+                
             }
         }
+        
+        return para;
     }
         
     public static final GestionXML getInstance() {
