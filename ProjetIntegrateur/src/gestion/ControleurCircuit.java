@@ -1,6 +1,5 @@
 package gestion;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import logiqueCircuit.Circuit;
 
@@ -25,8 +24,8 @@ public class ControleurCircuit {
     }
     
     // Reste à finaliser
-    public void ouvrirCircuit(Path emplacement) {
-        xml.decoder();
+    public void ouvrirCircuit(String nom) throws Exception{
+        xml.decoder(nom);
     }
     
     public void enregistrerCircuit(Circuit c) throws Exception{

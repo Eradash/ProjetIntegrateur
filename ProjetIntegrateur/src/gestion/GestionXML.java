@@ -115,16 +115,20 @@ public class GestionXML {
     }
     
     private void ajouterComposante(Element n) {
+        //allo ca va bien je pète toute ton affaire. k baye (CECI EST UN INTRUSION D'UNE TÊTE BLEUE QUYA PAS RAPPORT ICI ;getInstance()
+        
         
     }
-    /*
-     * Petit fuck ici ....
-     */
+    
     private void ajouterParalelle(Element n) {
-        int nbrChild = n.getElementsByTagName("Branche").getLength();
+        ajouterComposante(n);
         
-        for(int i = 0; i < nbrChild; i++) {
-            
+        NodeList element = n.getElementsByTagName("Branche");
+        
+        for(int i = 0; i < element.getLength(); i++) {
+            if(element.item(i).getParentNode() == n) {
+                ajouterComposante((Element) element.item(i));
+            }
         }
     }
         
