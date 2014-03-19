@@ -18,5 +18,6 @@ public abstract class Branche implements Composante{
     
     public abstract void ajouterComposante(Composante c);
     public abstract void supprimerComposante(Composante c);
+    @Override
     public abstract ArrayList<Composante> getComposantes();
 }
