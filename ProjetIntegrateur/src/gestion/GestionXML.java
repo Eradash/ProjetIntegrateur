@@ -122,8 +122,11 @@ public class GestionXML {
         
         switch(n.getNodeName()) {
             case "RESISTANCE" :
-                comp = new Resistance();
+                int resistanceEqui = Integer.valueOf(getInfo("Resistance:", n));
+                int ID = Integer.valueOf(getInfo("ID:", n));
                 
+                comp = new Resistance(resistanceEqui, ID);
+                return comp;
         }
         
         return null;
