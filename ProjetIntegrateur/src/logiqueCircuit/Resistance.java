@@ -7,6 +7,11 @@ public class Resistance implements Composante{
 
     final int ID;
     double ohm;
+    
+    public Resistance(int ohm, int id) {
+        ID = GestionnaireID.getInstance().ajouterComp(id);
+        this.ohm = ohm;
+    }
 
     public Resistance(int ohm) {
         ID = GestionnaireID.getInstance().ajouterComp();
