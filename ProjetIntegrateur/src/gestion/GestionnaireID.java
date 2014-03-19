@@ -48,4 +48,10 @@ public class GestionnaireID {
         
         return i;
     }
+    
+    public synchronized int ajouterComp(int id) {
+        ID.add(id);
+        
+        return id;
+    }
 }

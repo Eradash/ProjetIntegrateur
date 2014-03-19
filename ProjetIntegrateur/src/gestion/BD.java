@@ -13,6 +13,7 @@ public class BD {
     
     public void SetComposante(int ID, String info, double donne) {
         listeComposante.put(ID, info, donne);
+        gestionnaire.ajouterComp(ID);
     }
     
     public boolean supprimerComposante(int ID) {
