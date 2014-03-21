@@ -1,7 +1,5 @@
 package gestion;
 
-import Listeners.AjoutSuppEvent;
-import Listeners.ComposanteListener;
 import java.util.ArrayList;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
