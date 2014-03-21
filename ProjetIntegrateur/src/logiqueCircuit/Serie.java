@@ -36,4 +36,9 @@ public class Serie extends Branche implements Composante{
         }
         return resistance;
     }
+
+    @Override
+    public Composante getComposante(int ID) {
+        return listeComposante.get(ID);
+    }
 }

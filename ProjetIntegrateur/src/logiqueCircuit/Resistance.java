@@ -46,4 +46,9 @@ public class Resistance implements Composante{
     public ArrayList<Composante> getComposantes() {
         return null;
     }
+
+    @Override
+    public Composante getComposante(int ID) {
+        return null;
+    }
 }

@@ -7,4 +7,5 @@ public interface Composante {
     public Type getType();
     public double getResistanceEquivalente();
     public ArrayList<Composante> getComposantes();
+    public Composante getComposante(int ID);
 }
