@@ -11,9 +11,6 @@ public abstract class Branche implements Composante{
         ID = GestionnaireID.getInstance().ajouterComp();
     }
     
-    /*
-     * Ajouter les ID au gestionnaireID
-     */
     public Branche(int id){
         ID = GestionnaireID.getInstance().ajouterComp(id);
     }
@@ -23,8 +20,8 @@ public abstract class Branche implements Composante{
         return ID;
     }
     
-    public abstract void ajouterComposante(Composante c);
-    public abstract void supprimerComposante(Composante c);
     @Override
     public abstract ArrayList<Composante> getComposantes();
+    public abstract void ajouterComposante(Composante c);
+    public abstract void supprimerComposante(Composante c);
 }

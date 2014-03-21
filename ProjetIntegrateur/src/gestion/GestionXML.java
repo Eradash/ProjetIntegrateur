@@ -80,9 +80,6 @@ public class GestionXML {
         }
     }
     
-    /*
-     * Ajouter la résistance, le voltage et l'ampèrage
-     */
     private static void setComp(Element elem, Composante comp, Document doc) {
         elem.appendChild(element("ID:", ""+comp.getNumero(), doc));
         elem.appendChild(element("Resistance:", ""+comp.getResistanceEquivalente(), doc));
@@ -109,14 +106,14 @@ public class GestionXML {
             if(elem.item(i).getNodeName().equals("PARALLELE")) {
                 c.ajouterComposante(ajouterParallele(((Element)elem.item(i))));
             } else {
-                c.ajouterComposante(ajouterComposante((Element)elem.item(i)));
+                c.ajouterComposante(ajouterComp((Element)elem.item(i)));
             }
         }
         
         return c;
     }
     
-    private Composante ajouterComposante(Element n) {
+    private Composante ajouterComp(Element n) {
         
         Composante comp;
         
@@ -127,9 +124,38 @@ public class GestionXML {
                 
                 comp = new Resistance(resistanceEqui, ID);
                 return comp;
+            case "BRANCHE" :
+                int IDBranche = Integer.valueOf(getInfo("ID:", n));
+                
+                comp = new Serie(IDBranche);
+                
+                NodeList element = n.getChildNodes();
+                int lenght = n.getChildNodes().getLength();
+                
+                for(int i = 0; i < lenght; i++) {
+                    if(n.getNodeName().equals("PARALLELE")) {
+                        ((Serie)comp).ajouterComposante(ajouterParallele((Element) element.item(i)));
+                    } else {
+                        ((Serie)comp).ajouterComposante(ajouterComp((Element) element.item(i)));
+                    }
+                }
+                
+                return comp;
+            default :
+                return null;
+        }
+    }
+    
+    private Composante ajouterParallele(Element n) {
+        Parallele para = (Parallele) ajouterComp(n);
+        
+        NodeList element = n.getChildNodes();
+        
+        for(int i = 0; i < element.getLength(); i++) {
+            ajouterComp((Element) element.item(i));
         }
         
-        return null;
+        return para;
     }
     
     private String getInfo(String info, Element n) throws DOMException{
@@ -142,20 +168,6 @@ public class GestionXML {
         }
     }
     
-    private Composante ajouterParallele(Element n) {
-        Parallele para = (Parallele) ajouterComposante(n);
-        
-        NodeList element = n.getElementsByTagName("Branche");
-        
-        for(int i = 0; i < element.getLength(); i++) {
-            if(element.item(i).getNodeName().equals("PARALLELE")) {
-                
-            }
-        }
-        
-        return para;
-    }
-        
     public static final GestionXML getInstance() {
         if(instance == null) {
             synchronized(GestionXML.class) {

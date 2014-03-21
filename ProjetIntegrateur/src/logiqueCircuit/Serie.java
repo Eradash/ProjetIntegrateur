@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Serie extends Branche implements Composante{
+public class Serie extends Branche{
     
     HashMap<Integer, Composante> listeComposante;
 
+    public Serie() {
+        super();
+    }
+    
+    public Serie(int ID) {
+        super(ID);
+    }
+    
     @Override
     public Type getType() {
         return Type.SERIE;
