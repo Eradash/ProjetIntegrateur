@@ -53,16 +53,16 @@ public class Circuit extends Serie{
         return liste2;
     }
     
-    public void ajouterComposante(Composante c, int emplacement){
-        ArrayList<Integer> ordre = recherche(emplacement);
-        Composante composantePresente = this.listeComposante.get(ordre.remove(0));
-        
-        while (!ordre.isEmpty()){
-            composantePresente = composantePresente.getComposante(ordre.remove(0));
+    public Branche getComposante(int emplacement){
+        ArrayList<Integer> liste = recherche(emplacement);
+        Composante c = null;
+        while (!liste.isEmpty()){
+            super.getComposante(liste.remove(0));
         }
-        
-        Branche composantePresente2 = (Branche)composantePresente;
-        
-        composantePresente2.ajouterComposante(c);
+        return (Branche)c;
+    }
+    
+    public void ajouterComposante(Composante c, int emplacement){
+        getComposante(emplacement).ajouterComposante(c);
     }
 }
