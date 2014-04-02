@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 
-public class ControleurCircuit {
+public class ControleurCircuit{
     
     private final static GestionXML xml = GestionXML.getInstance();
-    ArrayList<Circuit> circuitsOuverts = new ArrayList<>();
+    ArrayList<Circuit> circuitsOuverts;
     GestionnaireID gestID = GestionnaireID.getInstance();
     
     Circuit c = new Circuit();
     
     public ControleurCircuit(){
-        
+        circuitsOuverts = new ArrayList<>();
     }
     
     public void nouveauCircuit(){

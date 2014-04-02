@@ -14,8 +14,8 @@ public abstract class Branche implements Composante{
     /*
      * Ajouter les ID au gestionnaireID
      */
-    public Branche(int ID){
-        this.ID = ID;
+    public Branche(int id){
+        ID = GestionnaireID.getInstance().ajouterComp(id);
     }
     
     @Override

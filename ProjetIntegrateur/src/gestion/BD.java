@@ -1,18 +1,28 @@
 package gestion;
 
-public class BD {
+import Listeners.CompModifEvent;
+import Listeners.CompModifListener;
+import Listeners.CompModifObservable;
+import java.util.ArrayList;
+
+public class BD implements CompModifObservable{
     
     private static volatile BD instance = null;
     private final static GestionnaireID gestionnaire = GestionnaireID.getInstance();
     
-    MultiMap<Integer, String, Double> listeComposante = new MultiMap<>();
+    MultiMap<Integer, String, Double> listeComposante;
+    ArrayList<CompModifListener> listeListeners;
+    
     
     private BD() {
         super();
+        listeListeners = new ArrayList<>();
+        listeComposante = new MultiMap<>();
     }
     
     public void SetComposante(int ID, String info, double donne) {
         listeComposante.put(ID, info, donne);
+        gestionnaire.ajouterComp(ID);
     }
     
     public boolean supprimerComposante(int ID) {
@@ -41,5 +51,22 @@ public class BD {
             }
         }
         return BD.instance;
+    }
+
+    @Override
+    public void ajouterListener(CompModifListener listener) {
+        listeListeners.add(listener);
+    }
+
+    @Override
+    public void supprimerListener(CompModifListener listener) {
+        listeListeners.add(listener);
+    }
+
+    @Override
+    public void notifierModificationComposante(CompModifEvent event) {
+        for(CompModifListener listener : listeListeners){
+            listener.composanteModif(event);
+        }
     }
 }
