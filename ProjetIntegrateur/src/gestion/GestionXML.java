@@ -21,6 +21,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+
 public class GestionXML {
     
     private Element root;
@@ -97,8 +98,8 @@ public class GestionXML {
     }
     
     private static void setComp(Element elem, Composante comp, Document doc) {
-        elem.appendChild(element("ID:", ""+comp.getNumero(), doc));
-        elem.appendChild(element("VALEUR:", ""+comp.getResistanceEquivalente(), doc));
+        elem.appendChild(element("ID", ""+comp.getNumero(), doc));
+        elem.appendChild(element("VALEUR", ""+comp.getResistanceEquivalente(), doc));
     }
     
     private static Element element(String type, String info, Document doc) {
@@ -115,47 +116,52 @@ public class GestionXML {
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.parse(new InputSource(nomCircuit+".xml"));
         
-        root = doc.getDocumentElement();
-        NodeList elemComp = root.getElementsByTagName("COMPOSANTE");
+        Element rootTest = doc.getDocumentElement();
+        NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
         
-        NodeList elem = elemComp.item(0).getChildNodes();
+        Element comp = (Element)elemComp.item(0);
         
-        for(int i = 0; i < elem.getLength(); i++) {
-            if(elem.item(i).getNodeName().equals("PARALLELE")) {
-                c.ajouterComposante(ajouterParallele(((Element)elem.item(i))));
-            } else {
-                c.ajouterComposante(ajouterComp((Element)elem.item(i)));
-            }
+        NodeList para = comp.getElementsByTagName("PARALLELE");
+        NodeList resis = comp.getElementsByTagName("RESISTANCE");
+        
+        for(int i = 0; i < para.getLength(); i++) {
+            c.ajouterComposante(ajouterParallele(((Element)para.item(i))));
+        }
+        for(int i = 0; i < resis.getLength(); i++) {
+            c.ajouterComposante(ajouterComp((Element)resis.item(i)));
         }
         
+
         return c;
     }
     
     private Composante ajouterComp(Element n) {
         
-        Composante comp;
+        Composante comp = null;
         
         switch(n.getNodeName()) {
             case "RESISTANCE" :
-                int resistanceEqui = Integer.valueOf(getInfo("VALEUR:", n));
-                int ID = Integer.valueOf(getInfo("ID:", n));
+                int resistanceEqui = Integer.valueOf(getInfo("VALEUR", n));
+                int ID = Integer.valueOf(getInfo("ID", n));
                 
                 comp = new Resistance(resistanceEqui, ID);
                 return comp;
             case "BRANCHE" :
-                int IDBranche = Integer.valueOf(getInfo("ID:", n));
+                int IDBranche = Integer.valueOf(getInfo("ID", n));
                 
                 comp = new Serie(IDBranche);
                 
-                NodeList element = n.getChildNodes();
-                int lenght = n.getChildNodes().getLength();
+                NodeList element = n.getElementsByTagName("COMPOSANTE");
+                Element elemtemp = (Element) element.item(0);
+
+                NodeList para = elemtemp.getElementsByTagName("PARALLELE");
+                NodeList resis = elemtemp.getElementsByTagName("RESISTANCE");
                 
-                for(int i = 0; i < lenght; i++) {
-                    if(n.getNodeName().equals("PARALLELE")) {
-                        ((Serie)comp).ajouterComposante(ajouterParallele((Element) element.item(i)));
-                    } else {
-                        ((Serie)comp).ajouterComposante(ajouterComp((Element) element.item(i)));
-                    }
+                for(int i = 0; i < para.getLength(); i++) {
+                    ((Serie)comp).ajouterComposante(ajouterParallele((Element) element.item(i)));
+                }
+                for(int i = 0; i < resis.getLength(); i++) {
+                    ((Serie)comp).ajouterComposante(comp);
                 }
                 
                 return comp;
@@ -165,13 +171,14 @@ public class GestionXML {
     }
     
     private Composante ajouterParallele(Element n) {
-        Parallele para = (Parallele) ajouterComp(n);
+        Parallele para = new Parallele(Integer.parseInt(((Element)n.getElementsByTagName("ID").item(0)).getFirstChild().getNodeValue()));
         
         NodeList elemTemp = n.getElementsByTagName("COMPOSANTE");
-        NodeList element = elemTemp.item(0).getChildNodes();
+        Element element = (Element)elemTemp.item(0);
+        NodeList branches = element.getElementsByTagName("BRANCHE");
         
-        for(int i = 0; i < element.getLength(); i++) {
-            ajouterComp((Element) element.item(i));
+        for(int i = 0; i < branches.getLength(); i++) {
+            para.ajouterComposante(ajouterComp((Element)branches.item(i)));
         }
         
         return para;

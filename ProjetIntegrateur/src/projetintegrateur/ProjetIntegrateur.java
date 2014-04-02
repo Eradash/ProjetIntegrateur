@@ -6,7 +6,6 @@ import gestion.ControleurCircuit;
 public class ProjetIntegrateur {
 
     public static void main(String[] args) throws Exception {
-        JFrameProjet jFrameProjet = new JFrameProjet();
         
         ControleurCircuit cc = new ControleurCircuit();
         

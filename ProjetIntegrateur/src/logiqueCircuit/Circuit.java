@@ -8,6 +8,10 @@ public class Circuit extends Serie{
     private double ampere;
     private double voltage;
     private String nom;
+    
+    public Circuit(){
+        super(-1);
+    }
 
     public String getNom() {
         return nom;

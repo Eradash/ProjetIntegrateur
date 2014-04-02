@@ -9,6 +9,7 @@ public class GestionnaireID {
     
     private GestionnaireID() {
         super();
+        ID = new ArrayList<>();
     }
     
     public static final GestionnaireID getInstance() {

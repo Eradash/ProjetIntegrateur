@@ -10,12 +10,15 @@ public class Serie extends Branche{
 
     public Serie() {
         super();
+        listeComposante = new HashMap<>();
+
     }
-    
+
     public Serie(int ID) {
         super(ID);
+        listeComposante = new HashMap<>();
     }
-    
+
     @Override
     public Type getType() {
         return Type.SERIE;
