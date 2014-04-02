@@ -40,12 +40,16 @@ public class GestionXML {
         root = doc.createElement(c.getNom());
         doc.appendChild(root);
         
+        setComp(root, c, doc);
+        
         for(Composante comp : c.getComposantes()) {
             Element elem = doc.createElement(comp.getType().toString());
             if(comp.getType() == Type.PARALLELE) {
-                encoderPara((Parallele)comp, doc);
-            }
-            setComp(elem, comp, doc);
+                setComp(elem, comp, doc);
+                encoderPara((Parallele)comp, doc, elem);
+            } else
+                setComp(elem, comp, doc);
+            
             root.appendChild(elem);
         }
         
@@ -58,31 +62,43 @@ public class GestionXML {
         aTransformer.transform(src, dest);
     }
     
-    private void encoderPara(Parallele p, Document doc) {
+    private void encoderPara(Parallele p, Document doc, Element elem) {
         int x = 1;
         
+        Element elemComp = doc.createElement("COMPOSANTE");
+        elem.appendChild(elemComp);
+        
         for(Composante comp : p.getComposantes()) {
-            encoderSerie((Serie)comp,doc,x);
+            encoderSerie((Serie)comp, doc, elemComp, x);
             x++;
         }
     }
     
-    private void encoderSerie(Serie s, Document doc, int branche) {
-        Element elem = doc.createElement("Branche");
-        elem.setAttribute("Numéro: ", Integer.toString(branche));
+    private void encoderSerie(Serie s, Document doc, Element elem, int branche) {
+        Element elemBranche = doc.createElement("BRANCHE");
+        elem.appendChild(elemBranche);
+        elemBranche.setAttribute("NUMERO", Integer.toString(branche));
+        
+        setComp(elemBranche, s, doc);
+        
+        Element elemComp = doc.createElement("COMPOSANTE");
+        elemBranche.appendChild(elemComp);
         
         for(Composante comp : s.getComposantes()) {
+            Element elemCompLocal = doc.createElement(comp.getType().toString());
             if(comp.getType() == Type.PARALLELE) {
-                encoderPara((Parallele) comp, doc);
+                setComp(elemComp, comp, doc);
+                encoderPara((Parallele) comp, doc, elemCompLocal);
+            } else {
+                setComp(elemComp,comp,doc);
             }
-            setComp(elem,comp,doc);
-            root.appendChild(elem);
+            elemComp.appendChild(elemCompLocal);
         }
     }
     
     private static void setComp(Element elem, Composante comp, Document doc) {
         elem.appendChild(element("ID:", ""+comp.getNumero(), doc));
-        elem.appendChild(element("Resistance:", ""+comp.getResistanceEquivalente(), doc));
+        elem.appendChild(element("VALEUR:", ""+comp.getResistanceEquivalente(), doc));
     }
     
     private static Element element(String type, String info, Document doc) {
@@ -100,7 +116,9 @@ public class GestionXML {
         Document doc = builder.parse(new InputSource(nomCircuit+".xml"));
         
         root = doc.getDocumentElement();
-        NodeList elem = root.getChildNodes();
+        NodeList elemComp = root.getElementsByTagName("COMPOSANTE");
+        
+        NodeList elem = elemComp.item(0).getChildNodes();
         
         for(int i = 0; i < elem.getLength(); i++) {
             if(elem.item(i).getNodeName().equals("PARALLELE")) {
@@ -119,7 +137,7 @@ public class GestionXML {
         
         switch(n.getNodeName()) {
             case "RESISTANCE" :
-                int resistanceEqui = Integer.valueOf(getInfo("Resistance:", n));
+                int resistanceEqui = Integer.valueOf(getInfo("VALEUR:", n));
                 int ID = Integer.valueOf(getInfo("ID:", n));
                 
                 comp = new Resistance(resistanceEqui, ID);
@@ -149,7 +167,8 @@ public class GestionXML {
     private Composante ajouterParallele(Element n) {
         Parallele para = (Parallele) ajouterComp(n);
         
-        NodeList element = n.getChildNodes();
+        NodeList elemTemp = n.getElementsByTagName("COMPOSANTE");
+        NodeList element = elemTemp.item(0).getChildNodes();
         
         for(int i = 0; i < element.getLength(); i++) {
             ajouterComp((Element) element.item(i));
