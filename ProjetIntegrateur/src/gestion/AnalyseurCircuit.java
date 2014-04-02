@@ -6,10 +6,6 @@ import logiqueCircuit.Type;
 
 public class AnalyseurCircuit {
     
-    public AnalyseurCircuit() {
-        
-    }
-    
     public void analyserCircuit(Circuit c) {
         double voltage = c.getVoltage();
         double ampere = c.getAmpere();

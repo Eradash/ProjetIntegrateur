@@ -26,7 +26,6 @@ public class ControleurCircuit{
         circuitsOuverts.remove(c);
     }
     
-    // Reste à finaliser
     public void ouvrirCircuit(String nom) throws Exception{
         xml.decoder(nom);
     }
