@@ -126,15 +126,20 @@ public class GestionXML {
         c.setVoltage(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
         
         NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
+        
+        elemComp.getLength();
+        
         Element comp = (Element)elemComp.item(0);
         
         NodeList para = comp.getElementsByTagName("PARALLELE");
         NodeList resis = comp.getElementsByTagName("RESISTANCE");
         
         for(int i = 0; i < para.getLength(); i++) {
+            if(para.item(i).getParentNode().equals(comp))
             c.ajouterComposante(ajouterParallele(((Element)para.item(i))));
         }
         for(int i = 0; i < resis.getLength(); i++) {
+            if(resis.item(i).getParentNode().equals(comp))
             c.ajouterComposante(ajouterComp((Element)resis.item(i)));
         }
         
@@ -144,7 +149,7 @@ public class GestionXML {
     
     private Composante ajouterComp(Element n) {
         
-        Composante comp = null;
+        Composante comp;
         
         switch(n.getNodeName()) {
             case "RESISTANCE" :
@@ -165,10 +170,12 @@ public class GestionXML {
                 NodeList resis = elemtemp.getElementsByTagName("RESISTANCE");
                 
                 for(int i = 0; i < para.getLength(); i++) {
+                    if(para.item(i).getParentNode().equals(elemtemp))
                     ((Serie)comp).ajouterComposante(ajouterParallele((Element) element.item(i)));
                 }
                 for(int i = 0; i < resis.getLength(); i++) {
-                    ((Serie)comp).ajouterComposante(comp);
+                    if(resis.item(i).getParentNode().equals(elemtemp))
+                    ((Serie)comp).ajouterComposante(ajouterComp((Element)resis.item(i)));
                 }
                 
                 return comp;
@@ -185,6 +192,7 @@ public class GestionXML {
         NodeList branches = element.getElementsByTagName("BRANCHE");
         
         for(int i = 0; i < branches.getLength(); i++) {
+            if(branches.item(i).getParentNode().equals(elemTemp))
             para.ajouterComposante(ajouterComp((Element)branches.item(i)));
         }
         
