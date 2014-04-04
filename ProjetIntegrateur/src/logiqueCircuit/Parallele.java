@@ -43,7 +43,8 @@ public class Parallele extends Branche implements Composante{
 
     @Override
     public ArrayList<Composante> getComposantes() {
-        return (ArrayList)listeBranches.values();
+        ArrayList liste = new ArrayList(listeBranches.values());
+        return liste;
     }
 
     @Override

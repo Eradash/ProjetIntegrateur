@@ -47,22 +47,27 @@ public class GestionXML {
         
         setComp(root, c, doc);
         
+        Element composante = doc.createElement("COMPOSANTE");
+        
         for(Composante comp : c.getComposantes()) {
             Element elem = doc.createElement(comp.getType().toString());
             if(comp.getType() == Type.PARALLELE) {
                 setComp(elem, comp, doc);
                 encoderPara((Parallele)comp, doc, elem);
-            } else
+            } else {
                 setComp(elem, comp, doc);
+            }
             
-            root.appendChild(elem);
+            composante.appendChild(elem);
         }
+        
+        root.appendChild(composante);
         
         TransformerFactory transFactory = TransformerFactory.newInstance();
         Transformer aTransformer = transFactory.newTransformer();
 
         Source src = new DOMSource(doc);
-        Result dest = new StreamResult(new File(c.getNom()+".xml"));
+        Result dest = new StreamResult(new File("test2.xml"));
 
         aTransformer.transform(src, dest);
     }
@@ -92,10 +97,10 @@ public class GestionXML {
         for(Composante comp : s.getComposantes()) {
             Element elemCompLocal = doc.createElement(comp.getType().toString());
             if(comp.getType() == Type.PARALLELE) {
-                setComp(elemComp, comp, doc);
+                setComp(elemCompLocal, comp, doc);
                 encoderPara((Parallele) comp, doc, elemCompLocal);
             } else {
-                setComp(elemComp,comp,doc);
+                setComp(elemCompLocal,comp,doc);
             }
             elemComp.appendChild(elemCompLocal);
         }
@@ -124,6 +129,7 @@ public class GestionXML {
         
         c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
         c.setVoltage(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
+        c.setNom(nomCircuit);
         
         NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
         
@@ -192,7 +198,7 @@ public class GestionXML {
         NodeList branches = element.getElementsByTagName("BRANCHE");
         
         for(int i = 0; i < branches.getLength(); i++) {
-            if(branches.item(i).getParentNode().equals(elemTemp))
+            if(branches.item(i).getParentNode().equals(element))
             para.ajouterComposante(ajouterComp((Element)branches.item(i)));
         }
         
