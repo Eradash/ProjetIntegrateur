@@ -39,6 +39,10 @@ public class GestionXML {
         
         Document doc = docBuild.newDocument();
         root = doc.createElement(c.getNom());
+        
+        root.setAttribute("AMPERE", Double.toString(c.getAmpere()));
+        root.setAttribute("VOLTAGE", Double.toString(c.getVoltage()));
+        
         doc.appendChild(root);
         
         setComp(root, c, doc);
