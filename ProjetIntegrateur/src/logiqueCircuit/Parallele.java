@@ -9,10 +9,12 @@ public class Parallele extends Branche implements Composante{
 
     public Parallele() {
         super();
+        listeBranches = new HashMap<>();
     }
 
     public Parallele(int ID) {
         super(ID);
+        listeBranches = new HashMap<>();
     }
     
     @Override

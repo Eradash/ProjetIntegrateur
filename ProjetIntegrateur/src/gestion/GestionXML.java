@@ -117,8 +117,11 @@ public class GestionXML {
         Document doc = builder.parse(new InputSource(nomCircuit+".xml"));
         
         Element rootTest = doc.getDocumentElement();
-        NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
         
+        c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
+        c.setVoltage(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
+        
+        NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
         Element comp = (Element)elemComp.item(0);
         
         NodeList para = comp.getElementsByTagName("PARALLELE");

@@ -30,8 +30,16 @@ public class Circuit extends Serie{
         return ampere;
     }
     
+    public void setAmpere(double amp){
+        this.ampere = amp;
+    }
+    
     public double getVoltage(){
         return voltage;
+    }
+    
+    public void setVoltage(double volt){
+        this.voltage = volt;
     }
     
     public ArrayList<Integer> recherche(int ID){

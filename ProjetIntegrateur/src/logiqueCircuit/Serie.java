@@ -36,13 +36,14 @@ public class Serie extends Branche{
     
     @Override
     public ArrayList<Composante> getComposantes(){
-        return (ArrayList)listeComposante.values();
+        ArrayList<Composante> liste = new ArrayList(listeComposante.values());
+        return liste;
     }
 
     @Override
     public double getResistanceEquivalente() {
         double resistance = 0;
-        for(Composante c : getComposantes()){
+        for(Composante c : listeComposante.values()){
             resistance += c.getResistanceEquivalente();
         }
         return resistance;
