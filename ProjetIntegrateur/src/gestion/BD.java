@@ -32,16 +32,6 @@ public class BD implements CompModifObservable{
         }
         return false;
     }
-    
-    /*
-     * Bug avec le MultiMap
-     */
-    
-//    public ArrayList<Integer> getComposante(int noComp) {
-//        if(listeComposante.containsKey(noComp))
-//            return listeComposante.get(noComp);
-//        return null;
-//    }    
         
     public Double getComposante(int ID, String info) {
         return listeComposante.get(ID, info);
