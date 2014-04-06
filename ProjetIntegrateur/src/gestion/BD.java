@@ -45,7 +45,6 @@ public class BD {
     public ArrayList<Integer> getComposante(int noComp) {
         if(listeComposante.containsKey(noComp))
             return listeComposante.get(noComp);
-        
         return null;
     }
     

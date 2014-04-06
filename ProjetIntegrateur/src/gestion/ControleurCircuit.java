@@ -7,24 +7,25 @@ import logiqueCircuit.Circuit;
 public class ControleurCircuit {
     
     ArrayList<Circuit> circuitsOuverts = new ArrayList<>();
-    GestionnaireID gestID = GestionnaireID.getInstance();
+    BD donnee = BD.getInstance();
+    AnalyseurCircuit analyseur = new AnalyseurCircuit();
     
     public ControleurCircuit(){
         
     }
     
     public void nouveauCircuit(){
-        gestID.resetCircuit();
+        donnee.resetCircuit();
         circuitsOuverts.add(new Circuit());
     }
     
     public void fermeCircuit(Circuit c) {
-        gestID.resetCircuit();
+        donnee.resetCircuit();
         circuitsOuverts.remove(c);
     }
     
     public void ouvrirCircuit(Path emplacement) {
-        
+        donnee.resetCircuit();
     }
     
     public void enregistrerCircuit(Circuit c){

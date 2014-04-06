@@ -1,7 +1,9 @@
 package gestion;
 
 import logiqueCircuit.Circuit;
-
+/*
+ * Cette classe jouera avec le XML
+ */
 public class AnalyseurCircuit {
     
     public AnalyseurCircuit() {
