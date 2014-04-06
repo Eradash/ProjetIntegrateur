@@ -1,10 +1,27 @@
 package logiqueCircuit;
 
+import gestion.GestionnaireID;
+import java.util.ArrayList;
+
 public class Resistance implements Composante{
 
-    int numero;
+    final int ID;
     double ohm;
     
+    public Resistance(int ohm, int id) {
+        ID = GestionnaireID.getInstance().ajouterComp(id);
+        this.ohm = ohm;
+    }
+
+    public Resistance(int ohm) {
+        ID = GestionnaireID.getInstance().ajouterComp();
+        this.ohm = ohm;
+    }
+
+    public Resistance() {
+        ID = GestionnaireID.getInstance().ajouterComp();
+        ohm = -1;
+    }
     
     public boolean calculExplosion(int ampere){
         return true;
@@ -12,7 +29,7 @@ public class Resistance implements Composante{
     
     @Override
     public int getNumero() {
-        return numero;
+        return ID;
     }
 
     @Override
@@ -26,12 +43,12 @@ public class Resistance implements Composante{
     }
 
     @Override
-    public void calculAmpere(double voltage) {
-        double ampere = voltage/ohm;
+    public ArrayList<Composante> getComposantes() {
+        return null;
     }
 
     @Override
-    public void calculVoltage(double ampere) {
-        double voltage = ampere*ohm;
+    public Composante getComposante(int ID) {
+        return null;
     }
 }

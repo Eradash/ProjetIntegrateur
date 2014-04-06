@@ -13,8 +13,8 @@ public class JPanelProjet extends JPanel{
     }
     
     private void graduerAxe(Graphics g) {
-        int _x = this.getWidth();
-        int _y = this.getHeight();
+        int _x = this.getHeight();
+        int _y = this.getWidth();
         
         for(int x = 0; x < _x; x += 20) {
             g.drawLine(0,x,_y,x);

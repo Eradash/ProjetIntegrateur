@@ -1,9 +1,11 @@
 package logiqueCircuit;
 
+import java.util.ArrayList;
+
 public interface Composante {
     public int getNumero();
     public Type getType();
     public double getResistanceEquivalente();
-    public void calculAmpere(double voltage);
-    public void calculVoltage(double ampere);
+    public ArrayList<Composante> getComposantes();
+    public Composante getComposante(int ID);
 }

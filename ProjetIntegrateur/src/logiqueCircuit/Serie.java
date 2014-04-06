@@ -1,54 +1,52 @@
 package logiqueCircuit;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
-public class Serie extends Branche {
+public class Serie extends Branche{
     
-    ArrayList<Composante> listeComposante;
+    HashMap<Integer, Composante> listeComposante;
 
+    public Serie() {
+        super();
+    }
+    
+    public Serie(int ID) {
+        super(ID);
+    }
+    
     @Override
     public Type getType() {
         return Type.SERIE;
     }
-
+    
     @Override
-    public void ajouterComposante(Composante c, int noCOmp) {
-
+    public void ajouterComposante(Composante c) {
+        listeComposante.put(c.getNumero(), c);
     }
 
     @Override
     public void supprimerComposante(Composante c) {
-    }
-
-    @Override
-    public void getComposante(int branche, int composante) {
-
+        listeComposante.remove(c.getNumero());
     }
     
+    @Override
     public ArrayList<Composante> getComposantes(){
-        return listeComposante;
+        return (ArrayList)listeComposante.values();
     }
 
     @Override
     public double getResistanceEquivalente() {
         double resistance = 0;
-        for(Composante c : listeComposante){
+        for(Composante c : getComposantes()){
             resistance += c.getResistanceEquivalente();
         }
         return resistance;
     }
 
     @Override
-    public void calculAmpere(double voltage) {
-        double ampere = voltage / getResistanceEquivalente();
-        for(Composante c : listeComposante){
-            c.calculVoltage(ampere);
-        }
-    }
-
-    @Override
-    public void calculVoltage(double ampere) {
-        //Inutile ici pour l'instant...
+    public Composante getComposante(int ID) {
+        return listeComposante.get(ID);
     }
 }

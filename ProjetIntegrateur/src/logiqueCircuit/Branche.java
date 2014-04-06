@@ -1,16 +1,27 @@
 package logiqueCircuit;
 
+import gestion.GestionnaireID;
+import java.util.ArrayList;
+
 public abstract class Branche implements Composante{
     
-    int numero;
+    final int ID;
+
+    public Branche() {
+        ID = GestionnaireID.getInstance().ajouterComp();
+    }
+    
+    public Branche(int id){
+        ID = GestionnaireID.getInstance().ajouterComp(id);
+    }
     
     @Override
     public int getNumero(){
-        return numero;
+        return ID;
     }
     
-    public abstract void ajouterComposante(Composante c, int noComp);
+    @Override
+    public abstract ArrayList<Composante> getComposantes();
+    public abstract void ajouterComposante(Composante c);
     public abstract void supprimerComposante(Composante c);
-    
-    public abstract void getComposante(int branche, int composante);
 }

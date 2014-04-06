@@ -1,51 +1,50 @@
 package gestion;
 
+import Listeners.CompModifEvent;
+import Listeners.CompModifListener;
+import Listeners.CompModifObservable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class BD {
+public class BD implements CompModifObservable{
     
     private static volatile BD instance = null;
     private final static GestionnaireID gestionnaire = GestionnaireID.getInstance();
     
-    /*
-     * La deuxieme partie du hashmap:
-     * 1- resistance de la composante
-     * 2- amperage de la composante
-     * 3- voltage de la composante
-     */
+    MultiMap<Integer, String, Double> listeComposante;
+    ArrayList<CompModifListener> listeListeners;
     
-    HashMap<Integer, ArrayList<Integer>> listeComposante = new HashMap<>();
     
     private BD() {
         super();
+        listeListeners = new ArrayList<>();
+        listeComposante = new MultiMap<>();
     }
     
-    public boolean setComposante(int noComp, ArrayList<Integer> paramettre) {
-        if(listeComposante.containsKey(noComp)) {
-            listeComposante.remove(noComp);
-            listeComposante.put(noComp, paramettre);
+    public void SetComposante(int ID, String info, double donne) {
+        listeComposante.put(ID, info, donne);
+        gestionnaire.ajouterComp(ID);
+    }
+    
+    public boolean supprimerComposante(int ID) {
+        if(gestionnaire.supprimerComp(ID)) {
+            listeComposante.removeID(ID);
             return true;
         }
         return false;
     }
     
-    public void ajouterComposante(ArrayList<Integer> paramettre) {
-        listeComposante.put(gestionnaire.ajouterComp(), paramettre);
-    }
+    /*
+     * Bug avec le MultiMap
+     */
     
-    public boolean supprimerComposante(int noComp) {
-        if(gestionnaire.supprimerComp(noComp)) {
-            listeComposante.remove(noComp);
-            return true;
-        }
-        return false;
-    }
-    
-    public ArrayList<Integer> getComposante(int noComp) {
-        if(listeComposante.containsKey(noComp))
-            return listeComposante.get(noComp);
-        return null;
+//    public ArrayList<Integer> getComposante(int noComp) {
+//        if(listeComposante.containsKey(noComp))
+//            return listeComposante.get(noComp);
+//        return null;
+//    }    
+        
+    public Double getComposante(int ID, String info) {
+        return listeComposante.get(ID, info);
     }
     
     public void resetCircuit() {
@@ -62,5 +61,22 @@ public class BD {
             }
         }
         return BD.instance;
+    }
+
+    @Override
+    public void ajouterListener(CompModifListener listener) {
+        listeListeners.add(listener);
+    }
+
+    @Override
+    public void supprimerListener(CompModifListener listener) {
+        listeListeners.add(listener);
+    }
+
+    @Override
+    public void notifierModificationComposante(CompModifEvent event) {
+        for(CompModifListener listener : listeListeners){
+            listener.composanteModif(event);
+        }
     }
 }

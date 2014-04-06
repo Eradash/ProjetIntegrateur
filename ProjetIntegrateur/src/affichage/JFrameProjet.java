@@ -18,6 +18,9 @@ public class JFrameProjet extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         this.add(new JPanelOutil(), BorderLayout.WEST);
-        this.add(new JPanelProjet());
+        
+        JPanelProjet jpanel = new JPanelProjet();
+        jpanel.setSize(d);
+        this.add(jpanel, BorderLayout.CENTER);
     }
 }

@@ -34,11 +34,7 @@ public class GestionnaireID {
         ID.clear();
     }
     
-    /*
-     * Créer une classe exception pour gérer le nbr d'acces
-     */
-    
-    public int ajouterComp() {
+    public synchronized int ajouterComp() {
         int i = 0;
         
         while (!ID.contains(i)){
@@ -47,5 +43,11 @@ public class GestionnaireID {
         }
         
         return i;
+    }
+    
+    public synchronized int ajouterComp(int id) {
+        ID.add(id);
+        
+        return id;
     }
 }
