@@ -1,5 +1,6 @@
 package gestion;
 
+import java.util.ArrayList;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 
@@ -18,7 +19,6 @@ public class ControleurCircuit{
     }
     
     public void nouveauCircuit(){
-<<<<<<< HEAD
         donnee.resetCircuit();
         circuitsOuverts.add(new Circuit());
     }
@@ -26,7 +26,6 @@ public class ControleurCircuit{
     public void fermeCircuit(Circuit c) {
         donnee.resetCircuit();
         circuitsOuverts.remove(c);
-=======
         gestID.resetCircuit();
         c = new Circuit();
     }
@@ -34,7 +33,6 @@ public class ControleurCircuit{
     public void fermeCircuit() {
         gestID.resetCircuit();
         c = null;
->>>>>>> Test-du-model
     }
     
     public void ouvrirCircuit(String nom) throws Exception{
@@ -48,12 +46,8 @@ public class ControleurCircuit{
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
     }
-<<<<<<< HEAD
-}
-=======
     
     public void run(){
         ac.analyserCircuit(c);
     }
 }
->>>>>>> Test-du-model
