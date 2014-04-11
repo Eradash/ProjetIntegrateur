@@ -1,4 +1,4 @@
-package projetintegrateur;
+package projetIntegrateur;
 
 import affichage.JFrameProjet;
 

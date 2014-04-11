@@ -2,8 +2,12 @@ package logiqueCircuit;
 
 import gestion.BD;
 import java.util.ArrayList;
+import observer.Observable;
+import observer.Observateur;
 
-public class Circuit extends Serie{
+public class Circuit extends Serie implements Observable{
+    
+    private ArrayList<Observateur> listeO;
 
     private double ampere;
     private double voltage;
@@ -53,6 +57,7 @@ public class Circuit extends Serie{
         return liste2;
     }
     
+    @Override
     public Branche getComposante(int emplacement){
         ArrayList<Integer> liste = recherche(emplacement);
         Composante c = null;
@@ -64,5 +69,23 @@ public class Circuit extends Serie{
     
     public void ajouterComposante(Composante c, int emplacement){
         getComposante(emplacement).ajouterComposante(c);
+        notifier();
+    }
+
+    @Override
+    public void ajouterObservateur(Observateur obs) {
+        listeO.add(obs);
+    }
+
+    @Override
+    public void supprimerObservateur(Observateur obs) {
+        listeO.clear();
+    }
+
+    @Override
+    public void notifier() {
+        for(Observateur o : listeO) {
+            o.notifier(this);
+        }
     }
 }
