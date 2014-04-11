@@ -1,6 +1,5 @@
 package gestion;
 
-import java.util.ArrayList;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 
@@ -11,14 +10,15 @@ public class ControleurCircuit{
     AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
     GestionnaireID gestID = GestionnaireID.getInstance();
+    AnalyseurCircuit ac = new AnalyseurCircuit();
     
     Circuit c = new Circuit();
     
     public ControleurCircuit(){
-        circuitsOuverts = new ArrayList<>();
     }
     
     public void nouveauCircuit(){
+<<<<<<< HEAD
         donnee.resetCircuit();
         circuitsOuverts.add(new Circuit());
     }
@@ -26,17 +26,34 @@ public class ControleurCircuit{
     public void fermeCircuit(Circuit c) {
         donnee.resetCircuit();
         circuitsOuverts.remove(c);
+=======
+        gestID.resetCircuit();
+        c = new Circuit();
+    }
+    
+    public void fermeCircuit() {
+        gestID.resetCircuit();
+        c = null;
+>>>>>>> Test-du-model
     }
     
     public void ouvrirCircuit(String nom) throws Exception{
-        xml.decoder(nom);
+        c = xml.decoder(nom);
     }
     
-    public void enregistrerCircuit(Circuit c) throws Exception{
+    public void enregistrerCircuit() throws Exception{
         xml.encoder(c);
     }
     
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
     }
+<<<<<<< HEAD
 }
+=======
+    
+    public void run(){
+        ac.analyserCircuit(c);
+    }
+}
+>>>>>>> Test-du-model

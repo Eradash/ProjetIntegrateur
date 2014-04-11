@@ -16,8 +16,8 @@ public class AnalyseurCircuit {
         calcul(ampere, voltage, c);
     }
     
-    private void calcul(double amp, double volt, Composante b) {
-        double resistance = b.getResistanceEquivalente();
+    private void calcul(double amp, double volt, Composante comp) {
+        double resistance = comp.getResistanceEquivalente();
         double ampere = amp;
         double voltage = volt;
         int cas = 0;
@@ -25,17 +25,17 @@ public class AnalyseurCircuit {
         if (ampere != -1 || voltage != -1) {
             if (ampere == -1 && voltage != -1) {
                 ampere = voltage / resistance;
-                BD.getInstance().SetComposante(b.getNumero(), "Ampere", ampere);
+                BD.getInstance().SetComposante(comp.getNumero(), "Ampere", ampere);
             } else if (voltage == -1 && ampere != -1) {
                 cas += 10;
                 voltage = resistance * ampere;
-                BD.getInstance().SetComposante(b.getNumero(), "Voltage", voltage);
+                BD.getInstance().SetComposante(comp.getNumero(), "Voltage", voltage);
             }
         }
 
-        if (b.getType() == Type.SERIE || b.getType() == Type.CIRCUIT) { 
+        if (comp.getType() == Type.SERIE || comp.getType() == Type.CIRCUIT) { 
             cas += 1;
-        } else if (b.getType() == Type.PARALLELE) {
+        } else if (comp.getType() == Type.PARALLELE) {
             cas += 2;
         } else {
             cas = 0;
@@ -43,7 +43,7 @@ public class AnalyseurCircuit {
         
         switch (cas) {
             case 1:
-                for (Composante c : b.getComposantes()) {
+                for (Composante c : comp.getComposantes()) {
                     voltage = c.getResistanceEquivalente() * ampere;
                     calcul(ampere, voltage, c);
                 }
@@ -52,7 +52,7 @@ public class AnalyseurCircuit {
             case 2:
             case 11:
             case 12:
-                for (Composante c : b.getComposantes()) {
+                for (Composante c : comp.getComposantes()) {
                     calcul(ampere, voltage, c);
                 }
                 break;
