@@ -30,6 +30,7 @@ public class Parallele extends Branche implements Composante{
         listeBranches.remove(c.getNumero());
     }
     
+    @Override
     public void supprimerComposante(int ID){
         listeBranches.remove(ID);
     }
