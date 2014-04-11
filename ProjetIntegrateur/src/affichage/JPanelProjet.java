@@ -1,14 +1,21 @@
 package affichage;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import logiqueCircuit.Circuit;
+import logiqueCircuit.Composante;
+import logiqueCircuit.Type;
 
-public class JPanelProjet extends JPanel{
+public class JPanelProjet extends JPanel implements observer.Observateur{
+    
+    ArrayList <Composante> listeComp;
     
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        listeComp = new ArrayList<>();
         graduerAxe(g);
     }
     
@@ -21,6 +28,22 @@ public class JPanelProjet extends JPanel{
         }
         for(int y = 0; y < _y; y += 20) {
             g.drawLine(y,0,y,_x);
+        }
+    }
+    
+    @Override
+    public void notifier(Circuit c) {
+        for(Composante comp : c.getComposantes()) {
+            ajouterComposante(comp);
+        }
+    }
+    
+    private void ajouterComposante(Composante comp) {
+        listeComp.add(comp);
+        if(comp.getType() == Type.PARALLELE) {
+            for(Composante comp2 : comp.getComposantes()) {
+                ajouterComposante(comp2);
+            }
         }
     }
 }
