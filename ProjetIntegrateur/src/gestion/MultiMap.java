@@ -1,7 +1,6 @@
 package gestion;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class MultiMap<ID, PARAM, VALEUR> extends HashMap<PARAM, HashMap<ID, VALEUR>> {
 
@@ -20,18 +19,5 @@ public class MultiMap<ID, PARAM, VALEUR> extends HashMap<PARAM, HashMap<ID, VALE
         for(PARAM k1: super.keySet()){
             super.get(k1).remove(cle);
         }
-    }
-    
-    public HashMap<PARAM, VALEUR> getComp(ID id){
-        
-        HashMap<PARAM,VALEUR> composante = new HashMap<>();
-        
-        Iterator<PARAM> iterator = super.keySet().iterator();
-        
-        while(iterator.hasNext()){
-            PARAM p = iterator.next();
-            composante.put(p, super.get(p).get(id));
-        }
-        return composante;
     }
 }

@@ -1,28 +1,14 @@
 package Listeners;
 
-import logiqueCircuit.Type;
-
 public class AjoutSuppEvent{
     
-    public final Type type;
-    public final int ID;
-    public final boolean ajout;
+    private String type;
     
-    public AjoutSuppEvent(Type type, int ID, boolean ajout){
+    public AjoutSuppEvent(String type){
         this.type = type;
-        this.ID = ID;
-        this.ajout = ajout;
     }
-
-    public Type getType() {
+    
+    public String getType(){
         return type;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public boolean isAjout() {
-        return ajout;
     }
 }

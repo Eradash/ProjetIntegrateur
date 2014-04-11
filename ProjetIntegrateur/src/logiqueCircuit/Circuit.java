@@ -65,7 +65,7 @@ public class Circuit extends Serie{
         return liste2;
     }
     
-    public Branche getComposanteEmplacement(int emplacement){
+    public Branche getComposante(int emplacement){
         ArrayList<Integer> liste = recherche(emplacement);
         Composante c = null;
         while (!liste.isEmpty()){
@@ -74,12 +74,7 @@ public class Circuit extends Serie{
         return (Branche)c;
     }
     
-    public void ajouterComposante(Composante c, int ID_Parent){
-        getComposanteEmplacement(ID_Parent).ajouterComposante(c);
-    }
-    
-    @Override
-    public void supprimerComposante(int ID_Parent){
-        getComposanteEmplacement(ID_Parent).supprimerComposante(ID_Parent);
+    public void ajouterComposante(Composante c, int emplacement){
+        getComposante(emplacement).ajouterComposante(c);
     }
 }
