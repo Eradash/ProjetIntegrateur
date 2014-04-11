@@ -22,11 +22,11 @@ public class AnalyseurCircuit {
         if (ampere != -1 || voltage != -1) {
             if (ampere == -1 && voltage != -1) {
                 ampere = voltage / resistance;
-                BD.getInstance().setComposante(b.getNumero(), "Ampere", ampere);
+                BD.getInstance().SetComposante(b.getNumero(), "Ampere", ampere);
             } else if (voltage == -1 && ampere != -1) {
                 cas += 10;
                 voltage = resistance * ampere;
-                BD.getInstance().setComposante(b.getNumero(), "Voltage", voltage);
+                BD.getInstance().SetComposante(b.getNumero(), "Voltage", voltage);
             }
         }
 
