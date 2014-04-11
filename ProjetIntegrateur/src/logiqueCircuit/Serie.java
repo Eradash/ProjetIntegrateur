@@ -31,6 +31,10 @@ public class Serie extends Branche{
         listeComposante.remove(c.getNumero());
     }
     
+    public void supprimerComposante(int ID){
+        listeComposante.remove(ID);
+    }
+    
     @Override
     public ArrayList<Composante> getComposantes(){
         return (ArrayList)listeComposante.values();
