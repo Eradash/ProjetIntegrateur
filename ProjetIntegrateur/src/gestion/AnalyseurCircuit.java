@@ -1,9 +1,6 @@
 package gestion;
 
 import logiqueCircuit.Circuit;
-/*
- * Cette classe jouera avec le XML
- */
 import logiqueCircuit.Composante;
 import logiqueCircuit.Type;
 
@@ -16,14 +13,9 @@ public class AnalyseurCircuit {
         calcul(ampere, voltage, c, -1);
     }
     
-<<<<<<< HEAD
-    private void calcul(double amp, double volt, Composante comp) {
-        double resistance = comp.getResistanceEquivalente();
-=======
     private void calcul(double amp, double volt, Composante b, int ID_Parent) {
         int ID = b.getNumero();
         double resistance = b.getResistanceEquivalente();
->>>>>>> Uniformisation-de-la-BD
         double ampere = amp;
         double voltage = volt;
         
@@ -36,19 +28,6 @@ public class AnalyseurCircuit {
         if (ampere != -1 || voltage != -1) {
             if (ampere == -1 && voltage != -1) {
                 ampere = voltage / resistance;
-<<<<<<< HEAD
-                BD.getInstance().SetComposante(comp.getNumero(), "Ampere", ampere);
-            } else if (voltage == -1 && ampere != -1) {
-                cas += 10;
-                voltage = resistance * ampere;
-                BD.getInstance().SetComposante(comp.getNumero(), "Voltage", voltage);
-            }
-        }
-
-        if (comp.getType() == Type.SERIE || comp.getType() == Type.CIRCUIT) { 
-            cas += 1;
-        } else if (comp.getType() == Type.PARALLELE) {
-=======
                 bd.SetComposante(ID, "Ampere", ampere);
                 bd.SetComposante(ID, "Voltage", voltage);
             } else if (voltage == -1 && ampere != -1) {
@@ -66,7 +45,6 @@ public class AnalyseurCircuit {
             cas += 1;
             bd.SetComposante(ID, "Type", 3);
         } else if (b.getType() == Type.PARALLELE) {
->>>>>>> Uniformisation-de-la-BD
             cas += 2;
             bd.SetComposante(ID, "Type", 2);
         } else {
@@ -76,7 +54,7 @@ public class AnalyseurCircuit {
         
         switch (cas) {
             case 1:
-                for (Composante c : comp.getComposantes()) {
+                for (Composante c : b.getComposantes()) {
                     voltage = c.getResistanceEquivalente() * ampere;
                     calcul(ampere, voltage, c, ID);
                 }
@@ -85,13 +63,8 @@ public class AnalyseurCircuit {
             case 2:
             case 11:
             case 12:
-<<<<<<< HEAD
-                for (Composante c : comp.getComposantes()) {
-                    calcul(ampere, voltage, c);
-=======
                 for (Composante c : b.getComposantes()) {
                     calcul(ampere, voltage, c, ID);
->>>>>>> Uniformisation-de-la-BD
                 }
                 break;
         }
