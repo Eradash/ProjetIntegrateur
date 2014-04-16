@@ -1,10 +1,12 @@
 package projetintegrateur;
 
-import affichage.JFrameProjet;
+import affichage.ControlleurFrame;
+import gestion.ControleurCircuit;
 
 public class ProjetIntegrateur {
 
     public static void main(String[] args) {
-        new JFrameProjet();
+        ControleurCircuit cc = new ControleurCircuit();
+        ControlleurFrame cf = new ControlleurFrame(cc);
     }
 }
