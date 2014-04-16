@@ -2,13 +2,18 @@ package logiqueCircuit;
 
 import gestion.BD;
 import java.util.ArrayList;
+import observer.Observable;
 import observer.Observateur;
 
-public class Circuit extends Serie implements Observateur{
+public class Circuit extends Serie implements Observable{
     
     private double ampere;
     private double voltage;
     private String nom;
+    
+    public Circuit() {
+        
+    }
 
     public String getNom() {
         return nom;
@@ -66,11 +71,20 @@ public class Circuit extends Serie implements Observateur{
     
     public void ajouterComposante(Composante c, int emplacement){
         getComposante(emplacement).ajouterComposante(c);
-        notifier(this);
     }
-    
+
     @Override
-    public void notifier(Circuit c) {
+    public void notifier() {
+        
+    }
+
+    @Override
+    public void ajouterObservateur(Observateur obs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimerObservateur(Observateur obs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

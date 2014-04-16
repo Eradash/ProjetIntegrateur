@@ -1,23 +1,22 @@
 package affichage;
 
+import gestion.ControleurCircuit;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import javax.swing.JPanel;
-import logiqueCircuit.Composante;
+import logiqueCircuit.Circuit;
 import observer.Observateur;
 
-public class JPanelProjet extends JPanel implements MouseListener{
+public class JPanelProjet extends JPanel implements MouseListener, Observateur{
     
-    ArrayList <Composante> listeComp;
-    ArrayList <Observateur> listeO;
     ControlleurBouton cb;
+    ControleurCircuit cc;
+    Circuit c;
     
     public JPanelProjet() {
+        c = new Circuit();
         cb = ControlleurBouton.getInstance();
-        listeComp = new ArrayList<>();
-        listeO = new ArrayList<>();
         addMouseListener(this);
     }
     
@@ -42,7 +41,7 @@ public class JPanelProjet extends JPanel implements MouseListener{
     
     @Override
     public void mouseClicked(MouseEvent e) {}
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
         switch (cb.getOutil()) {
@@ -51,20 +50,27 @@ public class JPanelProjet extends JPanel implements MouseListener{
             case 1 :
                 break;
             case 2 :
-                this.getGraphics().fillOval(e.getX()-10, e.getY()-10, 20, 20);
+                this.getGraphics().fillRect(e.getX(), e.getY(), 20, 30);
                 cb.selectionnerOutil(cb.AUCUN);
                 break;
             case 3 :
-                
+                this.getGraphics().fillOval(e.getX()-10, e.getY()-10, 20, 20);
+                cb.selectionnerOutil(cb.AUCUN);
+                break;
         }
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {}
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {}
-
+    
     @Override
     public void mouseExited(MouseEvent e) {}
+    
+    @Override
+    public void notifier(Circuit c) {
+        this.c = c;
+    }
 }

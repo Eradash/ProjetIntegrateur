@@ -61,6 +61,12 @@ public class JPanelOutil extends JPanel{
         this.add(toolbar);
     }
     
+    public void ajouterListener(ActionListener al, String bouton){
+        switch(bouton){
+            
+        }
+    }
+    
     private JButton createButton(String nom, int x, int y) {
         JButton jb = new JButton(nom);
         

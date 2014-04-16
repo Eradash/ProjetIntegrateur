@@ -34,6 +34,10 @@ public class ControleurCircuit{
         xml.encoder(c);
     }
     
+    public Circuit getCircuit() {
+        return c;
+    }
+    
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
     }
