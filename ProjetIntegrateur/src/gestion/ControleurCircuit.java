@@ -10,7 +10,7 @@ public class ControleurCircuit{
     ArrayList<Circuit> circuitsOuverts;
     GestionnaireID gestID = GestionnaireID.getInstance();
     
-    Circuit c = new Circuit();
+    Circuit c;
     
     public ControleurCircuit(){
         circuitsOuverts = new ArrayList<>();
@@ -18,12 +18,12 @@ public class ControleurCircuit{
     
     public void nouveauCircuit(){
         gestID.resetCircuit();
-        circuitsOuverts.add(new Circuit());
+        c = new Circuit();
     }
     
-    public void fermeCircuit(Circuit c) {
+    public void fermeCircuit() {
         gestID.resetCircuit();
-        circuitsOuverts.remove(c);
+        c = null;
     }
     
     public void ouvrirCircuit(String nom) throws Exception{
