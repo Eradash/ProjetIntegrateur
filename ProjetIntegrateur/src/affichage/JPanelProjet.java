@@ -1,21 +1,30 @@
 package affichage;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
-import logiqueCircuit.Type;
+import observer.Observateur;
 
-public class JPanelProjet extends JPanel implements observer.Observateur{
+public class JPanelProjet extends JPanel implements MouseListener{
     
     ArrayList <Composante> listeComp;
+    ArrayList <Observateur> listeO;
+    ControlleurBouton cb;
+    
+    public JPanelProjet() {
+        cb = ControlleurBouton.getInstance();
+        listeComp = new ArrayList<>();
+        listeO = new ArrayList<>();
+        addMouseListener(this);
+    }
     
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        listeComp = new ArrayList<>();
         graduerAxe(g);
     }
     
@@ -32,18 +41,30 @@ public class JPanelProjet extends JPanel implements observer.Observateur{
     }
     
     @Override
-    public void notifier(Circuit c) {
-        for(Composante comp : c.getComposantes()) {
-            ajouterComposante(comp);
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        switch (cb.getOutil()) {
+            case 0 :
+                break;
+            case 1 :
+                break;
+            case 2 :
+                this.getGraphics().fillOval(e.getX()-10, e.getY()-10, 20, 20);
+                cb.selectionnerOutil(cb.AUCUN);
+                break;
+            case 3 :
+                
         }
     }
-    
-    private void ajouterComposante(Composante comp) {
-        listeComp.add(comp);
-        if(comp.getType() == Type.PARALLELE) {
-            for(Composante comp2 : comp.getComposantes()) {
-                ajouterComposante(comp2);
-            }
-        }
-    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }

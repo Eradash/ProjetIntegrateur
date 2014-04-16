@@ -12,6 +12,7 @@ import javax.swing.JToolBar;
 public class JPanelOutil extends JPanel{
     
     JToolBar toolbar;
+    private static volatile ControlleurBouton cb;
     
     public JPanelOutil() {  
         
@@ -21,33 +22,35 @@ public class JPanelOutil extends JPanel{
         final int X = 200;
         final int Y = 50;
         
-        JButton jb1 = createButton("Fil", X, Y);
+        cb = ControlleurBouton.getInstance();
+        
+        JButton jb1 = createButton("fil", X, Y);
         
         jb1.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                cb.selectionnerOutil(cb.FIL);
             }
         });
         
-        JButton jb2 = createButton("Résistance", X, Y);
+        JButton jb2 = createButton("resistance", X, Y);
         
         jb2.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                cb.selectionnerOutil(cb.RESISTANCE);
             }
         });
         
-        JButton jb3 = createButton("Parallele", X, Y);
+        JButton jb3 = createButton("parallele", X, Y);
         
         jb3.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                cb.selectionnerOutil(cb.PARALLELE);
             }
         });
         
