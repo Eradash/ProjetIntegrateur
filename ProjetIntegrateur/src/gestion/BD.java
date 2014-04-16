@@ -1,8 +1,8 @@
 package gestion;
 
-import Listeners.CompModifEvent;
-import Listeners.CompModifListener;
-import Listeners.CompModifObservable;
+import ListenersCircuit.CompModifEvent;
+import ListenersCircuit.CompModifListener;
+import ListenersCircuit.CompModifObservable;
 import java.util.ArrayList;
 
 public class BD implements CompModifObservable{
