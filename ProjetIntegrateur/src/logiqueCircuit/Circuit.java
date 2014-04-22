@@ -10,11 +10,7 @@ public class Circuit extends Serie{
     private String nom;
     
     public Circuit(){
-<<<<<<< HEAD
         super(-1);
-=======
-        
->>>>>>> Affichage_test
     }
 
     public String getNom() {

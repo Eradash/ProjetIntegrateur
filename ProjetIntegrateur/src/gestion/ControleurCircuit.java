@@ -19,7 +19,6 @@ public class ControleurCircuit{
     }
     
     public void nouveauCircuit(){
-<<<<<<< HEAD
         donnee.resetCircuit();
         circuitsOuverts.add(new Circuit());
     }
@@ -31,12 +30,6 @@ public class ControleurCircuit{
         c = new Circuit();
     }
     
-=======
-        gestID.resetCircuit();
-        c = new Circuit();
-    }
-    
->>>>>>> Affichage_test
     public void fermeCircuit() {
         gestID.resetCircuit();
         c = null;
