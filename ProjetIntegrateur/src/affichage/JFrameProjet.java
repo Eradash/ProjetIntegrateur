@@ -18,8 +18,6 @@ public class JFrameProjet extends JFrame implements KeyListener{
         this.setTitle("Projet Integrateur");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        this.add(new JPanelOutil(), BorderLayout.WEST);
-        
         JPanelProjet jpanel = new JPanelProjet();
         jpanel.setSize(d);
         this.add(jpanel, BorderLayout.CENTER);
