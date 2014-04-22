@@ -1,10 +1,12 @@
 package affichage;
 
 public class PanelBoutons extends javax.swing.JPanel {
+    
+    ControlleurFrame cf;
 
-    public PanelBoutons() {
+    public PanelBoutons(ControlleurFrame cf) {
         initComponents();
-        
+        this.cf = cf;
     }
 
     @SuppressWarnings("unchecked")
@@ -66,15 +68,15 @@ public class PanelBoutons extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BoutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonResistanceActionPerformed
-
+        cf.BoutonResistance(evt);
     }//GEN-LAST:event_BoutonResistanceActionPerformed
 
     private void BoutonFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonFilActionPerformed
-
+        cf.BoutonFil(evt);
     }//GEN-LAST:event_BoutonFilActionPerformed
 
     private void BoutonParalleleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonParalleleActionPerformed
-
+        cf.BoutonParallele(evt);
     }//GEN-LAST:event_BoutonParalleleActionPerformed
 
 
