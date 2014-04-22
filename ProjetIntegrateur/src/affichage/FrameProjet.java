@@ -9,6 +9,14 @@ public class FrameProjet extends javax.swing.JFrame{
         this.cf = cf;
         setVisible(true);
     }
+    
+    public PanelBoutons getPanelBoutons(){
+        return (PanelBoutons)PanelBoutons;
+    }
+    
+    public PanelCircuit getPanelCircuit(){
+        return (PanelCircuit)Panel;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -27,6 +35,8 @@ public class FrameProjet extends javax.swing.JFrame{
         setTitle("Analyseur de circuit");
         setBackground(new java.awt.Color(204, 204, 204));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        PanelBoutons = new PanelBoutons(cf);
 
         BoutonResistance.setText("Ajouter Résistance");
         BoutonResistance.setFocusPainted(false);
@@ -81,6 +91,7 @@ public class FrameProjet extends javax.swing.JFrame{
         BoutonParallele.getAccessibleContext().setAccessibleName("BoutonParallele");
         BoutonFil.getAccessibleContext().setAccessibleName("BoutonAjouterFil");
 
+        Panel = new PanelCircuit(cf);
         Panel.setBackground(new java.awt.Color(255, 255, 255));
         Panel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         Panel.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
@@ -89,7 +100,7 @@ public class FrameProjet extends javax.swing.JFrame{
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 636, Short.MAX_VALUE)
+            .addGap(0, 883, Short.MAX_VALUE)
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +133,7 @@ public class FrameProjet extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PanelBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 277, Short.MAX_VALUE))
+                        .addGap(0, 372, Short.MAX_VALUE))
                     .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

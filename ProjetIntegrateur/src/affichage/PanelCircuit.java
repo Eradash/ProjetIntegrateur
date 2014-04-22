@@ -1,11 +1,9 @@
 package affichage;
 
-import ListenersCircuit.AjoutSuppEvent;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
-import logiqueCircuit.Type;
 
 public class PanelCircuit extends JPanel implements MouseListener{
     

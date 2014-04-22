@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.4" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
@@ -66,7 +66,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="PanelBoutons" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="277" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="372" max="32767" attributes="0"/>
                   </Group>
                   <Component id="Panel" max="32767" attributes="0"/>
               </Group>
@@ -78,6 +78,7 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="PanelBoutons">
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="PanelBoutons = new PanelBoutons(cf);"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="FrameProjet_PanelBoutons"/>
       </AuxValues>
 
@@ -165,11 +166,14 @@
           <Color id="Curseur r&#xe9;ticulaire"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="Panel = new PanelCircuit(cf);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="636" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="883" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

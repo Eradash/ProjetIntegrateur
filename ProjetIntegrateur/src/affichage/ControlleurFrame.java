@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ControlleurFrame implements ComposanteObservable, CompModifObservable{
 
-    JFrameProjet frame;
+    FrameProjet frame;
     PanelBoutons panelBoutons;
     PanelCircuit panelCircuit;
     ControleurCircuit cc;
@@ -17,7 +17,7 @@ public class ControlleurFrame implements ComposanteObservable, CompModifObservab
 
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
-        frame = new JFrameProjet(this);
+        frame = new FrameProjet(this);
         
         panelBoutons = frame.getPanelBoutons();
         panelCircuit = frame.getPanelCircuit();
