@@ -7,11 +7,7 @@ public class FrameProjet extends javax.swing.JFrame{
     public FrameProjet(ControlleurFrame cf) {
         initComponents();
         this.cf = cf;
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                setVisible(true);
-            }
-        });
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

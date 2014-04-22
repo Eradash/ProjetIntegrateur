@@ -5,8 +5,8 @@ public class PanelBoutons extends javax.swing.JPanel {
     ControlleurFrame cf;
 
     public PanelBoutons(ControlleurFrame cf) {
-        initComponents();
         this.cf = cf;
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")
