@@ -77,6 +77,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="PanelBoutons">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="FrameProjet_PanelBoutons"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -127,6 +130,9 @@
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="BoutonParallele"/>
           </AccessibilityProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BoutonParalleleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BoutonFil">
           <Properties>
@@ -139,6 +145,9 @@
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="BoutonAjouterFil"/>
           </AccessibilityProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BoutonFilActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

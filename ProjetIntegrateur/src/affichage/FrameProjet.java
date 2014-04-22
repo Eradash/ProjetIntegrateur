@@ -1,8 +1,12 @@
 package affichage;
 
 public class FrameProjet extends javax.swing.JFrame{
-    public FrameProjet() {
+    
+    ControlleurFrame cf;
+    
+    public FrameProjet(ControlleurFrame cf) {
         initComponents();
+        this.cf = cf;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 setVisible(true);
@@ -38,10 +42,20 @@ public class FrameProjet extends javax.swing.JFrame{
 
         BoutonParallele.setText("Ajouter Parallele");
         BoutonParallele.setFocusPainted(false);
+        BoutonParallele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonParalleleActionPerformed(evt);
+            }
+        });
 
         BoutonFil.setText("Ajouter Fil");
         BoutonFil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BoutonFil.setFocusPainted(false);
+        BoutonFil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonFilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelBoutonsLayout = new javax.swing.GroupLayout(PanelBoutons);
         PanelBoutons.setLayout(PanelBoutonsLayout);
@@ -123,8 +137,16 @@ public class FrameProjet extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void BoutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonResistanceActionPerformed
-        
+        cf.BoutonResistance(evt);
     }//GEN-LAST:event_BoutonResistanceActionPerformed
+
+    private void BoutonParalleleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonParalleleActionPerformed
+        cf.BoutonParallele(evt);
+    }//GEN-LAST:event_BoutonParalleleActionPerformed
+
+    private void BoutonFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonFilActionPerformed
+        cf.BoutonFil(evt);
+    }//GEN-LAST:event_BoutonFilActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
