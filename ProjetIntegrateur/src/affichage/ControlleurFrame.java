@@ -26,15 +26,15 @@ public class ControlleurFrame implements ComposanteListener{
     }
     
     public void BoutonResistance(ActionEvent evt){
-        panelCircuit.setOutil(2);
+        panelCircuit.setOutil(PanelCircuit.Outil.RESISTANCE);
     }
     
     public void BoutonParallele(ActionEvent evt){
-        panelCircuit.setOutil(3);
+        panelCircuit.setOutil(PanelCircuit.Outil.PARALELLE);
     }
     
     public void BoutonFil(ActionEvent evt){
-        panelCircuit.setOutil(1);
+        panelCircuit.setOutil(PanelCircuit.Outil.FIL);
     }
     
     @Override

@@ -23,11 +23,17 @@ public class BD implements ComposanteObservable{
     public void SetComposante(int ID, String info, double donne) {
         listeComposante.put(ID, info, donne);
         gestionnaire.ajouterComp(ID);
+        ComposanteEvent evt = new ComposanteEvent(this, ComposanteEvent.TypeEvent.MODIF);
+        evt.setValeurs(listeComposante.getComp(ID));
+        notifierComposante(evt);
     }
     
     public boolean supprimerComposante(int ID) {
         if(gestionnaire.supprimerComp(ID)) {
             listeComposante.removeID(ID);
+            ComposanteEvent evt = new ComposanteEvent(this, ComposanteEvent.TypeEvent.SUPP);
+            evt.ajouterValeur("ID", ID);
+            notifierComposante(evt);
             return true;
         }
         return false;

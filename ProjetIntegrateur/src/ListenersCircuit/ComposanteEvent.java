@@ -6,37 +6,40 @@ import logiqueCircuit.Type;
 
 public class ComposanteEvent{
     
+    public static enum TypeEvent{ AJOUT,SUPP,MODIF };
+    
     private Type type;
+    private final TypeEvent typeEvent;
     private Composante comp;
-    private boolean ajout;
-    private final HashMap<String, Integer> valeurs;
+    private final HashMap<String, Double> valeurs;
     protected transient Object source;
 
-    public ComposanteEvent(Object source) {
-        this.type = null;
-        this.comp = null;
-        this.ajout = false;
-        this.valeurs = new HashMap<>();
+    public ComposanteEvent(Object source ,TypeEvent type) {
         this.source = source;
+        this.typeEvent = type;
+        this.valeurs = new HashMap<>();
     }
-
-    public ComposanteEvent(Object source, Type type, Composante comp, boolean ajout, HashMap<String, Integer> valeurs) {
-        this.source = source.getClass();
-        this.type = type;
+    
+    public ComposanteEvent(Object source, Type type, Composante comp, TypeEvent typeEvent, HashMap<String, Double> valeurs) {
+        this(source, typeEvent);
         this.comp = comp;
-        this.ajout = ajout;
-        this.valeurs = valeurs;
+        this.type = type;
+        this.valeurs.putAll(valeurs);
     }
     
     public Object getSource(){
         return source;
     }
     
-    public void ajouterValeur(String cle, int valeur){
+    public void ajouterValeur(String cle, double valeur){
         valeurs.put(cle, valeur);
     }
     
-    public int getValeur(String cle){
+    public void setValeurs(HashMap<String,Double> valeurs){
+        this.valeurs.putAll(valeurs);
+    }
+    
+    public double getValeur(String cle){
         return valeurs.get(cle);
     }
     
@@ -55,12 +58,8 @@ public class ComposanteEvent{
     public Composante getComp(){
         return comp;
     }
-
-    public void setIsAjout(Boolean ajout){
-        this.ajout = ajout;
-    }
     
-    public boolean isAjout() {
-        return ajout;
+    public TypeEvent getTypeEvent() {
+        return typeEvent;
     }
 }
