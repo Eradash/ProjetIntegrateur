@@ -40,27 +40,27 @@ public class ControlleurFrame implements ComposanteListener{
     @Override
     public void composanteAjout(ComposanteEvent event) {
         if(event.getSource() == PanelCircuit.class){
-            
+            cc.composanteAjout(event);
         } else if(event.getSource() == BD.class){
-            
+            panelCircuit.update(event);
         }
     }
 
     @Override
     public void composanteSupp(ComposanteEvent event) {
         if(event.getSource() == PanelCircuit.class){
-            
+            cc.composanteSupp(event);
         } else if(event.getSource() == BD.class){
-            
+            panelCircuit.update(event);
         }
     }
 
     @Override
     public void composanteModif(ComposanteEvent event) {
         if(event.getSource() == PanelCircuit.class){
-            
+            cc.composanteModif(event);
         } else if(event.getSource() == BD.class){
-            
+            panelCircuit.update(event);
         }
     }
 }
