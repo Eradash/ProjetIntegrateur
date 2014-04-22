@@ -39,16 +39,17 @@ public class ControlleurFrame implements ComposanteListener{
     
     @Override
     public void composanteAjout(ComposanteEvent event) {
-        if(event.getSource() == PanelCircuit.class){
+        if(event.getSource() instanceof PanelCircuit){
+            System.out.println("Message recu du PanelCircuit (CF)");
             cc.composanteAjout(event);
-        } else if(event.getSource() == BD.class){
+        } else if(event.getSource() instanceof BD){
             panelCircuit.update(event);
         }
     }
 
     @Override
     public void composanteSupp(ComposanteEvent event) {
-        if(event.getSource() == PanelCircuit.class){
+        if(event.getSource() instanceof PanelCircuit){
             cc.composanteSupp(event);
         } else if(event.getSource() == BD.class){
             panelCircuit.update(event);
@@ -57,9 +58,9 @@ public class ControlleurFrame implements ComposanteListener{
 
     @Override
     public void composanteModif(ComposanteEvent event) {
-        if(event.getSource() == PanelCircuit.class){
+        if(event.getSource() instanceof PanelCircuit){
             cc.composanteModif(event);
-        } else if(event.getSource() == BD.class){
+        } else if(event.getSource() instanceof BD){
             panelCircuit.update(event);
         }
     }

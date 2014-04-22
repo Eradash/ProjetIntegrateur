@@ -5,8 +5,8 @@ public class FrameProjet extends javax.swing.JFrame{
     ControlleurFrame cf;
     
     public FrameProjet(ControlleurFrame cf) {
-        initComponents();
         this.cf = cf;
+        initComponents();
         setVisible(true);
     }
     

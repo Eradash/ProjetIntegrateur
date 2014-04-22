@@ -52,21 +52,22 @@ public class ControleurCircuit implements ComposanteListener{
 
     @Override
     public void composanteAjout(ComposanteEvent event) {
-        if(event.getSource() == PanelCircuit.class){
+        if(event.getSource() instanceof PanelCircuit){
+            System.out.println("Message reçu du PanelCircuit (CC)");
             //Créer une composante et l'ajouter au circuit
         }
     }
 
     @Override
     public void composanteSupp(ComposanteEvent event) {
-        if(event.getSource() == PanelCircuit.class){
+        if(event.getSource() instanceof PanelCircuit){
             //Supprimer la composante
         }
     }
 
     @Override
     public void composanteModif(ComposanteEvent event) {
-        if(event.getSource() == PanelCircuit.class){
+        if(event.getSource() instanceof PanelCircuit){
             //Modifier la composante
         }
     }
