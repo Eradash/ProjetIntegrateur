@@ -63,17 +63,21 @@ public class PanelCircuit extends JPanel implements MouseListener{
                 this.getGraphics().fillRect(e.getX(), e.getY(), 20, 30);
                 outilPresent = Outil.NULL;
                 //Test... (qui fonctionne, jusqu'à présent :) )
-                ComposanteEvent evt = new ComposanteEvent(this, ComposanteEvent.TypeEvent.AJOUT);
-                evt.ajouterValeur("Valeur", 300);
-                evt.setType(Type.RESISTANCE);
-                System.out.println("Envoi du message au ControlleurFrame");
-                cf.composanteAjout(evt);
+                creerResistance(300);
                 break;
             case PARALELLE :
                 this.getGraphics().fillOval(e.getX()-10, e.getY()-10, 20, 20);
                 outilPresent = Outil.NULL;
                 break;
         }
+    }
+    
+    private void creerResistance(double valeur){
+        ComposanteEvent evt = new ComposanteEvent(this, ComposanteEvent.TypeEvent.AJOUT);
+        evt.ajouterValeur("Valeur", valeur);
+        evt.setType(Type.RESISTANCE);
+        System.out.println("Envoi du message au ControlleurFrame");
+        cf.composanteAjout(evt);
     }
 
     @Override

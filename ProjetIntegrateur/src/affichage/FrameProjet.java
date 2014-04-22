@@ -27,9 +27,16 @@ public class FrameProjet extends javax.swing.JFrame{
         BoutonParallele = new javax.swing.JButton();
         BoutonFil = new javax.swing.JButton();
         Panel = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        MenuBar = new javax.swing.JMenuBar();
+        MenuFichier = new javax.swing.JMenu();
+        MenuOuvrir = new javax.swing.JMenuItem();
+        MenuSauvegarder = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        MenuQuitter = new javax.swing.JMenuItem();
+        MenuEdition = new javax.swing.JMenu();
+        MenuCopier = new javax.swing.JMenuItem();
+        MenuCouper = new javax.swing.JMenuItem();
+        MenuColler = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analyseur de circuit");
@@ -107,13 +114,49 @@ public class FrameProjet extends javax.swing.JFrame{
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Fichier");
-        jMenuBar1.add(jMenu1);
+        MenuFichier.setText("Fichier");
 
-        jMenu2.setText("Édition");
-        jMenuBar1.add(jMenu2);
+        MenuOuvrir.setText("Ouvrir");
+        MenuOuvrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuOuvrirActionPerformed(evt);
+            }
+        });
+        MenuFichier.add(MenuOuvrir);
 
-        setJMenuBar(jMenuBar1);
+        MenuSauvegarder.setText("Sauvegarder");
+        MenuSauvegarder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuSauvegarderActionPerformed(evt);
+            }
+        });
+        MenuFichier.add(MenuSauvegarder);
+        MenuFichier.add(jSeparator1);
+
+        MenuQuitter.setText("Quitter");
+        MenuFichier.add(MenuQuitter);
+
+        MenuBar.add(MenuFichier);
+
+        MenuEdition.setText("Édition");
+
+        MenuCopier.setText("Copier");
+        MenuCopier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCopierActionPerformed(evt);
+            }
+        });
+        MenuEdition.add(MenuCopier);
+
+        MenuCouper.setText("Couper");
+        MenuEdition.add(MenuCouper);
+
+        MenuColler.setText("Coller");
+        MenuEdition.add(MenuColler);
+
+        MenuBar.add(MenuEdition);
+
+        setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,15 +198,34 @@ public class FrameProjet extends javax.swing.JFrame{
         cf.BoutonFil(evt);
     }//GEN-LAST:event_BoutonFilActionPerformed
 
+    private void MenuCopierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCopierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuCopierActionPerformed
+
+    private void MenuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOuvrirActionPerformed
+        System.out.println("Ouvrir un circuit");
+    }//GEN-LAST:event_MenuOuvrirActionPerformed
+
+    private void MenuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSauvegarderActionPerformed
+        System.out.println("Sauvegarder un circuit");
+    }//GEN-LAST:event_MenuSauvegarderActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonFil;
     private javax.swing.JButton BoutonParallele;
     private javax.swing.JButton BoutonResistance;
+    private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenuItem MenuColler;
+    private javax.swing.JMenuItem MenuCopier;
+    private javax.swing.JMenuItem MenuCouper;
+    private javax.swing.JMenu MenuEdition;
+    private javax.swing.JMenu MenuFichier;
+    private javax.swing.JMenuItem MenuOuvrir;
+    private javax.swing.JMenuItem MenuQuitter;
+    private javax.swing.JMenuItem MenuSauvegarder;
     private javax.swing.JPanel Panel;
     private javax.swing.JPanel PanelBoutons;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

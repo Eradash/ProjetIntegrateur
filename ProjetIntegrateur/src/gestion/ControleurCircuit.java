@@ -2,7 +2,6 @@ package gestion;
 
 import ListenersCircuit.ComposanteEvent;
 import ListenersCircuit.ComposanteListener;
-import affichage.ControlleurFrame;
 import affichage.PanelCircuit;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
