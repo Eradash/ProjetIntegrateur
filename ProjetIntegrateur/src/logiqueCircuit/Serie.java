@@ -10,12 +10,15 @@ public class Serie extends Branche{
 
     public Serie() {
         super();
+        listeComposante = new HashMap<>();
+
     }
-    
+
     public Serie(int ID) {
         super(ID);
+        listeComposante = new HashMap<>();
     }
-    
+
     @Override
     public Type getType() {
         return Type.SERIE;
@@ -32,14 +35,20 @@ public class Serie extends Branche{
     }
     
     @Override
+    public void supprimerComposante(int ID){
+        listeComposante.remove(ID);
+    }
+    
+    @Override
     public ArrayList<Composante> getComposantes(){
-        return (ArrayList)listeComposante.values();
+        ArrayList<Composante> liste = new ArrayList(listeComposante.values());
+        return liste;
     }
 
     @Override
     public double getResistanceEquivalente() {
         double resistance = 0;
-        for(Composante c : getComposantes()){
+        for(Composante c : listeComposante.values()){
             resistance += c.getResistanceEquivalente();
         }
         return resistance;

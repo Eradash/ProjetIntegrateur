@@ -11,8 +11,8 @@ public class Circuit extends Serie implements Observable{
     private double voltage;
     private String nom;
     
-    public Circuit() {
-        
+    public Circuit(){
+        super(-1);
     }
 
     public String getNom() {
@@ -32,8 +32,16 @@ public class Circuit extends Serie implements Observable{
         return ampere;
     }
     
+    public void setAmpere(double amp){
+        this.ampere = amp;
+    }
+    
     public double getVoltage(){
         return voltage;
+    }
+    
+    public void setVoltage(double volt){
+        this.voltage = volt;
     }
     
     public ArrayList<Integer> recherche(int ID){
@@ -59,8 +67,7 @@ public class Circuit extends Serie implements Observable{
         return liste2;
     }
     
-    @Override
-    public Branche getComposante(int emplacement){
+    public Branche getComposanteEmplacement(int emplacement){
         ArrayList<Integer> liste = recherche(emplacement);
         Composante c = null;
         while (!liste.isEmpty()){
@@ -69,8 +76,13 @@ public class Circuit extends Serie implements Observable{
         return (Branche)c;
     }
     
-    public void ajouterComposante(Composante c, int emplacement){
-        getComposante(emplacement).ajouterComposante(c);
+    public void ajouterComposante(Composante c, int ID_Parent){
+        getComposanteEmplacement(ID_Parent).ajouterComposante(c);
+    }
+    
+    @Override
+    public void supprimerComposante(int ID_Parent){
+        getComposanteEmplacement(ID_Parent).supprimerComposante(ID_Parent);
     }
 
     @Override

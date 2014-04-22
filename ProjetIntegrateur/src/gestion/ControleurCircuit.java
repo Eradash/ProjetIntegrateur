@@ -6,31 +6,40 @@ import logiqueCircuit.Composante;
 
 public class ControleurCircuit{
     
+    ArrayList<Circuit> circuitsOuverts = new ArrayList<>();
+    BD donnee = BD.getInstance();
+    AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
-    ArrayList<Circuit> circuitsOuverts;
     GestionnaireID gestID = GestionnaireID.getInstance();
+    AnalyseurCircuit ac = new AnalyseurCircuit();
     
     Circuit c = new Circuit();
     
     public ControleurCircuit(){
-        circuitsOuverts = new ArrayList<>();
     }
     
     public void nouveauCircuit(){
-        gestID.resetCircuit();
+        donnee.resetCircuit();
         circuitsOuverts.add(new Circuit());
     }
     
     public void fermeCircuit(Circuit c) {
-        gestID.resetCircuit();
+        donnee.resetCircuit();
         circuitsOuverts.remove(c);
+        gestID.resetCircuit();
+        c = new Circuit();
+    }
+    
+    public void fermeCircuit() {
+        gestID.resetCircuit();
+        c = null;
     }
     
     public void ouvrirCircuit(String nom) throws Exception{
-        xml.decoder(nom);
+        c = xml.decoder(nom);
     }
     
-    public void enregistrerCircuit(Circuit c) throws Exception{
+    public void enregistrerCircuit() throws Exception{
         xml.encoder(c);
     }
     
@@ -40,5 +49,9 @@ public class ControleurCircuit{
     
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
+    }
+    
+    public void run(){
+        ac.analyserCircuit(c);
     }
 }

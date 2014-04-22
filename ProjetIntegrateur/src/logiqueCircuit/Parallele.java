@@ -9,10 +9,12 @@ public class Parallele extends Branche implements Composante{
 
     public Parallele() {
         super();
+        listeBranches = new HashMap<>();
     }
 
     public Parallele(int ID) {
         super(ID);
+        listeBranches = new HashMap<>();
     }
     
     @Override
@@ -29,6 +31,11 @@ public class Parallele extends Branche implements Composante{
     public void supprimerComposante(Composante c) {
         listeBranches.remove(c.getNumero());
     }
+    
+    @Override
+    public void supprimerComposante(int ID){
+        listeBranches.remove(ID);
+    }
 
     @Override
     public double getResistanceEquivalente() {
@@ -41,7 +48,8 @@ public class Parallele extends Branche implements Composante{
 
     @Override
     public ArrayList<Composante> getComposantes() {
-        return (ArrayList)listeBranches.values();
+        ArrayList liste = new ArrayList(listeBranches.values());
+        return liste;
     }
 
     @Override
