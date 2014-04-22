@@ -152,9 +152,7 @@ public class JFrameProjet extends javax.swing.JFrame{
     private void BoutonFilActionPerformed(java.awt.event.ActionEvent evt) {                                          
         cf.BoutonFil(evt);
     }                                         
-
-
-    // Variables declaration - do not modify                     
+              
     private javax.swing.JButton BoutonFil;
     private javax.swing.JButton BoutonParallele;
     private javax.swing.JButton BoutonResistance;
@@ -162,7 +160,6 @@ public class JFrameProjet extends javax.swing.JFrame{
     private PanelBoutons PanelBoutons;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    // End of variables declaration                   
+    private javax.swing.JMenuBar jMenuBar1;   
 }
 

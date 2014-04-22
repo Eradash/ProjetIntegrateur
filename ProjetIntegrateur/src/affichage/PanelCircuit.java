@@ -1,11 +1,11 @@
 package affichage;
 
-import ListenersCircuit.AjoutSuppEvent;
+import affichage.composanteBouton.ResistanceBouton;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.JPanel;
-import logiqueCircuit.Type;
 
 public class PanelCircuit extends JPanel implements MouseListener{
     
@@ -16,6 +16,7 @@ public class PanelCircuit extends JPanel implements MouseListener{
         this.cf = cf;
         initComponents();
         addMouseListener(this);
+        this.setLayout(null);
     }
     
     private void initComponents(){
@@ -53,9 +54,11 @@ public class PanelCircuit extends JPanel implements MouseListener{
             case 1 :
                 break;
             case 2 :
-                this.getGraphics().fillRect(e.getX(), e.getY(), 20, 30);
+                JButton boutonRes = new JButton();
+                boutonRes.setLocation(e.getLocationOnScreen());
+                this.add(boutonRes);
                 outilPresent = 0;
-                System.out.println("Outil Résistance");
+                repaint();
                 break;
             case 3 :
                 this.getGraphics().fillOval(e.getX()-10, e.getY()-10, 20, 20);
