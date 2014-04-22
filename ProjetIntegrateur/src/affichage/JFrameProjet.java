@@ -14,7 +14,6 @@ public class JFrameProjet extends JFrame implements KeyListener{
         Dimension d = tk.getScreenSize();
         
         this.setResizable(true);
-        this.setVisible(true);
         this.setSize(d);
         this.setTitle("Projet Integrateur");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -24,6 +23,8 @@ public class JFrameProjet extends JFrame implements KeyListener{
         JPanelProjet jpanel = new JPanelProjet();
         jpanel.setSize(d);
         this.add(jpanel, BorderLayout.CENTER);
+        
+        this.setVisible(true);
     }
 
     @Override
