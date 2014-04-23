@@ -1,11 +1,12 @@
 package affichage;
 
 import ListenersCircuit.*;
+import gestion.BD;
 import gestion.ControleurCircuit;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class ControlleurFrame implements ComposanteObservable, CompModifObservable{
+public class ControlleurFrame implements ComposanteListener{
 
     FrameProjet frame;
     PanelBoutons panelBoutons;
@@ -13,7 +14,6 @@ public class ControlleurFrame implements ComposanteObservable, CompModifObservab
     ControleurCircuit cc;
     
     ArrayList<ComposanteListener> listenerAjoutSupp;
-    ArrayList<CompModifListener> listenerModif;
 
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
@@ -23,64 +23,47 @@ public class ControlleurFrame implements ComposanteObservable, CompModifObservab
         panelCircuit = frame.getPanelCircuit();
         
         listenerAjoutSupp = new ArrayList<>();
-        listenerModif = new ArrayList<>();
     }
     
     public void BoutonResistance(ActionEvent evt){
-        panelCircuit.setOutil(2);
+        panelCircuit.setOutil(PanelCircuit.Outil.RESISTANCE);
     }
     
     public void BoutonParallele(ActionEvent evt){
-        panelCircuit.setOutil(3);
+        panelCircuit.setOutil(PanelCircuit.Outil.PARALELLE);
     }
     
     public void BoutonFil(ActionEvent evt){
-        panelCircuit.setOutil(1);
-    }
-
-    public void composanteAjoutSupp(AjoutSuppEvent evt){
-        
+        panelCircuit.setOutil(PanelCircuit.Outil.FIL);
     }
     
-    public void composanteModif(CompModifEvent evt){
-        
-    }
-
     @Override
-    public void ajouterListener(ComposanteListener listener) {
-        listenerAjoutSupp.add(listener);
-    }
-
-    @Override
-    public void supprimerListener(ComposanteListener listener) {
-        listenerAjoutSupp.remove(listener);
-    }
-
-    @Override
-    public void notifierAjoutSuppComposante(AjoutSuppEvent event) {
-        for (ComposanteListener composanteListener : listenerAjoutSupp) {
-            if(event.isAjout()){
-                composanteListener.composanteAjout(event);
-            } else {
-                composanteListener.composanteSupp(event);
-            }
+    public void composanteAjout(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            System.out.println("Message recu du PanelCircuit (CF)");
+            cc.composanteAjout(event);
+        } else if(event.getSource() instanceof BD){
+            panelCircuit.update(event);
         }
     }
 
     @Override
-    public void ajouterListener(CompModifListener listener) {
-        listenerModif.add(listener);
-    }
-
-    @Override
-    public void supprimerListener(CompModifListener listener) {
-        listenerModif.remove(listener);
-    }
-
-    @Override
-    public void notifierModificationComposante(CompModifEvent event) {
-        for (CompModifListener composanteListener : listenerModif) {
-            composanteListener.composanteModif(event);
+    public void composanteSupp(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            cc.composanteSupp(event);
+        } else if(event.getSource() == BD.class){
+            panelCircuit.update(event);
         }
     }
+
+    @Override
+    public void composanteModif(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            cc.composanteModif(event);
+        } else if(event.getSource() instanceof BD){
+            panelCircuit.update(event);
+        }
+    }
+    
+    
 }

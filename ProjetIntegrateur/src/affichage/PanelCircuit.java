@@ -1,14 +1,18 @@
 package affichage;
 
+import ListenersCircuit.ComposanteEvent;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
+import logiqueCircuit.Type;
 
 public class PanelCircuit extends JPanel implements MouseListener{
     
+    public static enum Outil{PARALELLE,RESISTANCE,FIL,NULL};
+    
     ControlleurFrame cf;
-    private int outilPresent = 0;
+    private Outil outilPresent = Outil.NULL;
     
     public PanelCircuit(ControlleurFrame cf){
         this.cf = cf;
@@ -17,6 +21,11 @@ public class PanelCircuit extends JPanel implements MouseListener{
     }
     
     private void initComponents(){
+        
+    }
+    
+    //Va chercher toutes les informations dans la BD et les affiches
+    public void update(ComposanteEvent event){
         
     }
     
@@ -38,7 +47,7 @@ public class PanelCircuit extends JPanel implements MouseListener{
         }
     }
     
-    public void setOutil(int outil){
+    public void setOutil(Outil outil){
         this.outilPresent = outil;
     }
 
@@ -46,20 +55,29 @@ public class PanelCircuit extends JPanel implements MouseListener{
     public void mouseClicked(MouseEvent e) {
         
         switch (outilPresent) {
-            case 0 :
+            case NULL:
                 break;
-            case 1 :
+            case FIL :
                 break;
-            case 2 :
+            case RESISTANCE :
                 this.getGraphics().fillRect(e.getX(), e.getY(), 20, 30);
-                outilPresent = 0;
-                System.out.println("Outil Résistance");
+                outilPresent = Outil.NULL;
+                //Test... (qui fonctionne, jusqu'à présent :) )
+                creerResistance(300);
                 break;
-            case 3 :
+            case PARALELLE :
                 this.getGraphics().fillOval(e.getX()-10, e.getY()-10, 20, 20);
-                outilPresent = 0;
+                outilPresent = Outil.NULL;
                 break;
         }
+    }
+    
+    private void creerResistance(double valeur){
+        ComposanteEvent evt = new ComposanteEvent(this, ComposanteEvent.TypeEvent.AJOUT);
+        evt.ajouterValeur("Valeur", valeur);
+        evt.setType(Type.RESISTANCE);
+        System.out.println("Envoi du message au ControlleurFrame");
+        cf.composanteAjout(evt);
     }
 
     @Override
