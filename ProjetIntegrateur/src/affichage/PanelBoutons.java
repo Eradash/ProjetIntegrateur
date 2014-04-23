@@ -8,6 +8,14 @@ public class PanelBoutons extends javax.swing.JPanel {
         this.cf = cf;
         initComponents();
     }
+    
+    public PanelBoutons(){
+        initComponents();
+    }
+    
+    public void setControlleurFrame(ControlleurFrame cf){
+        this.cf = cf;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -16,6 +24,8 @@ public class PanelBoutons extends javax.swing.JPanel {
         BoutonResistance = new javax.swing.JButton();
         BoutonFil = new javax.swing.JButton();
         BoutonParallele = new javax.swing.JButton();
+
+        setMinimumSize(new java.awt.Dimension(100, 100));
 
         BoutonResistance.setText("Ajouter Résistance");
         BoutonResistance.setFocusPainted(false);
@@ -34,7 +44,7 @@ public class PanelBoutons extends javax.swing.JPanel {
             }
         });
 
-        BoutonParallele.setText("Ajouter Parallele");
+        BoutonParallele.setText("Test");
         BoutonParallele.setFocusPainted(false);
         BoutonParallele.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,12 +56,12 @@ public class PanelBoutons extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BoutonFil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BoutonResistance, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BoutonParallele, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BoutonParallele, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BoutonResistance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
