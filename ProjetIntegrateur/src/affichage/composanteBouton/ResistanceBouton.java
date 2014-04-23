@@ -22,9 +22,7 @@ public class ResistanceBouton extends JComponent implements MouseListener{
         
         try {
             image = ImageIO.read(new File("image\\resistance.png"));
-        } catch (IOException e) {
-            System.out.println(":(");
-        }
+        } catch (IOException e) {}
     }
     
     @Override
@@ -38,7 +36,7 @@ public class ResistanceBouton extends JComponent implements MouseListener{
     @Override
     public Dimension getPreferredSize() {
         Dimension size = super.getPreferredSize();
-        size.setSize(15,5);
+        size.setSize(50,16);
         return size;
     }
 
