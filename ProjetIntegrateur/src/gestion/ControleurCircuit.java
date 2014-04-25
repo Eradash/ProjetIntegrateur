@@ -12,7 +12,6 @@ public class ControleurCircuit implements ComposanteListener{
     AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
     GestionnaireID gestID = GestionnaireID.getInstance();
-    AnalyseurCircuit ac = new AnalyseurCircuit();
     
     Circuit c;
     
@@ -46,7 +45,7 @@ public class ControleurCircuit implements ComposanteListener{
     }
     
     public void run(){
-        ac.analyserCircuit(c);
+        analyseur.analyserCircuit(c);
     }
 
     @Override

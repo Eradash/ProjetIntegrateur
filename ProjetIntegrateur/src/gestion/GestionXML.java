@@ -7,23 +7,11 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import logiqueCircuit.Circuit;
-import logiqueCircuit.Composante;
-import logiqueCircuit.Parallele;
-import logiqueCircuit.Resistance;
-import logiqueCircuit.Serie;
-import logiqueCircuit.Type;
-import org.w3c.dom.DOMException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import logiqueCircuit.*;
+import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -119,6 +107,10 @@ public class GestionXML {
     private static void setComp(Element elem, Composante comp, Document doc) {
         elem.appendChild(element("ID", ""+comp.getNumero(), doc));
         elem.appendChild(element("VALEUR", ""+comp.getResistanceEquivalente(), doc));
+        Element position = doc.createElement("POSITION");
+        position.appendChild(element("X", ""+BD.getInstance().getComposante(comp.getNumero(), "PosX"), doc));
+        position.appendChild(element("Y", ""+BD.getInstance().getComposante(comp.getNumero(), "PosY"), doc));
+        elem.appendChild(position);
     }
     
     private static Element element(String type, String info, Document doc) {
