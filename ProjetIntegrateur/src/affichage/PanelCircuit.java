@@ -103,13 +103,22 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
             case FIL :
                 break;
             case RESISTANCE :
+                double d;
                 String input = (String) JOptionPane.showInputDialog(
                         new JFrame(),
                         "Entrez la valeur de la résistance:",
                         "Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE,
                         new ImageIcon("java2sLogo.GIF"), null, "");
+                
+                try{
+                    d = Double.parseDouble(input);
+                } catch(NumberFormatException exc){
+                    input = "";
+                    d = 0;
+                    JOptionPane.showMessageDialog(null, "Valeur incorrecte", "ERREUR FATALE", JOptionPane.ERROR_MESSAGE);
+                }
 
-                if(!"".equals(input) && !"Cancel".equals(input)){
+                if(!"".equals(input)){
                     ResistanceBouton boutonRes = new ResistanceBouton();
 
                     boutonRes.setSize(boutonRes.getPreferredSize());
@@ -117,7 +126,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
 
                     this.add(boutonRes);
                     listeResistance.add(boutonRes);
-                    creerResistance(300);
+                    creerResistance(d);
                     repaint();
                 }
                 setOutil(Outil.NULL);
