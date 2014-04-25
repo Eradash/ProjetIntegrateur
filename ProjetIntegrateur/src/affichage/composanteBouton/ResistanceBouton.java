@@ -21,7 +21,7 @@ public class ResistanceBouton extends JComponent implements MouseListener{
         super();
         
         try {
-            image = ImageIO.read(new File("image\\resistance.png"));
+            image = ImageIO.read(new File("image/resistance.png"));
         } catch (IOException e) {}
     }
     
