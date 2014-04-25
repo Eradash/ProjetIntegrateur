@@ -1,22 +1,34 @@
 package affichage;
 
+import affichage.composanteBouton.ParalleleBouton;
+import affichage.composanteBouton.ResistanceBouton;
+import java.awt.Color;
 import ListenersCircuit.ComposanteEvent;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.image.MemoryImageSource;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.MemoryImageSource;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import logiqueCircuit.Type;
 
-public class PanelCircuit extends JPanel implements MouseListener{
+public class PanelCircuit extends JPanel implements MouseListener, MouseMotionListener{
     
+    private final ControlleurFrame cf;
+    ArrayList<Point> coords;
+    ArrayList<ResistanceBouton> listeResistance;
+    ArrayList<ParalleleBouton> listeParallele;
+    private BufferedImage resImage;
     public static enum Outil{PARALELLE,RESISTANCE,FIL,NULL};
-    
-    ControlleurFrame cf;
     private Outil outilPresent = Outil.NULL;
     private final Cursor curseurNull;
     
@@ -30,10 +42,21 @@ public class PanelCircuit extends JPanel implements MouseListener{
         Image image = Toolkit.getDefaultToolkit().createImage(
         new MemoryImageSource(16, 16, pixels, 0, 16));
         curseurNull = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
+        
+        this.setLayout(null);
+        
+        listeResistance = new ArrayList<>();
+        listeParallele = new ArrayList<>();
+        coords = new ArrayList<>();
+        
+        try {
+            resImage = ImageIO.read(new File("image\\resistance.png"));
+        } catch (IOException i) {}
     }
     
     private void initComponents(){
-        
+        addMouseListener(this);
+        addMouseMotionListener(this);
     }
     
     //Va chercher toutes les informations dans la BD et les affiches
@@ -53,9 +76,10 @@ public class PanelCircuit extends JPanel implements MouseListener{
         
         for(int x = 0; x < _x; x += 20) {
             g.drawLine(0,x,_y,x);
-        }
-        for(int y = 0; y < _y; y += 20) {
-            g.drawLine(y,0,y,_x);
+            for(int y = 0; y < _y; y += 20) {
+                g.drawLine(y,0,y,_x);
+                coords.add(new Point(x,y));
+            }
         }
     }
     
@@ -81,11 +105,28 @@ public class PanelCircuit extends JPanel implements MouseListener{
                 //Test... (qui fonctionne, jusqu'à présent :) )
                 creerResistance(300);
                 break;
-            case PARALELLE :
-                this.getGraphics().fillOval(e.getX()-10, e.getY()-10, 20, 20);
+            case PARALELLE:
+                this.getGraphics().setColor(Color.BLUE);
+                
+                this.getGraphics().fillOval(e.getX()-5, e.getY()-5, 7, 7);
                 setOutil(Outil.NULL);
-                break;
+
         }
+    }
+    
+    private Point getPointPres(Point p1) {
+        
+        Point _p = new Point(0,0);
+        
+        for(Point p2 : coords) {
+            if(_p.distance(p1) > p2.distance(p1)) {
+                _p = p2;
+            }
+        }
+        
+        _p.setLocation(_p.getX(), _p.getY()-8);
+        
+        return _p;
     }
     
     private void creerResistance(double valeur){
@@ -97,20 +138,20 @@ public class PanelCircuit extends JPanel implements MouseListener{
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-    }
-    
-    
+    public void mouseExited(MouseEvent e) {}
+
+    @Override
+    public void mouseDragged(MouseEvent e) {}
+
+    @Override
+    public void mouseMoved(MouseEvent e) {}
 }
