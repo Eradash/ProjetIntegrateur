@@ -74,7 +74,7 @@ public class GestionXML {
             Transformer aTransformer = transFactory.newTransformer();
             
             Source src = new DOMSource(doc);
-            Result dest = new StreamResult(new File(endroit));
+            Result dest = new StreamResult(new File(endroit + ".circuit"));
             
             aTransformer.transform(src, dest);
         } catch (ParserConfigurationException | TransformerException ex) {

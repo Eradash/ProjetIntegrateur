@@ -151,6 +151,11 @@ public class FrameProjet extends javax.swing.JFrame{
         MenuFichier.add(jSeparator1);
 
         MenuQuitter.setText("Quitter");
+        MenuQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuQuitterActionPerformed(evt);
+            }
+        });
         MenuFichier.add(MenuQuitter);
 
         MenuBar.add(MenuFichier);
@@ -212,7 +217,7 @@ public class FrameProjet extends javax.swing.JFrame{
 
     private void MenuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOuvrirActionPerformed
         JFileChooser chooser = new JFileChooser();
-        chooser.addChoosableFileFilter(new FiltreCircuit());
+        chooser.setFileFilter(new FiltreCircuit());
         int valeur = chooser.showOpenDialog(this);
             if (valeur == JFileChooser.APPROVE_OPTION) {
                 cc.ouvrirCircuit(chooser.getSelectedFile().getPath());
@@ -223,7 +228,7 @@ public class FrameProjet extends javax.swing.JFrame{
 
     private void MenuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSauvegarderActionPerformed
         JFileChooser chooser = new JFileChooser();
-        chooser.addChoosableFileFilter(new FiltreCircuit());
+        chooser.setFileFilter(new FiltreCircuit());
         int valeur = chooser.showSaveDialog(this);
             if (valeur == JFileChooser.APPROVE_OPTION) {
                 cc.enregistrerCircuit(chooser.getSelectedFile().getPath());
@@ -243,6 +248,17 @@ public class FrameProjet extends javax.swing.JFrame{
     private void boutonFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonFilActionPerformed
         cf.BoutonFil(evt);
     }//GEN-LAST:event_boutonFilActionPerformed
+
+    private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
+        int n = JOptionPane.showConfirmDialog(
+                this,
+                "Voulez-vous vraiment quitter ?\nAssurez-vous d'avoir enregistré",
+                "Quitter",
+                JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE);
+        if(n == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_MenuQuitterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
