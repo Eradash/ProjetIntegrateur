@@ -133,6 +133,7 @@ public class FrameProjet extends javax.swing.JFrame{
 
         MenuFichier.setText("Fichier");
 
+        MenuOuvrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         MenuOuvrir.setText("Ouvrir");
         MenuOuvrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +142,7 @@ public class FrameProjet extends javax.swing.JFrame{
         });
         MenuFichier.add(MenuOuvrir);
 
+        MenuSauvegarder.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         MenuSauvegarder.setText("Sauvegarder");
         MenuSauvegarder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +152,7 @@ public class FrameProjet extends javax.swing.JFrame{
         MenuFichier.add(MenuSauvegarder);
         MenuFichier.add(jSeparator1);
 
+        MenuQuitter.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         MenuQuitter.setText("Quitter");
         MenuQuitter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
