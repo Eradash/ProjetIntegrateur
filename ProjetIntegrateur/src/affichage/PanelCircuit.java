@@ -1,9 +1,14 @@
 package affichage;
 
 import ListenersCircuit.ComposanteEvent;
+import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.MemoryImageSource;
 import javax.swing.JPanel;
 import logiqueCircuit.Type;
 
@@ -13,11 +18,18 @@ public class PanelCircuit extends JPanel implements MouseListener{
     
     ControlleurFrame cf;
     private Outil outilPresent = Outil.NULL;
+    private final Cursor curseurNull;
     
     public PanelCircuit(ControlleurFrame cf){
         this.cf = cf;
         initComponents();
         addMouseListener(this);
+        
+        //Setting pour un curseur null
+        int[] pixels = new int[16 * 16];
+        Image image = Toolkit.getDefaultToolkit().createImage(
+        new MemoryImageSource(16, 16, pixels, 0, 16));
+        curseurNull = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
     }
     
     private void initComponents(){
@@ -49,11 +61,15 @@ public class PanelCircuit extends JPanel implements MouseListener{
     
     public void setOutil(Outil outil){
         this.outilPresent = outil;
+        if(outil == Outil.NULL){
+            this.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+        } else {
+            this.setCursor(curseurNull);
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
         switch (outilPresent) {
             case NULL:
                 break;
@@ -61,13 +77,13 @@ public class PanelCircuit extends JPanel implements MouseListener{
                 break;
             case RESISTANCE :
                 this.getGraphics().fillRect(e.getX(), e.getY(), 20, 30);
-                outilPresent = Outil.NULL;
+                setOutil(Outil.NULL);
                 //Test... (qui fonctionne, jusqu'à présent :) )
                 creerResistance(300);
                 break;
             case PARALELLE :
                 this.getGraphics().fillOval(e.getX()-10, e.getY()-10, 20, 20);
-                outilPresent = Outil.NULL;
+                setOutil(Outil.NULL);
                 break;
         }
     }

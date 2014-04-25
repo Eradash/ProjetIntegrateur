@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class ControlleurFrame implements ComposanteListener{
 
     FrameProjet frame;
-    PanelBoutons panelBoutons;
     PanelCircuit panelCircuit;
     ControleurCircuit cc;
     
@@ -19,7 +18,6 @@ public class ControlleurFrame implements ComposanteListener{
         this.cc = cc;
         frame = new FrameProjet(this);
         
-        panelBoutons = frame.getPanelBoutons();
         panelCircuit = frame.getPanelCircuit();
         
         listenerAjoutSupp = new ArrayList<>();
