@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 public class FrameProjet extends javax.swing.JFrame{
     
     ControlleurFrame cf;
-    PanelBoutons pb;
     
     public FrameProjet(ControlleurFrame cf) {
         this.cf = cf;
@@ -14,12 +13,8 @@ public class FrameProjet extends javax.swing.JFrame{
         setVisible(true);
     }
     
-    public PanelBoutons getPanelBoutons(){
-        return pb;
-    }
-    
     public PanelCircuit getPanelCircuit(){
-        return (PanelCircuit)Panel;
+        return (PanelCircuit)panelCircuit;
     }
     
     private Dimension getDimension(){
@@ -31,8 +26,12 @@ public class FrameProjet extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Panel = new javax.swing.JPanel();
-        panelBoutons = new affichage.PanelBoutons();
+        panelCircuit = new javax.swing.JPanel();
+        panelBoutons = new javax.swing.JPanel();
+        boutonResistance = new javax.swing.JButton();
+        boutonParallele = new javax.swing.JButton();
+        boutonFil = new javax.swing.JButton();
+        panelProp = new javax.swing.JPanel();
         MenuBar = new javax.swing.JMenuBar();
         MenuFichier = new javax.swing.JMenu();
         MenuOuvrir = new javax.swing.JMenuItem();
@@ -46,28 +45,86 @@ public class FrameProjet extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analyseur de circuit");
-        setBackground(new java.awt.Color(204, 204, 204));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
-        setPreferredSize(getDimension());
 
-        Panel = new PanelCircuit(cf);
-        Panel.setBackground(new java.awt.Color(255, 255, 255));
-        Panel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        Panel.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        panelCircuit = new PanelCircuit(cf);
+        panelCircuit.setBackground(new java.awt.Color(255, 255, 255));
+        panelCircuit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelCircuit.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
 
-        javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
-        Panel.setLayout(PanelLayout);
-        PanelLayout.setHorizontalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 952, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelCircuitLayout = new javax.swing.GroupLayout(panelCircuit);
+        panelCircuit.setLayout(panelCircuitLayout);
+        panelCircuitLayout.setHorizontalGroup(
+            panelCircuitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
-        PanelLayout.setVerticalGroup(
-            PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelCircuitLayout.setVerticalGroup(
+            panelCircuitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        panelBoutons.setControlleurFrame(cf);
+        panelBoutons.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        boutonResistance.setText("Ajouter résistance");
+        boutonResistance.setFocusPainted(false);
+        boutonResistance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonResistanceActionPerformed(evt);
+            }
+        });
+
+        boutonParallele.setText("Ajouter parallèle");
+        boutonParallele.setFocusPainted(false);
+        boutonParallele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonParalleleActionPerformed(evt);
+            }
+        });
+
+        boutonFil.setText("Ajouter fil");
+        boutonFil.setFocusPainted(false);
+        boutonFil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonFilActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelBoutonsLayout = new javax.swing.GroupLayout(panelBoutons);
+        panelBoutons.setLayout(panelBoutonsLayout);
+        panelBoutonsLayout.setHorizontalGroup(
+            panelBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBoutonsLayout.createSequentialGroup()
+                .addGroup(panelBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boutonParallele, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boutonResistance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                    .addComponent(boutonFil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelBoutonsLayout.setVerticalGroup(
+            panelBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBoutonsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(boutonResistance, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boutonParallele, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boutonFil, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelProp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Propriétés", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
+
+        javax.swing.GroupLayout panelPropLayout = new javax.swing.GroupLayout(panelProp);
+        panelProp.setLayout(panelPropLayout);
+        panelPropLayout.setHorizontalGroup(
+            panelPropLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelPropLayout.setVerticalGroup(
+            panelPropLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 407, Short.MAX_VALUE)
+        );
 
         MenuFichier.setText("Fichier");
 
@@ -119,9 +176,11 @@ public class FrameProjet extends javax.swing.JFrame{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelProp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelCircuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -129,10 +188,11 @@ public class FrameProjet extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelCircuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 372, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelProp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -153,6 +213,18 @@ public class FrameProjet extends javax.swing.JFrame{
         System.out.println("Sauvegarder un circuit");
     }//GEN-LAST:event_MenuSauvegarderActionPerformed
 
+    private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed
+        cf.BoutonResistance(evt);
+    }//GEN-LAST:event_boutonResistanceActionPerformed
+
+    private void boutonParalleleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonParalleleActionPerformed
+        cf.BoutonParallele(evt);
+    }//GEN-LAST:event_boutonParalleleActionPerformed
+
+    private void boutonFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonFilActionPerformed
+        cf.BoutonFil(evt);
+    }//GEN-LAST:event_boutonFilActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBar;
@@ -164,8 +236,12 @@ public class FrameProjet extends javax.swing.JFrame{
     private javax.swing.JMenuItem MenuOuvrir;
     private javax.swing.JMenuItem MenuQuitter;
     private javax.swing.JMenuItem MenuSauvegarder;
-    private javax.swing.JPanel Panel;
+    private javax.swing.JButton boutonFil;
+    private javax.swing.JButton boutonParallele;
+    private javax.swing.JButton boutonResistance;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private affichage.PanelBoutons panelBoutons;
+    private javax.swing.JPanel panelBoutons;
+    private javax.swing.JPanel panelCircuit;
+    private javax.swing.JPanel panelProp;
     // End of variables declaration//GEN-END:variables
 }
