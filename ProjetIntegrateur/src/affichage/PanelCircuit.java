@@ -50,7 +50,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         coords = new ArrayList<>();
         
         try {
-            resImage = ImageIO.read(new File("image\\resistance.png"));
+            resImage = ImageIO.read(new File("image/resistance.png"));
         } catch (IOException i) {}
     }
     
