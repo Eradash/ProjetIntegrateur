@@ -3,6 +3,7 @@ package affichage;
 import affichage.composanteBouton.ParalleleBouton;
 import affichage.composanteBouton.ResistanceBouton;
 import java.awt.Color;
+import ListenersCircuit.ComposanteEvent;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import logiqueCircuit.Type;
 
 public class PanelCircuit extends JPanel implements MouseListener, MouseMotionListener{
     
@@ -22,7 +24,8 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     ArrayList<ResistanceBouton> listeResistance;
     ArrayList<ParalleleBouton> listeParallele;
     private BufferedImage resImage;
-    private int outilPresent = 0;
+    public static enum Outil{PARALELLE,RESISTANCE,FIL,NULL};
+    private Outil outilPresent = Outil.NULL;
     
     public PanelCircuit(ControlleurFrame cf){
         this.cf = cf;
@@ -44,6 +47,11 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         addMouseMotionListener(this);
     }
     
+    //Va chercher toutes les informations dans la BD et les affiches
+    public void update(ComposanteEvent event){
+        
+    }
+    
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -63,39 +71,20 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         }
     }
     
-    public void setOutil(int outil){
+    public void setOutil(Outil outil){
         this.outilPresent = outil;
-        
-        switch (outil) {
-            case 0 :
-                break;
-            case 1 :
-                break;
-            case 2 :
-                ResistanceBouton boutonRes = new ResistanceBouton();
-            
-                boutonRes.setSize(boutonRes.getPreferredSize());
-                listeResistance.add(boutonRes);
-                break;
-            case 3 :
-                ParalleleBouton boutonPara = new ParalleleBouton();
-                
-                boutonPara.setSize(boutonPara.getPreferredSize());
-                listeParallele.add(boutonPara);
-                outilPresent = 0;
-                break;
-        }
+
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         
         switch (outilPresent) {
-            case 0 :
+            case NULL:
                 break;
-            case 1 :
+            case FIL :
                 break;
-            case 2 :
+            case RESISTANCE :
                 ResistanceBouton boutonRes = new ResistanceBouton();
             
                 boutonRes.setSize(boutonRes.getPreferredSize());
@@ -104,15 +93,15 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
                 this.add(boutonRes);
                 listeResistance.add(boutonRes);
             
-                outilPresent = 0;
+                setOutil(Outil.NULL);
                 repaint();
                 break;
-            case 3 :
+            case PARALELLE:
                 this.getGraphics().setColor(Color.BLUE);
                 
                 this.getGraphics().fillOval(e.getX()-5, e.getY()-5, 7, 7);
-                outilPresent = 0;
-                break;
+                setOutil(Outil.NULL);
+
         }
     }
     
@@ -129,6 +118,14 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         _p.setLocation(_p.getX(), _p.getY()-8);
         
         return _p;
+    }
+    
+    private void creerResistance(double valeur){
+        ComposanteEvent evt = new ComposanteEvent(this, ComposanteEvent.TypeEvent.AJOUT);
+        evt.ajouterValeur("Valeur", valeur);
+        evt.setType(Type.RESISTANCE);
+        System.out.println("Envoi du message au ControlleurFrame");
+        cf.composanteAjout(evt);
     }
 
     @Override
