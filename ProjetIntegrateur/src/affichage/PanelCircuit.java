@@ -100,10 +100,17 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
             case FIL :
                 break;
             case RESISTANCE :
-                this.getGraphics().fillRect(e.getX(), e.getY(), 20, 30);
+                ResistanceBouton boutonRes = new ResistanceBouton();
+            
+                boutonRes.setSize(boutonRes.getPreferredSize());
+                boutonRes.setLocation(getPointPres(e.getPoint()));
+            
+                this.add(boutonRes);
+                listeResistance.add(boutonRes);
                 setOutil(Outil.NULL);
                 //Test... (qui fonctionne, jusqu'à présent :) )
                 creerResistance(300);
+                repaint();
                 break;
             case PARALELLE:
                 this.getGraphics().setColor(Color.BLUE);
