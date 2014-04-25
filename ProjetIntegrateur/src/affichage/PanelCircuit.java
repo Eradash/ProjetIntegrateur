@@ -8,7 +8,11 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class PanelCircuit extends JPanel implements MouseListener, MouseMotionListener{
@@ -17,8 +21,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     ArrayList<Point> coords;
     ArrayList<ResistanceBouton> listeResistance;
     ArrayList<ParalleleBouton> listeParallele;
-    ResistanceBouton ResCourrant;
-    ParalleleBouton ParaCourrant;
+    private BufferedImage resImage;
     private int outilPresent = 0;
     
     public PanelCircuit(ControlleurFrame cf){
@@ -30,6 +33,10 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         listeResistance = new ArrayList<>();
         listeParallele = new ArrayList<>();
         coords = new ArrayList<>();
+        
+        try {
+            resImage = ImageIO.read(new File("image\\resistance.png"));
+        } catch (IOException i) {}
     }
     
     private void initComponents(){
@@ -58,6 +65,26 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     
     public void setOutil(int outil){
         this.outilPresent = outil;
+        
+        switch (outil) {
+            case 0 :
+                break;
+            case 1 :
+                break;
+            case 2 :
+                ResistanceBouton boutonRes = new ResistanceBouton();
+            
+                boutonRes.setSize(boutonRes.getPreferredSize());
+                listeResistance.add(boutonRes);
+                break;
+            case 3 :
+                ParalleleBouton boutonPara = new ParalleleBouton();
+                
+                boutonPara.setSize(boutonPara.getPreferredSize());
+                listeParallele.add(boutonPara);
+                outilPresent = 0;
+                break;
+        }
     }
 
     @Override
@@ -120,17 +147,5 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {}
 
     @Override
-    public void mouseMoved(MouseEvent e) {
-        if(outilPresent != 0) {
-            switch (outilPresent) {
-                case 1 :
-                    break;
-                case 2 :
-                    
-                    break;
-                case 3 :
-                    break;
-        }
-        }
-    }
+    public void mouseMoved(MouseEvent e) {}
 }
