@@ -28,14 +28,18 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     ArrayList<ResistanceBouton> listeResistance;
     ArrayList<ParalleleBouton> listeParallele;
     private BufferedImage resImage;
-    public static enum Outil{PARALELLE,RESISTANCE,FIL,NULL};
+    public static enum Outil{PARALLELE,RESISTANCE,FIL,NULL};
     private Outil outilPresent = Outil.NULL;
     private final Cursor curseurNull;
+    
+    private Point positionSouris;
     
     public PanelCircuit(ControlleurFrame cf){
         this.cf = cf;
         initComponents();
         addMouseListener(this);
+        
+        positionSouris = new Point();
         
         //Setting pour un curseur null
         int[] pixels = new int[16 * 16];
@@ -50,7 +54,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         coords = new ArrayList<>();
         
         try {
-            resImage = ImageIO.read(new File("image\\resistance.png"));
+            resImage = ImageIO.read(new File("image/resistance.png"));
         } catch (IOException i) {}
     }
     
@@ -67,6 +71,16 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
+        Point _p = getPointPres(positionSouris);
+        
+        if(outilPresent == Outil.RESISTANCE)
+            g.drawImage(resImage, _p.x, _p.y, new Color(1F, 1F, 1F, 0.9F),this);
+        else if (outilPresent == Outil.PARALLELE) {
+                g.setColor(Color.BLUE);
+                g.fillOval(_p.x, _p.y, 7, 7);
+        }
+        g.setColor(Color.BLACK);
         graduerAxe(g);
     }
     
@@ -112,7 +126,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
                 creerResistance(300);
                 repaint();
                 break;
-            case PARALELLE:
+            case PARALLELE:
                 this.getGraphics().setColor(Color.BLUE);
                 
                 this.getGraphics().fillOval(e.getX()-5, e.getY()-5, 7, 7);
@@ -159,5 +173,8 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     public void mouseDragged(MouseEvent e) {}
 
     @Override
-    public void mouseMoved(MouseEvent e) {}
+    public void mouseMoved(MouseEvent e) {
+        positionSouris = e.getPoint();
+        repaint();
+    }
 }

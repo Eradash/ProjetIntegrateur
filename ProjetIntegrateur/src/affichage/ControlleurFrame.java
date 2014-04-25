@@ -28,7 +28,7 @@ public class ControlleurFrame implements ComposanteListener{
     }
     
     public void BoutonParallele(ActionEvent evt){
-        panelCircuit.setOutil(PanelCircuit.Outil.PARALELLE);
+        panelCircuit.setOutil(PanelCircuit.Outil.PARALLELE);
     }
     
     public void BoutonFil(ActionEvent evt){
