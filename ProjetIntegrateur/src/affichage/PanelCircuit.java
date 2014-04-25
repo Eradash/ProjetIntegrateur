@@ -115,7 +115,6 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     }
     
     private Point getPointPres(Point p1) {
-        
         Point _p = new Point(0,0);
         
         for(Point p2 : coords) {
