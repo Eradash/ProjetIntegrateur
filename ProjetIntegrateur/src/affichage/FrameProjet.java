@@ -2,6 +2,8 @@ package affichage;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class FrameProjet extends javax.swing.JFrame{
     
@@ -206,7 +208,17 @@ public class FrameProjet extends javax.swing.JFrame{
     }//GEN-LAST:event_MenuCopierActionPerformed
 
     private void MenuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOuvrirActionPerformed
-        System.out.println("Ouvrir un circuit");
+        JFileChooser chooser = new JFileChooser();
+        chooser.addChoosableFileFilter(new FiltreCircuit());
+        int valeur = chooser.showOpenDialog(this);
+            if (valeur == JFileChooser.APPROVE_OPTION) {
+                chooser.getSelectedFile( ).getPath( );
+ 
+            } else {
+ 
+                JOptionPane.showMessageDialog(null,"Vous n'avez rien sélectionné.");
+ 
+            }
     }//GEN-LAST:event_MenuOuvrirActionPerformed
 
     private void MenuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSauvegarderActionPerformed
