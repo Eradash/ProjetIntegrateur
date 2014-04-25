@@ -1,12 +1,13 @@
 package gestion;
 
-import java.util.ArrayList;
+import ListenersCircuit.ComposanteEvent;
+import ListenersCircuit.ComposanteListener;
+import affichage.PanelCircuit;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 
-public class ControleurCircuit{
+public class ControleurCircuit implements ComposanteListener{
     
-    ArrayList<Circuit> circuitsOuverts = new ArrayList<>();
     BD donnee = BD.getInstance();
     AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
@@ -20,17 +21,10 @@ public class ControleurCircuit{
     
     public void nouveauCircuit(){
         donnee.resetCircuit();
-        circuitsOuverts.add(new Circuit());
-    }
-    
-    public void fermeCircuit(Circuit c) {
-        donnee.resetCircuit();
-        circuitsOuverts.remove(c);
-        gestID.resetCircuit();
-        c = new Circuit();
     }
     
     public void fermeCircuit() {
+        donnee.resetCircuit();
         gestID.resetCircuit();
         c = null;
     }
@@ -43,11 +37,37 @@ public class ControleurCircuit{
         xml.encoder(c);
     }
     
+    public Circuit getCircuit() {
+        return c;
+    }
+    
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
     }
     
     public void run(){
         ac.analyserCircuit(c);
+    }
+
+    @Override
+    public void composanteAjout(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            System.out.println("Message reçu du PanelCircuit (CC)");
+            //Créer une composante et l'ajouter au circuit
+        }
+    }
+
+    @Override
+    public void composanteSupp(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            //Supprimer la composante
+        }
+    }
+
+    @Override
+    public void composanteModif(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            //Modifier la composante
+        }
     }
 }

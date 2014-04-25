@@ -4,7 +4,7 @@ import gestion.BD;
 import java.util.ArrayList;
 
 public class Circuit extends Serie{
-
+    
     private double ampere;
     private double voltage;
     private String nom;
