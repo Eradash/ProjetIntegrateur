@@ -29,11 +29,11 @@ public class ControleurCircuit implements ComposanteListener{
         c = null;
     }
     
-    public void ouvrirCircuit(String nom) throws Exception{
+    public void ouvrirCircuit(String nom){
         c = xml.decoder(nom);
     }
     
-    public void enregistrerCircuit() throws Exception{
+    public void enregistrerCircuit(){
         xml.encoder(c);
     }
     

@@ -16,7 +16,7 @@ public class ControlleurFrame implements ComposanteListener{
 
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
-        frame = new FrameProjet(this);
+        frame = new FrameProjet(this, cc);
         
         panelCircuit = frame.getPanelCircuit();
         

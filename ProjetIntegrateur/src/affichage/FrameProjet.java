@@ -1,5 +1,6 @@
 package affichage;
 
+import gestion.ControleurCircuit;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFileChooser;
@@ -8,9 +9,11 @@ import javax.swing.JOptionPane;
 public class FrameProjet extends javax.swing.JFrame{
     
     ControlleurFrame cf;
+    ControleurCircuit cc;
     
-    public FrameProjet(ControlleurFrame cf) {
+    public FrameProjet(ControlleurFrame cf, ControleurCircuit cc) {
         this.cf = cf;
+        this.cc = cc;
         initComponents();
         setVisible(true);
     }
@@ -59,7 +62,7 @@ public class FrameProjet extends javax.swing.JFrame{
         panelCircuit.setLayout(panelCircuitLayout);
         panelCircuitLayout.setHorizontalGroup(
             panelCircuitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 960, Short.MAX_VALUE)
+            .addGap(0, 1094, Short.MAX_VALUE)
         );
         panelCircuitLayout.setVerticalGroup(
             panelCircuitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +128,7 @@ public class FrameProjet extends javax.swing.JFrame{
         );
         panelPropLayout.setVerticalGroup(
             panelPropLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         MenuFichier.setText("Fichier");
@@ -208,6 +211,7 @@ public class FrameProjet extends javax.swing.JFrame{
     }//GEN-LAST:event_MenuCopierActionPerformed
 
     private void MenuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOuvrirActionPerformed
+<<<<<<< HEAD
         JFileChooser chooser = new JFileChooser();
         chooser.addChoosableFileFilter(new FiltreCircuit());
         int valeur = chooser.showOpenDialog(this);
@@ -219,10 +223,17 @@ public class FrameProjet extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Vous n'avez rien sélectionné.");
  
             }
+=======
+        cc.ouvrirCircuit("test");
+>>>>>>> CreationComposantes
     }//GEN-LAST:event_MenuOuvrirActionPerformed
 
     private void MenuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSauvegarderActionPerformed
-        System.out.println("Sauvegarder un circuit");
+        try{
+            cc.enregistrerCircuit();
+        } catch(Exception e){
+            
+        }
     }//GEN-LAST:event_MenuSauvegarderActionPerformed
 
     private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed
