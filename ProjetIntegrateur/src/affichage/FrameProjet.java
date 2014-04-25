@@ -211,29 +211,25 @@ public class FrameProjet extends javax.swing.JFrame{
     }//GEN-LAST:event_MenuCopierActionPerformed
 
     private void MenuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOuvrirActionPerformed
-<<<<<<< HEAD
         JFileChooser chooser = new JFileChooser();
         chooser.addChoosableFileFilter(new FiltreCircuit());
         int valeur = chooser.showOpenDialog(this);
             if (valeur == JFileChooser.APPROVE_OPTION) {
-                chooser.getSelectedFile( ).getPath( );
- 
+                cc.ouvrirCircuit(chooser.getSelectedFile().getPath());
             } else {
- 
-                JOptionPane.showMessageDialog(null,"Vous n'avez rien sélectionné.");
- 
+                JOptionPane.showMessageDialog(null,"Fichier invalide");
             }
-=======
-        cc.ouvrirCircuit("test");
->>>>>>> CreationComposantes
     }//GEN-LAST:event_MenuOuvrirActionPerformed
 
     private void MenuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSauvegarderActionPerformed
-        try{
-            cc.enregistrerCircuit();
-        } catch(Exception e){
-            
-        }
+        JFileChooser chooser = new JFileChooser();
+        chooser.addChoosableFileFilter(new FiltreCircuit());
+        int valeur = chooser.showSaveDialog(this);
+            if (valeur == JFileChooser.APPROVE_OPTION) {
+                cc.enregistrerCircuit(chooser.getSelectedFile().getPath());
+            } else {
+                JOptionPane.showMessageDialog(null,"Fichier invalide");
+            }
     }//GEN-LAST:event_MenuSauvegarderActionPerformed
 
     private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed

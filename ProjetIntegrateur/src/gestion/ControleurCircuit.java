@@ -33,8 +33,8 @@ public class ControleurCircuit implements ComposanteListener{
         c = xml.decoder(nom);
     }
     
-    public void enregistrerCircuit(){
-        xml.encoder(c);
+    public void enregistrerCircuit(String endroit){
+        xml.encoder(c, endroit);
     }
     
     public Circuit getCircuit() {

@@ -39,13 +39,13 @@ public class GestionXML {
         super();
     }
     
-    public void encoder(Circuit c){
+    public void encoder(Circuit c, String endroit){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuild = docFactory.newDocumentBuilder();
             
             Document doc = docBuild.newDocument();
-            root = doc.createElement(c.getNom());
+            root = doc.createElement("circuit");
             
             root.setAttribute("AMPERE", Double.toString(c.getAmpere()));
             root.setAttribute("VOLTAGE", Double.toString(c.getVoltage()));
@@ -74,7 +74,7 @@ public class GestionXML {
             Transformer aTransformer = transFactory.newTransformer();
             
             Source src = new DOMSource(doc);
-            Result dest = new StreamResult(new File("test2.xml"));
+            Result dest = new StreamResult(new File(endroit));
             
             aTransformer.transform(src, dest);
         } catch (ParserConfigurationException | TransformerException ex) {
@@ -127,19 +127,19 @@ public class GestionXML {
         return _info;
     }
     
-    public Circuit decoder(String nomCircuit){
+    public Circuit decoder(String endroit){
         try {
             c = new Circuit();
             
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(new InputSource(nomCircuit+".xml"));
+            Document doc = builder.parse(new InputSource(endroit));
             
             Element rootTest = doc.getDocumentElement();
             
             c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
             c.setVoltage(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
-            c.setNom(nomCircuit);
+            c.setNom("Circuit");
             
             NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
             
