@@ -45,7 +45,6 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     private final BatterieBouton batterie;
     private final Cursor curseurNull;
     
-    
     public PanelCircuit(ControlleurFrame cf){
         this.cf = cf;
         initComponents();
@@ -144,7 +143,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
             this.setCursor(curseurNull);
         }
     }
-
+    
     private Point getPointPres(Point p1) {
         Point _p = new Point(0,0);
         
@@ -236,18 +235,20 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
             repaint();
         }
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
-        setOutil(Outil.NULL);
+        if(outilPresent == Outil.FIL) {
+            outilPresent = Outil.NULL;
+        }
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {}
-
+    
     @Override
     public void mouseExited(MouseEvent e) {}
-
+    
     @Override
     public void mouseDragged(MouseEvent e) {
         if(outilPresent == Outil.FIL) {
@@ -260,7 +261,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
             repaint();
         }
     }
-
+    
     @Override
     public void mouseMoved(MouseEvent e) {
         positionSouris = e.getPoint();
