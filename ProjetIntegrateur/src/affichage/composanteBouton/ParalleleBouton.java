@@ -1,5 +1,6 @@
 package affichage.composanteBouton;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JButton;
@@ -7,14 +8,15 @@ import javax.swing.JButton;
 public class ParalleleBouton extends JButton{
     
     public ParalleleBouton () {
-        
+        super();
     }
     
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
         
-        g.fillOval(10, 10, 0, 0);
+        g.setColor(Color.BLUE);
+        g.fillOval(0, 0, 10, 10);
     }
     
     @Override

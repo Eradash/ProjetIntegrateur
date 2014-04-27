@@ -75,24 +75,25 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         Point _p = getPointPres(positionSouris);
         
         if(outilPresent == Outil.RESISTANCE)
-            g.drawImage(resImage, _p.x, _p.y, new Color(1F, 1F, 1F, 0.9F),this);
+            g.drawImage(resImage, _p.x, _p.y-8, new Color(1F, 1F, 1F, 0.9F),this);
         else if (outilPresent == Outil.PARALLELE) {
                 g.setColor(Color.BLUE);
-                g.fillOval(_p.x, _p.y, 7, 7);
+                g.fillOval(_p.x-5, _p.y-5, 10, 10);
         }
         g.setColor(Color.BLACK);
         graduerAxe(g);
     }
     
     private void graduerAxe(Graphics g) {
+        coords.clear();
         int _x = this.getHeight();
         int _y = this.getWidth();
         
-        for(int x = 0; x < _x; x += 20) {
-            g.drawLine(0,x,_y,x);
-            for(int y = 0; y < _y; y += 20) {
-                g.drawLine(y,0,y,_x);
-                coords.add(new Point(x,y));
+        for(int y = 0; y < _y; y += 20) {
+            g.drawLine(y,0,y,_x);
+                for(int x = 0; x < _x; x += 20) {
+                g.drawLine(0,x,_y,x);
+                coords.add(new Point(y,x));
             }
         }
     }
@@ -108,30 +109,48 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        switch (outilPresent) {
-            case NULL:
-                break;
-            case FIL :
-                break;
-            case RESISTANCE :
-                ResistanceBouton boutonRes = new ResistanceBouton();
-            
-                boutonRes.setSize(boutonRes.getPreferredSize());
-                boutonRes.setLocation(getPointPres(e.getPoint()));
-            
-                this.add(boutonRes);
-                listeResistance.add(boutonRes);
-                setOutil(Outil.NULL);
-                //Test... (qui fonctionne, jusqu'à présent :) )
-                creerResistance(300);
-                repaint();
-                break;
-            case PARALLELE:
-                this.getGraphics().setColor(Color.BLUE);
-                
-                this.getGraphics().fillOval(e.getX()-5, e.getY()-5, 7, 7);
-                setOutil(Outil.NULL);
+        if(e.getButton() == 1) {
+            switch (outilPresent) {
+                case NULL:
+                    break;
+                case FIL :
+                    break;
+                case RESISTANCE :
+                    ResistanceBouton boutonRes = new ResistanceBouton();
 
+                    boutonRes.setSize(boutonRes.getPreferredSize());
+
+                    Point _p = new Point(getPointPres(e.getPoint()).x,getPointPres(e.getPoint()).y-8);
+                    boutonRes.setLocation(_p);
+
+                    this.add(boutonRes);
+                    listeResistance.add(boutonRes);
+                    
+                    creerResistance(300);
+                    
+                    setOutil(Outil.NULL);
+                    repaint();
+                    
+                    break;
+                case PARALLELE:
+                    ParalleleBouton boutonPara = new ParalleleBouton();
+                    
+                    boutonPara.setSize(boutonPara.getPreferredSize());
+                    
+                    Point _p2 = new Point(getPointPres(e.getPoint()).x-5, getPointPres(e.getPoint()).y-5);
+                    boutonPara.setLocation(_p2);
+                    
+                    this.add(boutonPara);
+                    listeParallele.add(boutonPara);
+                    
+                    setOutil(Outil.NULL);
+                    repaint();
+                    
+                    break;
+            }
+        } else if(e.getButton() == 3) {
+            setOutil(Outil.NULL);
+            repaint();
         }
     }
     
@@ -144,7 +163,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
             }
         }
         
-        _p.setLocation(_p.getX(), _p.getY()-8);
+        _p.setLocation(_p.getX(), _p.getY());
         
         return _p;
     }
