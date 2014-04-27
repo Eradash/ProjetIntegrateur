@@ -5,17 +5,21 @@ import affichage.composanteBouton.ResistanceBouton;
 import java.awt.Color;
 import ListenersCircuit.ComposanteEvent;
 import affichage.composanteBouton.BatterieBouton;
+import java.awt.BasicStroke;
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.MemoryImageSource;
 import java.awt.Point;
+import java.awt.Shape;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +34,8 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     ArrayList<Point> coords;
     ArrayList<ResistanceBouton> listeResistance;
     ArrayList<ParalleleBouton> listeParallele;
+    ArrayList<Shape> listeFilX, listeFilY;
+    Shape shapeCourranteX, shapeCourranteY;
     public static enum Outil{PARALLELE,RESISTANCE,FIL,NULL};
     private final ControlleurFrame cf;
     private BufferedImage resImage;
@@ -47,8 +53,12 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         positionSouris = new Point();
         listeResistance = new ArrayList<>();
         listeParallele = new ArrayList<>();
+        listeFilX = new ArrayList<>();
+        listeFilY = new ArrayList<>();
         coords = new ArrayList<>();
         batterie = new BatterieBouton();
+        shapeCourranteX = null;
+        shapeCourranteY = null;
         
         batterie.setLocation(300,100);
         batterie.setSize(batterie.getPreferredSize());
@@ -82,16 +92,34 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        Graphics2D g2 = (Graphics2D) g;
+        
         Point _p = getPointPres(positionSouris);
         
         if(outilPresent == Outil.RESISTANCE)
-            g.drawImage(resImage, _p.x, _p.y-8, new Color(1F, 1F, 1F, 0.9F),this);
+            g2.drawImage(resImage, _p.x, _p.y-8, new Color(1F, 1F, 1F, 0.9F),this);
         else if (outilPresent == Outil.PARALLELE) {
-            g.setColor(Color.BLUE);
-            g.fillOval(_p.x-5, _p.y-5, 10, 10);
+            g2.setColor(Color.BLUE);
+            g2.fillOval(_p.x-5, _p.y-5, 10, 10);
         }
-        g.setColor(Color.BLACK);
-        graduerAxe(g);
+        
+        if(listeFilX != null) {
+            for(Shape s : listeFilX) {
+                g2.setStroke(new BasicStroke(3));
+                g2.draw(s);
+            }
+            g2.setStroke(new BasicStroke(1));
+        }
+        if(listeFilY != null) {
+            for(Shape s : listeFilY) {
+                g2.setStroke(new BasicStroke(3));
+                g2.draw(s);
+            }
+            g2.setStroke(new BasicStroke(1));
+        }
+        
+        g2.setColor(Color.BLACK);
+        graduerAxe(g2);
     }
     
     private void graduerAxe(Graphics g) {
@@ -199,10 +227,20 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     }
     
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+        if(outilPresent == Outil.FIL) {
+            shapeCourranteX = new Line2D.Double(getPointPres(e.getPoint()), getPointPres(e.getPoint()));
+            shapeCourranteY = new Line2D.Double(getPointPres(e.getPoint()), getPointPres(e.getPoint()));
+            listeFilX.add(shapeCourranteX);
+            listeFilY.add(shapeCourranteY);
+            repaint();
+        }
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        setOutil(Outil.NULL);
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {}
@@ -211,7 +249,17 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mouseDragged(MouseEvent e) {}
+    public void mouseDragged(MouseEvent e) {
+        if(outilPresent == Outil.FIL) {
+            Line2D shapeX = (Line2D) shapeCourranteX;
+            Line2D shapeY = (Line2D) shapeCourranteY;
+
+            shapeX.setLine(shapeX.getP1(), new Point(getPointPres(e.getPoint()).x,(int)shapeX.getP1().getY()));
+            shapeY.setLine(shapeX.getP2(), new Point((int)shapeX.getP2().getX(), getPointPres(e.getPoint()).y));
+
+            repaint();
+        }
+    }
 
     @Override
     public void mouseMoved(MouseEvent e) {
