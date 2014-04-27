@@ -4,12 +4,15 @@ import affichage.composanteBouton.ParalleleBouton;
 import affichage.composanteBouton.ResistanceBouton;
 import java.awt.Color;
 import ListenersCircuit.ComposanteEvent;
+import affichage.composanteBouton.BatterieBouton;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.MemoryImageSource;
 import java.awt.Point;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -18,40 +21,47 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import logiqueCircuit.Type;
 
 public class PanelCircuit extends JPanel implements MouseListener, MouseMotionListener{
     
-    private final ControlleurFrame cf;
     ArrayList<Point> coords;
     ArrayList<ResistanceBouton> listeResistance;
     ArrayList<ParalleleBouton> listeParallele;
-    private BufferedImage resImage;
     public static enum Outil{PARALLELE,RESISTANCE,FIL,NULL};
+    private final ControlleurFrame cf;
+    private BufferedImage resImage;
     private Outil outilPresent = Outil.NULL;
+    private JButton composanteCourrante;
+    private Point positionSouris;
+    private final BatterieBouton batterie;
     private final Cursor curseurNull;
     
-    private Point positionSouris;
     
     public PanelCircuit(ControlleurFrame cf){
         this.cf = cf;
         initComponents();
-        addMouseListener(this);
         
         positionSouris = new Point();
+        listeResistance = new ArrayList<>();
+        listeParallele = new ArrayList<>();
+        coords = new ArrayList<>();
+        batterie = new BatterieBouton();
+        
+        batterie.setLocation(300,100);
+        batterie.setSize(batterie.getPreferredSize());
+        batterie.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        this.setLayout(null);
+        add(batterie);
         
         //Setting pour un curseur null
         int[] pixels = new int[16 * 16];
         Image image = Toolkit.getDefaultToolkit().createImage(
         new MemoryImageSource(16, 16, pixels, 0, 16));
         curseurNull = Toolkit.getDefaultToolkit().createCustomCursor(image, new Point(0, 0), "invisibleCursor");
-        
-        this.setLayout(null);
-        
-        listeResistance = new ArrayList<>();
-        listeParallele = new ArrayList<>();
-        coords = new ArrayList<>();
         
         try {
             resImage = ImageIO.read(new File("image/resistance.png"));
@@ -77,8 +87,8 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         if(outilPresent == Outil.RESISTANCE)
             g.drawImage(resImage, _p.x, _p.y-8, new Color(1F, 1F, 1F, 0.9F),this);
         else if (outilPresent == Outil.PARALLELE) {
-                g.setColor(Color.BLUE);
-                g.fillOval(_p.x-5, _p.y-5, 10, 10);
+            g.setColor(Color.BLUE);
+            g.fillOval(_p.x-5, _p.y-5, 10, 10);
         }
         g.setColor(Color.BLACK);
         graduerAxe(g);
@@ -100,60 +110,13 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     
     public void setOutil(Outil outil){
         this.outilPresent = outil;
-        if(outil == Outil.NULL){
+        if(outil == Outil.NULL || outil == Outil.FIL){
             this.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         } else {
             this.setCursor(curseurNull);
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if(e.getButton() == 1) {
-            switch (outilPresent) {
-                case NULL:
-                    break;
-                case FIL :
-                    break;
-                case RESISTANCE :
-                    ResistanceBouton boutonRes = new ResistanceBouton();
-
-                    boutonRes.setSize(boutonRes.getPreferredSize());
-
-                    Point _p = new Point(getPointPres(e.getPoint()).x,getPointPres(e.getPoint()).y-8);
-                    boutonRes.setLocation(_p);
-
-                    this.add(boutonRes);
-                    listeResistance.add(boutonRes);
-                    
-                    creerResistance(300);
-                    
-                    setOutil(Outil.NULL);
-                    repaint();
-                    
-                    break;
-                case PARALLELE:
-                    ParalleleBouton boutonPara = new ParalleleBouton();
-                    
-                    boutonPara.setSize(boutonPara.getPreferredSize());
-                    
-                    Point _p2 = new Point(getPointPres(e.getPoint()).x-5, getPointPres(e.getPoint()).y-5);
-                    boutonPara.setLocation(_p2);
-                    
-                    this.add(boutonPara);
-                    listeParallele.add(boutonPara);
-                    
-                    setOutil(Outil.NULL);
-                    repaint();
-                    
-                    break;
-            }
-        } else if(e.getButton() == 3) {
-            setOutil(Outil.NULL);
-            repaint();
-        }
-    }
-    
     private Point getPointPres(Point p1) {
         Point _p = new Point(0,0);
         
@@ -175,7 +138,66 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
         System.out.println("Envoi du message au ControlleurFrame");
         cf.composanteAjout(evt);
     }
+    
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(e.getButton() == 1) {
+            switch (outilPresent) {
+                case NULL:
+                    break;
+                case FIL :
+                    break;
+                case RESISTANCE :
+                    ResistanceBouton boutonRes = new ResistanceBouton();
 
+                    boutonRes.addItemListener(new ItemListener() {
+                        @Override
+                        public void itemStateChanged(ItemEvent e) {
+                            if(e.getStateChange() == ItemEvent.MOUSE_EVENT_MASK) {
+                                System.out.println(":)");
+                            }
+                        }
+                    });
+                    
+                    boutonRes.setSize(boutonRes.getPreferredSize());
+                    boutonRes.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+
+                    Point _p = new Point(getPointPres(e.getPoint()).x,getPointPres(e.getPoint()).y-8);
+                    boutonRes.setLocation(_p);
+
+                    this.add(boutonRes);
+                    listeResistance.add(boutonRes);
+                    
+                    creerResistance(300);
+                    
+                    setOutil(Outil.NULL);
+                    repaint();
+                    
+                    break;
+                case PARALLELE:
+                    ParalleleBouton boutonPara = new ParalleleBouton();
+                    
+                    boutonPara.setSize(boutonPara.getPreferredSize());
+                    boutonPara.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    
+                    Point _p2 = new Point(getPointPres(e.getPoint()).x-5, getPointPres(e.getPoint()).y-5);
+                    boutonPara.setLocation(_p2);
+                    
+                    this.add(boutonPara);
+                    listeParallele.add(boutonPara);
+                    
+                    setOutil(Outil.NULL);
+                    repaint();
+                    
+                    break;
+            }
+        } else if(e.getButton() == 3) {
+            setOutil(Outil.NULL);
+            repaint();
+        }
+    }
+    
     @Override
     public void mousePressed(MouseEvent e) {}
 

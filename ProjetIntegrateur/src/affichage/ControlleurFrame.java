@@ -62,6 +62,4 @@ public class ControlleurFrame implements ComposanteListener{
             panelCircuit.update(event);
         }
     }
-    
-    
 }

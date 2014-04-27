@@ -1,6 +1,6 @@
 package affichage.composanteBouton;
 
-import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,25 +13,25 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class ParalleleBouton extends JButton implements MouseListener{
+public class BatterieBouton extends JButton implements MouseListener{
     
-    private boolean mouseOver;
     private BufferedImage image;
     private BufferedImage imageJaune;
-    
-    public ParalleleBouton () {
+    private boolean mouseOver;
+
+    public BatterieBouton() {
         super();
+        
+        mouseOver = false;
         
         setBorderPainted(false);
         setContentAreaFilled(false);
         setRolloverEnabled(true);
         
         try {
-            image = ImageIO.read(new File("image/parallele.png"));
-            imageJaune = ImageIO.read(new File("image/paralleleJaune.png"));
+            image = ImageIO.read(new File("image/batterie.png"));
+            imageJaune = ImageIO.read(new File("image/batterieJaune.png"));
         } catch(IOException e) {}
-        
-        mouseOver = false;
         
         addMouseListener(this);
     }
@@ -52,10 +52,10 @@ public class ParalleleBouton extends JButton implements MouseListener{
     @Override
     public Dimension getPreferredSize() {
         Dimension size = super.getPreferredSize();
-        size.setSize(20,20);
+        size.setSize(20,80);
         return size;
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent e) {}
 
@@ -67,7 +67,7 @@ public class ParalleleBouton extends JButton implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        mouseOver = true;
+        mouseOver =  true;
     }
 
     @Override
@@ -75,7 +75,4 @@ public class ParalleleBouton extends JButton implements MouseListener{
         mouseOver = false;
     }
     
-    public boolean isHighlighted() {
-        return mouseOver;
-    }
 }
