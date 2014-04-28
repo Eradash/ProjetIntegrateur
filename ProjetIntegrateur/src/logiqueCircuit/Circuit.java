@@ -46,20 +46,21 @@ public class Circuit extends Serie{
         ArrayList<Integer> liste = new ArrayList<>();
         liste.add(ID);
         int parent = ID;
-        boolean resistance = BD.getInstance().getComposante(ID, "type") == 5;
+        boolean resistance = BD.getInstance().getComposante(ID, "Type") == 5;
         
         while(parent != -1){
-            parent = gestion.BD.getInstance().getComposante(parent, "parent").intValue();
+            parent = gestion.BD.getInstance().getComposante(parent, "Parent").intValue();
             liste.add(parent);
         }
         
         if(resistance){
             liste.remove(0);
         }
+               
         //Inversion de l'arrayList
         ArrayList<Integer> liste2 = new ArrayList<>();
-        for(int i = liste.size() ; i >= 0 ; i--){
-            liste2.add(liste.get(i));
+        for(int i = 0 ; i < liste.size() ; i++){
+            liste2.add(liste.get( liste.size() - 1 - i ));
         }
         
         return liste2;
@@ -69,13 +70,17 @@ public class Circuit extends Serie{
         ArrayList<Integer> liste = recherche(emplacement);
         Composante c = null;
         while (!liste.isEmpty()){
-            super.getComposante(liste.remove(0));
+            c = super.getComposante(liste.remove(0));
         }
         return (Branche)c;
     }
     
     public void ajouterComposante(Composante c, int ID_Parent){
-        getComposanteEmplacement(ID_Parent).ajouterComposante(c);
+        if(ID_Parent != -1){
+            getComposanteEmplacement(ID_Parent).ajouterComposante(c);
+        } else {
+            this.ajouterComposante(c);
+        }
     }
     
     @Override

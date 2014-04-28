@@ -8,7 +8,6 @@ public class AnalyseurCircuit {
     
     public void analyserCircuit(Circuit c) {
         double voltage = c.getVoltage();
-        double ampere = c.getAmpere();
         
         calcul(-1, voltage, c, -1);
 

@@ -50,7 +50,9 @@ public class ControleurCircuit implements ComposanteListener{
     
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
+        System.out.println("Composante ajoutée");
         run();
+        System.out.println("Circuit analisé");
     }
     
     public void supprimerComposante(int ID){

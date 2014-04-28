@@ -2,10 +2,12 @@ package affichage;
 
 import JTree.Tree;
 import ListenersCircuit.*;
-import gestion.BD;
 import gestion.ControleurCircuit;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import logiqueCircuit.Resistance;
 
 public class ControlleurFrame implements ComposanteListener{
 
@@ -31,7 +33,22 @@ public class ControlleurFrame implements ComposanteListener{
     }
     
     public void BoutonResistance(){
-        
+        int ID;
+        int d;
+        try {
+            ID = arbre.getIDSelected();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            return;
+        }
+        String input = (String) JOptionPane.showInputDialog(new JFrame(),"Entrez la valeur de la nouvelle résistance:","Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE,new ImageIcon("java2sLogo.GIF"), null, "");
+        try {
+            d = Integer.parseInt(input);
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,"Valeur incorrecte");
+            return;
+        }
+        cc.ajouterComposante(new Resistance(d), ID);
     }
     
     public void BoutonParallele(){
@@ -59,8 +76,6 @@ public class ControlleurFrame implements ComposanteListener{
         if(event.getSource() instanceof PanelCircuit){
             System.out.println("Message recu du PanelCircuit (CF)");
             cc.composanteAjout(event);
-        } else if(event.getSource() instanceof BD){
-
         }
     }
 
@@ -68,8 +83,6 @@ public class ControlleurFrame implements ComposanteListener{
     public void composanteSupp(ComposanteEvent event) {
         if(event.getSource() instanceof PanelCircuit){
             cc.composanteSupp(event);
-        } else if(event.getSource() == BD.class){
-
         }
     }
 
@@ -77,8 +90,6 @@ public class ControlleurFrame implements ComposanteListener{
     public void composanteModif(ComposanteEvent event) {
         if(event.getSource() instanceof PanelCircuit){
             cc.composanteModif(event);
-        } else if(event.getSource() instanceof BD){
-
         }
     }
     

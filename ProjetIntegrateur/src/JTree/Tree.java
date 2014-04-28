@@ -25,7 +25,6 @@ public class Tree extends JPanel implements TreeSelectionListener {
         tree = new JTree(model);
         tree.setCellRenderer(new NodeRender());
         tree.addTreeSelectionListener(this);
-        tree.setEditable(true);
         
         add(new JScrollPane(tree), BorderLayout.CENTER);
         
@@ -45,6 +44,12 @@ public class Tree extends JPanel implements TreeSelectionListener {
         for (int i = 0; i < tree.getRowCount(); i++) {
             tree.expandRow(i);
         }
+    }
+    
+    public int getIDSelected() throws Exception{
+        TreePath tp = tree.getSelectionPath();
+        MaNode m = (MaNode)tp.getLastPathComponent();
+        return m.getID();
     }
     
     @Override
