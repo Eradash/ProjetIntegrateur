@@ -30,6 +30,7 @@ public class ControleurCircuit implements ComposanteListener{
     
     public void ouvrirCircuit(String nom){
         c = xml.decoder(nom);
+        run();
     }
     
     public void enregistrerCircuit(String endroit){
@@ -42,6 +43,12 @@ public class ControleurCircuit implements ComposanteListener{
     
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
+        run();
+    }
+    
+    public void supprimerComposante(int ID){
+        this.c.supprimerComposante(ID);
+        run();
     }
     
     public void run(){

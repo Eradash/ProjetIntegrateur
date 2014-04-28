@@ -11,6 +11,7 @@ public class FrameProjet extends javax.swing.JFrame{
     
     ControlleurFrame cf;
     ControleurCircuit cc;
+    Tree t = new Tree();
     
     public FrameProjet(ControlleurFrame cf, ControleurCircuit cc) {
         this.cf = cf;
@@ -19,8 +20,8 @@ public class FrameProjet extends javax.swing.JFrame{
         setVisible(true);
     }
     
-    public Tree getPanelCircuit(){
-        return null;
+    public Tree getTree(){
+        return t;
     }
     
     private Dimension getDimension(){
@@ -35,7 +36,7 @@ public class FrameProjet extends javax.swing.JFrame{
         panelBoutons = new javax.swing.JPanel();
         boutonResistance = new javax.swing.JButton();
         boutonParallele = new javax.swing.JButton();
-        boutonFil = new javax.swing.JButton();
+        boutonBranche = new javax.swing.JButton();
         panelProp = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         MenuBar = new javax.swing.JMenuBar();
@@ -72,11 +73,11 @@ public class FrameProjet extends javax.swing.JFrame{
             }
         });
 
-        boutonFil.setText("Ajouter fil");
-        boutonFil.setFocusPainted(false);
-        boutonFil.addActionListener(new java.awt.event.ActionListener() {
+        boutonBranche.setText("Ajouter branche");
+        boutonBranche.setFocusPainted(false);
+        boutonBranche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonFilActionPerformed(evt);
+                boutonBrancheActionPerformed(evt);
             }
         });
 
@@ -88,7 +89,7 @@ public class FrameProjet extends javax.swing.JFrame{
                 .addGroup(panelBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boutonParallele, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(boutonResistance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                    .addComponent(boutonFil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(boutonBranche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelBoutonsLayout.setVerticalGroup(
@@ -99,7 +100,7 @@ public class FrameProjet extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boutonParallele, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boutonFil, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boutonBranche, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -116,7 +117,7 @@ public class FrameProjet extends javax.swing.JFrame{
             .addGap(0, 545, Short.MAX_VALUE)
         );
 
-        jPanel1.add(new Tree());
+        jPanel1.add(t);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -246,9 +247,9 @@ public class FrameProjet extends javax.swing.JFrame{
         cf.BoutonParallele(evt);
     }//GEN-LAST:event_boutonParalleleActionPerformed
 
-    private void boutonFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonFilActionPerformed
-        cf.BoutonFil(evt);
-    }//GEN-LAST:event_boutonFilActionPerformed
+    private void boutonBrancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonBrancheActionPerformed
+        cf.BoutonBranche(evt);
+    }//GEN-LAST:event_boutonBrancheActionPerformed
 
     private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
         int n = JOptionPane.showConfirmDialog(
@@ -272,7 +273,7 @@ public class FrameProjet extends javax.swing.JFrame{
     private javax.swing.JMenuItem MenuOuvrir;
     private javax.swing.JMenuItem MenuQuitter;
     private javax.swing.JMenuItem MenuSauvegarder;
-    private javax.swing.JButton boutonFil;
+    private javax.swing.JButton boutonBranche;
     private javax.swing.JButton boutonParallele;
     private javax.swing.JButton boutonResistance;
     private javax.swing.JPanel jPanel1;

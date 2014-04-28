@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ControlleurFrame implements ComposanteListener{
 
     FrameProjet frame;
-    Tree panelCircuit;
+    Tree arbre;
     ControleurCircuit cc;
     
     ArrayList<ComposanteListener> listenerAjoutSupp;
@@ -18,22 +18,21 @@ public class ControlleurFrame implements ComposanteListener{
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
         frame = new FrameProjet(this, cc);
-        
-        panelCircuit = frame.getPanelCircuit();
+        arbre = frame.getTree();
         
         listenerAjoutSupp = new ArrayList<>();
     }
     
     public void BoutonResistance(ActionEvent evt){
-//        panelCircuit.setOutil(PanelCircuit.Outil.RESISTANCE);
+
     }
     
     public void BoutonParallele(ActionEvent evt){
-//        panelCircuit.setOutil(PanelCircuit.Outil.PARALELLE);
+
     }
     
-    public void BoutonFil(ActionEvent evt){
-//        panelCircuit.setOutil(PanelCircuit.Outil.FIL);
+    public void BoutonBranche(ActionEvent evt){
+
     }
     
     @Override
@@ -42,7 +41,7 @@ public class ControlleurFrame implements ComposanteListener{
             System.out.println("Message recu du PanelCircuit (CF)");
             cc.composanteAjout(event);
         } else if(event.getSource() instanceof BD){
-//            panelCircuit.update(event);
+
         }
     }
 
@@ -51,7 +50,7 @@ public class ControlleurFrame implements ComposanteListener{
         if(event.getSource() instanceof PanelCircuit){
             cc.composanteSupp(event);
         } else if(event.getSource() == BD.class){
-//            panelCircuit.update(event);
+
         }
     }
 
@@ -60,7 +59,7 @@ public class ControlleurFrame implements ComposanteListener{
         if(event.getSource() instanceof PanelCircuit){
             cc.composanteModif(event);
         } else if(event.getSource() instanceof BD){
-//            panelCircuit.update(event);
+
         }
     }
     

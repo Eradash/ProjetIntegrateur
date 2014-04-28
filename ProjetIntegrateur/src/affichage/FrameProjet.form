@@ -151,7 +151,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="boutonParallele" alignment="0" max="32767" attributes="0"/>
                       <Component id="boutonResistance" alignment="1" pref="312" max="32767" attributes="0"/>
-                      <Component id="boutonFil" alignment="0" max="32767" attributes="0"/>
+                      <Component id="boutonBranche" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -165,7 +165,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="boutonParallele" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="boutonFil" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="boutonBranche" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -190,13 +190,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonParalleleActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="boutonFil">
+        <Component class="javax.swing.JButton" name="boutonBranche">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ajouter fil"/>
+            <Property name="text" type="java.lang.String" value="Ajouter branche"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonFilActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonBrancheActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -227,7 +227,7 @@
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jPanel1.add(new Tree());"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jPanel1.add(t);"/>
       </AuxValues>
 
       <Layout>
