@@ -2,6 +2,7 @@ package gestion;
 
 import ListenersCircuit.ComposanteEvent;
 import ListenersCircuit.ComposanteListener;
+import affichage.ControlleurFrame;
 import affichage.PanelCircuit;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
@@ -12,10 +13,15 @@ public class ControleurCircuit implements ComposanteListener{
     AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
     GestionnaireID gestID = GestionnaireID.getInstance();
+    ControlleurFrame cf;
     
     Circuit c;
     
     public ControleurCircuit(){
+    }
+    
+    public void setCF(ControlleurFrame cf){
+        this.cf = cf;
     }
     
     public void nouveauCircuit(){
@@ -53,12 +59,13 @@ public class ControleurCircuit implements ComposanteListener{
     
     public void run(){
         analyseur.analyserCircuit(c);
+        cf.update();
     }
 
     @Override
     public void composanteAjout(ComposanteEvent event) {
         if(event.getSource() instanceof PanelCircuit){
-            System.out.println("Message reçu du PanelCircuit (CC)");
+            System.out.println("Message reçu du Frame (CC)");
             //Créer une composante et l'ajouter au circuit
         }
     }

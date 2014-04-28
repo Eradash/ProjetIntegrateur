@@ -2,8 +2,6 @@ package affichage;
 
 import JTree.Tree;
 import gestion.ControleurCircuit;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -11,7 +9,7 @@ public class FrameProjet extends javax.swing.JFrame{
     
     ControlleurFrame cf;
     ControleurCircuit cc;
-    Tree t = new Tree();
+    Tree t = new Tree(cf);
     
     public FrameProjet(ControlleurFrame cf, ControleurCircuit cc) {
         this.cf = cf;
@@ -24,9 +22,8 @@ public class FrameProjet extends javax.swing.JFrame{
         return t;
     }
     
-    private Dimension getDimension(){
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        return tk.getScreenSize();
+    public void update(){
+        repaint();
     }
 
     @SuppressWarnings("unchecked")

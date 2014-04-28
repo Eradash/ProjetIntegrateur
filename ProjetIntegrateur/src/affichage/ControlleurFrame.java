@@ -17,14 +17,19 @@ public class ControlleurFrame implements ComposanteListener{
 
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
+        cc.setCF(this);
         frame = new FrameProjet(this, cc);
         arbre = frame.getTree();
         
         listenerAjoutSupp = new ArrayList<>();
     }
     
+    public void update(){
+        arbre.update(cc.getCircuit());
+    }
+    
     public void BoutonResistance(ActionEvent evt){
-
+        //Créer l'évènement, et l'envoyer au Controlleur Circuit
     }
     
     public void BoutonParallele(ActionEvent evt){
