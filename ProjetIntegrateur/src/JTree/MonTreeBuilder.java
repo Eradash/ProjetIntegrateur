@@ -34,7 +34,7 @@ public class MonTreeBuilder {
             case SERIE:
                 MaNode n = new MaNode("Branche", MaNode.NODE_BRANCHE, c.getNumero());
                 for(Composante comp : c.getComposantes()){
-                    n.addChild(makeNode(c));
+                    n.addChild(makeNode(comp));
                 }
                 return n;
         }

@@ -10,6 +10,7 @@ public class FrameProjet extends javax.swing.JFrame{
     ControlleurFrame cf;
     ControleurCircuit cc;
     Tree t = new Tree(cf);
+    PanelProp pp = new PanelProp(cf, cc.getCircuit());
     
     public FrameProjet(ControlleurFrame cf, ControleurCircuit cc) {
         this.cf = cf;
@@ -20,6 +21,10 @@ public class FrameProjet extends javax.swing.JFrame{
     
     public Tree getTree(){
         return t;
+    }
+    
+    public PanelProp getPanelProp(){
+        return pp;
     }
     
     public void update(){

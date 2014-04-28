@@ -12,6 +12,7 @@ public class ControlleurFrame implements ComposanteListener{
     FrameProjet frame;
     Tree arbre;
     ControleurCircuit cc;
+    PanelProp pp;
     
     ArrayList<ComposanteListener> listenerAjoutSupp;
 
@@ -20,6 +21,7 @@ public class ControlleurFrame implements ComposanteListener{
         cc.setCF(this);
         frame = new FrameProjet(this, cc);
         arbre = frame.getTree();
+        pp = frame.getPanelProp();
         
         listenerAjoutSupp = new ArrayList<>();
     }
@@ -38,6 +40,10 @@ public class ControlleurFrame implements ComposanteListener{
     
     public void BoutonBranche(ActionEvent evt){
 
+    }
+    
+    public void IDSelected(int ID){
+        pp.setIDSelection(ID);
     }
     
     @Override
