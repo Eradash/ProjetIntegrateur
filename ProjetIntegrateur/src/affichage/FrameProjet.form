@@ -211,6 +211,9 @@
           </Border>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="panelProp.add(pp);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

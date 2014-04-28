@@ -10,11 +10,12 @@ public class FrameProjet extends javax.swing.JFrame{
     ControlleurFrame cf;
     ControleurCircuit cc;
     Tree t = new Tree(cf);
-    PanelProp pp = new PanelProp(cf, cc.getCircuit());
+    PanelProp pp;
     
     public FrameProjet(ControlleurFrame cf, ControleurCircuit cc) {
         this.cf = cf;
         this.cc = cc;
+        this.pp = new PanelProp(cf, cc.getCircuit());
         initComponents();
         setVisible(true);
     }
@@ -106,6 +107,7 @@ public class FrameProjet extends javax.swing.JFrame{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panelProp.add(pp);
         panelProp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Propriétés", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
 
         javax.swing.GroupLayout panelPropLayout = new javax.swing.GroupLayout(panelProp);
