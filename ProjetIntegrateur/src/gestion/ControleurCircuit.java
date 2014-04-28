@@ -61,6 +61,10 @@ public class ControleurCircuit implements ComposanteListener{
         analyseur.analyserCircuit(c);
         cf.update();
     }
+    
+    public BD getInstanceBD() {
+        return BD.getInstance();
+    }
 
     @Override
     public void composanteAjout(ComposanteEvent event) {

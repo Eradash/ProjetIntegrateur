@@ -46,6 +46,14 @@ public class ControlleurFrame implements ComposanteListener{
         pp.setIDSelection(ID);
     }
     
+    public ArrayList<Double> getComposanteInfo(int ID) {
+        ArrayList<Double> listeInfo = new ArrayList<>();
+        
+        cc.getInstanceBD().getComposante(ID, "resistance");
+        
+        return listeInfo;
+    }
+    
     @Override
     public void composanteAjout(ComposanteEvent event) {
         if(event.getSource() instanceof PanelCircuit){

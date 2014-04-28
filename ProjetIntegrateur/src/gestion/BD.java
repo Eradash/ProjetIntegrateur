@@ -1,8 +1,6 @@
 package gestion;
 
-import ListenersCircuit.ComposanteEvent;
 import ListenersCircuit.ComposanteListener;
-import ListenersCircuit.ComposanteObservable;
 import java.util.ArrayList;
 
 public class BD{
@@ -12,7 +10,6 @@ public class BD{
     
     MultiMap<Integer, String, Double> listeComposante;
     ArrayList<ComposanteListener> listeListeners;
-    
     
     private BD() {
         super();
