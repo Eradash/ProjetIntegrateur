@@ -8,6 +8,7 @@ import javax.swing.tree.TreeNode;
 public class MaNode implements TreeNode {
 
     private String title;
+    private final int ID;
     
     private final int type;
  
@@ -22,9 +23,14 @@ public class MaNode implements TreeNode {
     public static final int NODE_RESISTANCE = 5;
     public static final int NODE_FOLDER     = 6;
     
-    public MaNode(String title, int type) {
+    public MaNode(String title, int type, int ID) {
         this.title = title;
         this.type = type;
+        this.ID = ID;
+    }
+    
+    public int getID(){
+        return ID;
     }
     
     public void addChild(TreeNode child) {
