@@ -16,6 +16,7 @@ public class FrameProjet extends javax.swing.JFrame{
         this.cf = cf;
         this.cc = cc;
         this.pp = new PanelProp(cf, cc.getCircuit());
+        t = new Tree(cf);
         initComponents();
         setVisible(true);
     }

@@ -3,13 +3,13 @@ package JTree;
 import affichage.ControlleurFrame;
 import java.awt.BorderLayout;
  
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 import logiqueCircuit.Circuit;
  
 public class Tree extends JPanel implements TreeSelectionListener {
@@ -49,11 +49,8 @@ public class Tree extends JPanel implements TreeSelectionListener {
     
     @Override
     public void valueChanged(TreeSelectionEvent e) {
-       Object node = tree.getLastSelectedPathComponent();
-       if (node == null) {
-           return;
-       }
-        
-       JOptionPane.showMessageDialog(this, "You have selected: " + node);
+       TreePath tp = tree.getSelectionPath();
+       MaNode m = (MaNode)tp.getLastPathComponent();
+       cf.IDSelected(m.getID());
     }
 }
