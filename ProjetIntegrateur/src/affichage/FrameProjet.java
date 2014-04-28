@@ -1,5 +1,6 @@
 package affichage;
 
+import JTree.Tree;
 import gestion.ControleurCircuit;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -18,8 +19,8 @@ public class FrameProjet extends javax.swing.JFrame{
         setVisible(true);
     }
     
-    public PanelCircuit getPanelCircuit(){
-        return (PanelCircuit)panelCircuit;
+    public Tree getPanelCircuit(){
+        return null;
     }
     
     private Dimension getDimension(){
@@ -31,12 +32,12 @@ public class FrameProjet extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelCircuit = new javax.swing.JPanel();
         panelBoutons = new javax.swing.JPanel();
         boutonResistance = new javax.swing.JButton();
         boutonParallele = new javax.swing.JButton();
         boutonFil = new javax.swing.JButton();
         panelProp = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         MenuBar = new javax.swing.JMenuBar();
         MenuFichier = new javax.swing.JMenu();
         MenuOuvrir = new javax.swing.JMenuItem();
@@ -52,22 +53,6 @@ public class FrameProjet extends javax.swing.JFrame{
         setTitle("Analyseur de circuit");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
-
-        panelCircuit = new PanelCircuit(cf);
-        panelCircuit.setBackground(new java.awt.Color(255, 255, 255));
-        panelCircuit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        panelCircuit.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
-
-        javax.swing.GroupLayout panelCircuitLayout = new javax.swing.GroupLayout(panelCircuit);
-        panelCircuit.setLayout(panelCircuitLayout);
-        panelCircuitLayout.setHorizontalGroup(
-            panelCircuitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1094, Short.MAX_VALUE)
-        );
-        panelCircuitLayout.setVerticalGroup(
-            panelCircuitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         panelBoutons.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -129,6 +114,19 @@ public class FrameProjet extends javax.swing.JFrame{
         panelPropLayout.setVerticalGroup(
             panelPropLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 545, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(new Tree());
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 766, Short.MAX_VALUE)
         );
 
         MenuFichier.setText("Fichier");
@@ -193,7 +191,7 @@ public class FrameProjet extends javax.swing.JFrame{
                     .addComponent(panelBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelProp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelCircuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -201,7 +199,7 @@ public class FrameProjet extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelCircuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,9 +275,9 @@ public class FrameProjet extends javax.swing.JFrame{
     private javax.swing.JButton boutonFil;
     private javax.swing.JButton boutonParallele;
     private javax.swing.JButton boutonResistance;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPanel panelBoutons;
-    private javax.swing.JPanel panelCircuit;
     private javax.swing.JPanel panelProp;
     // End of variables declaration//GEN-END:variables
 }

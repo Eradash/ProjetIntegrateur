@@ -1,5 +1,5 @@
+package JTree;
 
-import JTree.MaNode;
 import java.awt.Component;
 
 import javax.swing.ImageIcon;
@@ -7,13 +7,18 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 public class NodeRender extends DefaultTreeCellRenderer {
+    
+    private final ImageIcon iconProject = new ImageIcon("image/BatteryIcon.png"); //Circuit
+    private final ImageIcon iconSource = null;  //Parallèles
+    private final ImageIcon iconPackage = null; //Branches
+    private final ImageIcon iconClass = new ImageIcon("image/resistanceIcon.jpg");
+    private final ImageIcon iconFolder = null;
+      
 
-    private final ImageIcon iconProject = new ImageIcon(getClass().getResource("/hainasoft/codelib/desktop/tree/project.png"));
-    private final ImageIcon iconSource = new ImageIcon(getClass().getResource("/hainasoft/codelib/desktop/tree/source.png"));
-    private final ImageIcon iconPackage = new ImageIcon(getClass().getResource("/hainasoft/codelib/desktop/tree/package.png"));
-    private final ImageIcon iconClass = new ImageIcon(getClass().getResource("/hainasoft/codelib/desktop/tree/class.png"));
-    private final ImageIcon iconFolder = new ImageIcon(getClass().getResource("/hainasoft/codelib/desktop/tree/folder.png"));
-
+    public NodeRender(){
+        
+    }
+    
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
@@ -24,17 +29,20 @@ public class NodeRender extends DefaultTreeCellRenderer {
             case MaNode.NODE_PROJECT:
                 setIcon(iconProject);
                 break;
-            case MaNode.NODE_SOURCE:
+            case MaNode.NODE_PARALLELE:
                 setIcon(iconSource);
                 break;
-            case MaNode.NODE_PACKAGE:
+            case MaNode.NODE_BRANCHE:
                 setIcon(iconPackage);
                 break;
-            case MaNode.NODE_CLASS:
+            case MaNode.NODE_RESISTANCE:
                 setIcon(iconClass);
                 break;
             case MaNode.NODE_FOLDER:
                 setIcon(iconFolder);
+                break;
+            case MaNode.NODE_ROOT:
+                setIcon(iconProject);
                 break;
         }
 

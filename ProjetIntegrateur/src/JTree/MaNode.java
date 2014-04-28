@@ -17,9 +17,9 @@ public class MaNode implements TreeNode {
     // Constants for types of node
     public static final int NODE_ROOT       = 0;
     public static final int NODE_PROJECT    = 1;
-    public static final int NODE_SOURCE     = 2;
-    public static final int NODE_PACKAGE    = 4;
-    public static final int NODE_CLASS      = 5;
+    public static final int NODE_PARALLELE  = 2;
+    public static final int NODE_BRANCHE    = 4;
+    public static final int NODE_RESISTANCE = 5;
     public static final int NODE_FOLDER     = 6;
     
     public MaNode(String title, int type) {

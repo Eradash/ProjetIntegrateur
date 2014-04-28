@@ -1,5 +1,6 @@
 package affichage;
 
+import JTree.Tree;
 import ListenersCircuit.*;
 import gestion.BD;
 import gestion.ControleurCircuit;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class ControlleurFrame implements ComposanteListener{
 
     FrameProjet frame;
-    PanelCircuit panelCircuit;
+    Tree panelCircuit;
     ControleurCircuit cc;
     
     ArrayList<ComposanteListener> listenerAjoutSupp;
@@ -24,15 +25,15 @@ public class ControlleurFrame implements ComposanteListener{
     }
     
     public void BoutonResistance(ActionEvent evt){
-        panelCircuit.setOutil(PanelCircuit.Outil.RESISTANCE);
+//        panelCircuit.setOutil(PanelCircuit.Outil.RESISTANCE);
     }
     
     public void BoutonParallele(ActionEvent evt){
-        panelCircuit.setOutil(PanelCircuit.Outil.PARALELLE);
+//        panelCircuit.setOutil(PanelCircuit.Outil.PARALELLE);
     }
     
     public void BoutonFil(ActionEvent evt){
-        panelCircuit.setOutil(PanelCircuit.Outil.FIL);
+//        panelCircuit.setOutil(PanelCircuit.Outil.FIL);
     }
     
     @Override
@@ -41,7 +42,7 @@ public class ControlleurFrame implements ComposanteListener{
             System.out.println("Message recu du PanelCircuit (CF)");
             cc.composanteAjout(event);
         } else if(event.getSource() instanceof BD){
-            panelCircuit.update(event);
+//            panelCircuit.update(event);
         }
     }
 
@@ -50,7 +51,7 @@ public class ControlleurFrame implements ComposanteListener{
         if(event.getSource() instanceof PanelCircuit){
             cc.composanteSupp(event);
         } else if(event.getSource() == BD.class){
-            panelCircuit.update(event);
+//            panelCircuit.update(event);
         }
     }
 
@@ -59,7 +60,7 @@ public class ControlleurFrame implements ComposanteListener{
         if(event.getSource() instanceof PanelCircuit){
             cc.composanteModif(event);
         } else if(event.getSource() instanceof BD){
-            panelCircuit.update(event);
+//            panelCircuit.update(event);
         }
     }
     
