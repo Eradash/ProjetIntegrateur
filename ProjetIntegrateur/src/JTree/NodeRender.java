@@ -9,7 +9,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 public class NodeRender extends DefaultTreeCellRenderer {
     
     private final ImageIcon iconProject = new ImageIcon("image/BatteryIcon.png"); //Circuit
-    private final ImageIcon iconSource = null;  //Parallèles
+    private final ImageIcon iconSource = new ImageIcon("image/ParaIcon.png");
     private final ImageIcon iconPackage = null; //Branches
     private final ImageIcon iconClass = new ImageIcon("image/resistanceIcon.jpg");
     private final ImageIcon iconFolder = null;

@@ -2,6 +2,7 @@ package gestion;
 
 import ListenersCircuit.ComposanteListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BD{
     
@@ -32,6 +33,10 @@ public class BD{
         
     public Double getComposante(int ID, String info) {
         return listeComposante.get(ID, info);
+    }
+    
+    public HashMap<String, Double> getComposante(int ID){
+        return listeComposante.getComp(ID);
     }
     
     public void resetCircuit() {

@@ -31,7 +31,7 @@ public class Tree extends JPanel implements TreeSelectionListener {
         
         expand();
         
-        setSize(280, 300);
+        setSize(321, 545);
         
         setVisible(true);
     }

@@ -31,7 +31,7 @@ public class ControlleurFrame implements ComposanteListener{
     }
     
     public void BoutonResistance(ActionEvent evt){
-        //Créer l'évènement, et l'envoyer au Controlleur Circuit
+        
     }
     
     public void BoutonParallele(ActionEvent evt){
