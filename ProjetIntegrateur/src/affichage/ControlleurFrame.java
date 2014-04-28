@@ -1,5 +1,6 @@
 package affichage;
 
+import JTree.Tree;
 import ListenersCircuit.*;
 import gestion.BD;
 import gestion.ControleurCircuit;
@@ -9,30 +10,48 @@ import java.util.ArrayList;
 public class ControlleurFrame implements ComposanteListener{
 
     FrameProjet frame;
-    PanelCircuit panelCircuit;
+    Tree arbre;
     ControleurCircuit cc;
+    PanelProp pp;
     
     ArrayList<ComposanteListener> listenerAjoutSupp;
 
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
-        frame = new FrameProjet(this);
-        
-        panelCircuit = frame.getPanelCircuit();
+        cc.setCF(this);
+        frame = new FrameProjet(this, cc);
+        arbre = frame.getTree();
+        pp = frame.getPanelProp();
         
         listenerAjoutSupp = new ArrayList<>();
     }
     
+    public void update(){
+        arbre.update(cc.getCircuit());
+    }
+    
     public void BoutonResistance(ActionEvent evt){
-        panelCircuit.setOutil(PanelCircuit.Outil.RESISTANCE);
+        //Créer l'évènement, et l'envoyer au Controlleur Circuit
     }
     
     public void BoutonParallele(ActionEvent evt){
-        panelCircuit.setOutil(PanelCircuit.Outil.PARALELLE);
+
     }
     
-    public void BoutonFil(ActionEvent evt){
-        panelCircuit.setOutil(PanelCircuit.Outil.FIL);
+    public void BoutonBranche(ActionEvent evt){
+
+    }
+    
+    public void IDSelected(int ID){
+        pp.setIDSelection(ID);
+    }
+    
+    public ArrayList<Double> getComposanteInfo(int ID) {
+        ArrayList<Double> listeInfo = new ArrayList<>();
+        
+        cc.getInstanceBD().getComposante(ID, "resistance");
+        
+        return listeInfo;
     }
     
     @Override
@@ -41,7 +60,7 @@ public class ControlleurFrame implements ComposanteListener{
             System.out.println("Message recu du PanelCircuit (CF)");
             cc.composanteAjout(event);
         } else if(event.getSource() instanceof BD){
-            panelCircuit.update(event);
+
         }
     }
 
@@ -50,7 +69,7 @@ public class ControlleurFrame implements ComposanteListener{
         if(event.getSource() instanceof PanelCircuit){
             cc.composanteSupp(event);
         } else if(event.getSource() == BD.class){
-            panelCircuit.update(event);
+
         }
     }
 
@@ -59,7 +78,7 @@ public class ControlleurFrame implements ComposanteListener{
         if(event.getSource() instanceof PanelCircuit){
             cc.composanteModif(event);
         } else if(event.getSource() instanceof BD){
-            panelCircuit.update(event);
+
         }
     }
     

@@ -1,18 +1,15 @@
 package gestion;
 
-import ListenersCircuit.ComposanteEvent;
 import ListenersCircuit.ComposanteListener;
-import ListenersCircuit.ComposanteObservable;
 import java.util.ArrayList;
 
-public class BD implements ComposanteObservable{
+public class BD{
     
     private static volatile BD instance = null;
     private final static GestionnaireID gestionnaire = GestionnaireID.getInstance();
     
     MultiMap<Integer, String, Double> listeComposante;
     ArrayList<ComposanteListener> listeListeners;
-    
     
     private BD() {
         super();
@@ -23,17 +20,11 @@ public class BD implements ComposanteObservable{
     public void SetComposante(int ID, String info, double donne) {
         listeComposante.put(ID, info, donne);
         gestionnaire.ajouterComp(ID);
-        ComposanteEvent evt = new ComposanteEvent(this, ComposanteEvent.TypeEvent.MODIF);
-        evt.setValeurs(listeComposante.getComp(ID));
-        notifierComposante(evt);
     }
     
     public boolean supprimerComposante(int ID) {
         if(gestionnaire.supprimerComp(ID)) {
             listeComposante.removeID(ID);
-            ComposanteEvent evt = new ComposanteEvent(this, ComposanteEvent.TypeEvent.SUPP);
-            evt.ajouterValeur("ID", ID);
-            notifierComposante(evt);
             return true;
         }
         return false;
@@ -57,22 +48,5 @@ public class BD implements ComposanteObservable{
             }
         }
         return BD.instance;
-    }
-
-    @Override
-    public void ajouterListener(ComposanteListener listener) {
-        listeListeners.add(listener);
-    }
-
-    @Override
-    public void supprimerListener(ComposanteListener listener) {
-        listeListeners.add(listener);
-    }
-
-    @Override
-    public void notifierComposante(ComposanteEvent event) {
-        for(ComposanteListener listener : listeListeners){
-            listener.composanteModif(event);
-        }
     }
 }

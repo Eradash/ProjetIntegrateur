@@ -18,6 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import logiqueCircuit.Type;
 
@@ -100,17 +103,33 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
             case FIL :
                 break;
             case RESISTANCE :
-                ResistanceBouton boutonRes = new ResistanceBouton();
-            
-                boutonRes.setSize(boutonRes.getPreferredSize());
-                boutonRes.setLocation(getPointPres(e.getPoint()));
-            
-                this.add(boutonRes);
-                listeResistance.add(boutonRes);
+                double d;
+                String input = (String) JOptionPane.showInputDialog(
+                        new JFrame(),
+                        "Entrez la valeur de la résistance:",
+                        "Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE,
+                        new ImageIcon("java2sLogo.GIF"), null, "");
+                
+                try{
+                    d = Double.parseDouble(input);
+                } catch(NumberFormatException exc){
+                    input = "";
+                    d = 0;
+                    JOptionPane.showMessageDialog(null, "Valeur incorrecte", "ERREUR FATALE", JOptionPane.ERROR_MESSAGE);
+                }
+
+                if(!"".equals(input)){
+                    ResistanceBouton boutonRes = new ResistanceBouton();
+
+                    boutonRes.setSize(boutonRes.getPreferredSize());
+                    boutonRes.setLocation(getPointPres(e.getPoint()));
+
+                    this.add(boutonRes);
+                    listeResistance.add(boutonRes);
+                    creerResistance(d);
+                    repaint();
+                }
                 setOutil(Outil.NULL);
-                //Test... (qui fonctionne, jusqu'à présent :) )
-                creerResistance(300);
-                repaint();
                 break;
             case PARALELLE:
                 this.getGraphics().setColor(Color.BLUE);

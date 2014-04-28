@@ -1,25 +1,19 @@
 package gestion;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import logiqueCircuit.Circuit;
-import logiqueCircuit.Composante;
-import logiqueCircuit.Parallele;
-import logiqueCircuit.Resistance;
-import logiqueCircuit.Serie;
-import logiqueCircuit.Type;
-import org.w3c.dom.DOMException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import logiqueCircuit.*;
+import org.w3c.dom.*;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 
 public class GestionXML {
@@ -33,43 +27,47 @@ public class GestionXML {
         super();
     }
     
-    public void encoder(Circuit c) throws Exception{
-        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuild = docFactory.newDocumentBuilder();
-        
-        Document doc = docBuild.newDocument();
-        root = doc.createElement(c.getNom());
-        
-        root.setAttribute("AMPERE", Double.toString(c.getAmpere()));
-        root.setAttribute("VOLTAGE", Double.toString(c.getVoltage()));
-        
-        doc.appendChild(root);
-        
-        setComp(root, c, doc);
-        
-        Element composante = doc.createElement("COMPOSANTE");
-        
-        for(Composante comp : c.getComposantes()) {
-            Element elem = doc.createElement(comp.getType().toString());
-            if(comp.getType() == Type.PARALLELE) {
-                setComp(elem, comp, doc);
-                encoderPara((Parallele)comp, doc, elem);
-            } else {
-                setComp(elem, comp, doc);
+    public void encoder(Circuit c, String endroit){
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuild = docFactory.newDocumentBuilder();
+            
+            Document doc = docBuild.newDocument();
+            root = doc.createElement("circuit");
+            
+            root.setAttribute("AMPERE", Double.toString(c.getAmpere()));
+            root.setAttribute("VOLTAGE", Double.toString(c.getVoltage()));
+            
+            doc.appendChild(root);
+            
+            setComp(root, c, doc);
+            
+            Element composante = doc.createElement("COMPOSANTE");
+            
+            for(Composante comp : c.getComposantes()) {
+                Element elem = doc.createElement(comp.getType().toString());
+                if(comp.getType() == Type.PARALLELE) {
+                    setComp(elem, comp, doc);
+                    encoderPara((Parallele)comp, doc, elem);
+                } else {
+                    setComp(elem, comp, doc);
+                }
+                
+                composante.appendChild(elem);
             }
             
-            composante.appendChild(elem);
+            root.appendChild(composante);
+            
+            TransformerFactory transFactory = TransformerFactory.newInstance();
+            Transformer aTransformer = transFactory.newTransformer();
+            
+            Source src = new DOMSource(doc);
+            Result dest = new StreamResult(new File(endroit + ".circuit"));
+            
+            aTransformer.transform(src, dest);
+        } catch (ParserConfigurationException | TransformerException ex) {
+            Logger.getLogger(GestionXML.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        root.appendChild(composante);
-        
-        TransformerFactory transFactory = TransformerFactory.newInstance();
-        Transformer aTransformer = transFactory.newTransformer();
-
-        Source src = new DOMSource(doc);
-        Result dest = new StreamResult(new File("test2.xml"));
-
-        aTransformer.transform(src, dest);
     }
     
     private void encoderPara(Parallele p, Document doc, Element elem) {
@@ -109,6 +107,10 @@ public class GestionXML {
     private static void setComp(Element elem, Composante comp, Document doc) {
         elem.appendChild(element("ID", ""+comp.getNumero(), doc));
         elem.appendChild(element("VALEUR", ""+comp.getResistanceEquivalente(), doc));
+        Element position = doc.createElement("POSITION");
+        position.appendChild(element("X", ""+BD.getInstance().getComposante(comp.getNumero(), "PosX"), doc));
+        position.appendChild(element("Y", ""+BD.getInstance().getComposante(comp.getNumero(), "PosY"), doc));
+        elem.appendChild(position);
     }
     
     private static Element element(String type, String info, Document doc) {
@@ -117,40 +119,44 @@ public class GestionXML {
         return _info;
     }
     
-    public Circuit decoder(String nomCircuit) throws Exception{
-        
-        c = new Circuit();
-        
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.parse(new InputSource(nomCircuit+".xml"));
-        
-        Element rootTest = doc.getDocumentElement();
-        
-        c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
-        c.setVoltage(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
-        c.setNom(nomCircuit);
-        
-        NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
-        
-        elemComp.getLength();
-        
-        Element comp = (Element)elemComp.item(0);
-        
-        NodeList para = comp.getElementsByTagName("PARALLELE");
-        NodeList resis = comp.getElementsByTagName("RESISTANCE");
-        
-        for(int i = 0; i < para.getLength(); i++) {
-            if(para.item(i).getParentNode().equals(comp))
-            c.ajouterComposante(ajouterParallele(((Element)para.item(i))));
+    public Circuit decoder(String endroit){
+        try {
+            c = new Circuit();
+            
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(new InputSource(endroit));
+            
+            Element rootTest = doc.getDocumentElement();
+            
+            c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
+            c.setVoltage(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
+            c.setNom("Circuit");
+            
+            NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
+            
+            elemComp.getLength();
+            
+            Element comp = (Element)elemComp.item(0);
+            
+            NodeList para = comp.getElementsByTagName("PARALLELE");
+            NodeList resis = comp.getElementsByTagName("RESISTANCE");
+            
+            for(int i = 0; i < para.getLength(); i++) {
+                if(para.item(i).getParentNode().equals(comp))
+                    c.ajouterComposante(ajouterParallele(((Element)para.item(i))));
+            }
+            for(int i = 0; i < resis.getLength(); i++) {
+                if(resis.item(i).getParentNode().equals(comp))
+                    c.ajouterComposante(ajouterComp((Element)resis.item(i)));
+            }
+            
+            
+            return c;
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            Logger.getLogger(GestionXML.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        for(int i = 0; i < resis.getLength(); i++) {
-            if(resis.item(i).getParentNode().equals(comp))
-            c.ajouterComposante(ajouterComp((Element)resis.item(i)));
-        }
-        
-
-        return c;
     }
     
     private Composante ajouterComp(Element n) {

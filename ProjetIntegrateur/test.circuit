@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<test>
+<test AMPERE="2" VOLTAGE="6">
 	<ID>-1</ID>
 	<VALEUR></VALEUR>
 	<COMPOSANTE>
 		<RESISTANCE>
-			<ID>5</ID>
+			<ID>1</ID>
 			<VALEUR>200</VALEUR>
 		</RESISTANCE>
 		<PARALLELE>
@@ -26,7 +26,7 @@
 					<VALEUR></VALEUR>
 					<COMPOSANTE>
 						<RESISTANCE>
-							<ID>5</ID>
+							<ID>6</ID>
 							<VALEUR>300</VALEUR>
 						</RESISTANCE>
 					</COMPOSANTE>

@@ -2,6 +2,7 @@ package gestion;
 
 import ListenersCircuit.ComposanteEvent;
 import ListenersCircuit.ComposanteListener;
+import affichage.ControlleurFrame;
 import affichage.PanelCircuit;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
@@ -12,11 +13,15 @@ public class ControleurCircuit implements ComposanteListener{
     AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
     GestionnaireID gestID = GestionnaireID.getInstance();
-    AnalyseurCircuit ac = new AnalyseurCircuit();
+    ControlleurFrame cf;
     
     Circuit c;
     
     public ControleurCircuit(){
+    }
+    
+    public void setCF(ControlleurFrame cf){
+        this.cf = cf;
     }
     
     public void nouveauCircuit(){
@@ -29,12 +34,13 @@ public class ControleurCircuit implements ComposanteListener{
         c = null;
     }
     
-    public void ouvrirCircuit(String nom) throws Exception{
+    public void ouvrirCircuit(String nom){
         c = xml.decoder(nom);
+        run();
     }
     
-    public void enregistrerCircuit() throws Exception{
-        xml.encoder(c);
+    public void enregistrerCircuit(String endroit){
+        xml.encoder(c, endroit);
     }
     
     public Circuit getCircuit() {
@@ -43,16 +49,27 @@ public class ControleurCircuit implements ComposanteListener{
     
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
+        run();
+    }
+    
+    public void supprimerComposante(int ID){
+        this.c.supprimerComposante(ID);
+        run();
     }
     
     public void run(){
-        ac.analyserCircuit(c);
+        analyseur.analyserCircuit(c);
+        cf.update();
+    }
+    
+    public BD getInstanceBD() {
+        return BD.getInstance();
     }
 
     @Override
     public void composanteAjout(ComposanteEvent event) {
         if(event.getSource() instanceof PanelCircuit){
-            System.out.println("Message reçu du PanelCircuit (CC)");
+            System.out.println("Message reçu du Frame (CC)");
             //Créer une composante et l'ajouter au circuit
         }
     }
