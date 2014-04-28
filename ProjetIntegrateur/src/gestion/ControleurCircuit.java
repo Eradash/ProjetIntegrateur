@@ -26,6 +26,7 @@ public class ControleurCircuit implements ComposanteListener{
     
     public void nouveauCircuit(){
         donnee.resetCircuit();
+        c = new Circuit();
     }
     
     public void fermeCircuit() {

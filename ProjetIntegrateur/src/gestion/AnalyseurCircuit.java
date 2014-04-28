@@ -10,7 +10,8 @@ public class AnalyseurCircuit {
         double voltage = c.getVoltage();
         double ampere = c.getAmpere();
         
-        calcul(ampere, voltage, c, -1);
+        calcul(-1, voltage, c, -1);
+
     }
     
     private void calcul(double amp, double volt, Composante b, int ID_Parent) {
@@ -22,21 +23,20 @@ public class AnalyseurCircuit {
         BD bd = BD.getInstance();
         
         bd.SetComposante(ID, "Parent", ID_Parent);
+        bd.SetComposante(ID, "Resistance", resistance);
         
         int cas = 0;
 
         if (ampere != -1 || voltage != -1) {
             if (ampere == -1 && voltage != -1) {
-                ampere = voltage / resistance;
-                bd.SetComposante(ID, "Ampere", ampere);
-                bd.SetComposante(ID, "Voltage", voltage);
+                ampere = voltage / resistance; //cas 1 ou 2
             } else if (voltage == -1 && ampere != -1) {
-                cas += 10;
+                cas += 10; // cas 11 ou 12
                 voltage = resistance * ampere;
-                bd.SetComposante(ID, "Voltage", voltage);
-                bd.SetComposante(ID, "Ampere", ampere);
             }
         }
+        bd.SetComposante(ID, "Ampere", ampere);
+        bd.SetComposante(ID, "Voltage", voltage);
 
         if (b.getType() == Type.SERIE){
             cas +=1;
@@ -64,11 +64,10 @@ public class AnalyseurCircuit {
             case 11:
             case 12:
                 for (Composante c : b.getComposantes()) {
-                    calcul(ampere, voltage, c, ID);
+                    calcul(-1, voltage, c, ID);
                 }
                 break;
         }
-        
     }
     
     public Double getValeurComposante(int noComp, String info) {

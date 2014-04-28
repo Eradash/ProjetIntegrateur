@@ -47,6 +47,7 @@ public class FrameProjet extends javax.swing.JFrame{
         MenuFichier = new javax.swing.JMenu();
         MenuOuvrir = new javax.swing.JMenuItem();
         MenuSauvegarder = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         MenuQuitter = new javax.swing.JMenuItem();
         MenuEdition = new javax.swing.JMenu();
@@ -121,6 +122,8 @@ public class FrameProjet extends javax.swing.JFrame{
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jPanel3.add(pp);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -151,6 +154,15 @@ public class FrameProjet extends javax.swing.JFrame{
             }
         });
         MenuFichier.add(MenuSauvegarder);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Nouveau");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        MenuFichier.add(jMenuItem1);
         MenuFichier.add(jSeparator1);
 
         MenuQuitter.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
@@ -242,15 +254,15 @@ public class FrameProjet extends javax.swing.JFrame{
     }//GEN-LAST:event_MenuSauvegarderActionPerformed
 
     private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed
-        cf.BoutonResistance(evt);
+        cf.BoutonResistance();
     }//GEN-LAST:event_boutonResistanceActionPerformed
 
     private void boutonParalleleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonParalleleActionPerformed
-        cf.BoutonParallele(evt);
+        cf.BoutonParallele();
     }//GEN-LAST:event_boutonParalleleActionPerformed
 
     private void boutonBrancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonBrancheActionPerformed
-        cf.BoutonBranche(evt);
+        cf.BoutonBranche();
     }//GEN-LAST:event_boutonBrancheActionPerformed
 
     private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
@@ -263,6 +275,11 @@ public class FrameProjet extends javax.swing.JFrame{
             System.exit(0);
         }
     }//GEN-LAST:event_MenuQuitterActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        cc.nouveauCircuit();
+        t.update(cc.getCircuit());
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -278,6 +295,7 @@ public class FrameProjet extends javax.swing.JFrame{
     private javax.swing.JButton boutonBranche;
     private javax.swing.JButton boutonParallele;
     private javax.swing.JButton boutonResistance;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu.Separator jSeparator1;

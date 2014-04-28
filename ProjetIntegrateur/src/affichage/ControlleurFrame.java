@@ -30,15 +30,15 @@ public class ControlleurFrame implements ComposanteListener{
         arbre.update(cc.getCircuit());
     }
     
-    public void BoutonResistance(ActionEvent evt){
+    public void BoutonResistance(){
         
     }
     
-    public void BoutonParallele(ActionEvent evt){
+    public void BoutonParallele(){
 
     }
     
-    public void BoutonBranche(ActionEvent evt){
+    public void BoutonBranche(){
 
     }
     
