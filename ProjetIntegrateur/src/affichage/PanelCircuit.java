@@ -14,8 +14,8 @@ import java.awt.Toolkit;
 import java.awt.image.MemoryImageSource;
 import java.awt.Point;
 import java.awt.Shape;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -170,25 +170,22 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     public void mouseClicked(MouseEvent e) {
         if(e.getButton() == 1) {
             switch (outilPresent) {
-                case NULL:
-                    break;
-                case FIL :
+                default :
                     break;
                 case RESISTANCE :
                     ResistanceBouton boutonRes = new ResistanceBouton();
 
-                    boutonRes.addItemListener(new ItemListener() {
-                        @Override
-                        public void itemStateChanged(ItemEvent e) {
-                            if(e.getStateChange() == ItemEvent.MOUSE_EVENT_MASK) {
-                                System.out.println(":)");
-                            }
-                        }
+                    boutonRes.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        composanteCourrante = (ResistanceBouton)e.getSource();
+                        composanteCourrante.setSelected(true);
+                    }
                     });
-                    
+
                     boutonRes.setSize(boutonRes.getPreferredSize());
                     boutonRes.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
 
                     Point _p = new Point(getPointPres(e.getPoint()).x,getPointPres(e.getPoint()).y-8);
                     boutonRes.setLocation(_p);
@@ -211,6 +208,14 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
                     Point _p2 = new Point(getPointPres(e.getPoint()).x-5, getPointPres(e.getPoint()).y-5);
                     boutonPara.setLocation(_p2);
                     
+                    boutonPara.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        composanteCourrante = (ParalleleBouton) e.getSource();
+                        composanteCourrante.setSelected(true);
+                    }
+                    });
+                    
                     this.add(boutonPara);
                     listeParallele.add(boutonPara);
                     
@@ -227,20 +232,30 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     
     @Override
     public void mousePressed(MouseEvent e) {
+        
         if(outilPresent == Outil.FIL) {
             shapeCourranteX = new Line2D.Double(getPointPres(e.getPoint()), getPointPres(e.getPoint()));
             shapeCourranteY = new Line2D.Double(getPointPres(e.getPoint()), getPointPres(e.getPoint()));
             listeFilX.add(shapeCourranteX);
             listeFilY.add(shapeCourranteY);
-            repaint();
-        }
+        } 
+        
+        repaint();
     }
     
     @Override
     public void mouseReleased(MouseEvent e) {
+        
         if(outilPresent == Outil.FIL) {
             outilPresent = Outil.NULL;
         }
+        
+        if(composanteCourrante != null) {
+            composanteCourrante.setSelected(false);
+            composanteCourrante = null;
+        }
+        
+        repaint();
     }
     
     @Override
@@ -251,6 +266,7 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
     
     @Override
     public void mouseDragged(MouseEvent e) {
+        
         if(outilPresent == Outil.FIL) {
             Line2D shapeX = (Line2D) shapeCourranteX;
             Line2D shapeY = (Line2D) shapeCourranteY;
@@ -258,8 +274,21 @@ public class PanelCircuit extends JPanel implements MouseListener, MouseMotionLi
             shapeX.setLine(shapeX.getP1(), new Point(getPointPres(e.getPoint()).x,(int)shapeX.getP1().getY()));
             shapeY.setLine(shapeX.getP2(), new Point((int)shapeX.getP2().getX(), getPointPres(e.getPoint()).y));
 
-            repaint();
+        } else if(outilPresent == Outil.NULL) {
+            if(composanteCourrante instanceof ResistanceBouton) {
+                ResistanceBouton temp = (ResistanceBouton) composanteCourrante;
+                if(temp.isVerticale()) {
+                    composanteCourrante.setLocation(getPointPres(e.getPoint()).x-8, getPointPres(e.getPoint()).y);
+                } else {
+                    composanteCourrante.setLocation(getPointPres(e.getPoint()).x, getPointPres(e.getPoint()).y-8);
+                }
+            } else {
+                composanteCourrante.setLocation(getPointPres(e.getPoint()).x-5, getPointPres(e.getPoint()).y-5);
+            }
+                
         }
+        
+        repaint();
     }
     
     @Override

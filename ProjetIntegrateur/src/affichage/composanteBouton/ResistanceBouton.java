@@ -14,9 +14,8 @@ import javax.swing.JButton;
 
 public class ResistanceBouton extends JButton implements MouseListener{
     
-    private BufferedImage image;
-    private BufferedImage imageJaune;
-    private boolean mouseOver;
+    private BufferedImage image, imageJaune, imageVerticale, imageVerticaleJaune;
+    private boolean mouseOver, selected, verticale;
     
     public ResistanceBouton() {
         
@@ -27,10 +26,13 @@ public class ResistanceBouton extends JButton implements MouseListener{
         setRolloverEnabled(true);
         
         mouseOver = false;
+        verticale = false;
         
         try {
             image = ImageIO.read(new File("image/resistance.png"));
             imageJaune = ImageIO.read(new File("image/resistanceJaune.png"));
+            imageVerticale = ImageIO.read(new File("image/resistanceVerticale.png"));
+            imageVerticaleJaune = ImageIO.read(new File("image/resistanceVerticaleJaune.png"));
         } catch (IOException e) {}
         
         addMouseListener(this);
@@ -40,35 +42,52 @@ public class ResistanceBouton extends JButton implements MouseListener{
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
         
+        this.setSize(getPreferredSize());
         
-        if(!mouseOver) {
+        if(!mouseOver && !verticale) {
             Image imageIc = new ImageIcon(image).getImage();
             g.drawImage(imageIc, 0, 0, this);
-        } else {
+        } else if(mouseOver && !verticale){
             Image imageIc2 = new ImageIcon(imageJaune).getImage();
             g.drawImage(imageIc2, 0, 0, this);
+        } else if(!mouseOver && verticale){
+            Image imageIc3 = new ImageIcon(imageVerticale).getImage();
+            g.drawImage(imageIc3, 0, 0, this);
+        } else if(mouseOver && verticale){
+            Image imageIc4 = new ImageIcon(imageVerticaleJaune).getImage();
+            g.drawImage(imageIc4, 0, 0, this);
         }
     }
     
     @Override
     public Dimension getPreferredSize() {
         Dimension size = super.getPreferredSize();
-        size.setSize(63,20);
+        
+        if(!verticale)
+            size.setSize(63,20);
+        else
+            size.setSize(20,63);
+        
         return size;
     }
-
+    
     @Override
-    public void mouseClicked(MouseEvent e) {}
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        
+    public void mouseClicked(MouseEvent e) {
+        if(e.getButton() == 3) {
+            if(verticale == false) {
+                verticale = true;
+            } else {
+                verticale = false;
+            }
+            repaint();
+        }
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        
-    }
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -77,10 +96,28 @@ public class ResistanceBouton extends JButton implements MouseListener{
 
     @Override
     public void mouseExited(MouseEvent e) {
-        mouseOver = false;
+        if(!selected)
+            mouseOver = false;
     }
     
     public boolean isHighlighted() {
         return mouseOver;
+    }
+    
+    @Override
+    public void setSelected(boolean sel) {
+        selected = sel;
+        if(sel == false) {
+            mouseOver = false;
+        }
+        repaint();
+    }
+    
+    public void setVerticale(boolean verticale) {
+        this.verticale = verticale;
+    }
+    
+    public boolean isVerticale() {
+        return verticale;
     }
 }

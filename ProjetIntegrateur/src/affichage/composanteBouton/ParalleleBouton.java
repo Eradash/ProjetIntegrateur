@@ -1,6 +1,5 @@
 package affichage.composanteBouton;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -15,7 +14,7 @@ import javax.swing.JButton;
 
 public class ParalleleBouton extends JButton implements MouseListener{
     
-    private boolean mouseOver;
+    private boolean mouseOver, selected;
     private BufferedImage image;
     private BufferedImage imageJaune;
     
@@ -72,10 +71,19 @@ public class ParalleleBouton extends JButton implements MouseListener{
 
     @Override
     public void mouseExited(MouseEvent e) {
+        if(!selected)
         mouseOver = false;
     }
     
     public boolean isHighlighted() {
         return mouseOver;
+    }
+    
+    @Override
+    public void setSelected(boolean sel) {
+        selected = sel;
+        if(sel == false) {
+            mouseOver = false;
+        }
     }
 }
