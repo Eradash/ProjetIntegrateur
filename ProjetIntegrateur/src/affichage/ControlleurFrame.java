@@ -123,7 +123,14 @@ public class ControlleurFrame implements ComposanteListener{
     }
     
     public void BoutonSupprimer(){
-        
+        int ID;
+        try {
+            ID = arbre.getIDSelected();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            return;
+        }
+        cc.supprimerComposante(ID);
     }
     
     public void IDSelected(int ID){

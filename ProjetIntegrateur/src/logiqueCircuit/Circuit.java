@@ -1,5 +1,6 @@
 package logiqueCircuit;
 
+import gestion.BD;
 import java.util.ArrayList;
 
 public class Circuit extends Serie{
@@ -89,8 +90,13 @@ public class Circuit extends Serie{
     }
     
     @Override
-    public void supprimerComposante(int ID_Parent){
-        getComposanteEmplacement(ID_Parent).supprimerComposante(ID_Parent);
+    public void supprimerComposante(int ID){
+        double ID_Parent = BD.getInstance().getComposante(ID, "Parent");
+        if((int)ID_Parent == -1){
+            super.supprimerComposante(ID);
+        } else {
+            getComposanteEmplacement((int)ID_Parent).supprimerComposante(ID);
+        }
     }
     
     public void modifierComposante(int ID, double newValue){
