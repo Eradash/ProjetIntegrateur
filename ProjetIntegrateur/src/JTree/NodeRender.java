@@ -11,8 +11,8 @@ public class NodeRender extends DefaultTreeCellRenderer {
     private final ImageIcon iconProject = new ImageIcon("image/BatteryIcon.png"); //Circuit
     private final ImageIcon iconSource = new ImageIcon("image/ParaIcon.png");
     private final ImageIcon iconPackage = null; //Branches
-    private final ImageIcon iconClass = new ImageIcon("image/resistanceIcon.jpg");
-    private final ImageIcon iconFolder = null;
+    private final ImageIcon iconClass = new ImageIcon("image/resistanceIcon.png");
+    private final ImageIcon iconFolder = new ImageIcon("image/resistanceBurned.png");
       
 
     public NodeRender(){
@@ -38,7 +38,7 @@ public class NodeRender extends DefaultTreeCellRenderer {
             case MaNode.NODE_RESISTANCE:
                 setIcon(iconClass);
                 break;
-            case MaNode.NODE_FOLDER:
+            case MaNode.NODE_BURNED:
                 setIcon(iconFolder);
                 break;
             case MaNode.NODE_ROOT:

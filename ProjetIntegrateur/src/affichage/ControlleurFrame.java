@@ -1,7 +1,6 @@
 package affichage;
 
 import JTree.Tree;
-import ListenersCircuit.*;
 import gestion.ControleurCircuit;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -12,23 +11,19 @@ import logiqueCircuit.Resistance;
 import logiqueCircuit.Serie;
 import logiqueCircuit.Type;
 
-public class ControlleurFrame implements ComposanteListener{
+public class ControlleurFrame{
 
     FrameProjet frame;
     Tree arbre;
     ControleurCircuit cc;
     PanelProp pp;
     
-    ArrayList<ComposanteListener> listenerAjoutSupp;
-
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
         cc.setCF(this);
         frame = new FrameProjet(this, cc);
         arbre = frame.getTree();
         pp = frame.getPanelProp();
-        
-        listenerAjoutSupp = new ArrayList<>();
     }
     
     public void update(){
@@ -143,27 +138,5 @@ public class ControlleurFrame implements ComposanteListener{
         cc.getInstanceBD().getComposante(ID, "resistance");
         
         return listeInfo;
-    }
-    
-    @Override
-    public void composanteAjout(ComposanteEvent event) {
-        if(event.getSource() instanceof PanelCircuit){
-            System.out.println("Message recu du PanelCircuit (CF)");
-            cc.composanteAjout(event);
-        }
-    }
-
-    @Override
-    public void composanteSupp(ComposanteEvent event) {
-        if(event.getSource() instanceof PanelCircuit){
-            cc.composanteSupp(event);
-        }
-    }
-
-    @Override
-    public void composanteModif(ComposanteEvent event) {
-        if(event.getSource() instanceof PanelCircuit){
-            cc.composanteModif(event);
-        }
     }
 }

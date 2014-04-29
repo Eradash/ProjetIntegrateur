@@ -1,7 +1,5 @@
 package gestion;
 
-import ListenersCircuit.ComposanteListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BD{
@@ -10,11 +8,9 @@ public class BD{
     private final static GestionnaireID gestionnaire = GestionnaireID.getInstance();
     
     MultiMap<Integer, String, Double> listeComposante;
-    ArrayList<ComposanteListener> listeListeners;
     
     private BD() {
         super();
-        listeListeners = new ArrayList<>();
         listeComposante = new MultiMap<>();
     }
     
