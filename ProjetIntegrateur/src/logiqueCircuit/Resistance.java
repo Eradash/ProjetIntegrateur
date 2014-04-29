@@ -51,4 +51,9 @@ public class Resistance implements Composante{
     public Composante getComposante(int ID) {
         return null;
     }
+
+    @Override
+    public void modifier(double newValue) {
+        ohm = newValue;
+    }
 }

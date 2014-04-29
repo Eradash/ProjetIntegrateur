@@ -37,8 +37,8 @@ public class GestionnaireID {
     
     public synchronized int ajouterComp() {
         int i = 1;
-        for(Integer in : ID){
-            if(i == in){
+        while(true){
+            if(ID.contains(i)){
                 i++;
             } else {
                 break;

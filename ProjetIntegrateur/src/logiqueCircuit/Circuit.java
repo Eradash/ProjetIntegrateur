@@ -1,6 +1,5 @@
 package logiqueCircuit;
 
-import gestion.BD;
 import java.util.ArrayList;
 
 public class Circuit extends Serie{
@@ -39,23 +38,24 @@ public class Circuit extends Serie{
         return voltage;
     }
     
-    public void setVoltage(double volt){
-        this.voltage = volt;
+    public void setVoltage(double voltage){
+        this.voltage = voltage;
+    }
+    
+    @Override
+    public void modifier(double newValue) {
+        voltage = newValue;
     }
     
     public ArrayList<Integer> recherche(int ID){
         ArrayList<Integer> liste = new ArrayList<>();
         liste.add(ID);
         int parent = ID;
-        boolean resistance = BD.getInstance().getComposante(ID, "Type") == 5;
+//        boolean resistance = BD.getInstance().getComposante(ID, "Type") == 5;
         
         while(parent != -1){
             parent = gestion.BD.getInstance().getComposante(parent, "Parent").intValue();
             liste.add(parent);
-        }
-        
-        if(resistance){
-            liste.remove(0);
         }
                
         //Inversion de l'arrayList
@@ -92,4 +92,13 @@ public class Circuit extends Serie{
     public void supprimerComposante(int ID_Parent){
         getComposanteEmplacement(ID_Parent).supprimerComposante(ID_Parent);
     }
+    
+    public void modifierComposante(int ID, double newValue){
+        if(ID == -1){
+            voltage = newValue;
+        } else {
+            getCompEmp(ID).modifier(newValue);
+        }
+    }
+
 }

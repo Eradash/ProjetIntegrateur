@@ -68,7 +68,12 @@ public class ControlleurFrame implements ComposanteListener{
             JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
             return;
         }
-        cc.ajouterComposante(new Parallele(), ID);
+        Type t = cc.getCircuit().getCompEmp(ID).getType();
+        if (t == Type.CIRCUIT || t == Type.SERIE) {
+            cc.ajouterComposante(new Parallele(), ID);
+        } else {
+            JOptionPane.showMessageDialog(null, "Sélection incorrecte");
+        }
     }
     
     public void BoutonBranche(){
@@ -78,12 +83,47 @@ public class ControlleurFrame implements ComposanteListener{
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
             return;
-        }Type t = cc.getCircuit().getCompEmp(ID).getType();
+        }
+        Type t = cc.getCircuit().getCompEmp(ID).getType();
         if (t == Type.PARALLELE) {
             cc.ajouterComposante(new Serie(), ID);
         } else {
             JOptionPane.showMessageDialog(null, "Sélection incorrecte");
         }
+    }
+    
+    public void BoutonModifier(){
+        int ID;
+        double d;
+        String input = null;
+        try {
+            ID = arbre.getIDSelected();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            return;
+        }
+        Type t = cc.getCircuit().getCompEmp(ID).getType();
+        if (t == Type.CIRCUIT || t == Type.RESISTANCE) {
+            if(t == Type.CIRCUIT){
+                input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la valeur du nouveau voltage", "Modification voltage", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+            } else if(t == Type.RESISTANCE){
+                input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la nouvelle valeur de la résistance", "Modification résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+            }
+            try {
+                d = Double.parseDouble(input);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Valeur incorrecte");
+                return;
+            }
+            cc.modifierComposante(ID, d);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Sélection incorrecte");
+        }
+    }
+    
+    public void BoutonSupprimer(){
+        
     }
     
     public void IDSelected(int ID){

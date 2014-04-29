@@ -60,6 +60,11 @@ public class ControleurCircuit implements ComposanteListener{
         run();
     }
     
+    public void modifierComposante(int ID, double newValue){
+        c.modifierComposante(ID, newValue);
+        run();
+    }
+    
     public void run(){
         analyseur.analyserCircuit(c);
         cf.update();
