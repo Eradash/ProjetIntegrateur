@@ -2,6 +2,7 @@ package gestion;
 
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
+import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
 public class AnalyseurCircuit {
@@ -54,6 +55,12 @@ public class AnalyseurCircuit {
         if(b.getType() == Type.RESISTANCE){
             double watt = ampere*voltage;
             bd.SetComposante(ID, "Watt", watt);
+            Resistance resis = (Resistance)b;
+            if(watt > 0.25){
+                resis.setBurned(true);
+            } else {
+                resis.setBurned(false);
+            }
         }
         
         switch (cas) {

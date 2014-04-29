@@ -3,6 +3,7 @@ package JTree;
 import java.util.ArrayList;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
+import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
 public class MonTreeBuilder {
@@ -24,7 +25,12 @@ public class MonTreeBuilder {
         Type t = c.getType();
         switch (t){
             case RESISTANCE:
-                return new MaNode("Résistance", MaNode.NODE_RESISTANCE, c.getNumero());
+                int image = MaNode.NODE_RESISTANCE;
+                Resistance resis = (Resistance)c;
+                if(resis.isBurned()){
+                    image = MaNode.NODE_BURNED;
+                }
+                return new MaNode("Résistance", image, c.getNumero());
             case PARALLELE:
                 MaNode m = new MaNode("Parallèle", MaNode.NODE_PARALLELE, c.getNumero());
                 for(Composante s : c.getComposantes()){

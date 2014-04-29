@@ -21,7 +21,7 @@ public class MaNode implements TreeNode {
     public static final int NODE_PARALLELE  = 2;
     public static final int NODE_BRANCHE    = 4;
     public static final int NODE_RESISTANCE = 5;
-    public static final int NODE_FOLDER     = 6;
+    public static final int NODE_BURNED     = 6;
     
     public MaNode(String title, int type, int ID) {
         this.title = title;
