@@ -11,6 +11,7 @@ public class Circuit extends Serie{
     
     public Circuit(){
         super(-1);
+        voltage = 6;
     }
 
     public String getNom() {
@@ -67,20 +68,24 @@ public class Circuit extends Serie{
     }
     
     public Branche getComposanteEmplacement(int emplacement){
-        ArrayList<Integer> liste = recherche(emplacement);
-        Composante c = null;
-        while (!liste.isEmpty()){
-            c = super.getComposante(liste.remove(0));
+        return (Branche)getCompEmp(emplacement);
+    }
+    
+    public Composante getCompEmp(int emplacement){
+        if(emplacement == -1){
+            return this;
         }
-        return (Branche)c;
+        ArrayList<Integer> liste = recherche(emplacement);
+        Composante c = this;
+        liste.remove(0);
+        while (!liste.isEmpty()){
+            c = c.getComposante(liste.remove(0));
+        }
+        return c;
     }
     
     public void ajouterComposante(Composante c, int ID_Parent){
-        if(ID_Parent != -1){
-            getComposanteEmplacement(ID_Parent).ajouterComposante(c);
-        } else {
-            this.ajouterComposante(c);
-        }
+        getComposanteEmplacement(ID_Parent).ajouterComposante(c);
     }
     
     @Override

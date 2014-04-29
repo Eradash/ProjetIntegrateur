@@ -45,7 +45,7 @@ public class Tree extends JPanel implements TreeSelectionListener {
             tree.expandRow(i);
         }
     }
-    
+        
     public int getIDSelected() throws Exception{
         TreePath tp = tree.getSelectionPath();
         MaNode m = (MaNode)tp.getLastPathComponent();
@@ -54,8 +54,10 @@ public class Tree extends JPanel implements TreeSelectionListener {
     
     @Override
     public void valueChanged(TreeSelectionEvent e) {
-       TreePath tp = tree.getSelectionPath();
-       MaNode m = (MaNode)tp.getLastPathComponent();
-       cf.IDSelected(m.getID());
+        TreePath tp = tree.getSelectionPath();
+        if(tp != null){
+            MaNode m = (MaNode)tp.getLastPathComponent();
+            cf.IDSelected(m.getID());
+        }
     }
 }

@@ -27,6 +27,7 @@ public class ControleurCircuit implements ComposanteListener{
     public void nouveauCircuit(){
         donnee.resetCircuit();
         c = new Circuit();
+        run();
     }
     
     public void fermeCircuit() {
@@ -52,7 +53,6 @@ public class ControleurCircuit implements ComposanteListener{
         this.c.ajouterComposante(c, emplacement);
         System.out.println("Composante ajoutée");
         run();
-        System.out.println("Circuit analisé");
     }
     
     public void supprimerComposante(int ID){
@@ -63,6 +63,7 @@ public class ControleurCircuit implements ComposanteListener{
     public void run(){
         analyseur.analyserCircuit(c);
         cf.update();
+        
     }
     
     public BD getInstanceBD() {

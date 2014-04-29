@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import logiqueCircuit.Parallele;
 import logiqueCircuit.Resistance;
+import logiqueCircuit.Serie;
+import logiqueCircuit.Type;
 
 public class ControlleurFrame implements ComposanteListener{
 
@@ -34,29 +37,53 @@ public class ControlleurFrame implements ComposanteListener{
     
     public void BoutonResistance(){
         int ID;
-        int d;
+        double d;
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
             return;
         }
-        String input = (String) JOptionPane.showInputDialog(new JFrame(),"Entrez la valeur de la nouvelle résistance:","Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE,new ImageIcon("java2sLogo.GIF"), null, "");
+        Type t = cc.getCircuit().getCompEmp(ID).getType();
+        if (t == Type.CIRCUIT || Type.SERIE == t) {
+            String input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+            try {
+                d = Double.parseDouble(input);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Valeur incorrecte");
+                return;
+            }
+
+            cc.ajouterComposante(new Resistance(d), ID);
+        } else {
+            JOptionPane.showMessageDialog(null, "Sélection incorrecte");
+        }
+    }
+
+    public void BoutonParallele(){
+        int ID;
         try {
-            d = Integer.parseInt(input);
-        } catch(NumberFormatException e) {
-            JOptionPane.showMessageDialog(null,"Valeur incorrecte");
+            ID = arbre.getIDSelected();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
             return;
         }
-        cc.ajouterComposante(new Resistance(d), ID);
-    }
-    
-    public void BoutonParallele(){
-
+        cc.ajouterComposante(new Parallele(), ID);
     }
     
     public void BoutonBranche(){
-
+        int ID;
+        try {
+            ID = arbre.getIDSelected();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            return;
+        }Type t = cc.getCircuit().getCompEmp(ID).getType();
+        if (t == Type.PARALLELE) {
+            cc.ajouterComposante(new Serie(), ID);
+        } else {
+            JOptionPane.showMessageDialog(null, "Sélection incorrecte");
+        }
     }
     
     public void IDSelected(int ID){
@@ -92,6 +119,4 @@ public class ControlleurFrame implements ComposanteListener{
             cc.composanteModif(event);
         }
     }
-    
-    
 }
