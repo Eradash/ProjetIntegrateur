@@ -37,9 +37,11 @@ public class PanelProp extends JPanel{
             int y = 30;
             for(String s : map.keySet()){
                 if(!"Type".equals(s) && !"Parent".equals(s)){
-                    g.drawString(s, x, y);
-                    g.drawString(map.get(s).toString(), x+80, y);
-                    y += 30;
+                    if(map.get(s) != null){
+                        g.drawString(s, x, y);
+                        g.drawString(map.get(s).toString(), x+80, y);
+                        y += 30;
+                    }
                 }
             }
         }

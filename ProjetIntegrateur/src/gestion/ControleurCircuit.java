@@ -1,13 +1,10 @@
 package gestion;
 
-import ListenersCircuit.ComposanteEvent;
-import ListenersCircuit.ComposanteListener;
 import affichage.ControlleurFrame;
-import affichage.PanelCircuit;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 
-public class ControleurCircuit implements ComposanteListener{
+public class ControleurCircuit{
     
     BD donnee = BD.getInstance();
     AnalyseurCircuit analyseur = new AnalyseurCircuit();
@@ -73,27 +70,5 @@ public class ControleurCircuit implements ComposanteListener{
     
     public BD getInstanceBD() {
         return BD.getInstance();
-    }
-
-    @Override
-    public void composanteAjout(ComposanteEvent event) {
-        if(event.getSource() instanceof PanelCircuit){
-            System.out.println("Message reçu du Frame (CC)");
-            //Créer une composante et l'ajouter au circuit
-        }
-    }
-
-    @Override
-    public void composanteSupp(ComposanteEvent event) {
-        if(event.getSource() instanceof PanelCircuit){
-            //Supprimer la composante
-        }
-    }
-
-    @Override
-    public void composanteModif(ComposanteEvent event) {
-        if(event.getSource() instanceof PanelCircuit){
-            //Modifier la composante
-        }
     }
 }

@@ -51,6 +51,11 @@ public class AnalyseurCircuit {
             bd.SetComposante(ID, "Type", 4);
         }
         
+        if(b.getType() == Type.RESISTANCE){
+            double watt = ampere*voltage;
+            bd.SetComposante(ID, "Watt", watt);
+        }
+        
         switch (cas) {
             case 1:
                 for (Composante c : b.getComposantes()) {
