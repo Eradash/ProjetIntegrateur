@@ -38,6 +38,7 @@ public class BD {
     public void resetCircuit() {
         gestionnaire.resetCircuit();
         listeComposante.clear();
+        gestionnaire.resetCircuit();
     }
 
     public final static BD getInstance() {

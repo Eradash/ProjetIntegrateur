@@ -1,21 +1,17 @@
 package affichage;
 
 import JTree.Tree;
-import gestion.ControleurCircuit;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class FrameProjet extends javax.swing.JFrame {
 
     ControlleurFrame cf;
-    ControleurCircuit cc;
     Tree t = new Tree(cf);
     PanelProp pp;
 
-    public FrameProjet(ControlleurFrame cf, ControleurCircuit cc) {
+    public FrameProjet(ControlleurFrame cf) {
         this.cf = cf;
-        this.cc = cc;
-        this.pp = new PanelProp(cf, cc.getCircuit());
+        this.pp = new PanelProp();
         t = new Tree(cf);
         initComponents();
         setVisible(true);
@@ -235,25 +231,11 @@ public class FrameProjet extends javax.swing.JFrame {
     }//GEN-LAST:event_menuModifierActionPerformed
 
     private void menuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOuvrirActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new FiltreCircuit());
-        int valeur = chooser.showOpenDialog(this);
-        if (valeur == JFileChooser.APPROVE_OPTION) {
-            cc.ouvrirCircuit(chooser.getSelectedFile().getPath());
-        } else {
-            JOptionPane.showMessageDialog(null, "Fichier invalide");
-        }
+        cf.menuOuvrir();
     }//GEN-LAST:event_menuOuvrirActionPerformed
 
     private void menuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSauvegarderActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new FiltreCircuit());
-        int valeur = chooser.showSaveDialog(this);
-        if (valeur == JFileChooser.APPROVE_OPTION) {
-            cc.enregistrerCircuit(chooser.getSelectedFile().getPath());
-        } else {
-            JOptionPane.showMessageDialog(null, "Fichier invalide");
-        }
+        cf.menuSauvegarder();
     }//GEN-LAST:event_menuSauvegarderActionPerformed
 
     private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed
@@ -280,8 +262,7 @@ public class FrameProjet extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuQuitterActionPerformed
 
     private void menuNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouveauActionPerformed
-        cc.nouveauCircuit();
-        t.update(cc.getCircuit());
+        cf.menuNouveau();
     }//GEN-LAST:event_menuNouveauActionPerformed
 
     private void menuSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSupprimerActionPerformed

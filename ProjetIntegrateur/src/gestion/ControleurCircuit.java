@@ -9,7 +9,6 @@ public class ControleurCircuit {
     BD donnee = BD.getInstance();
     AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
-    GestionnaireID gestID = GestionnaireID.getInstance();
     ControlleurFrame cf;
 
     Circuit c;
@@ -29,7 +28,6 @@ public class ControleurCircuit {
 
     public void fermeCircuit() {
         donnee.resetCircuit();
-        gestID.resetCircuit();
         c = null;
     }
 

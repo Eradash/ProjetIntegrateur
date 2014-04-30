@@ -5,19 +5,14 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-import logiqueCircuit.Circuit;
 
 public class PanelProp extends JPanel {
 
-    ControlleurFrame cf;
-    Circuit c;
     int IDSelected = -1;
     HashMap<String, Double> map;
     boolean instance = false;
 
-    public PanelProp(ControlleurFrame cf, Circuit c) {
-        this.cf = cf;
-        this.c = c;
+    public PanelProp() {
         this.setSize(241, 346);
         this.setBorder(new TitledBorder("Propriétés:"));
         repaint();

@@ -4,6 +4,7 @@ import JTree.Tree;
 import gestion.ControleurCircuit;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import logiqueCircuit.Parallele;
@@ -16,14 +17,12 @@ public class ControlleurFrame {
     FrameProjet frame;
     Tree arbre;
     ControleurCircuit cc;
-    PanelProp pp;
 
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
         cc.setCF(this);
-        frame = new FrameProjet(this, cc);
+        frame = new FrameProjet(this);
         arbre = frame.getTree();
-        pp = frame.getPanelProp();
     }
 
     public void update() {
@@ -126,9 +125,36 @@ public class ControlleurFrame {
         }
         cc.supprimerComposante(ID);
     }
+    
+    public void menuOuvrir(){
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(new FiltreCircuit());
+        int valeur = chooser.showOpenDialog(frame);
+        if (valeur == JFileChooser.APPROVE_OPTION) {
+            cc.ouvrirCircuit(chooser.getSelectedFile().getPath());
+        } else {
+            JOptionPane.showMessageDialog(null, "Fichier invalide");
+        }
+    }
+    
+    public void menuSauvegarder(){
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(new FiltreCircuit());
+        int valeur = chooser.showSaveDialog(frame);
+        if (valeur == JFileChooser.APPROVE_OPTION) {
+            cc.enregistrerCircuit(chooser.getSelectedFile().getPath());
+        } else {
+            JOptionPane.showMessageDialog(null, "Fichier invalide");
+        }
+    }
+    
+    public void menuNouveau(){
+        cc.nouveauCircuit();
+        arbre.update(cc.getCircuit());
+    }
 
     public void IDSelected(int ID) {
-        pp.setIDSelection(ID);
+        frame.getPanelProp().setIDSelection(ID);
     }
 
     public ArrayList<Double> getComposanteInfo(int ID) {
