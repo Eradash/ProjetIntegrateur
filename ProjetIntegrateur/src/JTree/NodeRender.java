@@ -7,18 +7,17 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 public class NodeRender extends DefaultTreeCellRenderer {
-    
+
     private final ImageIcon iconProject = new ImageIcon("image/BatteryIcon.png"); //Circuit
     private final ImageIcon iconSource = new ImageIcon("image/ParaIcon.png");
     private final ImageIcon iconPackage = null; //Branches
     private final ImageIcon iconClass = new ImageIcon("image/resistanceIcon.png");
     private final ImageIcon iconFolder = new ImageIcon("image/resistanceBurned.png");
-      
 
-    public NodeRender(){
-        
+    public NodeRender() {
+
     }
-    
+
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);

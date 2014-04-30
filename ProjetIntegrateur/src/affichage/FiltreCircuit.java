@@ -7,8 +7,8 @@ public class FiltreCircuit extends FileFilter {
 
     String extention;
     String description;
-    
-    public FiltreCircuit(){
+
+    public FiltreCircuit() {
         this.extention = "circuit";
         this.description = "Circuit électrique";
     }

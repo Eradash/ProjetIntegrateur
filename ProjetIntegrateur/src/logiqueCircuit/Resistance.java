@@ -3,12 +3,12 @@ package logiqueCircuit;
 import gestion.GestionnaireID;
 import java.util.ArrayList;
 
-public class Resistance implements Composante{
+public class Resistance implements Composante {
 
     final int ID;
     double ohm;
     boolean isBurned = false;
-    
+
     public Resistance(double ohm, int id) {
         ID = GestionnaireID.getInstance().ajouterComp(id);
         this.ohm = ohm;
@@ -23,15 +23,15 @@ public class Resistance implements Composante{
         ID = GestionnaireID.getInstance().ajouterComp();
         ohm = -1;
     }
-    
-    public boolean isBurned(){
+
+    public boolean isBurned() {
         return isBurned;
     }
-    
-    public void setBurned(boolean burn){
+
+    public void setBurned(boolean burn) {
         isBurned = burn;
     }
-    
+
     @Override
     public int getNumero() {
         return ID;

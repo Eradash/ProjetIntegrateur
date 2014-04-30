@@ -11,13 +11,13 @@ import logiqueCircuit.Resistance;
 import logiqueCircuit.Serie;
 import logiqueCircuit.Type;
 
-public class ControlleurFrame{
+public class ControlleurFrame {
 
     FrameProjet frame;
     Tree arbre;
     ControleurCircuit cc;
     PanelProp pp;
-    
+
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
         cc.setCF(this);
@@ -25,18 +25,18 @@ public class ControlleurFrame{
         arbre = frame.getTree();
         pp = frame.getPanelProp();
     }
-    
-    public void update(){
+
+    public void update() {
         arbre.update(cc.getCircuit());
     }
-    
-    public void BoutonResistance(){
+
+    public void BoutonResistance() {
         int ID;
         double d;
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
             return;
         }
         Type t = cc.getCircuit().getCompEmp(ID).getType();
@@ -55,12 +55,12 @@ public class ControlleurFrame{
         }
     }
 
-    public void BoutonParallele(){
+    public void BoutonParallele() {
         int ID;
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
             return;
         }
         Type t = cc.getCircuit().getCompEmp(ID).getType();
@@ -70,13 +70,13 @@ public class ControlleurFrame{
             JOptionPane.showMessageDialog(null, "Sélection incorrecte");
         }
     }
-    
-    public void BoutonBranche(){
+
+    public void BoutonBranche() {
         int ID;
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
             return;
         }
         Type t = cc.getCircuit().getCompEmp(ID).getType();
@@ -86,22 +86,22 @@ public class ControlleurFrame{
             JOptionPane.showMessageDialog(null, "Sélection incorrecte");
         }
     }
-    
-    public void BoutonModifier(){
+
+    public void BoutonModifier() {
         int ID;
         double d;
         String input = null;
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
             return;
         }
         Type t = cc.getCircuit().getCompEmp(ID).getType();
         if (t == Type.CIRCUIT || t == Type.RESISTANCE) {
-            if(t == Type.CIRCUIT){
+            if (t == Type.CIRCUIT) {
                 input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la valeur du nouveau voltage", "Modification voltage", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
-            } else if(t == Type.RESISTANCE){
+            } else if (t == Type.RESISTANCE) {
                 input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la nouvelle valeur de la résistance", "Modification résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
             }
             try {
@@ -111,32 +111,31 @@ public class ControlleurFrame{
                 return;
             }
             cc.modifierComposante(ID, d);
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Sélection incorrecte");
         }
     }
-    
-    public void BoutonSupprimer(){
+
+    public void BoutonSupprimer() {
         int ID;
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
             return;
         }
         cc.supprimerComposante(ID);
     }
-    
-    public void IDSelected(int ID){
+
+    public void IDSelected(int ID) {
         pp.setIDSelection(ID);
     }
-    
+
     public ArrayList<Double> getComposanteInfo(int ID) {
         ArrayList<Double> listeInfo = new ArrayList<>();
-        
+
         cc.getInstanceBD().getComposante(ID, "resistance");
-        
+
         return listeInfo;
     }
 }

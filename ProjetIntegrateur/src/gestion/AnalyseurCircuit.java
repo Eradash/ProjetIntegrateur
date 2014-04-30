@@ -6,25 +6,23 @@ import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
 public class AnalyseurCircuit {
-    
+
     public void analyserCircuit(Circuit c) {
         double voltage = c.getVoltage();
-        
         calcul(-1, voltage, c, -1);
-
     }
-    
+
     private void calcul(double amp, double volt, Composante b, int ID_Parent) {
         int ID = b.getNumero();
         double resistance = b.getResistanceEquivalente();
         double ampere = amp;
         double voltage = volt;
-        
+
         BD bd = BD.getInstance();
-        
+
         bd.SetComposante(ID, "Parent", ID_Parent);
         bd.SetComposante(ID, "Resistance", resistance);
-        
+
         int cas = 0;
 
         if (ampere != -1 || voltage != -1) {
@@ -38,10 +36,10 @@ public class AnalyseurCircuit {
         bd.SetComposante(ID, "Ampere", ampere);
         bd.SetComposante(ID, "Voltage", voltage);
 
-        if (b.getType() == Type.SERIE){
-            cas +=1;
+        if (b.getType() == Type.SERIE) {
+            cas += 1;
             bd.SetComposante(ID, "Type", 1);
-        } else if(b.getType() == Type.CIRCUIT){
+        } else if (b.getType() == Type.CIRCUIT) {
             cas += 1;
             bd.SetComposante(ID, "Type", 3);
         } else if (b.getType() == Type.PARALLELE) {
@@ -51,18 +49,18 @@ public class AnalyseurCircuit {
             cas = 0;
             bd.SetComposante(ID, "Type", 4);
         }
-        
-        if(b.getType() == Type.RESISTANCE){
-            double watt = ampere*voltage;
+
+        if (b.getType() == Type.RESISTANCE) {
+            double watt = ampere * voltage;
             bd.SetComposante(ID, "Watt", watt);
-            Resistance resis = (Resistance)b;
-            if(watt > 0.25){
+            Resistance resis = (Resistance) b;
+            if (watt > 0.25) {
                 resis.setBurned(true);
             } else {
                 resis.setBurned(false);
             }
         }
-        
+
         switch (cas) {
             case 1:
                 for (Composante c : b.getComposantes()) {
@@ -80,7 +78,7 @@ public class AnalyseurCircuit {
                 break;
         }
     }
-    
+
     public Double getValeurComposante(int noComp, String info) {
         return BD.getInstance().getComposante(noComp, info);
     }

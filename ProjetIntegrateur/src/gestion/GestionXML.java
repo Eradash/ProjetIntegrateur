@@ -19,7 +19,6 @@ import org.xml.sax.SAXException;
 public class GestionXML {
     
     private Element root;
-    private Circuit c;
     
     private static volatile GestionXML instance = null;
     
@@ -117,7 +116,7 @@ public class GestionXML {
     
     public Circuit decoder(String endroit){
         try {
-            c = new Circuit();
+            Circuit c = new Circuit();
             
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
