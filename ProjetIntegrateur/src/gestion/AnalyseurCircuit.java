@@ -33,26 +33,32 @@ public class AnalyseurCircuit {
                 voltage = resistance * ampere;
             }
         }
-        bd.SetComposante(ID, "Ampere", ampere);
-        bd.SetComposante(ID, "Voltage", voltage);
 
-        if (b.getType() == Type.SERIE) {
-            cas += 1;
-            bd.SetComposante(ID, "Type", 1);
-        } else if (b.getType() == Type.CIRCUIT) {
-            cas += 1;
-            bd.SetComposante(ID, "Type", 3);
-        } else if (b.getType() == Type.PARALLELE) {
-            cas += 2;
-            bd.SetComposante(ID, "Type", 2);
-        } else {
-            cas = 0;
-            bd.SetComposante(ID, "Type", 4);
+        bd.SetComposante(ID, "Ampere", arrondir(ampere));
+        bd.SetComposante(ID, "Voltage", arrondir(voltage));
+
+        switch (b.getType()) {
+            case SERIE:
+                cas += 1;
+                bd.SetComposante(ID, "Type", 1);
+                break;
+            case CIRCUIT:
+                cas += 1;
+                bd.SetComposante(ID, "Type", 3);
+                break;
+            case PARALLELE:
+                cas += 2;
+                bd.SetComposante(ID, "Type", 2);
+                break;
+            case RESISTANCE:
+                cas = 0;
+                bd.SetComposante(ID, "Type", 4);
+                break;
         }
 
         if (b.getType() == Type.RESISTANCE) {
             double watt = ampere * voltage;
-            bd.SetComposante(ID, "Watt", watt);
+            bd.SetComposante(ID, "Watt", arrondir(watt));
             Resistance resis = (Resistance) b;
             if (watt > 0.25) {
                 resis.setBurned(true);
@@ -77,6 +83,12 @@ public class AnalyseurCircuit {
                 }
                 break;
         }
+    }
+    
+    private double arrondir(double nombre){
+        double n = nombre * 1000000;
+        n = Math.round(n);
+        return n/1000000;
     }
 
     public Double getValeurComposante(int noComp, String info) {

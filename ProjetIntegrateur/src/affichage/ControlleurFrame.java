@@ -43,6 +43,9 @@ public class ControlleurFrame {
             String input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
             try {
                 d = Double.parseDouble(input);
+                if(d <= 0){
+                    throw new NumberFormatException();
+                }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Valeur incorrecte");
                 return;
@@ -105,6 +108,9 @@ public class ControlleurFrame {
             }
             try {
                 d = Double.parseDouble(input);
+                if(d <= 0){
+                    throw new NumberFormatException();
+                }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Valeur incorrecte");
                 return;
