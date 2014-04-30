@@ -1,9 +1,13 @@
 package affichage;
 
 import JTree.Tree;
+import gestion.AnalyseurCircuit;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import logiqueCircuit.Resistance;
 
-public class FrameProjet extends javax.swing.JFrame {
+public class FrameProjet extends JFrame {
 
     private ControlleurFrame cf;
     private Tree t = new Tree(cf);
@@ -29,6 +33,10 @@ public class FrameProjet extends javax.swing.JFrame {
         repaint();
     }
 
+    public JFrame getFrame() {
+        return this;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,6 +57,8 @@ public class FrameProjet extends javax.swing.JFrame {
         MenuEdition = new javax.swing.JMenu();
         menuModifier = new javax.swing.JMenuItem();
         menuSupprimer = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        menuModifArron = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analyseur de circuit");
@@ -190,6 +200,15 @@ public class FrameProjet extends javax.swing.JFrame {
             }
         });
         MenuEdition.add(menuSupprimer);
+        MenuEdition.add(jSeparator2);
+
+        menuModifArron.setText("Modifier arrondissement");
+        menuModifArron.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuModifArronActionPerformed(evt);
+            }
+        });
+        MenuEdition.add(menuModifArron);
 
         MenuBar.add(MenuEdition);
 
@@ -269,6 +288,21 @@ public class FrameProjet extends javax.swing.JFrame {
         cf.BoutonSupprimer();
     }//GEN-LAST:event_menuSupprimerActionPerformed
 
+    private void menuModifArronActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModifArronActionPerformed
+        int d;
+        String input = (String) JOptionPane.showInputDialog(this, "Entrez la valeur du nouvel arrondissement:", "Changement arrondissement", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+        try {
+            d = Integer.parseInt(input);
+            if (d <= 0) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Valeur incorrecte");
+            return;
+        }
+        AnalyseurCircuit.arrondissement = d;
+    }//GEN-LAST:event_menuModifArronActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBar;
@@ -279,6 +313,8 @@ public class FrameProjet extends javax.swing.JFrame {
     private javax.swing.JButton boutonParallele;
     private javax.swing.JButton boutonResistance;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuItem menuModifArron;
     private javax.swing.JMenuItem menuModifier;
     private javax.swing.JMenuItem menuNouveau;
     private javax.swing.JMenuItem menuOuvrir;

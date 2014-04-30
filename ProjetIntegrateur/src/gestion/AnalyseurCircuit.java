@@ -6,6 +6,8 @@ import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
 public class AnalyseurCircuit {
+    
+    public static int arrondissement = 8;
 
     public void analyserCircuit(Circuit c) {
         double voltage = c.getVoltage();
@@ -21,7 +23,7 @@ public class AnalyseurCircuit {
         BD bd = BD.getInstance();
 
         bd.SetComposante(ID, "Parent", ID_Parent);
-        bd.SetComposante(ID, "Resistance", resistance);
+        bd.SetComposante(ID, "Resistance", arrondir(resistance));
 
         int cas = 0;
 
@@ -86,9 +88,9 @@ public class AnalyseurCircuit {
     }
     
     private double arrondir(double nombre){
-        double n = nombre * 1000000;
+        double n = nombre * Math.pow(10, arrondissement);
         n = Math.round(n);
-        return n/1000000;
+        return n/Math.pow(10, arrondissement);
     }
 
     public Double getValeurComposante(int noComp, String info) {

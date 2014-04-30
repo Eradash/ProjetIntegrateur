@@ -5,7 +5,6 @@ import gestion.ControleurCircuit;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import logiqueCircuit.Parallele;
 import logiqueCircuit.Resistance;
@@ -35,25 +34,25 @@ public class ControlleurFrame {
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
             return;
         }
         Type t = cc.getCircuit().getCompEmp(ID).getType();
         if (t == Type.CIRCUIT || Type.SERIE == t) {
-            String input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+            String input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
             try {
                 d = Double.parseDouble(input);
                 if(d <= 0){
                     throw new NumberFormatException();
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Valeur incorrecte");
+                JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
                 return;
             }
 
             cc.ajouterComposante(new Resistance(d), ID);
         } else {
-            JOptionPane.showMessageDialog(null, "Sélection incorrecte");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
         }
     }
 
@@ -62,14 +61,14 @@ public class ControlleurFrame {
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
             return;
         }
         Type t = cc.getCircuit().getCompEmp(ID).getType();
         if (t == Type.CIRCUIT || t == Type.SERIE) {
             cc.ajouterComposante(new Parallele(), ID);
         } else {
-            JOptionPane.showMessageDialog(null, "Sélection incorrecte");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
         }
     }
 
@@ -78,14 +77,14 @@ public class ControlleurFrame {
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
             return;
         }
         Type t = cc.getCircuit().getCompEmp(ID).getType();
         if (t == Type.PARALLELE) {
             cc.ajouterComposante(new Serie(), ID);
         } else {
-            JOptionPane.showMessageDialog(null, "Sélection incorrecte");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
         }
     }
 
@@ -96,15 +95,15 @@ public class ControlleurFrame {
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
             return;
         }
         Type t = cc.getCircuit().getCompEmp(ID).getType();
         if (t == Type.CIRCUIT || t == Type.RESISTANCE) {
             if (t == Type.CIRCUIT) {
-                input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la valeur du nouveau voltage", "Modification voltage", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+                input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la valeur du nouveau voltage", "Modification voltage", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
             } else if (t == Type.RESISTANCE) {
-                input = (String) JOptionPane.showInputDialog(new JFrame(), "Entrez la nouvelle valeur de la résistance", "Modification résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+                input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la nouvelle valeur de la résistance", "Modification résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
             }
             try {
                 d = Double.parseDouble(input);
@@ -112,12 +111,12 @@ public class ControlleurFrame {
                     throw new NumberFormatException();
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Valeur incorrecte");
+                JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
                 return;
             }
             cc.modifierComposante(ID, d);
         } else {
-            JOptionPane.showMessageDialog(null, "Sélection incorrecte");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
         }
     }
 
@@ -126,7 +125,7 @@ public class ControlleurFrame {
         try {
             ID = arbre.getIDSelected();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Aucune composante sélectionnée...");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
             return;
         }
         cc.supprimerComposante(ID);
@@ -139,7 +138,7 @@ public class ControlleurFrame {
         if (valeur == JFileChooser.APPROVE_OPTION) {
             cc.ouvrirCircuit(chooser.getSelectedFile().getPath());
         } else {
-            JOptionPane.showMessageDialog(null, "Fichier invalide");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Fichier invalide");
         }
     }
     
@@ -150,7 +149,7 @@ public class ControlleurFrame {
         if (valeur == JFileChooser.APPROVE_OPTION) {
             cc.enregistrerCircuit(chooser.getSelectedFile().getPath());
         } else {
-            JOptionPane.showMessageDialog(null, "Fichier invalide");
+            JOptionPane.showMessageDialog(frame.getFrame(), "Fichier invalide");
         }
     }
     
