@@ -36,14 +36,13 @@ public class GestionnaireID {
     }
     
     public synchronized int ajouterComp() {
-        int i = 1;
-        while(true){
-            if(ID.contains(i)){
-                i++;
-            } else {
-                break;
-            }
+        int i = 0;
+        
+        while (!ID.contains(i)){
+            ID.add(i);
+            i++;
         }
+        
         return i;
     }
     

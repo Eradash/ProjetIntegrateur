@@ -58,8 +58,4 @@ public class Serie extends Branche{
     public Composante getComposante(int ID) {
         return listeComposante.get(ID);
     }
-
-    @Override
-    public void modifier(double newValue) {
-    }
 }

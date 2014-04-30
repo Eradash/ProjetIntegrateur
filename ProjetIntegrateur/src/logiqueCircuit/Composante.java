@@ -8,5 +8,4 @@ public interface Composante {
     public double getResistanceEquivalente();
     public ArrayList<Composante> getComposantes();
     public Composante getComposante(int ID);
-    public void modifier(double newValue);
 }

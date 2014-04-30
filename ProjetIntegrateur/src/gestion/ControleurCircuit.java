@@ -1,30 +1,25 @@
 package gestion;
 
-import affichage.ControlleurFrame;
+import ListenersCircuit.ComposanteEvent;
+import ListenersCircuit.ComposanteListener;
+import affichage.PanelCircuit;
 import logiqueCircuit.Circuit;
 import logiqueCircuit.Composante;
 
-public class ControleurCircuit{
+public class ControleurCircuit implements ComposanteListener{
     
     BD donnee = BD.getInstance();
     AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
     GestionnaireID gestID = GestionnaireID.getInstance();
-    ControlleurFrame cf;
     
     Circuit c;
     
     public ControleurCircuit(){
     }
     
-    public void setCF(ControlleurFrame cf){
-        this.cf = cf;
-    }
-    
     public void nouveauCircuit(){
         donnee.resetCircuit();
-        c = new Circuit();
-        run();
     }
     
     public void fermeCircuit() {
@@ -35,7 +30,6 @@ public class ControleurCircuit{
     
     public void ouvrirCircuit(String nom){
         c = xml.decoder(nom);
-        run();
     }
     
     public void enregistrerCircuit(String endroit){
@@ -48,27 +42,31 @@ public class ControleurCircuit{
     
     public void ajouterComposante(Composante c, int emplacement){
         this.c.ajouterComposante(c, emplacement);
-        System.out.println("Composante ajoutée");
-        run();
-    }
-    
-    public void supprimerComposante(int ID){
-        this.c.supprimerComposante(ID);
-        run();
-    }
-    
-    public void modifierComposante(int ID, double newValue){
-        c.modifierComposante(ID, newValue);
-        run();
     }
     
     public void run(){
         analyseur.analyserCircuit(c);
-        cf.update();
-        
     }
-    
-    public BD getInstanceBD() {
-        return BD.getInstance();
+
+    @Override
+    public void composanteAjout(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            System.out.println("Message reçu du PanelCircuit (CC)");
+            //Créer une composante et l'ajouter au circuit
+        }
+    }
+
+    @Override
+    public void composanteSupp(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            //Supprimer la composante
+        }
+    }
+
+    @Override
+    public void composanteModif(ComposanteEvent event) {
+        if(event.getSource() instanceof PanelCircuit){
+            //Modifier la composante
+        }
     }
 }

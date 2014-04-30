@@ -1,7 +1,8 @@
 package affichage;
 
-import JTree.Tree;
 import gestion.ControleurCircuit;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -9,55 +10,64 @@ public class FrameProjet extends javax.swing.JFrame{
     
     ControlleurFrame cf;
     ControleurCircuit cc;
-    Tree t = new Tree(cf);
-    PanelProp pp;
     
     public FrameProjet(ControlleurFrame cf, ControleurCircuit cc) {
         this.cf = cf;
         this.cc = cc;
-        this.pp = new PanelProp(cf, cc.getCircuit());
-        t = new Tree(cf);
         initComponents();
         setVisible(true);
     }
     
-    public Tree getTree(){
-        return t;
+    public PanelCircuit getPanelCircuit(){
+        return (PanelCircuit)panelCircuit;
     }
     
-    public PanelProp getPanelProp(){
-        return pp;
-    }
-    
-    public void update(){
-        repaint();
+    private Dimension getDimension(){
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        return tk.getScreenSize();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelCircuit = new javax.swing.JPanel();
         panelBoutons = new javax.swing.JPanel();
         boutonResistance = new javax.swing.JButton();
         boutonParallele = new javax.swing.JButton();
-        boutonBranche = new javax.swing.JButton();
-        panelTree = new javax.swing.JPanel();
+        boutonFil = new javax.swing.JButton();
         panelProp = new javax.swing.JPanel();
         MenuBar = new javax.swing.JMenuBar();
         MenuFichier = new javax.swing.JMenu();
-        menuOuvrir = new javax.swing.JMenuItem();
-        menuSauvegarder = new javax.swing.JMenuItem();
-        menuNouveau = new javax.swing.JMenuItem();
+        MenuOuvrir = new javax.swing.JMenuItem();
+        MenuSauvegarder = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         MenuQuitter = new javax.swing.JMenuItem();
         MenuEdition = new javax.swing.JMenu();
-        menuModifier = new javax.swing.JMenuItem();
-        menuSupprimer = new javax.swing.JMenuItem();
+        MenuCopier = new javax.swing.JMenuItem();
+        MenuCouper = new javax.swing.JMenuItem();
+        MenuColler = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analyseur de circuit");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
+
+        panelCircuit = new PanelCircuit(cf);
+        panelCircuit.setBackground(new java.awt.Color(255, 255, 255));
+        panelCircuit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelCircuit.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+
+        javax.swing.GroupLayout panelCircuitLayout = new javax.swing.GroupLayout(panelCircuit);
+        panelCircuit.setLayout(panelCircuitLayout);
+        panelCircuitLayout.setHorizontalGroup(
+            panelCircuitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1094, Short.MAX_VALUE)
+        );
+        panelCircuitLayout.setVerticalGroup(
+            panelCircuitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         panelBoutons.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -77,11 +87,11 @@ public class FrameProjet extends javax.swing.JFrame{
             }
         });
 
-        boutonBranche.setText("Ajouter branche");
-        boutonBranche.setFocusPainted(false);
-        boutonBranche.addActionListener(new java.awt.event.ActionListener() {
+        boutonFil.setText("Ajouter fil");
+        boutonFil.setFocusPainted(false);
+        boutonFil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonBrancheActionPerformed(evt);
+                boutonFilActionPerformed(evt);
             }
         });
 
@@ -92,8 +102,8 @@ public class FrameProjet extends javax.swing.JFrame{
             .addGroup(panelBoutonsLayout.createSequentialGroup()
                 .addGroup(panelBoutonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boutonParallele, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(boutonResistance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                    .addComponent(boutonBranche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(boutonResistance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                    .addComponent(boutonFil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelBoutonsLayout.setVerticalGroup(
@@ -104,24 +114,11 @@ public class FrameProjet extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boutonParallele, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boutonBranche, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boutonFil, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelTree.add(t);
-
-        javax.swing.GroupLayout panelTreeLayout = new javax.swing.GroupLayout(panelTree);
-        panelTree.setLayout(panelTreeLayout);
-        panelTreeLayout.setHorizontalGroup(
-            panelTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 321, Short.MAX_VALUE)
-        );
-        panelTreeLayout.setVerticalGroup(
-            panelTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        panelProp.add(pp);
+        panelProp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Propriétés", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12))); // NOI18N
 
         javax.swing.GroupLayout panelPropLayout = new javax.swing.GroupLayout(panelProp);
         panelProp.setLayout(panelPropLayout);
@@ -131,37 +128,28 @@ public class FrameProjet extends javax.swing.JFrame{
         );
         panelPropLayout.setVerticalGroup(
             panelPropLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         MenuFichier.setText("Fichier");
 
-        menuOuvrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        menuOuvrir.setText("Ouvrir");
-        menuOuvrir.addActionListener(new java.awt.event.ActionListener() {
+        MenuOuvrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        MenuOuvrir.setText("Ouvrir");
+        MenuOuvrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuOuvrirActionPerformed(evt);
+                MenuOuvrirActionPerformed(evt);
             }
         });
-        MenuFichier.add(menuOuvrir);
+        MenuFichier.add(MenuOuvrir);
 
-        menuSauvegarder.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        menuSauvegarder.setText("Sauvegarder");
-        menuSauvegarder.addActionListener(new java.awt.event.ActionListener() {
+        MenuSauvegarder.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        MenuSauvegarder.setText("Sauvegarder");
+        MenuSauvegarder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSauvegarderActionPerformed(evt);
+                MenuSauvegarderActionPerformed(evt);
             }
         });
-        MenuFichier.add(menuSauvegarder);
-
-        menuNouveau.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        menuNouveau.setText("Nouveau");
-        menuNouveau.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuNouveauActionPerformed(evt);
-            }
-        });
-        MenuFichier.add(menuNouveau);
+        MenuFichier.add(MenuSauvegarder);
         MenuFichier.add(jSeparator1);
 
         MenuQuitter.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
@@ -177,23 +165,19 @@ public class FrameProjet extends javax.swing.JFrame{
 
         MenuEdition.setText("Édition");
 
-        menuModifier.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, 0));
-        menuModifier.setText("Modifier");
-        menuModifier.addActionListener(new java.awt.event.ActionListener() {
+        MenuCopier.setText("Copier");
+        MenuCopier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuModifierActionPerformed(evt);
+                MenuCopierActionPerformed(evt);
             }
         });
-        MenuEdition.add(menuModifier);
+        MenuEdition.add(MenuCopier);
 
-        menuSupprimer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
-        menuSupprimer.setText("Supprimer");
-        menuSupprimer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSupprimerActionPerformed(evt);
-            }
-        });
-        MenuEdition.add(menuSupprimer);
+        MenuCouper.setText("Couper");
+        MenuEdition.add(MenuCouper);
+
+        MenuColler.setText("Coller");
+        MenuEdition.add(MenuColler);
 
         MenuBar.add(MenuEdition);
 
@@ -209,7 +193,7 @@ public class FrameProjet extends javax.swing.JFrame{
                     .addComponent(panelBoutons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelProp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelTree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelCircuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -217,7 +201,7 @@ public class FrameProjet extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelTree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelCircuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelBoutons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,11 +214,11 @@ public class FrameProjet extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModifierActionPerformed
-        cf.BoutonModifier();
-    }//GEN-LAST:event_menuModifierActionPerformed
+    private void MenuCopierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCopierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuCopierActionPerformed
 
-    private void menuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOuvrirActionPerformed
+    private void MenuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOuvrirActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(new FiltreCircuit());
         int valeur = chooser.showOpenDialog(this);
@@ -243,9 +227,9 @@ public class FrameProjet extends javax.swing.JFrame{
             } else {
                 JOptionPane.showMessageDialog(null,"Fichier invalide");
             }
-    }//GEN-LAST:event_menuOuvrirActionPerformed
+    }//GEN-LAST:event_MenuOuvrirActionPerformed
 
-    private void menuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSauvegarderActionPerformed
+    private void MenuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSauvegarderActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(new FiltreCircuit());
         int valeur = chooser.showSaveDialog(this);
@@ -254,19 +238,19 @@ public class FrameProjet extends javax.swing.JFrame{
             } else {
                 JOptionPane.showMessageDialog(null,"Fichier invalide");
             }
-    }//GEN-LAST:event_menuSauvegarderActionPerformed
+    }//GEN-LAST:event_MenuSauvegarderActionPerformed
 
     private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed
-        cf.BoutonResistance();
+        cf.BoutonResistance(evt);
     }//GEN-LAST:event_boutonResistanceActionPerformed
 
     private void boutonParalleleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonParalleleActionPerformed
-        cf.BoutonParallele();
+        cf.BoutonParallele(evt);
     }//GEN-LAST:event_boutonParalleleActionPerformed
 
-    private void boutonBrancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonBrancheActionPerformed
-        cf.BoutonBranche();
-    }//GEN-LAST:event_boutonBrancheActionPerformed
+    private void boutonFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonFilActionPerformed
+        cf.BoutonFil(evt);
+    }//GEN-LAST:event_boutonFilActionPerformed
 
     private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
         int n = JOptionPane.showConfirmDialog(
@@ -279,32 +263,23 @@ public class FrameProjet extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_MenuQuitterActionPerformed
 
-    private void menuNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouveauActionPerformed
-        cc.nouveauCircuit();
-        t.update(cc.getCircuit());
-    }//GEN-LAST:event_menuNouveauActionPerformed
-
-    private void menuSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSupprimerActionPerformed
-        cf.BoutonSupprimer();
-    }//GEN-LAST:event_menuSupprimerActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar MenuBar;
+    private javax.swing.JMenuItem MenuColler;
+    private javax.swing.JMenuItem MenuCopier;
+    private javax.swing.JMenuItem MenuCouper;
     private javax.swing.JMenu MenuEdition;
     private javax.swing.JMenu MenuFichier;
+    private javax.swing.JMenuItem MenuOuvrir;
     private javax.swing.JMenuItem MenuQuitter;
-    private javax.swing.JButton boutonBranche;
+    private javax.swing.JMenuItem MenuSauvegarder;
+    private javax.swing.JButton boutonFil;
     private javax.swing.JButton boutonParallele;
     private javax.swing.JButton boutonResistance;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenuItem menuModifier;
-    private javax.swing.JMenuItem menuNouveau;
-    private javax.swing.JMenuItem menuOuvrir;
-    private javax.swing.JMenuItem menuSauvegarder;
-    private javax.swing.JMenuItem menuSupprimer;
     private javax.swing.JPanel panelBoutons;
+    private javax.swing.JPanel panelCircuit;
     private javax.swing.JPanel panelProp;
-    private javax.swing.JPanel panelTree;
     // End of variables declaration//GEN-END:variables
 }

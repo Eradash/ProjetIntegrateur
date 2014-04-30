@@ -56,8 +56,4 @@ public class Parallele extends Branche implements Composante{
     public Composante getComposante(int ID) {
         return listeBranches.get(ID);
     }
-
-    @Override
-    public void modifier(double newValue) {
-    }
 }
