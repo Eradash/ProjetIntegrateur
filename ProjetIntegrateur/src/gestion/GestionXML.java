@@ -107,10 +107,6 @@ public class GestionXML {
     private static void setComp(Element elem, Composante comp, Document doc) {
         elem.appendChild(element("ID", ""+comp.getNumero(), doc));
         elem.appendChild(element("VALEUR", ""+comp.getResistanceEquivalente(), doc));
-        Element position = doc.createElement("POSITION");
-        position.appendChild(element("X", ""+BD.getInstance().getComposante(comp.getNumero(), "PosX"), doc));
-        position.appendChild(element("Y", ""+BD.getInstance().getComposante(comp.getNumero(), "PosY"), doc));
-        elem.appendChild(position);
     }
     
     private static Element element(String type, String info, Document doc) {
@@ -165,7 +161,7 @@ public class GestionXML {
         
         switch(n.getNodeName()) {
             case "RESISTANCE" :
-                int resistanceEqui = Integer.valueOf(getInfo("VALEUR", n));
+                double resistanceEqui = Double.parseDouble(getInfo("VALEUR", n));
                 int ID = Integer.valueOf(getInfo("ID", n));
                 
                 comp = new Resistance(resistanceEqui, ID);

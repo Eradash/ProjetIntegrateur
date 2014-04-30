@@ -7,13 +7,14 @@ public class Resistance implements Composante{
 
     final int ID;
     double ohm;
+    boolean isBurned = false;
     
-    public Resistance(int ohm, int id) {
+    public Resistance(double ohm, int id) {
         ID = GestionnaireID.getInstance().ajouterComp(id);
         this.ohm = ohm;
     }
 
-    public Resistance(int ohm) {
+    public Resistance(double ohm) {
         ID = GestionnaireID.getInstance().ajouterComp();
         this.ohm = ohm;
     }
@@ -23,8 +24,12 @@ public class Resistance implements Composante{
         ohm = -1;
     }
     
-    public boolean calculExplosion(int ampere){
-        return true;
+    public boolean isBurned(){
+        return isBurned;
+    }
+    
+    public void setBurned(boolean burn){
+        isBurned = burn;
     }
     
     @Override
@@ -50,5 +55,10 @@ public class Resistance implements Composante{
     @Override
     public Composante getComposante(int ID) {
         return null;
+    }
+
+    @Override
+    public void modifier(double newValue) {
+        ohm = newValue;
     }
 }

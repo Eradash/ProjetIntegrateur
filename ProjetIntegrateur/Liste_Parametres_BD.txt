@@ -2,6 +2,3 @@ Ampere
 Voltage     
 Type
 Parent
-PositionX
-PositionY
-Rotation
