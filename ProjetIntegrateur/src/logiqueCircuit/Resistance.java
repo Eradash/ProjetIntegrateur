@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Resistance implements Composante {
 
-    final int ID;
-    double ohm;
-    boolean isBurned = false;
+    private final int ID;
+    private double ohm;
+    private boolean isBurned = false;
 
     public Resistance(double ohm, int id) {
         ID = GestionnaireID.getInstance().ajouterComp(id);

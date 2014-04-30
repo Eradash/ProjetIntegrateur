@@ -8,11 +8,12 @@ import javax.swing.border.TitledBorder;
 
 public class PanelProp extends JPanel {
 
-    int IDSelected = -1;
-    HashMap<String, Double> map;
-    boolean instance = false;
+    private int IDSelected = -1;
+    private HashMap<String, Double> map;
+    private boolean instance;
 
     public PanelProp() {
+        this.instance = false;
         this.setSize(241, 346);
         this.setBorder(new TitledBorder("Propriétés:"));
         repaint();

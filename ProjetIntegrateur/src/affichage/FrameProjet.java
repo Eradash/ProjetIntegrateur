@@ -5,9 +5,9 @@ import javax.swing.JOptionPane;
 
 public class FrameProjet extends javax.swing.JFrame {
 
-    ControlleurFrame cf;
-    Tree t = new Tree(cf);
-    PanelProp pp;
+    private ControlleurFrame cf;
+    private Tree t = new Tree(cf);
+    private final PanelProp pp;
 
     public FrameProjet(ControlleurFrame cf) {
         this.cf = cf;

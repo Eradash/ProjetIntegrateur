@@ -6,10 +6,10 @@ import logiqueCircuit.Composante;
 
 public class ControleurCircuit {
 
-    BD donnee = BD.getInstance();
-    AnalyseurCircuit analyseur = new AnalyseurCircuit();
+    private final BD donnee = BD.getInstance();
+    private final AnalyseurCircuit analyseur = new AnalyseurCircuit();
     private final static GestionXML xml = GestionXML.getInstance();
-    ControlleurFrame cf;
+    private ControlleurFrame cf;
 
     Circuit c;
 

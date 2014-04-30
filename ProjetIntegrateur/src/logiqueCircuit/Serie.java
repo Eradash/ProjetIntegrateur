@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Serie extends Branche {
 
-    HashMap<Integer, Composante> listeComposante;
+    private final HashMap<Integer, Composante> listeComposante;
 
     public Serie() {
         super();

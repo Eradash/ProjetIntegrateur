@@ -14,9 +14,9 @@ import logiqueCircuit.Type;
 
 public class ControlleurFrame {
 
-    FrameProjet frame;
-    Tree arbre;
-    ControleurCircuit cc;
+    private final FrameProjet frame;
+    private final Tree arbre;
+    private final ControleurCircuit cc;
 
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;

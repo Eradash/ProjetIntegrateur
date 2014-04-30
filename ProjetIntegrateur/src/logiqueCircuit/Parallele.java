@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Parallele extends Branche implements Composante {
 
-    HashMap<Integer, Serie> listeBranches;
+    private final HashMap<Integer, Serie> listeBranches;
 
     public Parallele() {
         super();

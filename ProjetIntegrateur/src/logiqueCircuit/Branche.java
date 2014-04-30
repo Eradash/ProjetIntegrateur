@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public abstract class Branche implements Composante {
 
-    final int ID;
+    private final int ID;
 
     public Branche() {
         ID = GestionnaireID.getInstance().ajouterComp();

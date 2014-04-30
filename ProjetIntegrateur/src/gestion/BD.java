@@ -7,7 +7,7 @@ public class BD {
     private static volatile BD instance = null;
     private final static GestionnaireID gestionnaire = GestionnaireID.getInstance();
 
-    MultiMap<Integer, String, Double> listeComposante;
+    private final MultiMap<Integer, String, Double> listeComposante;
 
     private BD() {
         super();
