@@ -90,9 +90,13 @@ public class AnalyseurCircuit {
     }
 
     private double arrondir(double nombre) {
-        double n = nombre * Math.pow(10, arrondissement);
-        n = Math.round(n);
-        return n / Math.pow(10, arrondissement);
+        if(nombre != Double.NEGATIVE_INFINITY && nombre != Double.POSITIVE_INFINITY && nombre != Double.NaN){
+            double n = nombre * Math.pow(10, arrondissement);
+            n = Math.round(n);
+            n = n / Math.pow(10, arrondissement);
+            return n;
+        }
+        return nombre;
     }
 
     public Double getValeurComposante(int noComp, String info) {

@@ -243,7 +243,7 @@ public class FrameProjet extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModifierActionPerformed
-        cf.BoutonModifier();
+        cf.Bouton("Modifier");
     }//GEN-LAST:event_menuModifierActionPerformed
 
     private void menuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOuvrirActionPerformed

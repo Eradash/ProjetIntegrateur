@@ -90,14 +90,31 @@ public class ControlleurFrame {
                             //Messages d'erreur pour les bonnes valeurs d'une résistance...
                         }
                     }
+                    break;
                 case "Parallele":
                     if (verifierSelection(new Type[]{Type.CIRCUIT, Type.SERIE}, ID)) {
                         cc.ajouterComposante(new Parallele(), ID);
                     }
+                    break;
                 case "Branche":
                     if (verifierSelection(new Type[]{Type.PARALLELE, Type.SERIE}, ID)) {
                         cc.ajouterComposante(new Serie(), ID);
                     }
+                    break;
+                case "Modifier":
+                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.RESISTANCE}, ID)) {
+                        Type t  = cc.getCircuit().getCompEmp(ID).getType();
+                        String input = null;
+                        if (t == Type.CIRCUIT) {
+                            input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
+                        } else if (t == Type.RESISTANCE) {
+                            input = afficherOptionPane("Entrez la nouvelle valeur de la résistance", "Modification résistance");
+                        }
+                        if ((d = inputDouble(input)) > 0) {
+                            cc.modifierComposante(ID, d);
+                        }
+                    }
+                    break;
             }
         }
     }
