@@ -1,8 +1,6 @@
 package affichage;
 
 import JTree.Tree;
-import gestion.AnalyseurCircuit;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -62,7 +60,7 @@ public class FrameProjet extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analyseur de circuit");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocationByPlatform(true);
+        setLocation(new java.awt.Point(350, 150));
 
         panelBoutons.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -257,15 +255,15 @@ public class FrameProjet extends JFrame {
     }//GEN-LAST:event_menuSauvegarderActionPerformed
 
     private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed
-        cf.BoutonResistance();
+        cf.Bouton("Resistance");
     }//GEN-LAST:event_boutonResistanceActionPerformed
 
     private void boutonParalleleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonParalleleActionPerformed
-        cf.BoutonParallele();
+        cf.Bouton("Parallele");
     }//GEN-LAST:event_boutonParalleleActionPerformed
 
     private void boutonBrancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonBrancheActionPerformed
-        cf.BoutonBranche();
+        cf.Bouton("Branche");
     }//GEN-LAST:event_boutonBrancheActionPerformed
 
     private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed

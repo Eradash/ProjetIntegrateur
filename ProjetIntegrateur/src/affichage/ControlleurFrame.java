@@ -29,63 +29,76 @@ public class ControlleurFrame {
         arbre.update(cc.getCircuit());
     }
 
-    public void BoutonResistance() {
+    private int treeSelected() {
         int ID;
+        try {
+            ID = arbre.getIDSelected();
+            return ID;
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
+            return -2;
+        }
+    }
+
+    private boolean verifierSelection(Type[] types, int ID) {
+        boolean ok = false;
+        Type verification = cc.getCircuit().getCompEmp(ID).getType();
+        for (Type t : types) {
+            if (t == verification) {
+                ok = true;
+            }
+        }
+        if (!ok) {
+            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
+        }
+        return ok;
+    }
+
+    private Integer inputInt(String input) throws NumberFormatException {
+        int i;
+        try {
+            i = Integer.parseInt(input);
+            return i;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
+        }
+        return null;
+    }
+
+    private Double inputDouble(String input) {
         double d;
         try {
-            ID = arbre.getIDSelected();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
-            return;
+            d = Double.parseDouble(input);
+            return d;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
         }
-        Type t = cc.getCircuit().getCompEmp(ID).getType();
-        if (t == Type.CIRCUIT || Type.SERIE == t) {
-            String input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
-            try {
-                d = Double.parseDouble(input);
-                if(d <= 0){
-                    throw new NumberFormatException();
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
-                return;
+        return null;
+    }
+
+    public void Bouton(String bouton) {
+        int ID;
+        Double d;
+        if ((ID = treeSelected()) != -2) {
+            switch (bouton) {
+                case "Resistance":
+                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.SERIE}, ID)) {
+                        String input = afficherOptionPane("Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance");
+                        if ((d = inputDouble(input)) > 0) {
+                            cc.ajouterComposante(new Resistance(d), ID);
+                        } else {
+                            //Messages d'erreur pour les bonnes valeurs d'une résistance...
+                        }
+                    }
+                case "Parallele":
+                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.SERIE}, ID)) {
+                        cc.ajouterComposante(new Parallele(), ID);
+                    }
+                case "Branche":
+                    if (verifierSelection(new Type[]{Type.PARALLELE, Type.SERIE}, ID)) {
+                        cc.ajouterComposante(new Serie(), ID);
+                    }
             }
-
-            cc.ajouterComposante(new Resistance(d), ID);
-        } else {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
-        }
-    }
-
-    public void BoutonParallele() {
-        int ID;
-        try {
-            ID = arbre.getIDSelected();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
-            return;
-        }
-        Type t = cc.getCircuit().getCompEmp(ID).getType();
-        if (t == Type.CIRCUIT || t == Type.SERIE) {
-            cc.ajouterComposante(new Parallele(), ID);
-        } else {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
-        }
-    }
-
-    public void BoutonBranche() {
-        int ID;
-        try {
-            ID = arbre.getIDSelected();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
-            return;
-        }
-        Type t = cc.getCircuit().getCompEmp(ID).getType();
-        if (t == Type.PARALLELE) {
-            cc.ajouterComposante(new Serie(), ID);
-        } else {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
         }
     }
 
@@ -93,46 +106,49 @@ public class ControlleurFrame {
         int ID;
         double d;
         String input = null;
+        if ((ID = treeSelected()) != -2) {
+            Type t = cc.getCircuit().getCompEmp(ID).getType();
+            if (verifierSelection(new Type[]{Type.CIRCUIT, Type.RESISTANCE}, ID)) {
+                if (t == Type.CIRCUIT) {
+                    input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
+                } else if (t == Type.RESISTANCE) {
+                    input = afficherOptionPane("Entrez la nouvelle valeur de la résistance", "Modification résistance");
+                }
+                if ((d = inputDouble(input)) > 0) {
+                    cc.modifierComposante(ID, d);
+                }
+            }
+        }
+    }
+
+    public void menuArrondissement() {
+        int d;
+        String input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la valeur du nouvel arrondissement:", "Changement arrondissement", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
         try {
-            ID = arbre.getIDSelected();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
+            d = Integer.parseInt(input);
+            if (d >= 10 || d <= 0) {
+                throw new NumberFormatException("BAM");
+            }
+        } catch (NumberFormatException e) {
+            if ("BAM".equals(e.getMessage())) {
+                JOptionPane.showMessageDialog(frame.getFrame(), "Veuillez entrer une valeure inférieur à 10 et supérieure à 0");
+            } else {
+                JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
+            }
             return;
         }
-        Type t = cc.getCircuit().getCompEmp(ID).getType();
-        if (t == Type.CIRCUIT || t == Type.RESISTANCE) {
-            if (t == Type.CIRCUIT) {
-                input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la valeur du nouveau voltage", "Modification voltage", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
-            } else if (t == Type.RESISTANCE) {
-                input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la nouvelle valeur de la résistance", "Modification résistance", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
-            }
-            try {
-                d = Double.parseDouble(input);
-                if(d <= 0){
-                    throw new NumberFormatException();
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
-                return;
-            }
-            cc.modifierComposante(ID, d);
-        } else {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
-        }
+        AnalyseurCircuit.arrondissement = d;
+        cc.run();
     }
 
     public void BoutonSupprimer() {
         int ID;
-        try {
-            ID = arbre.getIDSelected();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Aucune composante sélectionnée...");
-            return;
+        if ((ID = treeSelected()) != -2) {
+            cc.supprimerComposante(ID);
         }
-        cc.supprimerComposante(ID);
     }
-    
-    public void menuOuvrir(){
+
+    public void menuOuvrir() {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(new FiltreCircuit());
         int valeur = chooser.showOpenDialog(frame);
@@ -142,8 +158,8 @@ public class ControlleurFrame {
             JOptionPane.showMessageDialog(frame.getFrame(), "Fichier invalide");
         }
     }
-    
-    public void menuSauvegarder(){
+
+    public void menuSauvegarder() {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(new FiltreCircuit());
         int valeur = chooser.showSaveDialog(frame);
@@ -153,8 +169,8 @@ public class ControlleurFrame {
             JOptionPane.showMessageDialog(frame.getFrame(), "Fichier invalide");
         }
     }
-    
-    public void menuNouveau(){
+
+    public void menuNouveau() {
         cc.nouveauCircuit();
         arbre.update(cc.getCircuit());
     }
@@ -170,24 +186,9 @@ public class ControlleurFrame {
 
         return listeInfo;
     }
-    
-    public void menuArrondissement(){
-        int d;
-        String input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la valeur du nouvel arrondissement:", "Changement arrondissement", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
-        try {
-            d = Integer.parseInt(input);
-            if (d >= 10 || d <= 0) {
-                throw new NumberFormatException("BAM");
-            }
-        } catch (NumberFormatException e) {
-            if("BAM".equals(e.getMessage())){
-                JOptionPane.showMessageDialog(frame.getFrame(), "Veuillez entrer une valeure inférieur à 10 et supérieure à 0");
-            } else {
-                JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
-            }
-            return;
-        }
-        AnalyseurCircuit.arrondissement = d;
-        cc.run();
+
+    public String afficherOptionPane(String texte, String titre) {
+        String input = (String) JOptionPane.showInputDialog(frame.getFrame(), texte, titre, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+        return input;
     }
 }
