@@ -5,7 +5,6 @@ import gestion.AnalyseurCircuit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import logiqueCircuit.Resistance;
 
 public class FrameProjet extends JFrame {
 
@@ -289,18 +288,8 @@ public class FrameProjet extends JFrame {
     }//GEN-LAST:event_menuSupprimerActionPerformed
 
     private void menuModifArronActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModifArronActionPerformed
-        int d;
-        String input = (String) JOptionPane.showInputDialog(this, "Entrez la valeur du nouvel arrondissement:", "Changement arrondissement", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
-        try {
-            d = Integer.parseInt(input);
-            if (d <= 0) {
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Valeur incorrecte");
-            return;
-        }
-        AnalyseurCircuit.arrondissement = d;
+        cf.menuArrondissement();
+        
     }//GEN-LAST:event_menuModifArronActionPerformed
 
 

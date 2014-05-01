@@ -6,12 +6,14 @@ import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
 public class AnalyseurCircuit {
-    
+
     public static int arrondissement = 8;
 
     public void analyserCircuit(Circuit c) {
-        double voltage = c.getVoltage();
-        calcul(-1, voltage, c, -1);
+        if (c != null) {
+            double voltage = c.getVoltage();
+            calcul(-1, voltage, c, -1);
+        }
     }
 
     private void calcul(double amp, double volt, Composante b, int ID_Parent) {
@@ -86,11 +88,11 @@ public class AnalyseurCircuit {
                 break;
         }
     }
-    
-    private double arrondir(double nombre){
+
+    private double arrondir(double nombre) {
         double n = nombre * Math.pow(10, arrondissement);
         n = Math.round(n);
-        return n/Math.pow(10, arrondissement);
+        return n / Math.pow(10, arrondissement);
     }
 
     public Double getValeurComposante(int noComp, String info) {

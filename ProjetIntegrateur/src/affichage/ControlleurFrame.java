@@ -1,6 +1,7 @@
 package affichage;
 
 import JTree.Tree;
+import gestion.AnalyseurCircuit;
 import gestion.ControleurCircuit;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -168,5 +169,25 @@ public class ControlleurFrame {
         cc.getInstanceBD().getComposante(ID, "resistance");
 
         return listeInfo;
+    }
+    
+    public void menuArrondissement(){
+        int d;
+        String input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la valeur du nouvel arrondissement:", "Changement arrondissement", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+        try {
+            d = Integer.parseInt(input);
+            if (d >= 10 || d <= 0) {
+                throw new NumberFormatException("BAM");
+            }
+        } catch (NumberFormatException e) {
+            if("BAM".equals(e.getMessage())){
+                JOptionPane.showMessageDialog(frame.getFrame(), "Veuillez entrer une valeure inférieur à 10 et supérieure à 0");
+            } else {
+                JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
+            }
+            return;
+        }
+        AnalyseurCircuit.arrondissement = d;
+        cc.run();
     }
 }
