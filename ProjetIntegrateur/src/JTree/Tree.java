@@ -2,7 +2,7 @@ package JTree;
 
 import affichage.ControlleurFrame;
 import java.awt.BorderLayout;
- 
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -11,12 +11,12 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import logiqueCircuit.Circuit;
- 
+
 public class Tree extends JPanel implements TreeSelectionListener {
-    
+
     private final JTree tree;
     private final ControlleurFrame cf;
-    
+
     public Tree(ControlleurFrame cf) {
         this.cf = cf;
         setLayout(new BorderLayout());
@@ -25,38 +25,38 @@ public class Tree extends JPanel implements TreeSelectionListener {
         tree = new JTree(model);
         tree.setCellRenderer(new NodeRender());
         tree.addTreeSelectionListener(this);
-        
+
         add(new JScrollPane(tree), BorderLayout.CENTER);
-        
+
         expand();
-        
+
         setSize(321, 545);
-        
+
         setVisible(true);
     }
-    
-    public void update(Circuit c){
+
+    public void update(Circuit c) {
         tree.setModel(new MonTreeModel(MonTreeBuilder.build(c)));
         expand();
     }
-    
-    private void expand(){
+
+    private void expand() {
         for (int i = 0; i < tree.getRowCount(); i++) {
             tree.expandRow(i);
         }
     }
-        
-    public int getIDSelected() throws Exception{
+
+    public int getIDSelected() throws Exception {
         TreePath tp = tree.getSelectionPath();
-        MaNode m = (MaNode)tp.getLastPathComponent();
+        MaNode m = (MaNode) tp.getLastPathComponent();
         return m.getID();
     }
-    
+
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         TreePath tp = tree.getSelectionPath();
-        if(tp != null){
-            MaNode m = (MaNode)tp.getLastPathComponent();
+        if (tp != null) {
+            MaNode m = (MaNode) tp.getLastPathComponent();
             cf.IDSelected(m.getID());
         }
     }

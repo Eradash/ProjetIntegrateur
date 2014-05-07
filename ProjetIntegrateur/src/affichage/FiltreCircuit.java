@@ -5,10 +5,10 @@ import javax.swing.filechooser.FileFilter;
 
 public class FiltreCircuit extends FileFilter {
 
-    String extention;
-    String description;
-    
-    public FiltreCircuit(){
+    private final String extention;
+    private final String description;
+
+    public FiltreCircuit() {
         this.extention = "circuit";
         this.description = "Circuit électrique";
     }

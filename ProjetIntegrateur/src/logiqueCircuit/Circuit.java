@@ -3,13 +3,13 @@ package logiqueCircuit;
 import gestion.BD;
 import java.util.ArrayList;
 
-public class Circuit extends Serie{
-    
+public class Circuit extends Serie {
+
     private double ampere;
     private double voltage;
     private String nom;
-    
-    public Circuit(){
+
+    public Circuit() {
         super(-1);
         voltage = 6;
     }
@@ -21,86 +21,86 @@ public class Circuit extends Serie{
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
+
     @Override
     public Type getType() {
         return Type.CIRCUIT;
     }
-    
-    public double getAmpere(){
+
+    public double getAmpere() {
         return ampere;
     }
-    
-    public void setAmpere(double amp){
+
+    public void setAmpere(double amp) {
         this.ampere = amp;
     }
-    
-    public double getVoltage(){
+
+    public double getVoltage() {
         return voltage;
     }
-    
-    public void setVoltage(double voltage){
+
+    public void setVoltage(double voltage) {
         this.voltage = voltage;
     }
-    
+
     @Override
     public void modifier(double newValue) {
         voltage = newValue;
     }
-    
-    public ArrayList<Integer> recherche(int ID){
+
+    public ArrayList<Integer> recherche(int ID) {
         ArrayList<Integer> liste = new ArrayList<>();
         liste.add(ID);
         int parent = ID;
 //        boolean resistance = BD.getInstance().getComposante(ID, "Type") == 5;
-        
-        while(parent != -1){
+
+        while (parent != -1) {
             parent = gestion.BD.getInstance().getComposante(parent, "Parent").intValue();
             liste.add(parent);
         }
-               
+
         //Inversion de l'arrayList
         ArrayList<Integer> liste2 = new ArrayList<>();
-        for(int i = 0 ; i < liste.size() ; i++){
-            liste2.add(liste.get( liste.size() - 1 - i ));
+        for (int i = 0; i < liste.size(); i++) {
+            liste2.add(liste.get(liste.size() - 1 - i));
         }
-        
+
         return liste2;
     }
-    
-    public Branche getComposanteEmplacement(int emplacement){
-        return (Branche)getCompEmp(emplacement);
+
+    public Branche getComposanteEmplacement(int emplacement) {
+        return (Branche) getCompEmp(emplacement);
     }
-    
-    public Composante getCompEmp(int emplacement){
-        if(emplacement == -1){
+
+    public Composante getCompEmp(int emplacement) {
+        if (emplacement == -1) {
             return this;
         }
         ArrayList<Integer> liste = recherche(emplacement);
         Composante c = this;
         liste.remove(0);
-        while (!liste.isEmpty()){
+        while (!liste.isEmpty()) {
             c = c.getComposante(liste.remove(0));
         }
         return c;
     }
-    
-    public void ajouterComposante(Composante c, int ID_Parent){
+
+    public void ajouterComposante(Composante c, int ID_Parent) {
         getComposanteEmplacement(ID_Parent).ajouterComposante(c);
     }
-    
+
     @Override
-    public void supprimerComposante(int ID){
+    public void supprimerComposante(int ID) {
         double ID_Parent = BD.getInstance().getComposante(ID, "Parent");
-        if((int)ID_Parent == -1){
+        if ((int) ID_Parent == -1) {
             super.supprimerComposante(ID);
         } else {
-            getComposanteEmplacement((int)ID_Parent).supprimerComposante(ID);
+            getComposanteEmplacement((int) ID_Parent).supprimerComposante(ID);
         }
     }
-    
-    public void modifierComposante(int ID, double newValue){
-        if(ID == -1){
+
+    public void modifierComposante(int ID, double newValue) {
+        if (ID == -1) {
             voltage = newValue;
         } else {
             getCompEmp(ID).modifier(newValue);

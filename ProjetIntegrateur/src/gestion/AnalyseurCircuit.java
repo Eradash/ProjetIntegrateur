@@ -6,25 +6,27 @@ import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
 public class AnalyseurCircuit {
-    
-    public void analyserCircuit(Circuit c) {
-        double voltage = c.getVoltage();
-        
-        calcul(-1, voltage, c, -1);
 
+    public static int arrondissement = 8;
+
+    public void analyserCircuit(Circuit c) {
+        if (c != null) {
+            double voltage = c.getVoltage();
+            calcul(-1, voltage, c, -1);
+        }
     }
-    
+
     private void calcul(double amp, double volt, Composante b, int ID_Parent) {
         int ID = b.getNumero();
         double resistance = b.getResistanceEquivalente();
         double ampere = amp;
         double voltage = volt;
-        
+
         BD bd = BD.getInstance();
-        
+
         bd.SetComposante(ID, "Parent", ID_Parent);
-        bd.SetComposante(ID, "Resistance", resistance);
-        
+        bd.SetComposante(ID, "Resistance", arrondir(resistance));
+
         int cas = 0;
 
         if (ampere != -1 || voltage != -1) {
@@ -35,34 +37,40 @@ public class AnalyseurCircuit {
                 voltage = resistance * ampere;
             }
         }
-        bd.SetComposante(ID, "Ampere", ampere);
-        bd.SetComposante(ID, "Voltage", voltage);
 
-        if (b.getType() == Type.SERIE){
-            cas +=1;
-            bd.SetComposante(ID, "Type", 1);
-        } else if(b.getType() == Type.CIRCUIT){
-            cas += 1;
-            bd.SetComposante(ID, "Type", 3);
-        } else if (b.getType() == Type.PARALLELE) {
-            cas += 2;
-            bd.SetComposante(ID, "Type", 2);
-        } else {
-            cas = 0;
-            bd.SetComposante(ID, "Type", 4);
+        bd.SetComposante(ID, "Ampere", arrondir(ampere));
+        bd.SetComposante(ID, "Voltage", arrondir(voltage));
+
+        switch (b.getType()) {
+            case SERIE:
+                cas += 1;
+                bd.SetComposante(ID, "Type", 1);
+                break;
+            case CIRCUIT:
+                cas += 1;
+                bd.SetComposante(ID, "Type", 3);
+                break;
+            case PARALLELE:
+                cas += 2;
+                bd.SetComposante(ID, "Type", 2);
+                break;
+            case RESISTANCE:
+                cas = 0;
+                bd.SetComposante(ID, "Type", 4);
+                break;
         }
-        
-        if(b.getType() == Type.RESISTANCE){
-            double watt = ampere*voltage;
-            bd.SetComposante(ID, "Watt", watt);
-            Resistance resis = (Resistance)b;
-            if(watt > 0.25){
+
+        if (b.getType() == Type.RESISTANCE) {
+            double watt = ampere * voltage;
+            bd.SetComposante(ID, "Watt", arrondir(watt));
+            Resistance resis = (Resistance) b;
+            if (watt > 0.25) {
                 resis.setBurned(true);
             } else {
                 resis.setBurned(false);
             }
         }
-        
+
         switch (cas) {
             case 1:
                 for (Composante c : b.getComposantes()) {
@@ -80,7 +88,17 @@ public class AnalyseurCircuit {
                 break;
         }
     }
-    
+
+    private double arrondir(double nombre) {
+        if(nombre != Double.NEGATIVE_INFINITY && nombre != Double.POSITIVE_INFINITY && nombre != Double.NaN){
+            double n = nombre * Math.pow(10, arrondissement);
+            n = Math.round(n);
+            n = n / Math.pow(10, arrondissement);
+            return n;
+        }
+        return nombre;
+    }
+
     public Double getValeurComposante(int noComp, String info) {
         return BD.getInstance().getComposante(noComp, info);
     }

@@ -3,9 +3,9 @@ package logiqueCircuit;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Parallele extends Branche implements Composante{
-    
-    HashMap<Integer, Serie> listeBranches;
+public class Parallele extends Branche implements Composante {
+
+    private final HashMap<Integer, Serie> listeBranches;
 
     public Parallele() {
         super();
@@ -16,10 +16,10 @@ public class Parallele extends Branche implements Composante{
         super(ID);
         listeBranches = new HashMap<>();
     }
-    
+
     @Override
     public void ajouterComposante(Composante c) {
-        listeBranches.put(c.getNumero(), (Serie)c);
+        listeBranches.put(c.getNumero(), (Serie) c);
     }
 
     @Override
@@ -31,19 +31,19 @@ public class Parallele extends Branche implements Composante{
     public void supprimerComposante(Composante c) {
         listeBranches.remove(c.getNumero());
     }
-    
+
     @Override
-    public void supprimerComposante(int ID){
+    public void supprimerComposante(int ID) {
         listeBranches.remove(ID);
     }
 
     @Override
     public double getResistanceEquivalente() {
         double resistance = 0;
-        for(Serie s : listeBranches.values()){
+        for (Serie s : listeBranches.values()) {
             resistance += 1 / s.getResistanceEquivalente();
         }
-        return 1/resistance;
+        return 1 / resistance;
     }
 
     @Override

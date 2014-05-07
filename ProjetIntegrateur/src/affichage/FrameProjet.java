@@ -1,36 +1,37 @@
 package affichage;
 
 import JTree.Tree;
-import gestion.ControleurCircuit;
-import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class FrameProjet extends javax.swing.JFrame{
-    
-    ControlleurFrame cf;
-    ControleurCircuit cc;
-    Tree t = new Tree(cf);
-    PanelProp pp;
-    
-    public FrameProjet(ControlleurFrame cf, ControleurCircuit cc) {
+public class FrameProjet extends JFrame {
+
+    private ControlleurFrame cf;
+    private Tree t = new Tree(cf);
+    private final PanelProp pp;
+
+    public FrameProjet(ControlleurFrame cf) {
         this.cf = cf;
-        this.cc = cc;
-        this.pp = new PanelProp(cf, cc.getCircuit());
+        this.pp = new PanelProp();
         t = new Tree(cf);
         initComponents();
         setVisible(true);
     }
-    
-    public Tree getTree(){
+
+    public Tree getTree() {
         return t;
     }
-    
-    public PanelProp getPanelProp(){
+
+    public PanelProp getPanelProp() {
         return pp;
     }
-    
-    public void update(){
+
+    public void update() {
         repaint();
+    }
+
+    public JFrame getFrame() {
+        return this;
     }
 
     @SuppressWarnings("unchecked")
@@ -53,11 +54,13 @@ public class FrameProjet extends javax.swing.JFrame{
         MenuEdition = new javax.swing.JMenu();
         menuModifier = new javax.swing.JMenuItem();
         menuSupprimer = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        menuModifArron = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analyseur de circuit");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocationByPlatform(true);
+        setLocation(new java.awt.Point(350, 150));
 
         panelBoutons.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -194,6 +197,15 @@ public class FrameProjet extends javax.swing.JFrame{
             }
         });
         MenuEdition.add(menuSupprimer);
+        MenuEdition.add(jSeparator2);
+
+        menuModifArron.setText("Modifier arrondissement");
+        menuModifArron.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuModifArronActionPerformed(evt);
+            }
+        });
+        MenuEdition.add(menuModifArron);
 
         MenuBar.add(MenuEdition);
 
@@ -231,41 +243,27 @@ public class FrameProjet extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModifierActionPerformed
-        cf.BoutonModifier();
+        cf.Bouton("Modifier");
     }//GEN-LAST:event_menuModifierActionPerformed
 
     private void menuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOuvrirActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new FiltreCircuit());
-        int valeur = chooser.showOpenDialog(this);
-            if (valeur == JFileChooser.APPROVE_OPTION) {
-                cc.ouvrirCircuit(chooser.getSelectedFile().getPath());
-            } else {
-                JOptionPane.showMessageDialog(null,"Fichier invalide");
-            }
+        cf.menuOuvrir();
     }//GEN-LAST:event_menuOuvrirActionPerformed
 
     private void menuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSauvegarderActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new FiltreCircuit());
-        int valeur = chooser.showSaveDialog(this);
-            if (valeur == JFileChooser.APPROVE_OPTION) {
-                cc.enregistrerCircuit(chooser.getSelectedFile().getPath());
-            } else {
-                JOptionPane.showMessageDialog(null,"Fichier invalide");
-            }
+        cf.menuSauvegarder();
     }//GEN-LAST:event_menuSauvegarderActionPerformed
 
     private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed
-        cf.BoutonResistance();
+        cf.Bouton("Resistance");
     }//GEN-LAST:event_boutonResistanceActionPerformed
 
     private void boutonParalleleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonParalleleActionPerformed
-        cf.BoutonParallele();
+        cf.Bouton("Parallele");
     }//GEN-LAST:event_boutonParalleleActionPerformed
 
     private void boutonBrancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonBrancheActionPerformed
-        cf.BoutonBranche();
+        cf.Bouton("Branche");
     }//GEN-LAST:event_boutonBrancheActionPerformed
 
     private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
@@ -273,20 +271,24 @@ public class FrameProjet extends javax.swing.JFrame{
                 this,
                 "Voulez-vous vraiment quitter ?\nAssurez-vous d'avoir enregistré",
                 "Quitter",
-                JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE);
-        if(n == JOptionPane.YES_OPTION){
+                JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (n == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_MenuQuitterActionPerformed
 
     private void menuNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouveauActionPerformed
-        cc.nouveauCircuit();
-        t.update(cc.getCircuit());
+        cf.menuNouveau();
     }//GEN-LAST:event_menuNouveauActionPerformed
 
     private void menuSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSupprimerActionPerformed
         cf.BoutonSupprimer();
     }//GEN-LAST:event_menuSupprimerActionPerformed
+
+    private void menuModifArronActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModifArronActionPerformed
+        cf.menuArrondissement();
+        
+    }//GEN-LAST:event_menuModifArronActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -298,6 +300,8 @@ public class FrameProjet extends javax.swing.JFrame{
     private javax.swing.JButton boutonParallele;
     private javax.swing.JButton boutonResistance;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuItem menuModifArron;
     private javax.swing.JMenuItem menuModifier;
     private javax.swing.JMenuItem menuNouveau;
     private javax.swing.JMenuItem menuOuvrir;
