@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Branche d'un circuit. Sert pour les Séries et les branches du Paralèlle
  */
-public abstract class Branche implements Composante {
+public abstract class Branche implements I {
 
     private final int ID;
 
@@ -26,28 +26,28 @@ public abstract class Branche implements Composante {
     }
 
     @Override
-    public int getNumero() {
+    public int I() {
         return ID;
     }
 
     @Override
-    public abstract ArrayList<Composante> getComposantes();
+    public abstract ArrayList<I> lI();
 
     /**
      * Permet d'ajouter une composante à la Branche
-     * @param c La Composante à ajouter
+     * @param c La I à ajouter
      */
-    public abstract void ajouterComposante(Composante c);
+    public abstract void ajouterComposante(I c);
 
     /**
      * Permet de supprimer une composante de la Branche
-     * @param c La Composante à supprimer
+     * @param c La I à supprimer
      */
-    public abstract void supprimerComposante(Composante c);
+    public abstract void supprimerComposante(I c);
 
     /**
      * Permet de supprimer une composante de la Branche par son ID
-     * @param ID L'ID de la Composante à supprimer
+     * @param ID L'ID de la I à supprimer
      */
     public abstract void supprimerComposante(int ID);
 }

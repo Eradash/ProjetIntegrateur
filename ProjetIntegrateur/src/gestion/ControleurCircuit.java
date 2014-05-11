@@ -2,7 +2,7 @@ package gestion;
 
 import affichage.ControlleurFrame;
 import logiqueCircuit.Circuit;
-import logiqueCircuit.Composante;
+import logiqueCircuit.I;
 
 /**
  * Permet de controller un circuit électrique
@@ -60,10 +60,10 @@ public class ControleurCircuit {
 
     /**
      * Permet d'ajouter une composante à un endroit précis du circuit
-     * @param c Composante à ajouter
+     * @param c I à ajouter
      * @param emplacement ID du parent où ajouter la nouvelle composante
      */
-    public void ajouterComposante(Composante c, int emplacement) {
+    public void ajouterComposante(I c, int emplacement) {
         this.c.ajouterComposante(c, emplacement);
         System.out.println("Composante ajoutée");
         run();
@@ -80,8 +80,8 @@ public class ControleurCircuit {
     }
 
     /**
-     * Permet de modifier une composante précise du circuit (Résistance ou voltage de la pile). Appelle la fonction 'modifier' de la composante en question.
-     * @param ID ID de la composante à modifier
+     * Permet de l une composante précise du circuit (Résistance ou voltage de la pile). Appelle la fonction 'l' de la composante en question.
+     * @param ID ID de la composante à l
      * @param newValue Nouvelle valeur de la composnte
      */
     public void modifierComposante(int ID, double newValue) {

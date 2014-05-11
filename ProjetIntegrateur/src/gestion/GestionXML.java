@@ -50,9 +50,9 @@ public class GestionXML {
             
             Element composante = doc.createElement("COMPOSANTE");
             
-            for(Composante comp : c.getComposantes()) {
-                Element elem = doc.createElement(comp.getType().toString());
-                if(comp.getType() == Type.PARALLELE) {
+            for(I comp : c.lI()) {
+                Element elem = doc.createElement(comp.II().toString());
+                if(comp.II() == Type.PARALLELE) {
                     setComp(elem, comp, doc);
                     encoderPara((Parallele)comp, doc, elem);
                 } else {
@@ -82,7 +82,7 @@ public class GestionXML {
         Element elemComp = doc.createElement("COMPOSANTE");
         elem.appendChild(elemComp);
         
-        for(Composante comp : p.getComposantes()) {
+        for(I comp : p.lI()) {
             encoderSerie((Serie)comp, doc, elemComp, x);
             x++;
         }
@@ -98,9 +98,9 @@ public class GestionXML {
         Element elemComp = doc.createElement("COMPOSANTE");
         elemBranche.appendChild(elemComp);
         
-        for(Composante comp : s.getComposantes()) {
-            Element elemCompLocal = doc.createElement(comp.getType().toString());
-            if(comp.getType() == Type.PARALLELE) {
+        for(I comp : s.lI()) {
+            Element elemCompLocal = doc.createElement(comp.II().toString());
+            if(comp.II() == Type.PARALLELE) {
                 setComp(elemCompLocal, comp, doc);
                 encoderPara((Parallele) comp, doc, elemCompLocal);
             } else {
@@ -110,9 +110,9 @@ public class GestionXML {
         }
     }
     
-    private static void setComp(Element elem, Composante comp, Document doc) {
-        elem.appendChild(element("ID", ""+comp.getNumero(), doc));
-        elem.appendChild(element("VALEUR", ""+comp.getResistanceEquivalente(), doc));
+    private static void setComp(Element elem, I comp, Document doc) {
+        elem.appendChild(element("ID", ""+comp.I(), doc));
+        elem.appendChild(element("VALEUR", ""+comp.Il(), doc));
     }
     
     private static Element element(String type, String info, Document doc) {
@@ -137,7 +137,7 @@ public class GestionXML {
             Element rootTest = doc.getDocumentElement();
             
             c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
-            c.modifier(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
+            c.l(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
             
             NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
             
@@ -165,9 +165,9 @@ public class GestionXML {
         }
     }
     
-    private Composante ajouterComp(Element n) {
+    private I ajouterComp(Element n) {
         
-        Composante comp;
+        I comp;
         
         switch(n.getNodeName()) {
             case "RESISTANCE" :
@@ -202,7 +202,7 @@ public class GestionXML {
         }
     }
     
-    private Composante ajouterParallele(Element n) {
+    private I ajouterParallele(Element n) {
         Parallele para = new Parallele(Integer.parseInt(((Element)n.getElementsByTagName("ID").item(0)).getFirstChild().getNodeValue()));
         
         NodeList elemTemp = n.getElementsByTagName("COMPOSANTE");

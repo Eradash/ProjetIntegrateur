@@ -51,7 +51,7 @@ public class ControlleurFrame {
 
     private boolean verifierSelection(Type[] types, int ID) {
         boolean ok = false;
-        Type verification = cc.getCircuit().getCompEmp(ID).getType();
+        Type verification = cc.getCircuit().getCompEmp(ID).II();
         for (Type t : types) {
             if (t == verification) {
                 ok = true;
@@ -105,7 +105,7 @@ public class ControlleurFrame {
                     break;
                 case "Modifier":
                     if (verifierSelection(new Type[]{Type.CIRCUIT, Type.RESISTANCE}, ID)) {
-                        Type t  = cc.getCircuit().getCompEmp(ID).getType();
+                        Type t  = cc.getCircuit().getCompEmp(ID).II();
                         String input = null;
                         if (t == Type.CIRCUIT) {
                             input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
@@ -129,7 +129,7 @@ public class ControlleurFrame {
         double d;
         String input = null;
         if ((ID = treeSelected()) != -2) {
-            Type t = cc.getCircuit().getCompEmp(ID).getType();
+            Type t = cc.getCircuit().getCompEmp(ID).II();
             if (verifierSelection(new Type[]{Type.CIRCUIT, Type.RESISTANCE}, ID)) {
                 if (t == Type.CIRCUIT) {
                     input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");

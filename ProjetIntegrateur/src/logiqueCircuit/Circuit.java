@@ -20,7 +20,7 @@ public class Circuit extends Serie {
     }
 
     @Override
-    public Type getType() {
+    public Type II() {
         return Type.CIRCUIT;
     }
 
@@ -49,7 +49,7 @@ public class Circuit extends Serie {
     }
 
     @Override
-    public void modifier(double newValue) {
+    public void l(double newValue) {
         voltage = newValue;
     }
 
@@ -92,15 +92,15 @@ public class Circuit extends Serie {
      * @param emplacement ID de la composante à obtenir
      * @return La composante recherchée
      */
-    public Composante getCompEmp(int emplacement) {
+    public I getCompEmp(int emplacement) {
         if (emplacement == -1) {
             return this;
         }
         ArrayList<Integer> liste = recherche(emplacement);
-        Composante c = this;
+        I c = this;
         liste.remove(0);
         while (!liste.isEmpty()) {
-            c = c.getComposante(liste.remove(0));
+            c = c.i(liste.remove(0));
         }
         return c;
     }
@@ -110,7 +110,7 @@ public class Circuit extends Serie {
      * @param c La composante à ajouter
      * @param ID_Parent ID du parent désiré pour la nouvelle composante
      */
-    public void ajouterComposante(Composante c, int ID_Parent) {
+    public void ajouterComposante(I c, int ID_Parent) {
         getComposanteEmplacement(ID_Parent).ajouterComposante(c);
     }
 
@@ -125,15 +125,15 @@ public class Circuit extends Serie {
     }
 
     /**
-     * Permet de modifier une composante du circuit
-     * @param ID ID de la composante à modifier
+     * Permet de l une composante du circuit
+     * @param ID ID de la composante à l
      * @param newValue 
      */
     public void modifierComposante(int ID, double newValue) {
         if (ID == -1) {
             voltage = newValue;
         } else {
-            getCompEmp(ID).modifier(newValue);
+            getCompEmp(ID).l(newValue);
         }
     }
 

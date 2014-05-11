@@ -1,7 +1,7 @@
 package gestion;
 
 import logiqueCircuit.Circuit;
-import logiqueCircuit.Composante;
+import logiqueCircuit.I;
 import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
@@ -26,9 +26,9 @@ public class AnalyseurCircuit {
         }
     }
 
-    private void calcul(double amp, double volt, Composante b, int ID_Parent) {
-        int ID = b.getNumero();
-        double resistance = b.getResistanceEquivalente();
+    private void calcul(double amp, double volt, I b, int ID_Parent) {
+        int ID = b.I();
+        double resistance = b.Il();
         double ampere = amp;
         double voltage = volt;
 
@@ -51,7 +51,7 @@ public class AnalyseurCircuit {
         bd.SetComposante(ID, "Ampere", arrondir(ampere));
         bd.SetComposante(ID, "Voltage", arrondir(voltage));
 
-        switch (b.getType()) {
+        switch (b.II()) {
             case SERIE:
                 cas += 1;
                 bd.SetComposante(ID, "Type", 1);
@@ -70,7 +70,7 @@ public class AnalyseurCircuit {
                 break;
         }
 
-        if (b.getType() == Type.RESISTANCE) {
+        if (b.II() == Type.RESISTANCE) {
             double watt = ampere * voltage;
             bd.SetComposante(ID, "Watt", arrondir(watt));
             Resistance resis = (Resistance) b;
@@ -83,8 +83,8 @@ public class AnalyseurCircuit {
 
         switch (cas) {
             case 1:
-                for (Composante c : b.getComposantes()) {
-                    voltage = c.getResistanceEquivalente() * ampere;
+                for (I c : b.lI()) {
+                    voltage = c.Il() * ampere;
                     calcul(ampere, voltage, c, ID);
                 }
                 break;
@@ -92,7 +92,7 @@ public class AnalyseurCircuit {
             case 2:
             case 11:
             case 12:
-                for (Composante c : b.getComposantes()) {
+                for (I c : b.lI()) {
                     calcul(-1, voltage, c, ID);
                 }
                 break;

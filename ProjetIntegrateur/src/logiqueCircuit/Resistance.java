@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Résistance d'un circuit électrique
  */
-public class Resistance implements Composante {
+public class Resistance implements I {
 
     private final int ID;
     private double ohm;
@@ -48,32 +48,32 @@ public class Resistance implements Composante {
     }
 
     @Override
-    public int getNumero() {
+    public int I() {
         return ID;
     }
 
     @Override
-    public Type getType() {
+    public Type II() {
         return Type.RESISTANCE;
     }
 
     @Override
-    public double getResistanceEquivalente() {
+    public double Il() {
         return ohm;
     }
 
     @Override
-    public ArrayList<Composante> getComposantes() {
+    public ArrayList<I> lI() {
         return null;
     }
 
     @Override
-    public Composante getComposante(int ID) {
+    public I i(int ID) {
         return null;
     }
 
     @Override
-    public void modifier(double newValue) {
+    public void l(double newValue) {
         ohm = newValue;
     }
 }

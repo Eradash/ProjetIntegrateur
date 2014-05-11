@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 public class Serie extends Branche {
 
-    private final HashMap<Integer, Composante> listeComposante;
+    private final HashMap<Integer, I> listeComposante;
 
     /**
      * Constructeur par défaut.
@@ -30,18 +30,18 @@ public class Serie extends Branche {
     }
 
     @Override
-    public Type getType() {
+    public Type II() {
         return Type.SERIE;
     }
 
     @Override
-    public void ajouterComposante(Composante c) {
-        listeComposante.put(c.getNumero(), c);
+    public void ajouterComposante(I c) {
+        listeComposante.put(c.I(), c);
     }
 
     @Override
-    public void supprimerComposante(Composante c) {
-        listeComposante.remove(c.getNumero());
+    public void supprimerComposante(I c) {
+        listeComposante.remove(c.I());
     }
 
     @Override
@@ -50,26 +50,26 @@ public class Serie extends Branche {
     }
 
     @Override
-    public ArrayList<Composante> getComposantes() {
-        ArrayList<Composante> liste = new ArrayList(listeComposante.values());
+    public ArrayList<I> lI() {
+        ArrayList<I> liste = new ArrayList(listeComposante.values());
         return liste;
     }
 
     @Override
-    public double getResistanceEquivalente() {
+    public double Il() {
         double resistance = 0;
-        for (Composante c : listeComposante.values()) {
-            resistance += c.getResistanceEquivalente();
+        for (I c : listeComposante.values()) {
+            resistance += c.Il();
         }
         return resistance;
     }
 
     @Override
-    public Composante getComposante(int ID) {
+    public I i(int ID) {
         return listeComposante.get(ID);
     }
 
     @Override
-    public void modifier(double newValue) {
+    public void l(double newValue) {
     }
 }

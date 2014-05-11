@@ -2,7 +2,7 @@ package JTree;
 
 import java.util.ArrayList;
 import logiqueCircuit.Circuit;
-import logiqueCircuit.Composante;
+import logiqueCircuit.I;
 import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
@@ -20,8 +20,8 @@ public class MonTreeBuilder {
     public static MaNode build(Circuit c) {
         if (c != null) {
             MaNode rootNode = new MaNode("Circuit", MaNode.NODE_ROOT, -1);
-            ArrayList<Composante> listeComposante = c.getComposantes();
-            for (Composante comp : listeComposante) {
+            ArrayList<I> listeComposante = c.lI();
+            for (I comp : listeComposante) {
                 rootNode.addChild(makeNode(comp));
             }
             return rootNode;
@@ -30,8 +30,8 @@ public class MonTreeBuilder {
         }
     }
 
-    private static MaNode makeNode(Composante c) {
-        Type t = c.getType();
+    private static MaNode makeNode(I c) {
+        Type t = c.II();
         switch (t) {
             case RESISTANCE:
                 int image = MaNode.NODE_RESISTANCE;
@@ -39,16 +39,16 @@ public class MonTreeBuilder {
                 if (resis.isBurned()) {
                     image = MaNode.NODE_BURNED;
                 }
-                return new MaNode("Résistance", image, c.getNumero());
+                return new MaNode("Résistance", image, c.I());
             case PARALLELE:
-                MaNode m = new MaNode("Parallèle", MaNode.NODE_PARALLELE, c.getNumero());
-                for (Composante s : c.getComposantes()) {
+                MaNode m = new MaNode("Parallèle", MaNode.NODE_PARALLELE, c.I());
+                for (I s : c.lI()) {
                     m.addChild(makeNode(s));
                 }
                 return m;
             case SERIE:
-                MaNode n = new MaNode("Branche", MaNode.NODE_BRANCHE, c.getNumero());
-                for (Composante comp : c.getComposantes()) {
+                MaNode n = new MaNode("Branche", MaNode.NODE_BRANCHE, c.I());
+                for (I comp : c.lI()) {
                     n.addChild(makeNode(comp));
                 }
                 return n;

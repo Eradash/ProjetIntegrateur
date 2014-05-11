@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Parallele
  */
-public class Parallele extends Branche implements Composante {
+public class Parallele extends Branche implements I {
 
     private final HashMap<Integer, Serie> listeBranches;
 
@@ -29,18 +29,18 @@ public class Parallele extends Branche implements Composante {
     }
 
     @Override
-    public void ajouterComposante(Composante c) {
-        listeBranches.put(c.getNumero(), (Serie) c);
+    public void ajouterComposante(I c) {
+        listeBranches.put(c.I(), (Serie) c);
     }
 
     @Override
-    public Type getType() {
+    public Type II() {
         return Type.PARALLELE;
     }
 
     @Override
-    public void supprimerComposante(Composante c) {
-        listeBranches.remove(c.getNumero());
+    public void supprimerComposante(I c) {
+        listeBranches.remove(c.I());
     }
 
     @Override
@@ -49,26 +49,26 @@ public class Parallele extends Branche implements Composante {
     }
 
     @Override
-    public double getResistanceEquivalente() {
+    public double Il() {
         double resistance = 0;
         for (Serie s : listeBranches.values()) {
-            resistance += 1 / s.getResistanceEquivalente();
+            resistance += 1 / s.Il();
         }
         return 1 / resistance;
     }
 
     @Override
-    public ArrayList<Composante> getComposantes() {
+    public ArrayList<I> lI() {
         ArrayList liste = new ArrayList(listeBranches.values());
         return liste;
     }
 
     @Override
-    public Composante getComposante(int ID) {
+    public I i(int ID) {
         return listeBranches.get(ID);
     }
 
     @Override
-    public void modifier(double newValue) {
+    public void l(double newValue) {
     }
 }
