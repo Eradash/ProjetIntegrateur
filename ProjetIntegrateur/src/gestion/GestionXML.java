@@ -15,7 +15,9 @@ import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-
+/**
+ * Permet de gérer la construction et le décodage des fichiers XML selon les spécifications du projet
+ */
 public class GestionXML {
     
     private Element root;
@@ -26,6 +28,11 @@ public class GestionXML {
         super();
     }
     
+    /**
+     * Permet de générer un fichier XML représentant un circuit électrique sous la forme d'un fichier .circuit.
+     * @param c Circuit à encoder
+     * @param endroit Emplacement du fichier à créer
+     */
     public void encoder(Circuit c, String endroit){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -114,6 +121,11 @@ public class GestionXML {
         return _info;
     }
     
+    /**
+     * Permet de décoder un fichier XML sous la forme d'un .circuit, représentant un circuit électrique
+     * @param endroit Emplacement du fichier à décoder
+     * @return Circuit
+     */
     public Circuit decoder(String endroit){
         try {
             Circuit c = new Circuit();
@@ -125,8 +137,7 @@ public class GestionXML {
             Element rootTest = doc.getDocumentElement();
             
             c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
-            c.setVoltage(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
-            c.setNom("Circuit");
+            c.modifier(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
             
             NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
             
@@ -216,6 +227,10 @@ public class GestionXML {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public static final GestionXML getInstance() {
         if(instance == null) {
             synchronized(GestionXML.class) {

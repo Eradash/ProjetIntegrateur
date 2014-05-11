@@ -3,7 +3,6 @@ package affichage;
 import JTree.Tree;
 import gestion.AnalyseurCircuit;
 import gestion.ControleurCircuit;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -12,12 +11,19 @@ import logiqueCircuit.Resistance;
 import logiqueCircuit.Serie;
 import logiqueCircuit.Type;
 
+/**
+ * Permet une connection entre le Frame et le reste du projet
+ */
 public class ControlleurFrame {
 
     private final FrameProjet frame;
     private final Tree arbre;
     private final ControleurCircuit cc;
 
+    /**
+     * Initialise le Controlleur
+     * @param cc Controlleur du circuit
+     */
     public ControlleurFrame(ControleurCircuit cc) {
         this.cc = cc;
         cc.setCF(this);
@@ -25,6 +31,9 @@ public class ControlleurFrame {
         arbre = frame.getTree();
     }
 
+    /**
+     * permet de mettre à jour l'affichage
+     */
     public void update() {
         arbre.update(cc.getCircuit());
     }
@@ -54,17 +63,6 @@ public class ControlleurFrame {
         return ok;
     }
 
-    private Integer inputInt(String input) throws NumberFormatException {
-        int i;
-        try {
-            i = Integer.parseInt(input);
-            return i;
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
-        }
-        return null;
-    }
-
     private Double inputDouble(String input) {
         double d;
         try {
@@ -76,6 +74,10 @@ public class ControlleurFrame {
         return null;
     }
 
+    /**
+     * Fonction appelée losqu'un bouton est appuyé
+     * @param bouton Nom du bouton appuyé
+     */
     public void Bouton(String bouton) {
         int ID;
         Double d;
@@ -119,6 +121,9 @@ public class ControlleurFrame {
         }
     }
 
+    /**
+     * BontonModifier appuyé
+     */
     public void BoutonModifier() {
         int ID;
         double d;
@@ -138,6 +143,9 @@ public class ControlleurFrame {
         }
     }
 
+    /**
+     * MenuArrondissement appuyé
+     */
     public void menuArrondissement() {
         int d;
         String input = (String) JOptionPane.showInputDialog(frame.getFrame(), "Entrez la valeur du nouvel arrondissement:", "Changement arrondissement", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
@@ -158,6 +166,9 @@ public class ControlleurFrame {
         cc.run();
     }
 
+    /**
+     * BoutonSupprimer appuyé
+     */
     public void BoutonSupprimer() {
         int ID;
         if ((ID = treeSelected()) != -2) {
@@ -165,6 +176,9 @@ public class ControlleurFrame {
         }
     }
 
+    /**
+     * MenuOuvrir appuyé
+     */
     public void menuOuvrir() {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(new FiltreCircuit());
@@ -176,6 +190,9 @@ public class ControlleurFrame {
         }
     }
 
+    /**
+     * MenuSauvegarder appuyé
+     */
     public void menuSauvegarder() {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileFilter(new FiltreCircuit());
@@ -187,23 +204,28 @@ public class ControlleurFrame {
         }
     }
 
+    /**
+     * menuNouveau appuyé
+     */
     public void menuNouveau() {
         cc.nouveauCircuit();
         arbre.update(cc.getCircuit());
     }
 
+    /**
+     * Permet d'avertir le controlleur qu'une compsante est sélectionnée dans l'arbre
+     * @param ID ID de la composante sélectionnée
+     */
     public void IDSelected(int ID) {
         frame.getPanelProp().setIDSelection(ID);
     }
 
-    public ArrayList<Double> getComposanteInfo(int ID) {
-        ArrayList<Double> listeInfo = new ArrayList<>();
-
-        cc.getInstanceBD().getComposante(ID, "resistance");
-
-        return listeInfo;
-    }
-
+    /**
+     * Permet d'afficher une question, avec une entrée
+     * @param texte Question à afficher
+     * @param titre Titre de la fenêtre
+     * @return la réponse de l'utilisateur
+     */
     public String afficherOptionPane(String texte, String titre) {
         String input = (String) JOptionPane.showInputDialog(frame.getFrame(), texte, titre, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
         return input;

@@ -3,15 +3,26 @@ package logiqueCircuit;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Parallele
+ */
 public class Parallele extends Branche implements Composante {
 
     private final HashMap<Integer, Serie> listeBranches;
 
+    /**
+     * Constructeur par défaut... Initialise les composantes
+     * Voir constructeur Branche
+     */
     public Parallele() {
         super();
         listeBranches = new HashMap<>();
     }
 
+    /**
+     * Voir constructeur Branche
+     * @param ID
+     */
     public Parallele(int ID) {
         super(ID);
         listeBranches = new HashMap<>();
