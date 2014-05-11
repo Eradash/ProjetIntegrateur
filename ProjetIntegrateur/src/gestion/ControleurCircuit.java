@@ -14,7 +14,7 @@ public class ControleurCircuit {
     private final static GestionXML xml = GestionXML.getInstance();
     private ControlleurFrame cf;
 
-    Circuit c;
+    private Circuit c;
 
     /**
      * Indique le Controlleur à communiquer pour les évènements

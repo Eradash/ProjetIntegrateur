@@ -32,14 +32,6 @@ public class Resistance implements Composante {
     }
 
     /**
-     * Permet de créer une résistance vide...
-     */
-    public Resistance() {
-        ID = GestionnaireID.getInstance().ajouterComp();
-        ohm = -1;
-    }
-
-    /**
      * Permet de savoir si la résistance est brulée
      * @return
      */

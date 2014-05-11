@@ -10,7 +10,6 @@ public class Circuit extends Serie {
 
     private double ampere;
     private double voltage;
-    private String nom;
 
     /**
      * Constructeur par défaut

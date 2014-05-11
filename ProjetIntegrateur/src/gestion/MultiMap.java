@@ -40,7 +40,7 @@ public class MultiMap<X, Y, VALEUR> extends HashMap<Y, HashMap<X, VALEUR>> {
      * Permet de retirer une ligne complète du tableau
      * @param x Ligne du tableau à retirer
      */
-    public void removeID(X x) {
+    public void removeX(X x) {
         for (Y k1 : super.keySet()) {
             super.get(k1).remove(x);
         }
@@ -51,7 +51,7 @@ public class MultiMap<X, Y, VALEUR> extends HashMap<Y, HashMap<X, VALEUR>> {
      * @param x Ligne à obtenir
      * @return HashMap de Titre de colonne, avec les valeurs des cases de la ligne correspondante
      */
-    public HashMap<Y, VALEUR> getComp(X x) {
+    public HashMap<Y, VALEUR> getLigne(X x) {
 
         HashMap<Y, VALEUR> composante = new HashMap<>();
 

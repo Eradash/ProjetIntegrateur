@@ -3,7 +3,6 @@ package affichage;
 import JTree.Tree;
 import gestion.AnalyseurCircuit;
 import gestion.ControleurCircuit;
-import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -62,17 +61,6 @@ public class ControlleurFrame {
             JOptionPane.showMessageDialog(frame.getFrame(), "Sélection incorrecte");
         }
         return ok;
-    }
-
-    private Integer inputInt(String input) throws NumberFormatException {
-        int i;
-        try {
-            i = Integer.parseInt(input);
-            return i;
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(frame.getFrame(), "Valeur incorrecte");
-        }
-        return null;
     }
 
     private Double inputDouble(String input) {

@@ -34,7 +34,7 @@ public class BD {
      */
     public void supprimerComposante(int ID) {
         if (gestionnaire.supprimerComp(ID)) {
-            listeComposante.removeID(ID);
+            listeComposante.removeX(ID);
         }
     }
 
@@ -54,7 +54,7 @@ public class BD {
      * @return HashMap d'informations
      */
     public HashMap<String, Double> getComposante(int ID) {
-        return listeComposante.getComp(ID);
+        return listeComposante.getLigne(ID);
     }
 
     /**
