@@ -6,8 +6,17 @@ import logiqueCircuit.Composante;
 import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
+/**
+ * Permet de construire l'Arbre d'affichage
+ * @author Vincent Poirier (Tiré d'Internet)
+ */
 public class MonTreeBuilder {
 
+    /**
+     * Permet de constuire l'arbre en foncion du Circuit envoyé
+     * @param c Circuit à représenter en arbre
+     * @return Node root de l'arbre créé
+     */
     public static MaNode build(Circuit c) {
         if (c != null) {
             MaNode rootNode = new MaNode("Circuit", MaNode.NODE_ROOT, -1);

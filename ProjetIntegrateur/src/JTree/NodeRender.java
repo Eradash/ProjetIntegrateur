@@ -6,6 +6,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+/**
+ * Permet de gérer l'affichage de l'Arbre
+ * @author Vincent Poirier (Tiré d'Internet)
+ */
 public class NodeRender extends DefaultTreeCellRenderer {
 
     private final ImageIcon iconProject = new ImageIcon("image/BatteryIcon.png"); //Circuit
@@ -14,10 +18,6 @@ public class NodeRender extends DefaultTreeCellRenderer {
     private final ImageIcon iconClass = new ImageIcon("image/resistanceIcon.png");
     private final ImageIcon iconFolder = new ImageIcon("image/resistanceBurned.png");
 
-    public NodeRender() {
-
-    }
-
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
@@ -25,9 +25,6 @@ public class NodeRender extends DefaultTreeCellRenderer {
         MaNode node = (MaNode) value;
 
         switch (node.getType()) {
-            case MaNode.NODE_PROJECT:
-                setIcon(iconProject);
-                break;
             case MaNode.NODE_PARALLELE:
                 setIcon(iconSource);
                 break;

@@ -3,16 +3,27 @@ package logiqueCircuit;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Série d'un circuit. Principalement utilisé pour les paralèles, et le circuit
+ */
 public class Serie extends Branche {
 
     private final HashMap<Integer, Composante> listeComposante;
 
+    /**
+     * Constructeur par défaut.
+     * Voir Branche
+     */
     public Serie() {
         super();
         listeComposante = new HashMap<>();
 
     }
 
+    /**
+     * Créer un Série avec un ID Prédifini
+     * @param ID ID Prédéfini
+     */
     public Serie(int ID) {
         super(ID);
         listeComposante = new HashMap<>();

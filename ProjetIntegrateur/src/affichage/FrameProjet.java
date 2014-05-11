@@ -4,12 +4,19 @@ import JTree.Tree;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * Frame du projet. Gère toutes les entrées utilisateur et envoie les notifications au ControlleurFrame
+ */
 public class FrameProjet extends JFrame {
 
     private ControlleurFrame cf;
     private Tree t = new Tree(cf);
     private final PanelProp pp;
 
+    /**
+     * Initialisation du Frame, création du Panel Propriétés et de l'Arbre 
+     * @param cf Controlleur Frame du pojet (pour la jonction avec le reste du projet)
+     */
     public FrameProjet(ControlleurFrame cf) {
         this.cf = cf;
         this.pp = new PanelProp();
@@ -18,18 +25,26 @@ public class FrameProjet extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Permet au ControlleurFrame d'avoir une instance de l'Arbre (Pour imiter le MVC)
+     * @return L'Arbre de l'affichage
+     */
     public Tree getTree() {
         return t;
     }
 
+    /**
+     * Permet au ControlleurFrame d'avoir une instance du Panel Propriétés (Pour imiter le MVC)
+     * @return Le Panel Propriétés
+     */
     public PanelProp getPanelProp() {
         return pp;
     }
 
-    public void update() {
-        repaint();
-    }
-
+    /**
+     * Permet au ControlleurFrame d'avoir une instance du Frame (Pour imiter le MVC)
+     * @return Le Frame
+     */
     public JFrame getFrame() {
         return this;
     }

@@ -5,10 +5,20 @@ import logiqueCircuit.Composante;
 import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
+/**
+ * Permet d'Analyser un Circuit
+ */
 public class AnalyseurCircuit {
 
+    /**
+     * Nombre de chiffres après la virgules d'affichées
+     */
     public static int arrondissement = 8;
 
+    /**
+     * Permet d'analyser un Circuit. Rentre toutes les valeurs dans la BD.
+     * @param c Circuit à analyser
+     */
     public void analyserCircuit(Circuit c) {
         if (c != null) {
             double voltage = c.getVoltage();
@@ -97,9 +107,5 @@ public class AnalyseurCircuit {
             return n;
         }
         return nombre;
-    }
-
-    public Double getValeurComposante(int noComp, String info) {
-        return BD.getInstance().getComposante(noComp, info);
     }
 }

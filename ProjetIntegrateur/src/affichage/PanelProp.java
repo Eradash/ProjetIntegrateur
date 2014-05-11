@@ -6,12 +6,18 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Permet d'afficher les propriétés d'une composante
+ */
 public class PanelProp extends JPanel {
 
     private int IDSelected = -1;
     private HashMap<String, Double> map;
     private boolean instance;
 
+    /**
+     * Initialisation du panel avec une bordure et une taille prédéfinie
+     */
     public PanelProp() {
         this.instance = false;
         this.setSize(241, 346);
@@ -19,6 +25,10 @@ public class PanelProp extends JPanel {
         repaint();
     }
 
+    /**
+     * Permet de notifier le panel d'un changement de sélection de composante.
+     * @param ID ID de la nouvelle composante sélectionnée
+     */
     public void setIDSelection(int ID) {
         this.IDSelected = ID;
         map = BD.getInstance().getComposante(IDSelected);
