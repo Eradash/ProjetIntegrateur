@@ -1,6 +1,6 @@
 package I1l1;
 
-import I11l.Tree;
+import I11l.IIll;
 import I1ll.Ii;
 import I1ll.I1i;
 import javax.swing.ImageIcon;
@@ -14,7 +14,7 @@ import l.Il1;
 public class I11 {
 
     private final Il1l i;
-    private final Tree l;
+    private final IIll l;
     private final I1i ll;
 
     public I11(I1i li) {
@@ -25,13 +25,13 @@ public class I11 {
     }
 
     public void il() {
-        l.update(ll.ll());
+        l.l(ll.ll());
     }
 
     private int ll() {
         int li;
         try {
-            li = l.getIDSelected();
+            li = l.I();
             return li;
         } catch (Exception Il) {
             JOptionPane.showMessageDialog(i.il(), "l");
@@ -175,7 +175,7 @@ public class I11 {
 
     public void i1() {
         ll.il();
-        l.update(ll.ll());
+        l.l(ll.ll());
     }
 
     public void l(int il) {

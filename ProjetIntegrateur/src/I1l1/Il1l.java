@@ -1,24 +1,24 @@
 package I1l1;
 
-import I11l.Tree;
+import I11l.IIll;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Il1l extends JFrame {
 
     private I11 i;
-    private Tree l = new Tree(i);
+    private IIll l = new IIll(i);
     private final Ill1 ll;
 
     public Il1l(I11 i) {
         this.i = i;
         this.ll = new Ill1();
-        l = new Tree(i);
+        l = new IIll(i);
         initComponents();
         setVisible(true);
     }
 
-    public Tree l() {
+    public IIll l() {
         return l;
     }
 
