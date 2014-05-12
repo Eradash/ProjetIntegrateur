@@ -83,12 +83,12 @@ public class GestionXML {
         elem.appendChild(elemComp);
         
         for(I comp : p.lI()) {
-            encoderSerie((Serie)comp, doc, elemComp, x);
+            encoderSerie((I1)comp, doc, elemComp, x);
             x++;
         }
     }
     
-    private void encoderSerie(Serie s, Document doc, Element elem, int branche) {
+    private void encoderSerie(I1 s, Document doc, Element elem, int branche) {
         Element elemBranche = doc.createElement("BRANCHE");
         elem.appendChild(elemBranche);
         elemBranche.setAttribute("NUMERO", Integer.toString(branche));
@@ -179,7 +179,7 @@ public class GestionXML {
             case "BRANCHE" :
                 int IDBranche = Integer.valueOf(getInfo("ID", n));
                 
-                comp = new Serie(IDBranche);
+                comp = new I1(IDBranche);
                 
                 NodeList element = n.getElementsByTagName("COMPOSANTE");
                 Element elemtemp = (Element) element.item(0);
@@ -189,11 +189,11 @@ public class GestionXML {
                 
                 for(int i = 0; i < para.getLength(); i++) {
                     if(para.item(i).getParentNode().equals(elemtemp))
-                    ((Serie)comp).i(ajouterParallele((Element) element.item(i)));
+                    ((I1)comp).i(ajouterParallele((Element) element.item(i)));
                 }
                 for(int i = 0; i < resis.getLength(); i++) {
                     if(resis.item(i).getParentNode().equals(elemtemp))
-                    ((Serie)comp).i(ajouterComp((Element)resis.item(i)));
+                    ((I1)comp).i(ajouterComp((Element)resis.item(i)));
                 }
                 
                 return comp;

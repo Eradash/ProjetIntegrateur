@@ -8,7 +8,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import logiqueCircuit.Il;
 import logiqueCircuit.Resistance;
-import logiqueCircuit.Serie;
+import logiqueCircuit.I1;
 import logiqueCircuit.Type;
 
 /**
@@ -100,7 +100,7 @@ public class ControlleurFrame {
                     break;
                 case "Branche":
                     if (verifierSelection(new Type[]{Type.PARALLELE, Type.SERIE}, ID)) {
-                        cc.ajouterComposante(new Serie(), ID);
+                        cc.ajouterComposante(new I1(), ID);
                     }
                     break;
                 case "Modifier":

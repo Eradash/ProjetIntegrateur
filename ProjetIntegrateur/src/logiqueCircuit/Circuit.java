@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Représente un Circuit électrique. Agit comme un Série, puisqu'il ne contient que des composantes en série, et se calcul comme tel...
  */
-public class Circuit extends Serie {
+public class Circuit extends I1 {
 
     private double ampere;
     private double voltage;

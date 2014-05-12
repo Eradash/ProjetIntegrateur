@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Il extends II implements I {
 
-    private final HashMap<Integer, Serie> i;
+    private final HashMap<Integer, I1> i;
 
     public Il() {
         super();
@@ -19,7 +19,7 @@ public class Il extends II implements I {
 
     @Override
     public void i(I l) {
-        i.put(l.I(), (Serie) l);
+        i.put(l.I(), (I1) l);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Il extends II implements I {
     @Override
     public double Il() {
         double l = 0;
-        for (Serie ll : i.values()) {
+        for (I1 ll : i.values()) {
             l += 1 / ll.Il();
         }
         return 1 / l;
