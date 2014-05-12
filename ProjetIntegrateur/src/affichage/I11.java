@@ -153,7 +153,7 @@ public class I11 {
 
     public void I1() {
         JFileChooser il = new JFileChooser();
-        il.setFileFilter(new FiltreCircuit());
+        il.setFileFilter(new Illl());
         int li = il.showOpenDialog(i);
         if (li == JFileChooser.APPROVE_OPTION) {
             ll.il(il.getSelectedFile().getPath());
@@ -164,7 +164,7 @@ public class I11 {
 
     public void l1() {
         JFileChooser il = new JFileChooser();
-        il.setFileFilter(new FiltreCircuit());
+        il.setFileFilter(new Illl());
         int li = il.showSaveDialog(i);
         if (li == JFileChooser.APPROVE_OPTION) {
             ll.ll(il.getSelectedFile().getPath());
