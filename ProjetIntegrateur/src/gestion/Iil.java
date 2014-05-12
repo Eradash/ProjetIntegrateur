@@ -7,11 +7,11 @@ public class Iil {
     private static volatile Iil i = null;
     private final static Ili l = Ili.il();
 
-    private final MultiMap<Integer, String, Double> ll;
+    private final Ii1<Integer, String, Double> ll;
 
     private Iil() {
         super();
-        ll = new MultiMap<>();
+        ll = new Ii1<>();
     }
 
     public void il(int i, String li, double il) {
@@ -21,16 +21,16 @@ public class Iil {
 
     public void il(int i) {
         if (l.il(i)) {
-            ll.removeX(i);
+            ll.il(i);
         }
     }
 
     public Double il(int i, String li) {
-        return ll.get(i, li);
+        return ll.il(i, li);
     }
 
     public HashMap<String, Double> ll(int i) {
-        return ll.getLigne(i);
+        return ll.l(i);
     }
 
     public void il() {
