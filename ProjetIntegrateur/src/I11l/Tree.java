@@ -31,7 +31,7 @@ public class Tree extends JPanel implements TreeSelectionListener {
         Il11 rootNode = I111.l(null);
         TreeModel model = new IllI(rootNode);
         tree = new JTree(model);
-        tree.setCellRenderer(new NodeRender());
+        tree.setCellRenderer(new IlIl());
         tree.addTreeSelectionListener(this);
 
         add(new JScrollPane(tree), BorderLayout.CENTER);
