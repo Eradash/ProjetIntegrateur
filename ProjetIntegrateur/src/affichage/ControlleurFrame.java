@@ -1,7 +1,7 @@
 package affichage;
 
 import JTree.Tree;
-import gestion.AnalyseurCircuit;
+import gestion.Ii;
 import gestion.ControleurCircuit;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -162,7 +162,7 @@ public class ControlleurFrame {
             }
             return;
         }
-        AnalyseurCircuit.arrondissement = d;
+        Ii.i = d;
         cc.run();
     }
 

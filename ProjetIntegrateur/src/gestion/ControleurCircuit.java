@@ -10,7 +10,7 @@ import l.I;
 public class ControleurCircuit {
 
     private final BD donnee = BD.getInstance();
-    private final AnalyseurCircuit analyseur = new AnalyseurCircuit();
+    private final Ii analyseur = new Ii();
     private final static GestionXML xml = GestionXML.getInstance();
     private ControlleurFrame cf;
 
@@ -90,10 +90,10 @@ public class ControleurCircuit {
     }
 
     /**
-     * Permet de lancer une analyse du circuit (voir 'analyserCircuit' du AnalyseurCircuit) et d'updater l'affichage
+     * Permet de lancer une analyse du circuit (voir 'il' du Ii) et d'updater l'affichage
      */
     public void run() {
-        analyseur.analyserCircuit(c);
+        analyseur.il(c);
         cf.update();
     }
 }
