@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Iil {
 
     private static volatile Iil i = null;
-    private final static GestionnaireID l = GestionnaireID.getInstance();
+    private final static Ili l = Ili.il();
 
     private final MultiMap<Integer, String, Double> ll;
 
@@ -16,11 +16,11 @@ public class Iil {
 
     public void il(int i, String li, double il) {
         ll.put(i, li, il);
-        l.ajouterComp(i);
+        l.l(i);
     }
 
     public void il(int i) {
-        if (l.supprimerComp(i)) {
+        if (l.il(i)) {
             ll.removeX(i);
         }
     }
@@ -34,9 +34,9 @@ public class Iil {
     }
 
     public void il() {
-        l.resetCircuit();
+        l.ll();
         ll.clear();
-        l.resetCircuit();
+        l.ll();
     }
 
     public final static Iil ll() {

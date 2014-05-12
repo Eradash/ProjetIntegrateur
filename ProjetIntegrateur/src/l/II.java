@@ -1,6 +1,6 @@
 package l;
 
-import gestion.GestionnaireID;
+import gestion.Ili;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +14,7 @@ public abstract class II implements I {
      * Permet de créer une branche. La Branche va demander un ID au Gestionnaire d'ID, et le stocker dans sa variable.
      */
     public II() {
-        ID = GestionnaireID.getInstance().ajouterComp();
+        ID = Ili.il().l();
     }
 
     /**
@@ -22,7 +22,7 @@ public abstract class II implements I {
      * @param id ID à ranger. Faire attention de ne pas prendre un ID déjà utilisé.
      */
     public II(int id) {
-        ID = GestionnaireID.getInstance().ajouterComp(id);
+        ID = Ili.il().l(id);
     }
 
     @Override

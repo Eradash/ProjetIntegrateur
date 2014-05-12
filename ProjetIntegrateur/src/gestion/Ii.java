@@ -31,9 +31,9 @@ public class Ii {
 
         if (lI != -1 || l1 != -1) {
             if (lI == -1 && l1 != -1) {
-                lI = l1 / Il; //cas 1 ou 2
+                lI = l1 / Il;
             } else if (l1 == -1 && lI != -1) {
-                II += 10; // cas 11 ou 12
+                II += 10;
                 l1 = Il * lI;
             }
         }

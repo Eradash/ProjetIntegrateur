@@ -1,6 +1,6 @@
 package l;
 
-import gestion.GestionnaireID;
+import gestion.Ili;
 import java.util.ArrayList;
 
 public class Ill implements I {
@@ -10,12 +10,12 @@ public class Ill implements I {
     private boolean li = false;
 
     public Ill(double l, int il) {
-        i = GestionnaireID.getInstance().ajouterComp(il);
+        i = Ili.il().l(il);
         this.l = l;
     }
 
     public Ill(double l) {
-        i = GestionnaireID.getInstance().ajouterComp();
+        i = Ili.il().l();
         this.l = l;
     }
 
