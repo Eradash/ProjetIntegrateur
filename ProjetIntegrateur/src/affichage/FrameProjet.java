@@ -11,7 +11,7 @@ public class FrameProjet extends JFrame {
 
     private I11 cf;
     private Tree t = new Tree(cf);
-    private final PanelProp pp;
+    private final Ill1 pp;
 
     /**
      * Initialisation du Frame, création du Panel Propriétés et de l'Arbre 
@@ -19,7 +19,7 @@ public class FrameProjet extends JFrame {
      */
     public FrameProjet(I11 cf) {
         this.cf = cf;
-        this.pp = new PanelProp();
+        this.pp = new Ill1();
         t = new Tree(cf);
         initComponents();
         setVisible(true);
@@ -37,7 +37,7 @@ public class FrameProjet extends JFrame {
      * Permet au I11 d'avoir une instance du Panel Propriétés (Pour imiter le MVC)
      * @return Le Panel Propriétés
      */
-    public PanelProp getPanelProp() {
+    public Ill1 getPanelProp() {
         return pp;
     }
 

@@ -179,7 +179,7 @@ public class I11 {
     }
 
     public void l(int il) {
-        i.getPanelProp().setIDSelection(il);
+        i.getPanelProp().l(il);
     }
 
     public String l(String il, String li) {
