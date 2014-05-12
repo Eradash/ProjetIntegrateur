@@ -6,13 +6,13 @@ import java.util.HashMap;
 /**
  * Série d'un circuit. Principalement utilisé pour les paralèles, et le circuit
  */
-public class Serie extends Branche {
+public class Serie extends II {
 
     private final HashMap<Integer, I> listeComposante;
 
     /**
      * Constructeur par défaut.
-     * Voir Branche
+     * Voir II
      */
     public Serie() {
         super();
@@ -35,17 +35,17 @@ public class Serie extends Branche {
     }
 
     @Override
-    public void ajouterComposante(I c) {
+    public void i(I c) {
         listeComposante.put(c.I(), c);
     }
 
     @Override
-    public void supprimerComposante(I c) {
+    public void l(I c) {
         listeComposante.remove(c.I());
     }
 
     @Override
-    public void supprimerComposante(int ID) {
+    public void ll(int ID) {
         listeComposante.remove(ID);
     }
 

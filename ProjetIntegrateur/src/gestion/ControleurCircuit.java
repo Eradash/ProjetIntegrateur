@@ -74,7 +74,7 @@ public class ControleurCircuit {
      * @param ID ID de la composante à effacer
      */
     public void supprimerComposante(int ID) {
-        this.c.supprimerComposante(ID);
+        this.c.ll(ID);
         donnee.supprimerComposante(ID);
         run();
     }

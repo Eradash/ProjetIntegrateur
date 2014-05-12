@@ -83,8 +83,8 @@ public class Circuit extends Serie {
      * @param emplacement ID de la composante à obtenir
      * @return Une composante sous forme de branche
      */
-    public Branche getComposanteEmplacement(int emplacement) {
-        return (Branche) getCompEmp(emplacement);
+    public II getComposanteEmplacement(int emplacement) {
+        return (II) getCompEmp(emplacement);
     }
 
     /**
@@ -111,16 +111,16 @@ public class Circuit extends Serie {
      * @param ID_Parent ID du parent désiré pour la nouvelle composante
      */
     public void ajouterComposante(I c, int ID_Parent) {
-        getComposanteEmplacement(ID_Parent).ajouterComposante(c);
+        getComposanteEmplacement(ID_Parent).i(c);
     }
 
     @Override
-    public void supprimerComposante(int ID) {
+    public void ll(int ID) {
         double ID_Parent = BD.getInstance().getComposante(ID, "Parent");
         if ((int) ID_Parent == -1) {
-            super.supprimerComposante(ID);
+            super.ll(ID);
         } else {
-            getComposanteEmplacement((int) ID_Parent).supprimerComposante(ID);
+            getComposanteEmplacement((int) ID_Parent).ll(ID);
         }
     }
 

@@ -6,7 +6,7 @@ import gestion.ControleurCircuit;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import logiqueCircuit.Parallele;
+import logiqueCircuit.Il;
 import logiqueCircuit.Resistance;
 import logiqueCircuit.Serie;
 import logiqueCircuit.Type;
@@ -95,7 +95,7 @@ public class ControlleurFrame {
                     break;
                 case "Parallele":
                     if (verifierSelection(new Type[]{Type.CIRCUIT, Type.SERIE}, ID)) {
-                        cc.ajouterComposante(new Parallele(), ID);
+                        cc.ajouterComposante(new Il(), ID);
                     }
                     break;
                 case "Branche":

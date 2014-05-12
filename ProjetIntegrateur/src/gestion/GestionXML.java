@@ -54,7 +54,7 @@ public class GestionXML {
                 Element elem = doc.createElement(comp.II().toString());
                 if(comp.II() == Type.PARALLELE) {
                     setComp(elem, comp, doc);
-                    encoderPara((Parallele)comp, doc, elem);
+                    encoderPara((Il)comp, doc, elem);
                 } else {
                     setComp(elem, comp, doc);
                 }
@@ -76,7 +76,7 @@ public class GestionXML {
         }
     }
     
-    private void encoderPara(Parallele p, Document doc, Element elem) {
+    private void encoderPara(Il p, Document doc, Element elem) {
         int x = 1;
         
         Element elemComp = doc.createElement("COMPOSANTE");
@@ -102,7 +102,7 @@ public class GestionXML {
             Element elemCompLocal = doc.createElement(comp.II().toString());
             if(comp.II() == Type.PARALLELE) {
                 setComp(elemCompLocal, comp, doc);
-                encoderPara((Parallele) comp, doc, elemCompLocal);
+                encoderPara((Il) comp, doc, elemCompLocal);
             } else {
                 setComp(elemCompLocal,comp,doc);
             }
@@ -150,11 +150,11 @@ public class GestionXML {
             
             for(int i = 0; i < para.getLength(); i++) {
                 if(para.item(i).getParentNode().equals(comp))
-                    c.ajouterComposante(ajouterParallele(((Element)para.item(i))));
+                    c.i(ajouterParallele(((Element)para.item(i))));
             }
             for(int i = 0; i < resis.getLength(); i++) {
                 if(resis.item(i).getParentNode().equals(comp))
-                    c.ajouterComposante(ajouterComp((Element)resis.item(i)));
+                    c.i(ajouterComp((Element)resis.item(i)));
             }
             
             
@@ -189,11 +189,11 @@ public class GestionXML {
                 
                 for(int i = 0; i < para.getLength(); i++) {
                     if(para.item(i).getParentNode().equals(elemtemp))
-                    ((Serie)comp).ajouterComposante(ajouterParallele((Element) element.item(i)));
+                    ((Serie)comp).i(ajouterParallele((Element) element.item(i)));
                 }
                 for(int i = 0; i < resis.getLength(); i++) {
                     if(resis.item(i).getParentNode().equals(elemtemp))
-                    ((Serie)comp).ajouterComposante(ajouterComp((Element)resis.item(i)));
+                    ((Serie)comp).i(ajouterComp((Element)resis.item(i)));
                 }
                 
                 return comp;
@@ -203,7 +203,7 @@ public class GestionXML {
     }
     
     private I ajouterParallele(Element n) {
-        Parallele para = new Parallele(Integer.parseInt(((Element)n.getElementsByTagName("ID").item(0)).getFirstChild().getNodeValue()));
+        Il para = new Il(Integer.parseInt(((Element)n.getElementsByTagName("ID").item(0)).getFirstChild().getNodeValue()));
         
         NodeList elemTemp = n.getElementsByTagName("COMPOSANTE");
         Element element = (Element)elemTemp.item(0);
@@ -211,7 +211,7 @@ public class GestionXML {
         
         for(int i = 0; i < branches.getLength(); i++) {
             if(branches.item(i).getParentNode().equals(element))
-            para.ajouterComposante(ajouterComp((Element)branches.item(i)));
+            para.i(ajouterComp((Element)branches.item(i)));
         }
         
         return para;
