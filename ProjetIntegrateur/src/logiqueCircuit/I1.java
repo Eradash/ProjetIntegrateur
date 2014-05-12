@@ -22,7 +22,10 @@ public abstract class I1 implements I {
 
     @Override
     public abstract ArrayList<I> III();
+
     public abstract void I(I c);
+
     public abstract void I1(I c);
+
     public abstract void I1(int ID);
 }
