@@ -99,7 +99,7 @@ public class ControlleurFrame {
                     }
                     break;
                 case "Branche":
-                    if (verifierSelection(new Type[]{Type.PARALLELE, Type.SERIE}, ID)) {
+                    if (verifierSelection(new Type[]{Type.PARALLELE}, ID)) {
                         cc.ajouterComposante(new Serie(), ID);
                     }
                     break;
