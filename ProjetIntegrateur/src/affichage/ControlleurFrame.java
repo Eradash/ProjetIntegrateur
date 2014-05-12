@@ -2,7 +2,7 @@ package affichage;
 
 import JTree.Tree;
 import gestion.Ii;
-import gestion.ControleurCircuit;
+import gestion.I1i;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -18,15 +18,15 @@ public class ControlleurFrame {
 
     private final FrameProjet frame;
     private final Tree arbre;
-    private final ControleurCircuit cc;
+    private final I1i cc;
 
     /**
      * Initialise le Controlleur
      * @param cc Controlleur du circuit
      */
-    public ControlleurFrame(ControleurCircuit cc) {
+    public ControlleurFrame(I1i cc) {
         this.cc = cc;
-        cc.setCF(this);
+        cc.il(this);
         frame = new FrameProjet(this);
         arbre = frame.getTree();
     }
@@ -35,7 +35,7 @@ public class ControlleurFrame {
      * permet de mettre à jour l'affichage
      */
     public void update() {
-        arbre.update(cc.getCircuit());
+        arbre.update(cc.ll());
     }
 
     private int treeSelected() {
@@ -51,7 +51,7 @@ public class ControlleurFrame {
 
     private boolean verifierSelection(Il1[] types, int ID) {
         boolean ok = false;
-        Il1 verification = cc.getCircuit().l(ID).II();
+        Il1 verification = cc.ll().l(ID).II();
         for (Il1 t : types) {
             if (t == verification) {
                 ok = true;
@@ -87,7 +87,7 @@ public class ControlleurFrame {
                     if (verifierSelection(new Il1[]{Il1.ll, Il1.i}, ID)) {
                         String input = afficherOptionPane("Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance");
                         if ((d = inputDouble(input)) > 0) {
-                            cc.ajouterComposante(new Ill(d), ID);
+                            cc.il(new Ill(d), ID);
                         } else {
                             //Messages d'erreur pour les bonnes valeurs d'une résistance...
                         }
@@ -95,17 +95,17 @@ public class ControlleurFrame {
                     break;
                 case "Parallele":
                     if (verifierSelection(new Il1[]{Il1.ll, Il1.i}, ID)) {
-                        cc.ajouterComposante(new Il(), ID);
+                        cc.il(new Il(), ID);
                     }
                     break;
                 case "Branche":
                     if (verifierSelection(new Il1[]{Il1.l, Il1.i}, ID)) {
-                        cc.ajouterComposante(new I1(), ID);
+                        cc.il(new I1(), ID);
                     }
                     break;
                 case "Modifier":
                     if (verifierSelection(new Il1[]{Il1.ll, Il1.li}, ID)) {
-                        Il1 t  = cc.getCircuit().l(ID).II();
+                        Il1 t  = cc.ll().l(ID).II();
                         String input = null;
                         if (t == Il1.ll) {
                             input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
@@ -113,7 +113,7 @@ public class ControlleurFrame {
                             input = afficherOptionPane("Entrez la nouvelle valeur de la résistance", "Modification résistance");
                         }
                         if ((d = inputDouble(input)) > 0) {
-                            cc.modifierComposante(ID, d);
+                            cc.ll(ID, d);
                         }
                     }
                     break;
@@ -129,7 +129,7 @@ public class ControlleurFrame {
         double d;
         String input = null;
         if ((ID = treeSelected()) != -2) {
-            Il1 t = cc.getCircuit().l(ID).II();
+            Il1 t = cc.ll().l(ID).II();
             if (verifierSelection(new Il1[]{Il1.ll, Il1.li}, ID)) {
                 if (t == Il1.ll) {
                     input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
@@ -137,7 +137,7 @@ public class ControlleurFrame {
                     input = afficherOptionPane("Entrez la nouvelle valeur de la résistance", "Modification résistance");
                 }
                 if ((d = inputDouble(input)) > 0) {
-                    cc.modifierComposante(ID, d);
+                    cc.ll(ID, d);
                 }
             }
         }
@@ -163,7 +163,7 @@ public class ControlleurFrame {
             return;
         }
         Ii.i = d;
-        cc.run();
+        cc.l();
     }
 
     /**
@@ -172,7 +172,7 @@ public class ControlleurFrame {
     public void BoutonSupprimer() {
         int ID;
         if ((ID = treeSelected()) != -2) {
-            cc.supprimerComposante(ID);
+            cc.il(ID);
         }
     }
 
@@ -184,7 +184,7 @@ public class ControlleurFrame {
         chooser.setFileFilter(new FiltreCircuit());
         int valeur = chooser.showOpenDialog(frame);
         if (valeur == JFileChooser.APPROVE_OPTION) {
-            cc.ouvrirCircuit(chooser.getSelectedFile().getPath());
+            cc.il(chooser.getSelectedFile().getPath());
         } else {
             JOptionPane.showMessageDialog(frame.getFrame(), "Fichier invalide");
         }
@@ -198,7 +198,7 @@ public class ControlleurFrame {
         chooser.setFileFilter(new FiltreCircuit());
         int valeur = chooser.showSaveDialog(frame);
         if (valeur == JFileChooser.APPROVE_OPTION) {
-            cc.enregistrerCircuit(chooser.getSelectedFile().getPath());
+            cc.ll(chooser.getSelectedFile().getPath());
         } else {
             JOptionPane.showMessageDialog(frame.getFrame(), "Fichier invalide");
         }
@@ -208,8 +208,8 @@ public class ControlleurFrame {
      * menuNouveau appuyé
      */
     public void menuNouveau() {
-        cc.nouveauCircuit();
-        arbre.update(cc.getCircuit());
+        cc.il();
+        arbre.update(cc.ll());
     }
 
     /**
