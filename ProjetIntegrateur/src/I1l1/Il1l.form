@@ -201,7 +201,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="I11">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ajouter r&#xe9;sistance"/>
+            <Property name="text" type="java.lang.String" value="Ajouter R&#xe9;sistance"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -210,7 +210,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="Illl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ajouter parall&#xe8;le"/>
+            <Property name="text" type="java.lang.String" value="Ajouter Parallele"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>

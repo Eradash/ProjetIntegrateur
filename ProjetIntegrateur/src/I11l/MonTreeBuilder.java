@@ -6,50 +6,41 @@ import l.I;
 import l.Ill;
 import l.Il1;
 
-/**
- * Permet de construire l'Arbre d'affichage
- * @author Vincent Poirier (Tiré d'Internet)
- */
 public class MonTreeBuilder {
 
-    /**
-     * Permet de constuire l'arbre en foncion du I1l envoyé
-     * @param c I1l à représenter en arbre
-     * @return Node root de l'arbre créé
-     */
-    public static Il11 build(I1l c) {
-        if (c != null) {
-            Il11 rootNode = new Il11("Circuit", Il11.Il1, -1);
-            ArrayList<I> listeComposante = c.lI();
-            for (I comp : listeComposante) {
-                rootNode.l(makeNode(comp));
+    public static Il11 l(I1l i) {
+        if (i != null) {
+            Il11 il = new Il11("lI", Il11.Il1, -1);
+            ArrayList<I> li = i.lI();
+            for (I Il : li) {
+                il.l(l(Il));
             }
-            return rootNode;
+            return il;
         } else {
             return null;
         }
     }
 
-    private static Il11 makeNode(I c) {
-        Il1 t = c.II();
-        switch (t) {
+    private static Il11 l(I c) {
+        Il1 i = c.II();
+        switch (i) {
             case li:
-                int image = Il11.Lil;
-                Ill resis = (Ill) c;
-                if (resis.il()) {
-                    image = Il11.Lli;
+                int li = Il11.Lil;
+                Ill il = (Ill) c;
+                if (il.il()) {
+                    li = Il11.Lli;
                 }
-                return new Il11("Résistance", image, c.I());
+                return new Il11("l", li, c.I());
             case l:
-                Il11 m = new Il11("Parallèle", Il11.Ill, c.I());
+                Il11 m = new Il11("ll", Il11.Ill, c.I());
                 for (I s : c.lI()) {
-                    m.l(makeNode(s));
+                    m.l(l(s));
                 }
                 return m;
             case i:
-                Il11 n = new Il11("Branche", Il11.Li, c.I());
-                for (I comp : c.lI()) {
-                    n.l(makeNode(comp));
+                Il11 n = new Il11("li", Il11.Li, c.I());
+                for (I Il : c.lI()) {
+                    n.l(l(Il));
                 }
                 return n;
         }

@@ -60,7 +60,7 @@ public class Il1l extends JFrame {
 
         Iii.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        I11.setText("Ajouter résistance");
+        I11.setText("Ajouter Résistance");
         I11.setFocusPainted(false);
         I11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +68,7 @@ public class Il1l extends JFrame {
             }
         });
 
-        Illl.setText("Ajouter parallèle");
+        Illl.setText("Ajouter Parallele");
         Illl.setFocusPainted(false);
         Illl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
