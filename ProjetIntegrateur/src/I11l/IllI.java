@@ -6,27 +6,19 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-/**
- * Permet de gérer je sais pas trop quoi... J'ai pris ça d'Internet, et il parait que ça prennait ça...
- * @author Vincent Poirier (Tiré d'Internet)
- */
-public class MonTreeModel implements TreeModel {
+public class IllI implements TreeModel {
 
-    private final TreeNode rootNode;
-    private final Vector<TreeModelListener> listeners;
+    private final TreeNode i;
+    private final Vector<TreeModelListener> ll;
 
-    /**
-     * Permet de créer le TreeModel avec une rootNode
-     * @param rootNode
-     */
-    public MonTreeModel(TreeNode rootNode) {
-        this.listeners = new Vector<>();
-        this.rootNode = rootNode;
+    public IllI(TreeNode i) {
+        this.ll = new Vector<>();
+        this.i = i;
     }
 
     @Override
     public void addTreeModelListener(TreeModelListener l) {
-        listeners.add(l);
+        ll.add(l);
     }
 
     @Override
@@ -50,7 +42,7 @@ public class MonTreeModel implements TreeModel {
 
     @Override
     public Object getRoot() {
-        return rootNode;
+        return i;
     }
 
     @Override
@@ -61,7 +53,7 @@ public class MonTreeModel implements TreeModel {
 
     @Override
     public void removeTreeModelListener(TreeModelListener l) {
-        listeners.remove(l);
+        ll.remove(l);
     }
 
     @Override

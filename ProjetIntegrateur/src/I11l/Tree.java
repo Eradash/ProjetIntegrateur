@@ -28,8 +28,8 @@ public class Tree extends JPanel implements TreeSelectionListener {
     public Tree(I11 cf) {
         this.cf = cf;
         setLayout(new BorderLayout());
-        Il11 rootNode = MonTreeBuilder.l(null);
-        TreeModel model = new MonTreeModel(rootNode);
+        Il11 rootNode = I111.l(null);
+        TreeModel model = new IllI(rootNode);
         tree = new JTree(model);
         tree.setCellRenderer(new NodeRender());
         tree.addTreeSelectionListener(this);
@@ -48,7 +48,7 @@ public class Tree extends JPanel implements TreeSelectionListener {
      * @param c I1l sur lequel se baser pour la construction de l'Arbre
      */
     public void update(I1l c) {
-        tree.setModel(new MonTreeModel(MonTreeBuilder.l(c)));
+        tree.setModel(new IllI(I111.l(c)));
         expand();
     }
 
