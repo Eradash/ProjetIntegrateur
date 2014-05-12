@@ -1,8 +1,8 @@
 package gestion;
 
 import affichage.ControlleurFrame;
-import logiqueCircuit.I1l;
-import logiqueCircuit.I;
+import l.I1l;
+import l.I;
 
 /**
  * Permet de controller un circuit électrique

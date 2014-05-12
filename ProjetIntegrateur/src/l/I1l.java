@@ -1,4 +1,4 @@
-package logiqueCircuit;
+package l;
 
 import gestion.BD;
 import java.util.ArrayList;

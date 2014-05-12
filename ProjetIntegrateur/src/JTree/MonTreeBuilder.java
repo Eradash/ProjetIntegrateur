@@ -1,10 +1,10 @@
 package JTree;
 
 import java.util.ArrayList;
-import logiqueCircuit.I1l;
-import logiqueCircuit.I;
-import logiqueCircuit.Ill;
-import logiqueCircuit.Il1;
+import l.I1l;
+import l.I;
+import l.Ill;
+import l.Il1;
 
 /**
  * Permet de construire l'Arbre d'affichage

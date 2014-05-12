@@ -1,9 +1,9 @@
 package gestion;
 
-import logiqueCircuit.I1l;
-import logiqueCircuit.I;
-import logiqueCircuit.Ill;
-import logiqueCircuit.Il1;
+import l.I1l;
+import l.I;
+import l.Ill;
+import l.Il1;
 
 /**
  * Permet d'Analyser un I1l

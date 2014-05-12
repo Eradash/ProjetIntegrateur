@@ -6,10 +6,10 @@ import gestion.ControleurCircuit;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import logiqueCircuit.Il;
-import logiqueCircuit.Ill;
-import logiqueCircuit.I1;
-import logiqueCircuit.Il1;
+import l.Il;
+import l.Ill;
+import l.I1;
+import l.Il1;
 
 /**
  * Permet une connection entre le Frame et le reste du projet

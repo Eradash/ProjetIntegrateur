@@ -1,4 +1,4 @@
-package logiqueCircuit;
+package l;
 
 import gestion.GestionnaireID;
 import java.util.ArrayList;

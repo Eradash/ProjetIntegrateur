@@ -1,4 +1,4 @@
-package logiqueCircuit;
+package l;
 
 public enum Il1 {
     i,

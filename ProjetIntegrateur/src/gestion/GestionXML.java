@@ -1,5 +1,11 @@
 package gestion;
 
+import l.I;
+import l.Il1;
+import l.I1l;
+import l.Il;
+import l.Ill;
+import l.I1;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -10,7 +16,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import logiqueCircuit.*;
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
