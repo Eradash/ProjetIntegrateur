@@ -1,6 +1,6 @@
 package JTree;
 
-import affichage.ControlleurFrame;
+import affichage.I11;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
@@ -19,13 +19,13 @@ import l.I1l;
 public class Tree extends JPanel implements TreeSelectionListener {
 
     private final JTree tree;
-    private final ControlleurFrame cf;
+    private final I11 cf;
 
     /**
-     * Permet de créer un arbre. Initialise les composantes, les listeners et le ScrollPane, et garde une référence avec le ControlleurFrame
+     * Permet de créer un arbre. Initialise les composantes, les listeners et le ScrollPane, et garde une référence avec le I11
      * @param cf Controlleur Frame du pojet (pour la jonction avec le reste du projet)
      */
-    public Tree(ControlleurFrame cf) {
+    public Tree(I11 cf) {
         this.cf = cf;
         setLayout(new BorderLayout());
         MaNode rootNode = MonTreeBuilder.build(null);
@@ -74,7 +74,7 @@ public class Tree extends JPanel implements TreeSelectionListener {
         TreePath tp = tree.getSelectionPath();
         if (tp != null) {
             MaNode m = (MaNode) tp.getLastPathComponent();
-            cf.IDSelected(m.getID());
+            cf.l(m.getID());
         }
     }
 }

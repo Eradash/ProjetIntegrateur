@@ -1,6 +1,6 @@
 package projetIntegrateur;
 
-import affichage.ControlleurFrame;
+import affichage.I11;
 import gestion.I1i;
 
 public class ProjetIntegrateur {
@@ -10,6 +10,6 @@ public class ProjetIntegrateur {
      * @param args inutiles pour le projet
      */
     public static void main(String[] args) {
-        new ControlleurFrame(new I1i());
+        new I11(new I1i());
     }
 }

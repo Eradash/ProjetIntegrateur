@@ -1,6 +1,6 @@
 package gestion;
 
-import affichage.ControlleurFrame;
+import affichage.I11;
 import l.I1l;
 import l.I;
 
@@ -9,10 +9,10 @@ public class I1i {
     private final Iil l = Iil.ll();
     private final Ii ll = new Ii();
     private final static Iii li = Iii.ll();
-    private ControlleurFrame il;
+    private I11 il;
     private I1l Il;
     
-    public void il(ControlleurFrame i) {
+    public void il(I11 i) {
         this.il = i;
     }
 
@@ -53,6 +53,6 @@ public class I1i {
 
     public void l() {
         ll.il(Il);
-        il.update();
+        il.il();
     }
 }

@@ -5,11 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * Frame du projet. Gère toutes les entrées utilisateur et envoie les notifications au ControlleurFrame
+ * Frame du projet. Gère toutes les entrées utilisateur et envoie les notifications au I11
  */
 public class FrameProjet extends JFrame {
 
-    private ControlleurFrame cf;
+    private I11 cf;
     private Tree t = new Tree(cf);
     private final PanelProp pp;
 
@@ -17,7 +17,7 @@ public class FrameProjet extends JFrame {
      * Initialisation du Frame, création du Panel Propriétés et de l'Arbre 
      * @param cf Controlleur Frame du pojet (pour la jonction avec le reste du projet)
      */
-    public FrameProjet(ControlleurFrame cf) {
+    public FrameProjet(I11 cf) {
         this.cf = cf;
         this.pp = new PanelProp();
         t = new Tree(cf);
@@ -26,7 +26,7 @@ public class FrameProjet extends JFrame {
     }
 
     /**
-     * Permet au ControlleurFrame d'avoir une instance de l'Arbre (Pour imiter le MVC)
+     * Permet au I11 d'avoir une instance de l'Arbre (Pour imiter le MVC)
      * @return L'Arbre de l'affichage
      */
     public Tree getTree() {
@@ -34,7 +34,7 @@ public class FrameProjet extends JFrame {
     }
 
     /**
-     * Permet au ControlleurFrame d'avoir une instance du Panel Propriétés (Pour imiter le MVC)
+     * Permet au I11 d'avoir une instance du Panel Propriétés (Pour imiter le MVC)
      * @return Le Panel Propriétés
      */
     public PanelProp getPanelProp() {
@@ -42,7 +42,7 @@ public class FrameProjet extends JFrame {
     }
 
     /**
-     * Permet au ControlleurFrame d'avoir une instance du Frame (Pour imiter le MVC)
+     * Permet au I11 d'avoir une instance du Frame (Pour imiter le MVC)
      * @return Le Frame
      */
     public JFrame getFrame() {
@@ -258,27 +258,27 @@ public class FrameProjet extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModifierActionPerformed
-        cf.Bouton("Modifier");
+        cf.il("Modifier");
     }//GEN-LAST:event_menuModifierActionPerformed
 
     private void menuOuvrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOuvrirActionPerformed
-        cf.menuOuvrir();
+        cf.I1();
     }//GEN-LAST:event_menuOuvrirActionPerformed
 
     private void menuSauvegarderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSauvegarderActionPerformed
-        cf.menuSauvegarder();
+        cf.l1();
     }//GEN-LAST:event_menuSauvegarderActionPerformed
 
     private void boutonResistanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonResistanceActionPerformed
-        cf.Bouton("Resistance");
+        cf.il("Resistance");
     }//GEN-LAST:event_boutonResistanceActionPerformed
 
     private void boutonParalleleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonParalleleActionPerformed
-        cf.Bouton("Parallele");
+        cf.il("Parallele");
     }//GEN-LAST:event_boutonParalleleActionPerformed
 
     private void boutonBrancheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonBrancheActionPerformed
-        cf.Bouton("Branche");
+        cf.il("Branche");
     }//GEN-LAST:event_boutonBrancheActionPerformed
 
     private void MenuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuQuitterActionPerformed
@@ -293,15 +293,15 @@ public class FrameProjet extends JFrame {
     }//GEN-LAST:event_MenuQuitterActionPerformed
 
     private void menuNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouveauActionPerformed
-        cf.menuNouveau();
+        cf.i1();
     }//GEN-LAST:event_menuNouveauActionPerformed
 
     private void menuSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSupprimerActionPerformed
-        cf.BoutonSupprimer();
+        cf.II();
     }//GEN-LAST:event_menuSupprimerActionPerformed
 
     private void menuModifArronActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModifArronActionPerformed
-        cf.menuArrondissement();
+        cf.lI();
         
     }//GEN-LAST:event_menuModifArronActionPerformed
 
