@@ -8,7 +8,7 @@ public class I1i {
 
     private final Iil l = Iil.ll();
     private final Ii ll = new Ii();
-    private final static GestionXML li = GestionXML.getInstance();
+    private final static Iii li = Iii.ll();
     private ControlleurFrame il;
     private I1l Il;
     
@@ -23,12 +23,12 @@ public class I1i {
     }
 
     public void il(String i) {
-        Il = li.decoder(i);
+        Il = li.l(i);
         l();
     }
 
     public void ll(String l) {
-        li.encoder(Il, l);
+        li.l(Il, l);
     }
 
     public I1l ll() {
