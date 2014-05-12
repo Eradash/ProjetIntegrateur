@@ -22,10 +22,10 @@ public class Ii {
         double lI = i;
         double l1 = il;
 
-        BD I1 = BD.getInstance();
+        Iil I1 = Iil.ll();
 
-        I1.SetComposante(ll, "Parent", li);
-        I1.SetComposante(ll, "Resistance", il(Il));
+        I1.il(ll, "Parent", li);
+        I1.il(ll, "Resistance", il(Il));
 
         int II = 0;
 
@@ -38,31 +38,31 @@ public class Ii {
             }
         }
 
-        I1.SetComposante(ll, "Ampere", il(lI));
-        I1.SetComposante(ll, "Voltage", il(l1));
+        I1.il(ll, "Ampere", il(lI));
+        I1.il(ll, "Voltage", il(l1));
 
         switch (l.II()) {
             case i:
                 II += 1;
-                I1.SetComposante(ll, "Type", 1);
+                I1.il(ll, "Type", 1);
                 break;
             case ll:
                 II += 1;
-                I1.SetComposante(ll, "Type", 3);
+                I1.il(ll, "Type", 3);
                 break;
             case l:
                 II += 2;
-                I1.SetComposante(ll, "Type", 2);
+                I1.il(ll, "Type", 2);
                 break;
             case li:
                 II = 0;
-                I1.SetComposante(ll, "Type", 4);
+                I1.il(ll, "Type", 4);
                 break;
         }
 
         if (l.II() == Il1.li) {
             double lIl = lI * l1;
-            I1.SetComposante(ll, "Watt", il(lIl));
+            I1.il(ll, "Watt", il(lIl));
             Ill IlI = (Ill) l;
             if (lIl > 0.25) {
                 IlI.il(true);

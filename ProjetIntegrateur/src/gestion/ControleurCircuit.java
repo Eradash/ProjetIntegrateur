@@ -9,7 +9,7 @@ import l.I;
  */
 public class ControleurCircuit {
 
-    private final BD donnee = BD.getInstance();
+    private final Iil donnee = Iil.ll();
     private final Ii analyseur = new Ii();
     private final static GestionXML xml = GestionXML.getInstance();
     private ControlleurFrame cf;
@@ -28,7 +28,7 @@ public class ControleurCircuit {
      * Permet de créer un nouveau circuit. Réinitialise tous les gestionnaires et ferme le circuit présentement ouvert.
      */
     public void nouveauCircuit() {
-        donnee.resetCircuit();
+        donnee.il();
         c = new I1l();
         run();
     }
@@ -70,12 +70,12 @@ public class ControleurCircuit {
     }
 
     /**
-     * Permet de supprimer une composante du circuit. Efface aussi toutes les données relatives à la composante de la BD et du Gestionnaire ID
+     * Permet de supprimer une composante du circuit. Efface aussi toutes les données relatives à la composante de la Iil et du Gestionnaire ID
      * @param ID ID de la composante à effacer
      */
     public void supprimerComposante(int ID) {
         this.c.ll(ID);
-        donnee.supprimerComposante(ID);
+        donnee.il(ID);
         run();
     }
 

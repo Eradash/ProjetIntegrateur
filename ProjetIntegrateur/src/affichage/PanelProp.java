@@ -1,6 +1,6 @@
 package affichage;
 
-import gestion.BD;
+import gestion.Iil;
 import java.awt.Graphics;
 import java.util.HashMap;
 import javax.swing.JPanel;
@@ -31,7 +31,7 @@ public class PanelProp extends JPanel {
      */
     public void setIDSelection(int ID) {
         this.IDSelected = ID;
-        map = BD.getInstance().getComposante(IDSelected);
+        map = Iil.ll().ll(IDSelected);
         instance = true;
         repaint();
     }

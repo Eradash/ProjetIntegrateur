@@ -1,6 +1,6 @@
 package l;
 
-import gestion.BD;
+import gestion.Iil;
 import java.util.ArrayList;
 
 public class I1l extends I1 {
@@ -41,7 +41,7 @@ public class I1l extends I1 {
         int Il = il;
 
         while (Il != -1) {
-            Il = gestion.BD.getInstance().getComposante(Il, "Parent").intValue();
+            Il = gestion.Iil.ll().il(Il, "Parent").intValue();
             li.add(Il);
         }
 
@@ -76,7 +76,7 @@ public class I1l extends I1 {
 
     @Override
     public void ll(int i) {
-        double li = BD.getInstance().getComposante(i, "Parent");
+        double li = Iil.ll().il(i, "Parent");
         if ((int) li == -1) {
             super.ll(i);
         } else {
