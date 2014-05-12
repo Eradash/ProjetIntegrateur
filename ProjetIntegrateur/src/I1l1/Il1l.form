@@ -2,14 +2,14 @@
 
 <Form version="1.4" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Menu class="javax.swing.JMenuBar" name="MenuBar">
+    <Menu class="javax.swing.JMenuBar" name="I">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="MenuFichier">
+        <Menu class="javax.swing.JMenu" name="Il">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fichier"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuOuvrir">
+            <MenuItem class="javax.swing.JMenuItem" name="II">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+O"/>
@@ -17,10 +17,10 @@
                 <Property name="text" type="java.lang.String" value="Ouvrir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuOuvrirActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IIActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuSauvegarder">
+            <MenuItem class="javax.swing.JMenuItem" name="I1">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+S"/>
@@ -28,10 +28,10 @@
                 <Property name="text" type="java.lang.String" value="Sauvegarder"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSauvegarderActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="I1ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuNouveau">
+            <MenuItem class="javax.swing.JMenuItem" name="I1l">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+N"/>
@@ -39,12 +39,12 @@
                 <Property name="text" type="java.lang.String" value="Nouveau"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuNouveauActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="I1lActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="Il1">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuQuitter">
+            <MenuItem class="javax.swing.JMenuItem" name="Ill">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Q"/>
@@ -52,17 +52,17 @@
                 <Property name="text" type="java.lang.String" value="Quitter"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuQuitterActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IllActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="MenuEdition">
+        <Menu class="javax.swing.JMenu" name="Ii">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xc9;dition"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuModifier">
+            <MenuItem class="javax.swing.JMenuItem" name="Iil">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="M"/>
@@ -70,10 +70,10 @@
                 <Property name="text" type="java.lang.String" value="Modifier"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuModifierActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IilActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuSupprimer">
+            <MenuItem class="javax.swing.JMenuItem" name="Ili">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="DELETE"/>
@@ -81,17 +81,17 @@
                 <Property name="text" type="java.lang.String" value="Supprimer"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSupprimerActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IliActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="Ii1">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuModifArron">
+            <MenuItem class="javax.swing.JMenuItem" name="I1i">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modifier arrondissement"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuModifArronActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="I1iActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -113,7 +113,7 @@
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="FramePrincipal"/>
   </AccessibilityProperties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="MenuBar"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="I"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -135,11 +135,11 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="panelBoutons" max="32767" attributes="0"/>
-                  <Component id="panelProp" max="32767" attributes="0"/>
+                  <Component id="Iii" max="32767" attributes="0"/>
+                  <Component id="I1ll" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelTree" max="32767" attributes="0"/>
+              <Component id="Il1l" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -149,11 +149,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelTree" max="32767" attributes="0"/>
+                  <Component id="Il1l" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="panelBoutons" min="-2" max="-2" attributes="0"/>
+                      <Component id="Iii" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panelProp" max="32767" attributes="0"/>
+                      <Component id="I1ll" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -162,7 +162,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="panelBoutons">
+    <Container class="javax.swing.JPanel" name="Iii">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -176,9 +176,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="boutonParallele" alignment="0" max="32767" attributes="0"/>
-                      <Component id="boutonResistance" alignment="1" pref="231" max="32767" attributes="0"/>
-                      <Component id="boutonBranche" alignment="0" max="32767" attributes="0"/>
+                      <Component id="Illl" alignment="0" max="32767" attributes="0"/>
+                      <Component id="I11" alignment="1" pref="231" max="32767" attributes="0"/>
+                      <Component id="Ill1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -188,49 +188,49 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="boutonResistance" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="I11" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="boutonParallele" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="Illl" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="boutonBranche" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="Ill1" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="boutonResistance">
+        <Component class="javax.swing.JButton" name="I11">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter r&#xe9;sistance"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonResistanceActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="I11ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="boutonParallele">
+        <Component class="javax.swing.JButton" name="Illl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter parall&#xe8;le"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonParalleleActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IlllActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="boutonBranche">
+        <Component class="javax.swing.JButton" name="Ill1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter branche"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonBrancheActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Ill1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="panelTree">
+    <Container class="javax.swing.JPanel" name="Il1l">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="panelTree.add(t);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="Il1l.add(l);"/>
       </AuxValues>
 
       <Layout>
@@ -246,9 +246,9 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JPanel" name="panelProp">
+    <Container class="javax.swing.JPanel" name="I1ll">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="panelProp.add(pp);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="I1ll.add(ll);"/>
       </AuxValues>
 
       <Layout>

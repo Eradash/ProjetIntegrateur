@@ -1,6 +1,6 @@
 package l;
 
-import gestion.Iil;
+import I1ll.Iil;
 import java.util.ArrayList;
 
 public class I1l extends I1 {
@@ -41,7 +41,7 @@ public class I1l extends I1 {
         int Il = il;
 
         while (Il != -1) {
-            Il = gestion.Iil.ll().il(Il, "Parent").intValue();
+            Il = I1ll.Iil.ll().il(Il, "Parent").intValue();
             li.add(Il);
         }
 

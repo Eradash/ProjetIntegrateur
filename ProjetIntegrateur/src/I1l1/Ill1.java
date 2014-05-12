@@ -1,6 +1,6 @@
-package affichage;
+package I1l1;
 
-import gestion.Iil;
+import I1ll.Iil;
 import java.awt.Graphics;
 import java.util.HashMap;
 import javax.swing.JPanel;

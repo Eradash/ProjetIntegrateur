@@ -1,6 +1,6 @@
-package JTree;
+package I11l;
 
-import affichage.I11;
+import I1l1.I11;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
@@ -28,7 +28,7 @@ public class Tree extends JPanel implements TreeSelectionListener {
     public Tree(I11 cf) {
         this.cf = cf;
         setLayout(new BorderLayout());
-        MaNode rootNode = MonTreeBuilder.build(null);
+        Il11 rootNode = MonTreeBuilder.build(null);
         TreeModel model = new MonTreeModel(rootNode);
         tree = new JTree(model);
         tree.setCellRenderer(new NodeRender());
@@ -65,16 +65,16 @@ public class Tree extends JPanel implements TreeSelectionListener {
      */
     public int getIDSelected() throws Exception {
         TreePath tp = tree.getSelectionPath();
-        MaNode m = (MaNode) tp.getLastPathComponent();
-        return m.getID();
+        Il11 m = (Il11) tp.getLastPathComponent();
+        return m.l();
     }
 
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         TreePath tp = tree.getSelectionPath();
         if (tp != null) {
-            MaNode m = (MaNode) tp.getLastPathComponent();
-            cf.l(m.getID());
+            Il11 m = (Il11) tp.getLastPathComponent();
+            cf.l(m.l());
         }
     }
 }

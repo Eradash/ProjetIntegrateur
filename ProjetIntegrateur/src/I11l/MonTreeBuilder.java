@@ -1,4 +1,4 @@
-package JTree;
+package I11l;
 
 import java.util.ArrayList;
 import l.I1l;
@@ -17,12 +17,12 @@ public class MonTreeBuilder {
      * @param c I1l à représenter en arbre
      * @return Node root de l'arbre créé
      */
-    public static MaNode build(I1l c) {
+    public static Il11 build(I1l c) {
         if (c != null) {
-            MaNode rootNode = new MaNode("Circuit", MaNode.NODE_ROOT, -1);
+            Il11 rootNode = new Il11("Circuit", Il11.Il1, -1);
             ArrayList<I> listeComposante = c.lI();
             for (I comp : listeComposante) {
-                rootNode.addChild(makeNode(comp));
+                rootNode.l(makeNode(comp));
             }
             return rootNode;
         } else {
@@ -30,26 +30,26 @@ public class MonTreeBuilder {
         }
     }
 
-    private static MaNode makeNode(I c) {
+    private static Il11 makeNode(I c) {
         Il1 t = c.II();
         switch (t) {
             case li:
-                int image = MaNode.NODE_RESISTANCE;
+                int image = Il11.Lil;
                 Ill resis = (Ill) c;
                 if (resis.il()) {
-                    image = MaNode.NODE_BURNED;
+                    image = Il11.Lli;
                 }
-                return new MaNode("Résistance", image, c.I());
+                return new Il11("Résistance", image, c.I());
             case l:
-                MaNode m = new MaNode("Parallèle", MaNode.NODE_PARALLELE, c.I());
+                Il11 m = new Il11("Parallèle", Il11.Ill, c.I());
                 for (I s : c.lI()) {
-                    m.addChild(makeNode(s));
+                    m.l(makeNode(s));
                 }
                 return m;
             case i:
-                MaNode n = new MaNode("Branche", MaNode.NODE_BRANCHE, c.I());
+                Il11 n = new Il11("Branche", Il11.Li, c.I());
                 for (I comp : c.lI()) {
-                    n.addChild(makeNode(comp));
+                    n.l(makeNode(comp));
                 }
                 return n;
         }

@@ -1,4 +1,4 @@
-package JTree;
+package I11l;
 
 import java.awt.Component;
 
@@ -22,22 +22,22 @@ public class NodeRender extends DefaultTreeCellRenderer {
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
-        MaNode node = (MaNode) value;
+        Il11 node = (Il11) value;
 
-        switch (node.getType()) {
-            case MaNode.NODE_PARALLELE:
+        switch (node.il()) {
+            case Il11.Ill:
                 setIcon(iconSource);
                 break;
-            case MaNode.NODE_BRANCHE:
+            case Il11.Li:
                 setIcon(iconPackage);
                 break;
-            case MaNode.NODE_RESISTANCE:
+            case Il11.Lil:
                 setIcon(iconClass);
                 break;
-            case MaNode.NODE_BURNED:
+            case Il11.Lli:
                 setIcon(iconFolder);
                 break;
-            case MaNode.NODE_ROOT:
+            case Il11.Il1:
                 setIcon(iconProject);
                 break;
         }

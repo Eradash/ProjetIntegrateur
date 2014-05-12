@@ -1,6 +1,6 @@
 package l;
 
-import gestion.Ili;
+import I1ll.Ili;
 import java.util.ArrayList;
 
 public abstract class II implements I {

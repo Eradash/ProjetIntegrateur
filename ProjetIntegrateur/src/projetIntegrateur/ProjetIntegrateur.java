@@ -1,7 +1,7 @@
 package projetIntegrateur;
 
-import affichage.I11;
-import gestion.I1i;
+import I1l1.I11;
+import I1ll.I1i;
 
 public class ProjetIntegrateur {
 

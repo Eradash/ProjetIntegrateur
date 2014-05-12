@@ -1,4 +1,4 @@
-package affichage;
+package I1l1;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;

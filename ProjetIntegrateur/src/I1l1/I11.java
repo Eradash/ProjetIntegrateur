@@ -1,8 +1,8 @@
-package affichage;
+package I1l1;
 
-import JTree.Tree;
-import gestion.Ii;
-import gestion.I1i;
+import I11l.Tree;
+import I1ll.Ii;
+import I1ll.I1i;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -13,15 +13,15 @@ import l.Il1;
 
 public class I11 {
 
-    private final FrameProjet i;
+    private final Il1l i;
     private final Tree l;
     private final I1i ll;
 
     public I11(I1i li) {
         this.ll = li;
         li.il(this);
-        i = new FrameProjet(this);
-        l = i.getTree();
+        i = new Il1l(this);
+        l = i.l();
     }
 
     public void il() {
@@ -33,22 +33,22 @@ public class I11 {
         try {
             li = l.getIDSelected();
             return li;
-        } catch (Exception l) {
-            JOptionPane.showMessageDialog(i.getFrame(), "l");
+        } catch (Exception Il) {
+            JOptionPane.showMessageDialog(i.il(), "l");
             return -2;
         }
     }
 
-    private boolean ll(Il1[] types, int ID) {
+    private boolean ll(Il1[] types, int lI) {
         boolean li = false;
-        Il1 il = ll.ll().l(ID).II();
+        Il1 il = ll.ll().l(lI).II();
         for (Il1 Il : types) {
             if (Il == il) {
                 li = true;
             }
         }
         if (!li) {
-            JOptionPane.showMessageDialog(i.getFrame(), "l");
+            JOptionPane.showMessageDialog(i.il(), "l");
         }
         return li;
     }
@@ -59,7 +59,7 @@ public class I11 {
             il = Double.parseDouble(input);
             return il;
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(i.getFrame(), "l");
+            JOptionPane.showMessageDialog(i.il(), "l");
         }
         return null;
     }
@@ -69,7 +69,7 @@ public class I11 {
         Double li;
         if ((il = ll()) != -2) {
             switch (i) {
-                case "Resistance":
+                case "l":
                     if (ll(new Il1[]{Il1.ll, Il1.i}, il)) {
                         String Il = l("l", "l");
                         if ((li = ll(Il)) > 0) {
@@ -77,17 +77,17 @@ public class I11 {
                         }
                     }
                     break;
-                case "Parallele":
+                case "ll":
                     if (ll(new Il1[]{Il1.ll, Il1.i}, il)) {
                         ll.il(new Il(), il);
                     }
                     break;
-                case "Branche":
+                case "li":
                     if (ll(new Il1[]{Il1.l, Il1.i}, il)) {
                         ll.il(new I1(), il);
                     }
                     break;
-                case "Modifier":
+                case "i":
                     if (ll(new Il1[]{Il1.ll, Il1.li}, il)) {
                         Il1 t  = ll.ll().l(il).II();
                         String Il = null;
@@ -126,7 +126,7 @@ public class I11 {
 
     public void lI() {
         int li;
-        String il = (String) JOptionPane.showInputDialog(i.getFrame(), "l", "l", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+        String il = (String) JOptionPane.showInputDialog(i.il(), "l", "l", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
         try {
             li = Integer.parseInt(il);
             if (li >= 10 || li <= 0) {
@@ -134,9 +134,9 @@ public class I11 {
             }
         } catch (NumberFormatException Il) {
             if ("l".equals(Il.getMessage())) {
-                JOptionPane.showMessageDialog(i.getFrame(), "l");
+                JOptionPane.showMessageDialog(i.il(), "l");
             } else {
-                JOptionPane.showMessageDialog(i.getFrame(), "l");
+                JOptionPane.showMessageDialog(i.il(), "l");
             }
             return;
         }
@@ -158,7 +158,7 @@ public class I11 {
         if (li == JFileChooser.APPROVE_OPTION) {
             ll.il(il.getSelectedFile().getPath());
         } else {
-            JOptionPane.showMessageDialog(i.getFrame(), "l");
+            JOptionPane.showMessageDialog(i.il(), "l");
         }
     }
 
@@ -169,7 +169,7 @@ public class I11 {
         if (li == JFileChooser.APPROVE_OPTION) {
             ll.ll(il.getSelectedFile().getPath());
         } else {
-            JOptionPane.showMessageDialog(i.getFrame(), "l");
+            JOptionPane.showMessageDialog(i.il(), "l");
         }
     }
 
@@ -179,11 +179,11 @@ public class I11 {
     }
 
     public void l(int il) {
-        i.getPanelProp().l(il);
+        i.ll().l(il);
     }
 
     public String l(String il, String li) {
-        String Il = (String) JOptionPane.showInputDialog(i.getFrame(), il, li, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
+        String Il = (String) JOptionPane.showInputDialog(i.il(), il, li, JOptionPane.INFORMATION_MESSAGE, new ImageIcon("java2sLogo.GIF"), null, "");
         return Il;
     }
 }

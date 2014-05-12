@@ -1,6 +1,6 @@
-package gestion;
+package I1ll;
 
-import affichage.I11;
+import I1l1.I11;
 import l.I1l;
 import l.I;
 
