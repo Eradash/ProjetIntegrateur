@@ -1,7 +1,7 @@
 package gestion;
 
 import affichage.ControlleurFrame;
-import logiqueCircuit.Circuit;
+import logiqueCircuit.I1l;
 import logiqueCircuit.I;
 
 /**
@@ -14,7 +14,7 @@ public class ControleurCircuit {
     private final static GestionXML xml = GestionXML.getInstance();
     private ControlleurFrame cf;
 
-    private Circuit c;
+    private I1l c;
 
     /**
      * Indique le Controlleur à communiquer pour les évènements
@@ -29,7 +29,7 @@ public class ControleurCircuit {
      */
     public void nouveauCircuit() {
         donnee.resetCircuit();
-        c = new Circuit();
+        c = new I1l();
         run();
     }
 
@@ -54,7 +54,7 @@ public class ControleurCircuit {
      * Permet d'avoir le circuit présentement ouvert
      * @return Le circuit présentement ouvert
      */
-    public Circuit getCircuit() {
+    public I1l getCircuit() {
         return c;
     }
 
@@ -64,7 +64,7 @@ public class ControleurCircuit {
      * @param emplacement ID du parent où ajouter la nouvelle composante
      */
     public void ajouterComposante(I c, int emplacement) {
-        this.c.ajouterComposante(c, emplacement);
+        this.c.ll(c, emplacement);
         System.out.println("Composante ajoutée");
         run();
     }
@@ -85,7 +85,7 @@ public class ControleurCircuit {
      * @param newValue Nouvelle valeur de la composnte
      */
     public void modifierComposante(int ID, double newValue) {
-        c.modifierComposante(ID, newValue);
+        c.ll(ID, newValue);
         run();
     }
 

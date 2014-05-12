@@ -1,12 +1,12 @@
 package gestion;
 
-import logiqueCircuit.Circuit;
+import logiqueCircuit.I1l;
 import logiqueCircuit.I;
 import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
 
 /**
- * Permet d'Analyser un Circuit
+ * Permet d'Analyser un I1l
  */
 public class AnalyseurCircuit {
 
@@ -16,12 +16,12 @@ public class AnalyseurCircuit {
     public static int arrondissement = 8;
 
     /**
-     * Permet d'analyser un Circuit. Rentre toutes les valeurs dans la BD.
-     * @param c Circuit à analyser
+     * Permet d'analyser un I1l. Rentre toutes les valeurs dans la BD.
+     * @param c I1l à analyser
      */
-    public void analyserCircuit(Circuit c) {
+    public void analyserCircuit(I1l c) {
         if (c != null) {
-            double voltage = c.getVoltage();
+            double voltage = c.il();
             calcul(-1, voltage, c, -1);
         }
     }

@@ -1,7 +1,7 @@
 package JTree;
 
 import java.util.ArrayList;
-import logiqueCircuit.Circuit;
+import logiqueCircuit.I1l;
 import logiqueCircuit.I;
 import logiqueCircuit.Resistance;
 import logiqueCircuit.Type;
@@ -13,11 +13,11 @@ import logiqueCircuit.Type;
 public class MonTreeBuilder {
 
     /**
-     * Permet de constuire l'arbre en foncion du Circuit envoyé
-     * @param c Circuit à représenter en arbre
+     * Permet de constuire l'arbre en foncion du I1l envoyé
+     * @param c I1l à représenter en arbre
      * @return Node root de l'arbre créé
      */
-    public static MaNode build(Circuit c) {
+    public static MaNode build(I1l c) {
         if (c != null) {
             MaNode rootNode = new MaNode("Circuit", MaNode.NODE_ROOT, -1);
             ArrayList<I> listeComposante = c.lI();

@@ -30,10 +30,10 @@ public class GestionXML {
     
     /**
      * Permet de générer un fichier XML représentant un circuit électrique sous la forme d'un fichier .circuit.
-     * @param c Circuit à encoder
+     * @param c I1l à encoder
      * @param endroit Emplacement du fichier à créer
      */
-    public void encoder(Circuit c, String endroit){
+    public void encoder(I1l c, String endroit){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuild = docFactory.newDocumentBuilder();
@@ -41,8 +41,8 @@ public class GestionXML {
             Document doc = docBuild.newDocument();
             root = doc.createElement("circuit");
             
-            root.setAttribute("AMPERE", Double.toString(c.getAmpere()));
-            root.setAttribute("VOLTAGE", Double.toString(c.getVoltage()));
+            root.setAttribute("AMPERE", Double.toString(c.l()));
+            root.setAttribute("VOLTAGE", Double.toString(c.il()));
             
             doc.appendChild(root);
             
@@ -124,11 +124,11 @@ public class GestionXML {
     /**
      * Permet de décoder un fichier XML sous la forme d'un .circuit, représentant un circuit électrique
      * @param endroit Emplacement du fichier à décoder
-     * @return Circuit
+     * @return I1l
      */
-    public Circuit decoder(String endroit){
+    public I1l decoder(String endroit){
         try {
-            Circuit c = new Circuit();
+            I1l c = new I1l();
             
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -136,7 +136,7 @@ public class GestionXML {
             
             Element rootTest = doc.getDocumentElement();
             
-            c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
+            c.li(Double.parseDouble(rootTest.getAttribute("AMPERE")));
             c.l(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
             
             NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
