@@ -1,17 +1,15 @@
 package I1l1;
 
 import I11l.IIll;
-import I1ll.I1i;
 import I1ll.Ii;
+import I1ll.I1i;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import l.I1;
 import l.Il;
-import l.Il1;
 import l.Ill;
-
-
+import l.I1;
+import l.Il1;
 
 public class I11 {
 
@@ -75,7 +73,7 @@ public class I11 {
                     if (ll(new Il1[]{Il1.ll, Il1.i}, il)) {
                         String Il = l("l", "l");
                         if ((li = ll(Il)) > 0) {
-                            ll.il(new l.Ill(li), il);
+                            ll.il(new Ill(li), il);
                         }
                     }
                     break;
