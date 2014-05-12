@@ -35,12 +35,12 @@ public class Iii {
             DocumentBuilderFactory li = DocumentBuilderFactory.newInstance();
             DocumentBuilder il = li.newDocumentBuilder();
             Document I = il.newDocument();
-            lI = I.createElement("circuit");
-            lI.setAttribute("AMPERE", Double.toString(l.l()));
-            lI.setAttribute("VOLTAGE", Double.toString(l.il()));
+            lI = I.createElement("lI");
+            lI.setAttribute("II", Double.toString(l.l()));
+            lI.setAttribute("I1I", Double.toString(l.il()));
             I.appendChild(lI);
             il(lI, l, I);
-            Element II = I.createElement("COMPOSANTE");
+            Element II = I.createElement("II1");
             for(I Il : l.lI()) {
                 Element lI = I.createElement(Il.II().toString());
                 if(Il.II() == Il1.l) {
@@ -55,7 +55,7 @@ public class Iii {
             TransformerFactory l1 = TransformerFactory.newInstance();
             Transformer I1 = l1.newTransformer();
             Source Ii = new DOMSource(I);
-            Result iI = new StreamResult(new File(ll + ".circuit"));
+            Result iI = new StreamResult(new File(ll + ".lI"));
             I1.transform(Ii, iI);
         } catch (ParserConfigurationException | TransformerException Ii) {
             Logger.getLogger(Iii.class.getName()).log(Level.SEVERE, null, Ii);
@@ -64,7 +64,7 @@ public class Iii {
     
     private void il(Il i, Document l, Element ll) {
         int Il = 1;
-        Element il = l.createElement("COMPOSANTE");
+        Element il = l.createElement("II1");
         ll.appendChild(il);
         for(I li : i.lI()) {
             il((I1)li, l, il, Il);
@@ -73,11 +73,11 @@ public class Iii {
     }
     
     private void il(I1 i, Document l, Element ll, int il) {
-        Element li = l.createElement("BRANCHE");
+        Element li = l.createElement("lII");
         ll.appendChild(li);
-        li.setAttribute("NUMERO", Integer.toString(il));
+        li.setAttribute("IIl", Integer.toString(il));
         il(li, i, l);
-        Element iI = l.createElement("COMPOSANTE");
+        Element iI = l.createElement("II1");
         li.appendChild(iI);
         for(I Il : i.lI()) {
             Element l1 = l.createElement(Il.II().toString());
@@ -92,8 +92,8 @@ public class Iii {
     }
     
     private static void il(Element il, I i, Document ll) {
-        il.appendChild(il("ID", ""+i.I(), ll));
-        il.appendChild(il("VALEUR", ""+i.Il(), ll));
+        il.appendChild(il("IlI", ""+i.I(), ll));
+        il.appendChild(il("lIl", ""+i.Il(), ll));
     }
     
     private static Element il(String i, String l, Document ll) {
@@ -109,13 +109,13 @@ public class Iii {
             DocumentBuilder iI = Ii.newDocumentBuilder();
             Document ii = iI.parse(new InputSource(I1));
             Element ll = ii.getDocumentElement();
-            li.li(Double.parseDouble(ll.getAttribute("AMPERE")));
-            li.l(Double.parseDouble(ll.getAttribute("VOLTAGE")));
-            NodeList il = ll.getElementsByTagName("COMPOSANTE");
+            li.li(Double.parseDouble(ll.getAttribute("II")));
+            li.l(Double.parseDouble(ll.getAttribute("I1I")));
+            NodeList il = ll.getElementsByTagName("II1");
             il.getLength();
             Element Il = (Element)il.item(0);
-            NodeList l1 = Il.getElementsByTagName("PARALLELE");
-            NodeList i1 = Il.getElementsByTagName("RESISTANCE");
+            NodeList l1 = Il.getElementsByTagName("lI1");
+            NodeList i1 = Il.getElementsByTagName("l1I");
             for(int j = 0; j < l1.getLength(); j++) {
                 if(l1.item(j).getParentNode().equals(Il))
                     li.i(l(((Element)l1.item(j))));
@@ -134,19 +134,19 @@ public class Iii {
     private I il(Element ll) {
         I il;
         switch(ll.getNodeName()) {
-            case "RESISTANCE" :
-                double li = Double.parseDouble(l("VALEUR", ll));
-                int I = Integer.valueOf(l("ID", ll));
+            case "l1I" :
+                double li = Double.parseDouble(l("lIl", ll));
+                int I = Integer.valueOf(l("IlI", ll));
                 
                 il = new Ill(li, I);
                 return il;
-            case "BRANCHE" :
-                int Il = Integer.valueOf(l("ID", ll));
+            case "lII" :
+                int Il = Integer.valueOf(l("IlI", ll));
                 il = new I1(Il);
-                NodeList I1 = ll.getElementsByTagName("COMPOSANTE");
+                NodeList I1 = ll.getElementsByTagName("II1");
                 Element i1 = (Element) I1.item(0);
-                NodeList ij = i1.getElementsByTagName("PARALLELE");
-                NodeList Ij = i1.getElementsByTagName("RESISTANCE");
+                NodeList ij = i1.getElementsByTagName("lI1");
+                NodeList Ij = i1.getElementsByTagName("l1I");
                 for(int i = 0; i < ij.getLength(); i++) {
                     if(ij.item(i).getParentNode().equals(i1))
                     ((I1)il).i(l((Element) I1.item(i)));
@@ -162,10 +162,10 @@ public class Iii {
     }
     
     private I l(Element l) {
-        Il il = new Il(Integer.parseInt(((Element)l.getElementsByTagName("ID").item(0)).getFirstChild().getNodeValue()));
-        NodeList ll = l.getElementsByTagName("COMPOSANTE");
+        Il il = new Il(Integer.parseInt(((Element)l.getElementsByTagName("IlI").item(0)).getFirstChild().getNodeValue()));
+        NodeList ll = l.getElementsByTagName("II1");
         Element li = (Element)ll.item(0);
-        NodeList Il = li.getElementsByTagName("BRANCHE");
+        NodeList Il = li.getElementsByTagName("lII");
         for(int i = 0; i < Il.getLength(); i++) {
             if(Il.item(i).getParentNode().equals(li))
             il.i(il((Element)Il.item(i)));

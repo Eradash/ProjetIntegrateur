@@ -24,8 +24,8 @@ public class Ii {
 
         Iil I1 = Iil.ll();
 
-        I1.il(ll, "Parent", li);
-        I1.il(ll, "Resistance", il(Il));
+        I1.il(ll, "Il", li);
+        I1.il(ll, "l", il(Il));
 
         int II = 0;
 
@@ -38,31 +38,31 @@ public class Ii {
             }
         }
 
-        I1.il(ll, "Ampere", il(lI));
-        I1.il(ll, "Voltage", il(l1));
+        I1.il(ll, "Ii", il(lI));
+        I1.il(ll, "iI", il(l1));
 
         switch (l.II()) {
             case i:
                 II += 1;
-                I1.il(ll, "Type", 1);
+                I1.il(ll, "I1", 1);
                 break;
             case ll:
                 II += 1;
-                I1.il(ll, "Type", 3);
+                I1.il(ll, "I1", 3);
                 break;
             case l:
                 II += 2;
-                I1.il(ll, "Type", 2);
+                I1.il(ll, "I1", 2);
                 break;
             case li:
                 II = 0;
-                I1.il(ll, "Type", 4);
+                I1.il(ll, "I1", 4);
                 break;
         }
 
         if (l.II() == Il1.li) {
             double lIl = lI * l1;
-            I1.il(ll, "Watt", il(lIl));
+            I1.il(ll, "I1l", il(lIl));
             Ill IlI = (Ill) l;
             if (lIl > 0.25) {
                 IlI.il(true);

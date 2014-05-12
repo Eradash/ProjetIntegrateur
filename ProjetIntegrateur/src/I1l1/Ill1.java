@@ -33,7 +33,7 @@ public class Ill1 extends JPanel {
             int il = 30;
             int li = 30;
             for (String Il : l.keySet()) {
-                if (!"Type".equals(Il) && !"Parent".equals(Il)) {
+                if (!"I1".equals(Il) && !"Il".equals(Il)) {
                     if (l.get(Il) != null) {
                         g.drawString(Il, il, li);
                         g.drawString(l.get(Il).toString(), il + 80, li);

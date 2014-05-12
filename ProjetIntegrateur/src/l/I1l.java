@@ -41,7 +41,7 @@ public class I1l extends I1 {
         int Il = il;
 
         while (Il != -1) {
-            Il = I1ll.Iil.ll().il(Il, "Parent").intValue();
+            Il = I1ll.Iil.ll().il(Il, "Il").intValue();
             li.add(Il);
         }
 
@@ -76,7 +76,7 @@ public class I1l extends I1 {
 
     @Override
     public void ll(int i) {
-        double li = Iil.ll().il(i, "Parent");
+        double li = Iil.ll().il(i, "Il");
         if ((int) li == -1) {
             super.ll(i);
         } else {
