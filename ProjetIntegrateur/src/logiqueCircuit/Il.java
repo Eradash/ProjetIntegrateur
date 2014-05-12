@@ -23,8 +23,8 @@ public class Il extends II implements I {
     }
 
     @Override
-    public Type II() {
-        return Type.PARALLELE;
+    public Il1 II() {
+        return Il1.l;
     }
 
     @Override

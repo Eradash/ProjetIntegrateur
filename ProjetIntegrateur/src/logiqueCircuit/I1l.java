@@ -14,8 +14,8 @@ public class I1l extends I1 {
     }
 
     @Override
-    public Type II() {
-        return Type.CIRCUIT;
+    public Il1 II() {
+        return Il1.ll;
     }
 
     public double l() {

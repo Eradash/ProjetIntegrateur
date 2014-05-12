@@ -19,8 +19,8 @@ public class I1 extends II {
     }
 
     @Override
-    public Type II() {
-        return Type.SERIE;
+    public Il1 II() {
+        return Il1.i;
     }
 
     @Override

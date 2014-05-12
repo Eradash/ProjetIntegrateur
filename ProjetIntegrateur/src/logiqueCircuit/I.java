@@ -6,7 +6,7 @@ public interface I {
 
     public int I();
 
-    public Type II();
+    public Il1 II();
 
     public double Il();
 

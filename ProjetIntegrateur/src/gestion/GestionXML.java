@@ -52,7 +52,7 @@ public class GestionXML {
             
             for(I comp : c.lI()) {
                 Element elem = doc.createElement(comp.II().toString());
-                if(comp.II() == Type.PARALLELE) {
+                if(comp.II() == Il1.l) {
                     setComp(elem, comp, doc);
                     encoderPara((Il)comp, doc, elem);
                 } else {
@@ -100,7 +100,7 @@ public class GestionXML {
         
         for(I comp : s.lI()) {
             Element elemCompLocal = doc.createElement(comp.II().toString());
-            if(comp.II() == Type.PARALLELE) {
+            if(comp.II() == Il1.l) {
                 setComp(elemCompLocal, comp, doc);
                 encoderPara((Il) comp, doc, elemCompLocal);
             } else {
@@ -174,7 +174,7 @@ public class GestionXML {
                 double resistanceEqui = Double.parseDouble(getInfo("VALEUR", n));
                 int ID = Integer.valueOf(getInfo("ID", n));
                 
-                comp = new Resistance(resistanceEqui, ID);
+                comp = new Ill(resistanceEqui, ID);
                 return comp;
             case "BRANCHE" :
                 int IDBranche = Integer.valueOf(getInfo("ID", n));

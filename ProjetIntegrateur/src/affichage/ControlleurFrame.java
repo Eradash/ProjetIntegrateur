@@ -7,9 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import logiqueCircuit.Il;
-import logiqueCircuit.Resistance;
+import logiqueCircuit.Ill;
 import logiqueCircuit.I1;
-import logiqueCircuit.Type;
+import logiqueCircuit.Il1;
 
 /**
  * Permet une connection entre le Frame et le reste du projet
@@ -49,10 +49,10 @@ public class ControlleurFrame {
         }
     }
 
-    private boolean verifierSelection(Type[] types, int ID) {
+    private boolean verifierSelection(Il1[] types, int ID) {
         boolean ok = false;
-        Type verification = cc.getCircuit().l(ID).II();
-        for (Type t : types) {
+        Il1 verification = cc.getCircuit().l(ID).II();
+        for (Il1 t : types) {
             if (t == verification) {
                 ok = true;
             }
@@ -84,32 +84,32 @@ public class ControlleurFrame {
         if ((ID = treeSelected()) != -2) {
             switch (bouton) {
                 case "Resistance":
-                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.SERIE}, ID)) {
+                    if (verifierSelection(new Il1[]{Il1.ll, Il1.i}, ID)) {
                         String input = afficherOptionPane("Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance");
                         if ((d = inputDouble(input)) > 0) {
-                            cc.ajouterComposante(new Resistance(d), ID);
+                            cc.ajouterComposante(new Ill(d), ID);
                         } else {
                             //Messages d'erreur pour les bonnes valeurs d'une résistance...
                         }
                     }
                     break;
                 case "Parallele":
-                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.SERIE}, ID)) {
+                    if (verifierSelection(new Il1[]{Il1.ll, Il1.i}, ID)) {
                         cc.ajouterComposante(new Il(), ID);
                     }
                     break;
                 case "Branche":
-                    if (verifierSelection(new Type[]{Type.PARALLELE, Type.SERIE}, ID)) {
+                    if (verifierSelection(new Il1[]{Il1.l, Il1.i}, ID)) {
                         cc.ajouterComposante(new I1(), ID);
                     }
                     break;
                 case "Modifier":
-                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.RESISTANCE}, ID)) {
-                        Type t  = cc.getCircuit().l(ID).II();
+                    if (verifierSelection(new Il1[]{Il1.ll, Il1.li}, ID)) {
+                        Il1 t  = cc.getCircuit().l(ID).II();
                         String input = null;
-                        if (t == Type.CIRCUIT) {
+                        if (t == Il1.ll) {
                             input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
-                        } else if (t == Type.RESISTANCE) {
+                        } else if (t == Il1.li) {
                             input = afficherOptionPane("Entrez la nouvelle valeur de la résistance", "Modification résistance");
                         }
                         if ((d = inputDouble(input)) > 0) {
@@ -129,11 +129,11 @@ public class ControlleurFrame {
         double d;
         String input = null;
         if ((ID = treeSelected()) != -2) {
-            Type t = cc.getCircuit().l(ID).II();
-            if (verifierSelection(new Type[]{Type.CIRCUIT, Type.RESISTANCE}, ID)) {
-                if (t == Type.CIRCUIT) {
+            Il1 t = cc.getCircuit().l(ID).II();
+            if (verifierSelection(new Il1[]{Il1.ll, Il1.li}, ID)) {
+                if (t == Il1.ll) {
                     input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
-                } else if (t == Type.RESISTANCE) {
+                } else if (t == Il1.li) {
                     input = afficherOptionPane("Entrez la nouvelle valeur de la résistance", "Modification résistance");
                 }
                 if ((d = inputDouble(input)) > 0) {

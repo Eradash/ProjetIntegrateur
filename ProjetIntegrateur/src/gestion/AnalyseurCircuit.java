@@ -2,8 +2,8 @@ package gestion;
 
 import logiqueCircuit.I1l;
 import logiqueCircuit.I;
-import logiqueCircuit.Resistance;
-import logiqueCircuit.Type;
+import logiqueCircuit.Ill;
+import logiqueCircuit.Il1;
 
 /**
  * Permet d'Analyser un I1l
@@ -52,32 +52,32 @@ public class AnalyseurCircuit {
         bd.SetComposante(ID, "Voltage", arrondir(voltage));
 
         switch (b.II()) {
-            case SERIE:
+            case i:
                 cas += 1;
                 bd.SetComposante(ID, "Type", 1);
                 break;
-            case CIRCUIT:
+            case ll:
                 cas += 1;
                 bd.SetComposante(ID, "Type", 3);
                 break;
-            case PARALLELE:
+            case l:
                 cas += 2;
                 bd.SetComposante(ID, "Type", 2);
                 break;
-            case RESISTANCE:
+            case li:
                 cas = 0;
                 bd.SetComposante(ID, "Type", 4);
                 break;
         }
 
-        if (b.II() == Type.RESISTANCE) {
+        if (b.II() == Il1.li) {
             double watt = ampere * voltage;
             bd.SetComposante(ID, "Watt", arrondir(watt));
-            Resistance resis = (Resistance) b;
+            Ill resis = (Ill) b;
             if (watt > 0.25) {
-                resis.setBurned(true);
+                resis.il(true);
             } else {
-                resis.setBurned(false);
+                resis.il(false);
             }
         }
 
