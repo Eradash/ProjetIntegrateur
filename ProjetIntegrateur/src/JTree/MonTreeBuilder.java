@@ -1,10 +1,10 @@
 package JTree;
 
 import java.util.ArrayList;
-import logiqueCircuit.Circuit;
-import logiqueCircuit.Composante;
-import logiqueCircuit.Resistance;
-import logiqueCircuit.Type;
+import logiqueCircuit.I11;
+import logiqueCircuit.I;
+import logiqueCircuit.II1;
+import logiqueCircuit.I1I;
 
 /**
  * Permet de construire l'Arbre d'affichage
@@ -13,15 +13,15 @@ import logiqueCircuit.Type;
 public class MonTreeBuilder {
 
     /**
-     * Permet de constuire l'arbre en foncion du Circuit envoyé
-     * @param c Circuit à représenter en arbre
+     * Permet de constuire l'arbre en foncion du I11 envoyé
+     * @param c I11 à représenter en arbre
      * @return Node root de l'arbre créé
      */
-    public static MaNode build(Circuit c) {
+    public static MaNode build(I11 c) {
         if (c != null) {
             MaNode rootNode = new MaNode("Circuit", MaNode.NODE_ROOT, -1);
-            ArrayList<Composante> listeComposante = c.getComposantes();
-            for (Composante comp : listeComposante) {
+            ArrayList<I> listeComposante = c.III();
+            for (I comp : listeComposante) {
                 rootNode.addChild(makeNode(comp));
             }
             return rootNode;
@@ -30,25 +30,25 @@ public class MonTreeBuilder {
         }
     }
 
-    private static MaNode makeNode(Composante c) {
-        Type t = c.getType();
+    private static MaNode makeNode(I c) {
+        I1I t = c.I1();
         switch (t) {
-            case RESISTANCE:
+            case I11:
                 int image = MaNode.NODE_RESISTANCE;
-                Resistance resis = (Resistance) c;
-                if (resis.isBurned()) {
+                II1 resis = (II1) c;
+                if (resis.II1()) {
                     image = MaNode.NODE_BURNED;
                 }
-                return new MaNode("Résistance", image, c.getNumero());
-            case PARALLELE:
-                MaNode m = new MaNode("Parallèle", MaNode.NODE_PARALLELE, c.getNumero());
-                for (Composante s : c.getComposantes()) {
+                return new MaNode("Résistance", image, c.I());
+            case II1:
+                MaNode m = new MaNode("Parallèle", MaNode.NODE_PARALLELE, c.I());
+                for (I s : c.III()) {
                     m.addChild(makeNode(s));
                 }
                 return m;
-            case SERIE:
-                MaNode n = new MaNode("Branche", MaNode.NODE_BRANCHE, c.getNumero());
-                for (Composante comp : c.getComposantes()) {
+            case III:
+                MaNode n = new MaNode("Branche", MaNode.NODE_BRANCHE, c.I());
+                for (I comp : c.III()) {
                     n.addChild(makeNode(comp));
                 }
                 return n;

@@ -6,10 +6,10 @@ import gestion.ControleurCircuit;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import logiqueCircuit.Parallele;
-import logiqueCircuit.Resistance;
-import logiqueCircuit.Serie;
-import logiqueCircuit.Type;
+import logiqueCircuit.III;
+import logiqueCircuit.II1;
+import logiqueCircuit.II;
+import logiqueCircuit.I1I;
 
 /**
  * Permet une connection entre le Frame et le reste du projet
@@ -49,10 +49,10 @@ public class ControlleurFrame {
         }
     }
 
-    private boolean verifierSelection(Type[] types, int ID) {
+    private boolean verifierSelection(I1I[] types, int ID) {
         boolean ok = false;
-        Type verification = cc.getCircuit().getCompEmp(ID).getType();
-        for (Type t : types) {
+        I1I verification = cc.getCircuit().I1I(ID).I1();
+        for (I1I t : types) {
             if (t == verification) {
                 ok = true;
             }
@@ -84,32 +84,32 @@ public class ControlleurFrame {
         if ((ID = treeSelected()) != -2) {
             switch (bouton) {
                 case "Resistance":
-                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.SERIE}, ID)) {
+                    if (verifierSelection(new I1I[]{I1I.I1I, I1I.III}, ID)) {
                         String input = afficherOptionPane("Entrez la valeur de la nouvelle résistance:", "Nouvelle résistance");
                         if ((d = inputDouble(input)) > 0) {
-                            cc.ajouterComposante(new Resistance(d), ID);
+                            cc.ajouterComposante(new II1(d), ID);
                         } else {
                             //Messages d'erreur pour les bonnes valeurs d'une résistance...
                         }
                     }
                     break;
                 case "Parallele":
-                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.SERIE}, ID)) {
-                        cc.ajouterComposante(new Parallele(), ID);
+                    if (verifierSelection(new I1I[]{I1I.I1I, I1I.III}, ID)) {
+                        cc.ajouterComposante(new III(), ID);
                     }
                     break;
                 case "Branche":
-                    if (verifierSelection(new Type[]{Type.PARALLELE}, ID)) {
-                        cc.ajouterComposante(new Serie(), ID);
+                    if (verifierSelection(new I1I[]{I1I.II1}, ID)) {
+                        cc.ajouterComposante(new II(), ID);
                     }
                     break;
                 case "Modifier":
-                    if (verifierSelection(new Type[]{Type.CIRCUIT, Type.RESISTANCE}, ID)) {
-                        Type t  = cc.getCircuit().getCompEmp(ID).getType();
+                    if (verifierSelection(new I1I[]{I1I.I1I, I1I.I11}, ID)) {
+                        I1I t  = cc.getCircuit().I1I(ID).I1();
                         String input = null;
-                        if (t == Type.CIRCUIT) {
+                        if (t == I1I.I1I) {
                             input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
-                        } else if (t == Type.RESISTANCE) {
+                        } else if (t == I1I.I11) {
                             input = afficherOptionPane("Entrez la nouvelle valeur de la résistance", "Modification résistance");
                         }
                         if ((d = inputDouble(input)) > 0) {
@@ -129,11 +129,11 @@ public class ControlleurFrame {
         double d;
         String input = null;
         if ((ID = treeSelected()) != -2) {
-            Type t = cc.getCircuit().getCompEmp(ID).getType();
-            if (verifierSelection(new Type[]{Type.CIRCUIT, Type.RESISTANCE}, ID)) {
-                if (t == Type.CIRCUIT) {
+            I1I t = cc.getCircuit().I1I(ID).I1();
+            if (verifierSelection(new I1I[]{I1I.I1I, I1I.I11}, ID)) {
+                if (t == I1I.I1I) {
                     input = afficherOptionPane("Entrez la valeur du nouveau voltage", "Modification voltage");
-                } else if (t == Type.RESISTANCE) {
+                } else if (t == I1I.I11) {
                     input = afficherOptionPane("Entrez la nouvelle valeur de la résistance", "Modification résistance");
                 }
                 if ((d = inputDouble(input)) > 0) {

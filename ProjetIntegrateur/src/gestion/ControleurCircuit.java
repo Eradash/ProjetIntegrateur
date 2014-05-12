@@ -1,8 +1,8 @@
 package gestion;
 
 import affichage.ControlleurFrame;
-import logiqueCircuit.Circuit;
-import logiqueCircuit.Composante;
+import logiqueCircuit.I11;
+import logiqueCircuit.I;
 
 /**
  * Permet de controller un circuit électrique
@@ -14,7 +14,7 @@ public class ControleurCircuit {
     private final static GestionXML xml = GestionXML.getInstance();
     private ControlleurFrame cf;
 
-    private Circuit c;
+    private I11 c;
 
     /**
      * Indique le Controlleur à communiquer pour les évènements
@@ -29,7 +29,7 @@ public class ControleurCircuit {
      */
     public void nouveauCircuit() {
         donnee.resetCircuit();
-        c = new Circuit();
+        c = new I11();
         run();
     }
 
@@ -54,17 +54,17 @@ public class ControleurCircuit {
      * Permet d'avoir le circuit présentement ouvert
      * @return Le circuit présentement ouvert
      */
-    public Circuit getCircuit() {
+    public I11 getCircuit() {
         return c;
     }
 
     /**
      * Permet d'ajouter une composante à un endroit précis du circuit
-     * @param c Composante à ajouter
+     * @param c I à ajouter
      * @param emplacement ID du parent où ajouter la nouvelle composante
      */
-    public void ajouterComposante(Composante c, int emplacement) {
-        this.c.ajouterComposante(c, emplacement);
+    public void ajouterComposante(I c, int emplacement) {
+        this.c.I(c, emplacement);
         System.out.println("Composante ajoutée");
         run();
     }
@@ -74,18 +74,18 @@ public class ControleurCircuit {
      * @param ID ID de la composante à effacer
      */
     public void supprimerComposante(int ID) {
-        this.c.supprimerComposante(ID);
+        this.c.I1(ID);
         donnee.supprimerComposante(ID);
         run();
     }
 
     /**
-     * Permet de modifier une composante précise du circuit (Résistance ou voltage de la pile). Appelle la fonction 'modifier' de la composante en question.
-     * @param ID ID de la composante à modifier
+     * Permet de I une composante précise du circuit (Résistance ou voltage de la pile). Appelle la fonction 'I' de la composante en question.
+     * @param ID ID de la composante à I
      * @param newValue Nouvelle valeur de la composnte
      */
     public void modifierComposante(int ID, double newValue) {
-        c.modifierComposante(ID, newValue);
+        c.I(ID, newValue);
         run();
     }
 

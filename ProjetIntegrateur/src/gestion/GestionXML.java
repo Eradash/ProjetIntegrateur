@@ -30,10 +30,10 @@ public class GestionXML {
     
     /**
      * Permet de générer un fichier XML représentant un circuit électrique sous la forme d'un fichier .circuit.
-     * @param c Circuit à encoder
+     * @param c I11 à encoder
      * @param endroit Emplacement du fichier à créer
      */
-    public void encoder(Circuit c, String endroit){
+    public void encoder(I11 c, String endroit){
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuild = docFactory.newDocumentBuilder();
@@ -41,8 +41,8 @@ public class GestionXML {
             Document doc = docBuild.newDocument();
             root = doc.createElement("circuit");
             
-            root.setAttribute("AMPERE", Double.toString(c.getAmpere()));
-            root.setAttribute("VOLTAGE", Double.toString(c.getVoltage()));
+            root.setAttribute("AMPERE", Double.toString(c.II1()));
+            root.setAttribute("VOLTAGE", Double.toString(c.I1I()));
             
             doc.appendChild(root);
             
@@ -50,11 +50,11 @@ public class GestionXML {
             
             Element composante = doc.createElement("COMPOSANTE");
             
-            for(Composante comp : c.getComposantes()) {
-                Element elem = doc.createElement(comp.getType().toString());
-                if(comp.getType() == Type.PARALLELE) {
+            for(I comp : c.III()) {
+                Element elem = doc.createElement(comp.I1().toString());
+                if(comp.I1() == I1I.II1) {
                     setComp(elem, comp, doc);
-                    encoderPara((Parallele)comp, doc, elem);
+                    encoderPara((III)comp, doc, elem);
                 } else {
                     setComp(elem, comp, doc);
                 }
@@ -76,19 +76,19 @@ public class GestionXML {
         }
     }
     
-    private void encoderPara(Parallele p, Document doc, Element elem) {
+    private void encoderPara(III p, Document doc, Element elem) {
         int x = 1;
         
         Element elemComp = doc.createElement("COMPOSANTE");
         elem.appendChild(elemComp);
         
-        for(Composante comp : p.getComposantes()) {
-            encoderSerie((Serie)comp, doc, elemComp, x);
+        for(I comp : p.III()) {
+            encoderSerie((II)comp, doc, elemComp, x);
             x++;
         }
     }
     
-    private void encoderSerie(Serie s, Document doc, Element elem, int branche) {
+    private void encoderSerie(II s, Document doc, Element elem, int branche) {
         Element elemBranche = doc.createElement("BRANCHE");
         elem.appendChild(elemBranche);
         elemBranche.setAttribute("NUMERO", Integer.toString(branche));
@@ -98,11 +98,11 @@ public class GestionXML {
         Element elemComp = doc.createElement("COMPOSANTE");
         elemBranche.appendChild(elemComp);
         
-        for(Composante comp : s.getComposantes()) {
-            Element elemCompLocal = doc.createElement(comp.getType().toString());
-            if(comp.getType() == Type.PARALLELE) {
+        for(I comp : s.III()) {
+            Element elemCompLocal = doc.createElement(comp.I1().toString());
+            if(comp.I1() == I1I.II1) {
                 setComp(elemCompLocal, comp, doc);
-                encoderPara((Parallele) comp, doc, elemCompLocal);
+                encoderPara((III) comp, doc, elemCompLocal);
             } else {
                 setComp(elemCompLocal,comp,doc);
             }
@@ -110,9 +110,9 @@ public class GestionXML {
         }
     }
     
-    private static void setComp(Element elem, Composante comp, Document doc) {
-        elem.appendChild(element("ID", ""+comp.getNumero(), doc));
-        elem.appendChild(element("VALEUR", ""+comp.getResistanceEquivalente(), doc));
+    private static void setComp(Element elem, I comp, Document doc) {
+        elem.appendChild(element("ID", ""+comp.I(), doc));
+        elem.appendChild(element("VALEUR", ""+comp.II(), doc));
     }
     
     private static Element element(String type, String info, Document doc) {
@@ -124,11 +124,11 @@ public class GestionXML {
     /**
      * Permet de décoder un fichier XML sous la forme d'un .circuit, représentant un circuit électrique
      * @param endroit Emplacement du fichier à décoder
-     * @return Circuit
+     * @return I11
      */
-    public Circuit decoder(String endroit){
+    public I11 decoder(String endroit){
         try {
-            Circuit c = new Circuit();
+            I11 c = new I11();
             
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -136,8 +136,8 @@ public class GestionXML {
             
             Element rootTest = doc.getDocumentElement();
             
-            c.setAmpere(Double.parseDouble(rootTest.getAttribute("AMPERE")));
-            c.modifier(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
+            c.I1(Double.parseDouble(rootTest.getAttribute("AMPERE")));
+            c.I(Double.parseDouble(rootTest.getAttribute("VOLTAGE")));
             
             NodeList elemComp = rootTest.getElementsByTagName("COMPOSANTE");
             
@@ -150,11 +150,11 @@ public class GestionXML {
             
             for(int i = 0; i < para.getLength(); i++) {
                 if(para.item(i).getParentNode().equals(comp))
-                    c.ajouterComposante(ajouterParallele(((Element)para.item(i))));
+                    c.I(ajouterParallele(((Element)para.item(i))));
             }
             for(int i = 0; i < resis.getLength(); i++) {
                 if(resis.item(i).getParentNode().equals(comp))
-                    c.ajouterComposante(ajouterComp((Element)resis.item(i)));
+                    c.I(ajouterComp((Element)resis.item(i)));
             }
             
             
@@ -165,21 +165,21 @@ public class GestionXML {
         }
     }
     
-    private Composante ajouterComp(Element n) {
+    private I ajouterComp(Element n) {
         
-        Composante comp;
+        I comp;
         
         switch(n.getNodeName()) {
             case "RESISTANCE" :
                 double resistanceEqui = Double.parseDouble(getInfo("VALEUR", n));
                 int ID = Integer.valueOf(getInfo("ID", n));
                 
-                comp = new Resistance(resistanceEqui, ID);
+                comp = new II1(resistanceEqui, ID);
                 return comp;
             case "BRANCHE" :
                 int IDBranche = Integer.valueOf(getInfo("ID", n));
                 
-                comp = new Serie(IDBranche);
+                comp = new II(IDBranche);
                 
                 NodeList element = n.getElementsByTagName("COMPOSANTE");
                 Element elemtemp = (Element) element.item(0);
@@ -189,11 +189,11 @@ public class GestionXML {
                 
                 for(int i = 0; i < para.getLength(); i++) {
                     if(para.item(i).getParentNode().equals(elemtemp))
-                    ((Serie)comp).ajouterComposante(ajouterParallele((Element) element.item(i)));
+                    ((II)comp).I(ajouterParallele((Element) element.item(i)));
                 }
                 for(int i = 0; i < resis.getLength(); i++) {
                     if(resis.item(i).getParentNode().equals(elemtemp))
-                    ((Serie)comp).ajouterComposante(ajouterComp((Element)resis.item(i)));
+                    ((II)comp).I(ajouterComp((Element)resis.item(i)));
                 }
                 
                 return comp;
@@ -202,8 +202,8 @@ public class GestionXML {
         }
     }
     
-    private Composante ajouterParallele(Element n) {
-        Parallele para = new Parallele(Integer.parseInt(((Element)n.getElementsByTagName("ID").item(0)).getFirstChild().getNodeValue()));
+    private I ajouterParallele(Element n) {
+        III para = new III(Integer.parseInt(((Element)n.getElementsByTagName("ID").item(0)).getFirstChild().getNodeValue()));
         
         NodeList elemTemp = n.getElementsByTagName("COMPOSANTE");
         Element element = (Element)elemTemp.item(0);
@@ -211,7 +211,7 @@ public class GestionXML {
         
         for(int i = 0; i < branches.getLength(); i++) {
             if(branches.item(i).getParentNode().equals(element))
-            para.ajouterComposante(ajouterComp((Element)branches.item(i)));
+            para.I(ajouterComp((Element)branches.item(i)));
         }
         
         return para;

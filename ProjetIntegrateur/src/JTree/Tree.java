@@ -10,7 +10,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
-import logiqueCircuit.Circuit;
+import logiqueCircuit.I11;
 
 /**
  * Arbre d'affichage
@@ -45,9 +45,9 @@ public class Tree extends JPanel implements TreeSelectionListener {
 
     /**
      * Permet de mettre à jour l'Arbre. Utilisé quand une composante est modifiée, ajoutée/supprimée, ou quand des modifications sont faites sur les variables importantes du circuit
-     * @param c Circuit sur lequel se baser pour la construction de l'Arbre
+     * @param c I11 sur lequel se baser pour la construction de l'Arbre
      */
-    public void update(Circuit c) {
+    public void update(I11 c) {
         tree.setModel(new MonTreeModel(MonTreeBuilder.build(c)));
         expand();
     }

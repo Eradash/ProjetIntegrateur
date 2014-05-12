@@ -1,12 +1,12 @@
 package gestion;
 
-import logiqueCircuit.Circuit;
-import logiqueCircuit.Composante;
-import logiqueCircuit.Resistance;
-import logiqueCircuit.Type;
+import logiqueCircuit.I11;
+import logiqueCircuit.I;
+import logiqueCircuit.II1;
+import logiqueCircuit.I1I;
 
 /**
- * Permet d'Analyser un Circuit
+ * Permet d'Analyser un I11
  */
 public class AnalyseurCircuit {
 
@@ -16,19 +16,19 @@ public class AnalyseurCircuit {
     public static int arrondissement = 8;
 
     /**
-     * Permet d'analyser un Circuit. Rentre toutes les valeurs dans la BD.
-     * @param c Circuit à analyser
+     * Permet d'analyser un I11. Rentre toutes les valeurs dans la BD.
+     * @param c I11 à analyser
      */
-    public void analyserCircuit(Circuit c) {
+    public void analyserCircuit(I11 c) {
         if (c != null) {
-            double voltage = c.getVoltage();
+            double voltage = c.I1I();
             calcul(-1, voltage, c, -1);
         }
     }
 
-    private void calcul(double amp, double volt, Composante b, int ID_Parent) {
-        int ID = b.getNumero();
-        double resistance = b.getResistanceEquivalente();
+    private void calcul(double amp, double volt, I b, int ID_Parent) {
+        int ID = b.I();
+        double resistance = b.II();
         double ampere = amp;
         double voltage = volt;
 
@@ -51,40 +51,40 @@ public class AnalyseurCircuit {
         bd.SetComposante(ID, "Ampere", arrondir(ampere));
         bd.SetComposante(ID, "Voltage", arrondir(voltage));
 
-        switch (b.getType()) {
-            case SERIE:
+        switch (b.I1()) {
+            case III:
                 cas += 1;
                 bd.SetComposante(ID, "Type", 1);
                 break;
-            case CIRCUIT:
+            case I1I:
                 cas += 1;
                 bd.SetComposante(ID, "Type", 3);
                 break;
-            case PARALLELE:
+            case II1:
                 cas += 2;
                 bd.SetComposante(ID, "Type", 2);
                 break;
-            case RESISTANCE:
+            case I11:
                 cas = 0;
                 bd.SetComposante(ID, "Type", 4);
                 break;
         }
 
-        if (b.getType() == Type.RESISTANCE) {
+        if (b.I1() == I1I.I11) {
             double watt = ampere * voltage;
             bd.SetComposante(ID, "Watt", arrondir(watt));
-            Resistance resis = (Resistance) b;
+            II1 resis = (II1) b;
             if (watt > 0.25) {
-                resis.setBurned(true);
+                resis.I(true);
             } else {
-                resis.setBurned(false);
+                resis.I(false);
             }
         }
 
         switch (cas) {
             case 1:
-                for (Composante c : b.getComposantes()) {
-                    voltage = c.getResistanceEquivalente() * ampere;
+                for (I c : b.III()) {
+                    voltage = c.II() * ampere;
                     calcul(ampere, voltage, c, ID);
                 }
                 break;
@@ -92,7 +92,7 @@ public class AnalyseurCircuit {
             case 2:
             case 11:
             case 12:
-                for (Composante c : b.getComposantes()) {
+                for (I c : b.III()) {
                     calcul(-1, voltage, c, ID);
                 }
                 break;
